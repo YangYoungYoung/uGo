@@ -1,0 +1,18 @@
+<!--pages/newAddress/newAddress.wxml-->
+<view class='container'>
+  <view class='name-view'>
+    <text class='name-text'>收货人</text>
+    <input class="inputText" type='text' placeholder="请输入姓名" bindinput="passwordInput" />
+  </view>
+  <view class='line'></view>
+
+  <view class='name-view'>
+    <text class='name-text'>手机号码</text>
+    <input class="inputText" type='number' placeholder="请输入手机号码" bindinput="passwordInput" />
+  </view>
+  <view class='line'></view>
+
+
+  <van-area area-list="{{ areaList }}" />
+
+</view>

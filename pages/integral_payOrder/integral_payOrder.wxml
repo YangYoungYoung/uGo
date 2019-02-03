@@ -1,0 +1,50 @@
+<!--pages/integral_payOrder/integral_payOrder.wxml-->
+<view class="container">
+  <form bindsubmit="placeOrder">
+    <van-panel wx:if="{{showAddr}}" bindtap='getAddress'>
+
+      <van-cell title="{{name}}" icon="location-o" value="{{tel}}" size="large" label="{{addrdetail}}" />
+    </van-panel>
+
+    <van-panel bindtap="getAddress" wx:if="{{showAddAddr}}">
+      <van-cell title="请选择地址" is-link />
+    </van-panel>
+
+
+    <view class="zan-panel" style="margin-top:10px">
+      <block wx:for="{{detail}}" wx:key="index">
+        <van-card num="{{item.number}}" price="{{item.integral}}" desc="描述信息" title="{{item.shopName}}" thumb="{{ imageURL }}" />
+
+      </block>
+      <van-cell-group>
+        <van-field value="{{ message }}" label="留言" type="textarea" placeholder="请输入留言" autosize border="{{ false }}" />
+      </van-cell-group>
+
+      <!-- <view class="zan-cell">
+        <view class="zan-cell__bd">
+          合计
+        </view>
+        <view class="zan-cell__ft" style="color:red">
+          ￥{{totalMoney}}
+        </view>
+      </view> -->
+
+      <van-cell title="合计" value-class='price-style' value=" 111 " />
+    </view>
+
+
+    <van-cell title="运费" value-class='price-style' value=" 免运费 " />
+    <!--下单-->
+    <view class="Bill-layer" wx:if="{{showCart&&sumNum>0}}" bindtap="hiddenLayer"></view>
+    <view class="Bill">
+      <view class="takeBill {{showCart?'':'bdt'}}">
+        <view class="box-cart">合计：
+          <text style="color:red">积分{{totalMoney}}</text>
+        </view>
+        <button class="box-right" formType="submit" bindtap='payOrder'>
+          提交订单
+        </button>
+      </view>
+    </view>
+  </form>
+</view>

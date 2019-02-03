@@ -1,0 +1,374 @@
+// pages/home/home.js
+var network = require("../../utils/network.js")
+var common = require("../../utils/common.js")
+Page({
+
+  /**
+   * 页面的初始数据
+   */
+  data: {
+    clicked: false,
+    showModal: false,
+    indicatorDots: true, //是否出现焦点  
+    autoplay: true, //是否自动播放轮播图  
+    interval: 4000, //时间间隔
+    duration: 1000, //延时时间
+    circular: true,
+    addIntegral: 0,
+    signedTimes: 0,
+    menu: [{
+        image: '../images/menu_1.png',
+        // name: '餐饮美食'
+      },
+      {
+        image: '../images/menu_2.png',
+        // name: '服装内衣'
+      },
+      {
+        image: '../images/menu_3.png',
+        // name: '数码家电'
+      },
+      {
+        image: '../images/menu_4.png',
+        // name: '挂果蔬菜'
+      },
+      {
+        image: '../images/menu_5.png',
+        // name: '酒店宾馆'
+      },
+      {
+        image: '../images/menu_6.png',
+        // name: '休闲娱乐'
+      },
+      {
+        image: '../images/menu_7.png',
+        // name: '彩妆护肤'
+      },
+      {
+        image: '../images/menu_8.png',
+        // name: '日用百货'
+      },
+      {
+        image: '../images/menu_9.png',
+        // name: '母婴用品'
+      },
+      {
+        image: '../images/menu_10.png',
+        // name: '其他'
+      },
+    ],
+    footerList: [{
+        name: '首页',
+        src_yes: '../images/footer_home_y.png',
+        src_no: '../images/footer_home_n.png',
+        select: true
+      },
+      {
+        name: '积分兑换',
+        src_yes: '../images/footer_duihuan_y.png',
+        src_no: '../images/footer_duihuan_n.png'
+      },
+      {
+        name: '个人中心',
+        src_yes: '../images/footer_center_y.png',
+        src_no: '../images/footer_center_n.png'
+      }
+    ],
+    sineList: [{
+        name: "第1天",
+        number: 5,
+        select: false
+      },
+      {
+        name: "第2天",
+        number: 12,
+        select: false
+      },
+      {
+        name: "第3天",
+        number: 40,
+        select: false
+      },
+      {
+        name: "第4天",
+        number: 19,
+        select: false
+      },
+      {
+        name: "第5天",
+        number: 26,
+        select: false
+
+      },
+      {
+        name: "第6天",
+        number: 68,
+        select: false
+      },
+      {
+        name: "第7天",
+        number: 68,
+        select: false
+      }
+
+    ]
+  },
+
+  /**
+   * 生命周期函数--监听页面加载
+   */
+  onLoad: function(options) {
+    let that = this;
+    that.getUserLocation();
+    that.getShopList();
+
+
+
+  },
+  //获取商铺信息
+  getShopList: function() {
+    let that = this;
+    let menu = that.data.menu;
+    let openId = wx.getStorageSync('openId');
+    let url = "home"
+    var params = {
+      userOpenId: openId
+    }
+    let method = "GET";
+    wx.showLoading({
+        title: '加载中...',
+      }),
+      network.POST(url, params, method).then((res) => {
+        wx.hideLoading();
+        // console.log("返回值是：" + res.data);
+        let bannerList = res.data.bannerList;
+        // let shopList = res.data.shopList;
+
+        let categoryList = res.data.categoryList;
+        for (var i = 0; i < categoryList.length; i++) {
+          menu[i].name = categoryList[i].name;
+          // console.log('menu :', menu[i].name);
+        }
+        let shopList = res.data.shopList;
+        if (res.data.shopUser != null) {
+          let shopUser = res.data.shopUser;
+          let signedTimes = shopUser.signedTimes;
+          console.log('signedTime is ', signedTimes);
+          let sineList = that.data.sineList;
+          for (i = 0; i < signedTimes; i++) {
+            if (i == signedTimes) {
+              sineList[index].select = true;
+            }
+          }
+          console.log('addIntegral :', sineList[signedTimes].number)
+          that.setData({
+            signedTimes: signedTimes,
+            addIntegral: sineList[signedTimes].number,
+            sineList: sineList
+          })
+        }
+        that.setData({
+          shopList: shopList,
+          bannerList: bannerList,
+          menu: menu,
+          shopList: shopList,
+
+        })
+
+
+      }).catch((errMsg) => {
+        wx.hideLoading();
+        console.log(errMsg); //错误提示信息
+        wx.showToast({
+          title: '网络错误',
+          icon: 'loading',
+          duration: 1500,
+        })
+      });
+
+  },
+
+  //获取用户地址
+  getUserLocation: function() {
+    let that = this;
+    wx.getLocation({
+      success: function(res) {
+        console.log(res)
+        // let location = res.latitude
+        let qqMapApi = 'http://apis.map.qq.com/ws/geocoder/v1/' + "?location=" + res.latitude + ',' +
+          res.longitude + "&key=F24BZ-B5FKQ-6PC5F-GTQJO-RETFK-C7F5M" + "&get_poi=1";
+        wx.request({
+          url: qqMapApi,
+          data: {
+
+          },
+          method: 'GET',
+          success: (res) => {
+            console.log(res.data);
+            console.log(res.data.result.address_component.district)
+
+            //取位置名
+            that.setData({
+              district: res.data.result.address_component.district
+            })
+          }
+        });
+
+      },
+      fail: function(res) {
+        that.setData({
+          showModal: true
+        })
+      }
+    })
+  },
+
+  /**
+   * 生命周期函数--监听页面显示
+   */
+  onShow: function() {
+
+  },
+  //跳转到不同分类
+  navigateToType: function(event) {
+    let menuIndex = event.currentTarget.dataset.index;
+
+  },
+  //底部导航栏切换
+  footerChange: function(event) {
+    let footeIndex = event.currentTarget.dataset.index;
+    console.log('footeIndex is', footeIndex);
+    let that = this;
+    let footerList = that.data.footerList;
+    if (footeIndex == 2) {
+      wx.redirectTo({
+        url: '../center/center',
+      })
+    } else if (footeIndex == 1) {
+      wx.switchTab({
+        url: '../integral_home/integral_home',
+      })
+    }
+    for (var i = 0; i < footerList.length; i++) {
+      if (i == footeIndex) {
+        footerList[i].select = true;
+      } else {
+        footerList[i].select = false;
+      }
+    }
+    that.setData({
+      footerList: footerList
+    })
+  },
+  //商家电话
+  callPhone: function(event) {
+    let telephone = event.currentTarget.dataset.telephone;
+    console.log('phone is:', telephone);
+    wx.makePhoneCall({
+      phoneNumber: telephone // 仅为示例，并非真实的电话号码
+    })
+  },
+  //跳转到搜索页面
+  toSearch: function() {
+    wx.navigateTo({
+      url: '../search/search',
+    })
+  },
+  //签到按钮
+  sineInClick: function() {
+    let that = this;
+    let integral = that.data.integral;
+    let sineList = that.data.sineList;
+    let signedTimes = that.data.signedTimes;
+    let addedIntegral = sineList[signedTimes].number;
+    let openId = wx.getStorageSync('openId');
+
+    let url = "sign?userOpenId=" + openId + "&addedIntegral="+addedIntegral;
+    var params = {
+      // userOpenId: openId,
+      // addedIntegral: addedIntegral
+    }
+    let method = "PUT";
+    wx.showLoading({
+        title: '加载中...',
+      }),
+      network.POST(url, params, method).then((res) => {
+        wx.hideLoading();
+        if (res.data.code == 200) {
+          that.getShopList();
+          for (var i = 0; i <= signedTimes; i++) {
+            if (i <= signedTimes) {
+              sineList[i].select = true;
+            }
+          }
+          that.setData({
+            sineList: sineList,
+            clicked: true
+          })
+
+          wx.showToast({
+            title: '积分+' + addedIntegral,
+            icon: 'success',
+            duration: 1500,
+          })
+        }
+
+
+      }).catch((errMsg) => {
+        wx.hideLoading();
+        console.log(errMsg); //错误提示信息
+        wx.showToast({
+          title: '网络错误',
+          icon: 'loading',
+          duration: 1500,
+        })
+      });
+  },
+  toMap: function() {
+    wx.navigateTo({
+      url: '../map/map',
+    })
+  },
+  toShop: function(event) {
+    let id = event.currentTarget.dataset.id;
+    console.log("id is", id);
+    wx.navigateTo({
+      url: '../detail/detail?id=' + id,
+    })
+  },
+  //获取位置二次授权
+  handler: function(e) {
+    let that = this;
+    console.log(";;;;;;;;;;;;;");
+    if (e.detail.authSetting["scope.userLocation"]) {
+      that.hideModal();
+      //返回时重新刷新首页页面
+      wx.reLaunch({
+        url: '../home/home'
+      })
+    }
+
+  },
+
+
+  /**
+   * 弹窗
+   */
+  showDialogBtn: function() {
+    this.setData({
+      showModal: true
+    })
+  },
+  /**
+   * 弹出框蒙层截断touchmove事件
+   */
+  preventTouchMove: function() {},
+  /**
+   * 隐藏模态对话框
+   */
+  hideModal: function() {
+    this.setData({
+      showModal: false
+    });
+  },
+})

@@ -1,0 +1,19 @@
+<!--pages/myaddress/myaddress.wxml-->
+<view class='container'>
+
+  <view class='list-item'>
+    <view class='name-phone'>
+      <text class='name'></text>
+      <text class='phone'></text>
+    </view>
+    <view class='address-edit'>
+      <text class='address'></text>
+      <image class='edit' src=''></image>
+    </view>
+    <view class='line'></view>
+  </view>
+  <view class='footer'>
+    <text class='footer-text'>+  新建地址</text>
+  </view>
+
+</view>

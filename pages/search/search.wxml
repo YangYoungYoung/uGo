@@ -1,0 +1,45 @@
+<!--pages/search/search.wxml-->
+<view class='container'>
+  <view class='search'>
+    <van-search value="{{ value }}" placeholder="请输入关键词搜索" bind:change="onSearch" />
+  </view>
+  <view class='found'>
+    <text class='found-text'>搜索发现</text>
+    <view class='found-list'>
+      <block wx:for='{{foundList}}' wx:key="index">
+        <view class='found-list-item'>
+          <text class='found-list-item-text'>{{item}}</text>
+        </view>
+      </block>
+    </view>
+    <view class='found-line'></view>
+  </view>
+
+  <view class='found'>
+    <view class='found-title'>
+      <text class='found-text'>最近搜索</text>
+      <image class='found-delete' src='../images/found_delete1.png' mode='aspectFit'></image>
+    </view>
+
+    <view class='found-list'>
+      <block wx:for='{{foundList}}' wx:key="index">
+        <view class='found-list-item'>
+          <text class='found-list-item-text'>{{item}}</text>
+        </view>
+      </block>
+    </view>
+    <view class='found-line'></view>
+  </view>
+  <view class='local-search'>
+    <view class='local-title'>
+      <image class='local-icon' src='../images/history_icon.png'></image>
+      <view class='local-text'>本地热搜榜</view>
+      <image class='local-more' src='../images/local_more.png' mode='aspectFill'></image>
+    </view>
+    <view class='local-list'>
+      <block wx:for="{{localList}}">
+        <text class='local-list-item'>{{item}}</text>
+      </block>
+    </view>
+  </view>
+</view>

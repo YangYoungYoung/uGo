@@ -1,0 +1,31 @@
+<!--pages/detail/detail.wxml-->
+<view class='container'>
+  <view class='title'>
+    <text class='shop-name'></text>
+    <text class='shop-location'></text>
+  </view>
+
+  <view class='image-list'>
+    <image class='image-item'></image>
+  </view>
+
+  <view class='shop-time'>
+    <image class='shop-time-image' src='../images/shop_time_icon.png'></image>
+    <text class='shop-time-text'>营业至22:00</text>
+  </view>
+  <view class='shop-location-view'>
+    <view class='shop-location-info'>
+      <view class='detail-location-info-left'>
+        <view class='location-info'>
+          <image class='location-logo' src='../images/detail_location_icon.png'></image>
+          <text class='location-text'>易县开元北大街44号</text>
+        </view>
+        <text class='detail-distance'>距金沐汤泉步行1.2km</text>
+      </view>
+      <view class='detail-location-info-right'>
+        <view class='location-right-line'></view>
+        <image class='location-right-phone' src='../images/shop_phone_icon.png' bindtap='callPhone'></image>
+      </view>
+    </view>
+  </view>
+</view>

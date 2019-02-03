@@ -1,0 +1,43 @@
+<!--pages/typeInfo/typeInfo.wxml-->
+<view class='container'>
+  <view class='search'>
+    <van-search value="{{ value }}" placeholder="请输入搜索关键词" bind:change="onSearch" />
+  </view>
+  <!-- <view class='menu'>
+    <block wx:for="{{menu}}" wx:key="index">
+      <view class='menu-item' bindtap='selectMenu' data-index='{{index}}'>
+        <text class='menu-item-name'>{{item.name}}</text>
+        <image class='menu-item-icon' src='../images/location_icon.png'></image>
+      </view>
+    </block>
+  </view> -->
+  <scroll-view class='scroll' scroll-y="true" style="height: 100%;">
+    <view class='shop-list'>
+      <view class='shop-list-item'>
+        <view class='shop-item-image'>
+          <image class='shop-item-logo' src='../images/integral_logo.png'></image>
+        </view>
+
+        <view class='shop-item-info'>
+          <text class='shop-info-name'>忠顺斋</text>
+          <view class='shop-info-location-distance'>
+            <view class='shop-info-location'>
+              <text class='shop-info-type'>中餐</text>
+              <text class='shop-info-loca'>易县城区</text>
+            </view>
+            <text class='shop-info-distance'>840m</text>
+          </view>
+          <block>
+            <view class='shop-info-discounts'>
+              <image class='shop-discounts-logo' src='../images/shop_discounts_logo.png'></image>
+              <text class='shop-discounts-text'>地方垃圾堆了房间里</text>
+              <image class='shop-discounts-end' src='../images/shop_discounts_end.png'></image>
+            </view>
+          </block>
+        </view>
+      </view>
+    </view>
+  </scroll-view>
+
+
+</view>

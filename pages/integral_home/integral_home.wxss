@@ -1,0 +1,206 @@
+/* pages/integral_home/integral_home.wxss */
+
+page {
+  width: 100%;
+  height: 100%;
+}
+
+.slide-image {
+  width: 100%;
+}
+
+.type_line {
+  width: 100%;
+  align-items: center;
+  text-align: center;
+  margin-top: 20rpx;
+}
+
+.type_line image {
+  width: 577rpx;
+  height: 27rpx;
+}
+
+#types {
+  width: 100%;
+  height: auto;
+  font-size: 16px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  padding-bottom: 20rpx;
+}
+
+.list-item {
+  padding-top: 20rpx;
+  width: 20%;
+  text-align: center;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.item-foot {
+  font-size: 24rpx;
+  width: 100%;
+  margin-top: 10rpx;
+}
+
+.item-head {
+  width: 100%;
+  height: 83rpx;
+}
+
+.item-head image {
+  width: 83rpx;
+  height: 100%;
+}
+
+.score-list-view {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  height: 48rpx;
+  line-height: 48rpx;
+  margin-top: 32rxp;
+  background-color: #e83d2c;
+  margin-bottom: 4rpx;
+  align-items: center;
+}
+
+.score-list {
+  display: flex;
+  flex-direction: row;
+  text-align: center;
+  align-items: center;
+  color: #fbfbfb;
+}
+
+.score-item {
+  /* width: 108rpx; */
+  padding: 0 8rpx;
+  height: 36rpx;
+  background-color: #fff;
+  border-radius: 6rpx;
+  margin-left: 24rpx;
+  font-size: 24rpx;
+  line-height: 36rpx;
+}
+
+.score-list-text {
+  margin-left: 24rpx;
+  color: #fbfbfb;
+  font-size: 24rpx;
+}
+
+.recommend_title {
+  width: 100%;
+  text-align: center;
+  color: #e8a844;
+  font-size: 34rpx;
+  padding-top: 20rpx;
+  padding-bottom: 15rpx;
+}
+
+.line {
+  width: 100%;
+  height: 20rpx;
+  background-color: #eee;
+  margin-top: 20rpx;
+}
+
+.shop_grid {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  padding-top: 20rpx;
+  padding-bottom: 20rpx;
+  justify-content: space-between;
+  align-items: center;
+  text-align: center;
+  padding-left: 10rpx;
+  padding-right: 10rpx;
+  background-color: #eee;
+}
+
+.item_view {
+  width: 360rpx;
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  margin-bottom: 15rpx;
+}
+
+.item_head {
+  width: 100%;
+  height: 367rpx;
+  display: block;
+}
+
+.item_head image {
+  width: 100%;
+  height: 100%;
+}
+
+.item_foot {
+  width: 100%;
+  padding: 15rpx 10rpx 10rpx 15rpx;
+  text-align: center;
+}
+
+.item_title {
+  padding-right: 30rpx;
+  display: block;
+  height: 30rpx;
+  font-size: 28rpx;
+  line-height: 30rpx;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  color: #4f4f4f;
+}
+
+.item_integral {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  text-align: center;
+  line-height: 100%;
+  margin-top: 15rpx;
+}
+
+.price_info {
+  height: 36rpx;
+  margin-left: 3rpx;
+  color: #6f6f6f;
+  font-size: 28rpx;
+}
+
+.item_sold {
+  margin-top: 10rpx;
+  display: flex;
+  float: right;
+  font-size: 24rpx;
+  padding-right: 40rpx;
+  color: #FF919191;
+}
+
+.jifen_view {
+  width: 68rpx;
+  height: 40rpx;
+  background: rgba(255, 255, 255, 1);
+  border-radius: 4rpx;
+  border: 2rpx solid rgba(232, 61, 44, 1);
+  text-align: center;
+  align-items: center;
+  font-size: 24rpx;
+  color: #E83D2C;
+}
+
+.jifen_logo{
+  width: 24rpx;
+  height: 26rpx;
+  margin-left: 7rpx;
+
+}

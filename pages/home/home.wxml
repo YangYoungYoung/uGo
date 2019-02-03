@@ -1,0 +1,158 @@
+<!--pages/home/home.wxml-->
+<view class='container'>
+  <scroll-view class='scroll' scroll-y>
+    <swiper style="height:320rpx;width:100%;background:#eee" indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" circular="{{circular}}">
+      <!--广告banner-->
+      <block wx:for="{{ bannerList }}" wx:key="item">
+        <swiper-item>
+          <image class="banner-image" src="{{ item.url }}" mode='aspectFill' />
+        </swiper-item>
+      </block>
+    </swiper>
+
+    <view class='location-search'>
+      <view class='location'>
+        <text class='location-text'>{{district}}</text>
+        <image class='location-icon' src='../images/location_icon.png' bindtap='toMap'></image>
+      </view>
+      <view class='search' bindtap='toSearch'>
+        <text class='search-text'>搜索</text>
+        <image class='search-icon' src='../images/search_icon.png'></image>
+      </view>
+    </view>
+
+    <view id='types'>
+      <block wx:for="{{menu}}" wx:key="item">
+        <view class='list-item' bindtap="navigateToFunction" data-index="{{index}}">
+          <view class='item-head'>
+            <image src="{{item.image}}" mode="scaleToFill"></image>
+          </view>
+          <view class='item-foot'>
+            {{item.name}}
+          </view>
+        </view>
+      </block>
+    </view>
+
+    <view class='sine-in'>
+      <view class='sine-left'>
+        <view class='sine-left-logo-view'>
+          <image class='sine-left-logo' src='../images/integral_logo1.png'></image>
+          <view class='sine-left-logo-bottom'>{{addIntegral}} 积分</view>
+        </view>
+        <view class='sine-left-number'>
+          <image class='sine-left-number-icon' src='../images/icon_people.png'></image>
+          <text class='sine-left-people-num'>100万人已领取</text>
+        </view>
+      </view>
+      <view class='sine-in-line'></view>
+      <view class='sine-right'>
+        <view class='sine-right-title'>
+          <text class='sine-title-fuli'>福利中心</text>
+          <text class='sine-title-qiandao'>每日签到领红包</text>
+        </view>
+        <view class='sine-in-list'>
+          <block wx:for="{{sineList}}" wx:key="{{index}}">
+            <view class='sine-in-list-item'>
+              <block wx:if="{{index<6}}">
+                <view class='sine-list-item-image' style="{{item.select?'background-color:#0AACFB':'background-color:#C1C1C1'}}">
+                  <text class='sine-list-image-number'>{{item.number}}\n积分</text>
+                </view>
+              </block>
+              <block wx:else>
+                <image class='sine-list-item-dial' src='../images/dial_icon.png'></image>
+              </block>
+              <text class='sine-list-item-day'>{{item.name}}</text>
+            </view>
+          </block>
+        </view>
+        <view class='sine-in-right-bottom'>
+          <button class='sine-in-btn' style="{{clicked?'background-color:#C1C1C1':'background-color:#fd286b'}}" disabled='{{clicked}}' bindtap='sineInClick'>签到领积分</button>
+        </view>
+      </view>
+    </view>
+    <view class='optimization-shop'>
+      <text class='optimization-shop-text'>商家优选</text>
+      <image class='optimization-shop-icon' src='../images/optimization__icon1.png'></image>
+    </view>
+    <view class='optimization-list'>
+      <block wx:for="" wx:key='index'>
+        <image class='optimization-list-item'></image>
+      </block>
+    </view>
+    <view class='near-shop'>
+      <text class='near-title'>附近合作商家</text>
+      <view class='near-shop-list'>
+        <block wx:for="{{shopList}}" wx:key='index'>
+
+          <view class='shop-list-item' bindtap='toShop' data-id='{{item.id}}'>
+            <image class='shop-item-image' src=''></image>
+            <view class='shop-item-info'>
+              <view class='shop-info-title'>
+                <view class='shop-info-title-left'>
+                  <text class='shop-title-left-name'>{{item.name}}</text>
+                  <view class='shop-title-left-discounts'>
+                    <text class='shop-title-left-discounts-text'>{{item.activity}}</text>
+                  </view>
+                </view>
+                <text class='shop-distance'>79m</text>
+              </view>
+              <view class='shop-grade-hour'>
+                <van-rate custom-class='shop-grade' value="{{item.ranking}}" size='15' readonly='true' />
+                <text class='shop-hour'>(营业时间:{{item.businessTime}})</text>
+              </view>
+              <view class='shop-info-type'>
+                <view class='shop-info-type-left'>
+                  <image class='shop-info-type-icon' src='../images/shop_type_icon.png'></image>
+                  <text class='shop-info-type-name'>数码家电</text>
+                </view>
+                <image class='shop-info-type-phone' src='../images/shop_phone.png' data-telephone="{{item.telephone}}" catchtap='callPhone'></image>
+              </view>
+              <view class='shop-location-people'>
+                <view class='shop-location'>
+                  <image class='shop-location-icon' src='../images/shop_location_icon1.png' mode='aspectFit'></image>
+                  <text class='shop-location-text'>{{item.address}}</text>
+                </view>
+                <view class='shop-people'>已有
+                  <text class='shop-people-num'>{{item.consumedNum}}</text>
+                  <view>人进店</view>
+                </view>
+              </view>
+            </view>
+          </view>
+          <view class='shop-line'></view>
+
+        </block>
+      </view>
+    </view>
+    <view class='bottom-text'>-------- 到底了 --------</view>
+  </scroll-view>
+  <view class='footer'>
+    <view class='footer-list'>
+      <view class='footer-item' wx:for="{{footerList}}" wx:key='index' data-index="{{index}}" bindtap='footerChange'>
+        <block wx:if="{{item.select}}">
+          <image class='footer-item-icon' src='{{item.src_yes}}' mode='aspectFit'></image>
+          <text class='footer-item-name' style='color:#FD286B'>{{item.name}}</text>
+        </block>
+        <block wx:else>
+          <image class='footer-item-icon' src='{{item.src_no}}' mode='aspectFit'></image>
+          <text class='footer-item-name' style='color:#313131'>{{item.name}}</text>
+        </block>
+
+      </view>
+    </view>
+  </view>
+
+
+  <view class="modal-mask" catchtouchmove="preventTouchMove" wx:if="{{showModal}}"></view>
+  <view class="modal-dialog" wx:if="{{showModal}}">
+    <view class="modal-title">位置授权</view>
+    <view class="modal-content">
+      <text class='modal-content-text'>需要重新授权才能使用小程序</text>
+    </view>
+    <view class="modal-footer">
+      <button class="btn-confirm" open-type="openSetting"   bindopensetting="handler" >确定</button>
+    </view>
+  </view>
+
+</view>

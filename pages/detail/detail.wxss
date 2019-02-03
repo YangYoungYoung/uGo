@@ -1,0 +1,139 @@
+/* pages/detail/detail.wxss */
+
+.container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  color: #313131;
+  /* align-items: center; */
+}
+
+.title {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.shop-name {
+  font-size: 32rpx;
+  margin-left: 32rpx;
+}
+
+.shop-location {
+  font-size: 24rpx;
+  color: #616161;
+}
+
+.image-list {
+  display: flex;
+  flex-direction: row;
+  margin: 24rpx;
+  flex-wrap: wrap;
+  box-sizing: border-box;
+  background-color: #eee;
+}
+
+.image-item {
+  width: 342rpx;
+  height: 257rpx;
+  border-radius: 24rpx;
+}
+
+.shop-time {
+  display: flex;
+  flex-direction: row;
+  /* text-align: center;
+  align-items: center; */
+  margin-left: 24rpx;
+}
+
+.shop-time-image {
+  width: 36rpx;
+  height: 36rpx;
+}
+
+.shop-time-text {
+  font-size: 28rpx;
+  margin-left: 10rpx;
+  color: #313131;
+}
+
+.shop-location-view {
+  width: 100%;
+  text-align: center;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  margin-top: 24rpx;
+}
+
+.shop-location-info {
+  display: flex;
+  flex-direction: row;
+  text-align: center;
+  box-sizing: border-box;
+  width: 702rpx;
+  height: 138rpx;
+  border-radius: 16rpx;
+  justify-content: space-between;
+  border: 1rpx solid rgba(193, 193, 193, 1);
+}
+
+.shop-location-info-left{
+  display: flex;
+
+  border: 1rpx solid rgba(193, 193, 193, 1);
+}
+
+.detail-location-info-left{
+  display: flex;
+  flex-direction: column;
+  margin-top: 24rpx;
+}
+.location-info{
+  display: flex;
+  flex-direction: row;
+  margin-left: 24rpx;
+}
+
+.location-logo{
+  width: 28rpx;
+  height: 34rpx;
+}
+
+.location-text{
+  font-size: 28rpx;
+  color: #313131;
+  margin-left: 24rpx;
+}
+.detail-distance{
+  margin-left: 76rpx;
+  margin-top: 24rpx;
+  font-size: 24rpx;
+  color: #616161;
+}
+.detail-location-info-right{
+  display: flex;
+  flex-direction: row;
+  height: 138rpx;
+  text-align: center;
+  align-items: center;
+  line-height: 138rpx;
+}
+
+.location-right-line{
+  width: 2rpx;
+  height: 88rpx;
+  background-color: #C1C1C1;
+  margin-right: 24rpx;
+}
+
+.location-right-phone{
+  width: 40rpx;
+  height: 40rpx;
+  margin-right: 24rpx;
+}

@@ -1,0 +1,25 @@
+<!--pages/drawings/drawings.wxml-->
+<view class='container'>
+  <view class='title'>
+    <text class='title-left'>提现金额</text>
+    <text class='title-right'>提现金额不低于100.00，每笔收取6%手续费</text>
+  </view>
+  <view class='drawings-view'>
+    <input type="number" placeholder="0" value='￥{{number}}' class="drawings-text" maxlength="11" bindinput="getNumber" />
+  </view>
+  <view class='current-state'>
+    <view class='current-left'>
+      <text class='available-balance'>可用余额：</text>
+      <text class='available-balance-text'>￥{{}}0</text>
+      <text class='available-balance' style='margin-left:20rpx;'>当前余额：</text>
+      <text class='available-balance-text'>￥{{}}0</text>
+    </view>
+    <view class='current-right' bindtap='allWithdrawal'>全部提现</view>
+  </view>
+  <view class='withdraw-check'>
+    提现到：
+    <view class='weixin-view' style="{{item.selected?'border:2px solid rgba(52,162,99,1);':'border: 1px solid rgba(193, 193, 193, 1);'}}">
+      <image class='weixin-logo'></image>
+    </view>
+  </view>
+</view>
