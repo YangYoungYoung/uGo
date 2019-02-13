@@ -1,2 +1,20 @@
 <!--pages/myBalance/myBalance.wxml-->
-<text>pages/myBalance/myBalance.wxml</text>
+<view class='container'>
+  <image class='balance-image' src='../images/yue_icon.png'></image>
+  <text class='balance-text'>￥{{balance}}</text>
+  <button class='withdraw-btn'>申请提现</button>
+  <view class='explain-view'>
+    <view class='explain-line'></view>
+
+    <text class='explain-text'>资金说明</text>
+    <view class='explain-line'></view>
+  </view>
+  <view class='explain-content'>
+
+    <text>
+   1.提现金额不得少于100元\n 2.提现后预计需要1-3个工作日进行审核\n 3.提现成功后到账所绑定的支付宝账号\n 4.余额可当现金，直接购买平台上的产品
+  </text>
+
+  </view>
+  <view class='balance-line'></view>
+</view>

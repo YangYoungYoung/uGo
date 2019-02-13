@@ -1,16 +1,18 @@
 {
   "pages": [
+    "pages/center/center",
+    "pages/myBalance/myBalance",
     "pages/newAddress/newAddress",
+    "pages/login/login",
     "pages/livecart/livecart",
     "pages/liveStreaming/liveStreaming",
     "pages/myaddress/myaddress",
     "pages/drawings/drawings",
-    "pages/myBalance/myBalance",
-    "pages/login/login",
+    
     "pages/home/home",
+    
     "pages/convas/convas",
     "pages/integral_type/integral_type",
-    "pages/center/center",
     "pages/integral_exchange/integral_exchange",
     "pages/integral_search/integral_search",
     "pages/integral_order/integral_order",
@@ -22,8 +24,7 @@
     "pages/map/map",
     "pages/detail/detail",
     "pages/typeInfo/typeInfo",
-    "pages/index/index",
-    "pages/logs/logs"
+    "pages/index/index"
   ],
   "window": {
     "backgroundTextStyle": "light",

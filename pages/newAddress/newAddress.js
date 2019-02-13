@@ -5,6 +5,11 @@ Page({
    * 页面的初始数据
    */
   data: {
+    showModal: false,
+    name:'',
+    phone:'',
+    street:'',
+    cityText:'',
     areaList: {
       province_list: {
         110000: '北京市',
@@ -3799,51 +3804,76 @@ Page({
   },
 
   /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function() {
-
-  },
-
-  /**
    * 生命周期函数--监听页面显示
    */
   onShow: function() {
 
   },
-
   /**
-   * 生命周期函数--监听页面隐藏
+   * 弹窗
    */
-  onHide: function() {
+  showDialogBtn: function() {
+    this.setData({
+      showModal: true
+    })
+  },
+  /**
+   * 弹出框蒙层截断touchmove事件
+   */
+  preventTouchMove: function() {},
+  /**
+   * 隐藏模态对话框
+   */
+  hideModal: function() {
+    this.setData({
+      showModal: false
+    });
+  },
+  confirmFunction: function(e) {
+    let that = this;
+    let value = e.detail.values;
+    let cityText="";
+    for(var i=0;i<value.length;i++){
+      cityText+=value[i].name;
+    }
+
+    let index = e.detail.indexs;
+    console.log(cityText);
+    that.setData({
+      cityText: cityText
+    })
+    that.hideModal();
+  },
+  cancelFunction: function() {
+    that.hideModal();
+  },
+  //保存
+  saveFunction:function(){
 
   },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function() {
-
+  //姓名输入取值
+  nameInput:function(e){
+    let that = this;
+    let name = e.detail.value;
+    that.setData({
+      name: name
+    })
+  },
+  //手机输入取值
+  phoneInput: function (e) {
+    let that = this;
+    let phone = e.detail.value;
+    that.setData({
+      phone: phone
+    })
+  },
+  //详细地址输入取值
+  streetInput: function (e) {
+    let that = this;
+    let street = e.detail.value;
+    that.setData({
+      street: street
+    })
   },
 
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function() {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function() {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function() {
-
-  }
 })
