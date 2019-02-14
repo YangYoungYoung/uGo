@@ -1,3 +1,5 @@
 {
-  "usingComponents": {}
+  "usingComponents": {
+    "van-stepper": "../../miniprogram_npm/vant-weapp/stepper/index"
+  }
 }

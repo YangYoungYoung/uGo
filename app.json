@@ -1,11 +1,12 @@
 {
   "pages": [
+    "pages/liveStreaming/liveStreaming",
     "pages/center/center",
     "pages/myBalance/myBalance",
     "pages/newAddress/newAddress",
     "pages/login/login",
     "pages/livecart/livecart",
-    "pages/liveStreaming/liveStreaming",
+    
     "pages/myaddress/myaddress",
     "pages/drawings/drawings",
     

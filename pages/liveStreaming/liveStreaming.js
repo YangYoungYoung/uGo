@@ -7,7 +7,8 @@ Page({
   data: {
     windowHeight:1334,
     showModalStatus:false,
-
+    showModalDetail:true,
+    
   },
 
   /**
@@ -95,10 +96,47 @@ Page({
       }
     })
   },
-  shouModel:function(){
+  //弹出弹窗
+  showModel:function(){
     let that = this;
     that.setData({
       showModalStatus:true
+    })
+  },
+  //隐藏弹窗
+  hideModal: function () {
+    let that = this;
+    that.setData({
+      showModalStatus: false
+    })
+  },
+
+  //加入购物车
+  joinCart:function(){
+
+  },
+
+  //立即购买
+  buyNow:function(){
+
+  },
+  //跳转到购物车
+  toCart:function(){
+
+  },
+  //关闭弹窗
+  closeModel:function(){
+    let that = this;
+    that.setData({
+      showModalDetail:false
+    })
+  },
+  //跳转到详情
+  toDetail:function(){
+    let that =this;
+    that.setData({
+      showModalDetail: false,
+      showModalStatus: false,
     })
   }
 })

@@ -143,20 +143,64 @@
 
 /*对话框 */
 
-.commodity_attr_box {
-  width: 702rpx;
-  max-height: 862rpx;
+.commodity_view {
+  width: 100%;
   position: fixed;
   bottom: 0;
   left: 0;
   z-index: 2000;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-sizing: border-box;
+}
+
+.commodity_title {
+  width: 702rpx;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.reddot {
+  box-sizing: border-box;
+  position: absolute;
+  width: 28rpx;
+  height: 28rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 50%;
+  line-height: 28rpx;
+  background: #e83d2c;
+  text-align: center;
+  color: white;
+  font-size: 20rpx;
+  margin-top: -80rpx;
+  z-index: 999;
+  margin-left: 50rpx;
+}
+
+.commodity_text {
+  font-size: 24rpx;
+  color: #fbfbfb;
+}
+
+.commodity_image {
+  width: 68rpx;
+  height: 64rpx;
+}
+
+.commodity_attr_box {
+  margin-top: 25rpx;
+  width: 702rpx;
+  height: 862rpx;
   background: #fff;
   padding: 20rpx 3%;
   display: flex;
   flex-direction: column;
   align-items: center;
   box-sizing: border-box;
-  margin-left: 24rpx;
   border-radius: 16rpx 16rpx 0rpx 0rpx;
 }
 
@@ -201,4 +245,85 @@
   width: 654rpx;
   height: 2rpx;
   background: rgba(193, 193, 193, 1);
+}
+
+.commodity_detail {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.detail_close {
+  display: inline;
+  width: 24rpx;
+  height: 24rpx;
+  margin-top: 24rpx;
+  float: right;
+}
+
+.detail_left {
+  display: flex;
+  flex-direction: row;
+  margin-left: 24rpx;
+  align-items: center;
+}
+
+.detail_image {
+  width: 144rpx;
+  height: 144rpx;
+}
+
+.detail_info {
+  display: flex;
+  flex-direction: column;
+  margin-left: 24rpx;
+}
+
+.detail_price {
+  color: #e83d2c;
+  font-size: 32rpx;
+}
+
+.detail_inventory {
+  color: #616161;
+  font-size: 24rpx;
+}
+
+.detail_buyNum {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 24rpx;
+}
+
+.buy_text {
+  color: #313131;
+  font-size: 24rpx;
+}
+
+.detail_line {
+  width: 654rpx;
+  height: 1rpx;
+  margin-top: 24rpx;
+  background: #c1c1c1;
+}
+
+.footer {
+  
+  display: flex;
+  flex-direction: row;
+  position: fixed;
+  bottom: 0;
+  margin-bottom: 23rpx;
+}
+
+.footer_btn {
+  width: 327rpx;
+  height: 64rpx;
+  line-height: 64rpx;
+  color: #FBFBFB;
+  font-size: 28rpx;
+  text-align: center;
 }

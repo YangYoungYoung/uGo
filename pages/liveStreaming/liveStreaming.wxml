@@ -18,7 +18,7 @@
 
   <view class='bottome'>
     <!-- <image class=''></image> -->
-    <view class='zb-cart' bindtap='shouModel'></view>
+    <view class='zb-cart' bindtap='showModel'></view>
     <input class='bottom-input' type='text' placeholder="跟主播聊聊" bindinput="passwordInput"></input>
 
     <image class='zb-share' src='../images/zb_share.png'></image>
@@ -33,20 +33,72 @@
 
 
   <!--屏幕背景变暗的背景  -->
-  <view class="commodity_screen" bindtap="hideModal" wx:if="{{showModalStatus}}"></view>
+  <view class="commodity_screen" bindtap="hideModal" wx:if="{{showModalStatus}}" catchtouchmove='true' catchtouchmove="preventTouchMove"></view>
 
   <!--弹出框  -->
-  <view animation="{{animationData}}" class="commodity_attr_box" wx:if="{{showModalStatus}}">
-
-    <view class='shop-item'>
-      <image class='shop-item-icon' src=''></image>
-      <view class='shop-item-content'>
-        <text class='item-content-name'></text>
-        <text class='item-content-price'></text>
+  <view class='commodity_view' wx:if="{{showModalStatus}}">
+    <view class='commodity_title'>
+      <text class='commodity_text'>共7件商品</text>
+      <view>
+        <image class='commodity_image' src='../images/live_buyicon.png'></image>
+        <view class="reddot">1</view>
       </view>
-      <image class='item-content-cart' src='../images/zb-carticon.png'></image>
+
     </view>
-    <view class='line'></view>
+
+    <view animation="{{animationData}}" class="commodity_attr_box">
+      <scroll-view class='change-scroll' scroll-y>
+        <block wx:for="{{}}" wx:key="id">
+          <view class='shop-item' bindtap='toDetail'>
+            <image class='shop-item-icon' src=''></image>
+            <view class='shop-item-content'>
+              <text class='item-content-name'></text>
+              <text class='item-content-price'></text>
+            </view>
+            <image class='item-content-cart' src='../images/zb-carticon.png' bindtap=''></image>
+          </view>
+          <view class='line'></view>
+        </block>
+      </scroll-view>
+    </view>
+  </view>
+  <!--屏幕背景变暗的背景  -->
+  <view class="commodity_screen" bindtap="hideModal" wx:if="{{showModalDetail}}" catchtouchmove='true' catchtouchmove="preventTouchMove"></view>
+
+  <!--产品详情弹出框  -->
+  <view class='commodity_view' wx:if="{{showModalDetail}}">
+    <view style='width:702rpx;'>
+      <!-- <text class='commodity_text'>共7件商品</text> -->
+      <view style='display: inline;float: right;'>
+        <image class='commodity_image' src='../images/live_buyicon.png' bindtap='toCart'></image>
+        <view class="reddot">1</view>
+      </view>
+
+    </view>
+    <view animation="{{animationData}}" class="commodity_attr_box">
+      <view style='width:100%;'>
+        <image class='detail_close' src='../images/live_closeicon.png' bindtap='closeModel'></image>
+      </view>
+      <view class='commodity_detail'>
+        <view class='detail_left'>
+          <image class='detail_image' src=''></image>
+          <view class='detail_info'>
+            <text class='detail_price'>￥6800</text>
+            <text class='detail_inventory'>库存320件</text>
+          </view>
+        </view>
+        <view class='detail_buyNum'>
+          <text class='buy_text'>购买数量</text>
+          <van-stepper custom-class="stepper" min='0' value="{{ productList[index].count}}" bind:change="onNumberChange" />
+        </view>
+        <view class='detail_line'></view>
+      </view>
+
+      <view class='footer'>
+        <view class='footer_btn' style='background-color:#3AB770' bindtap='joinCart'>加入购物车</view>
+        <view class='footer_btn'style='background-color:#E83D2C' bindtap='buyNow'>立即购买</view>
+      </view>
+    </view>
   </view>
 
 </view>
