@@ -19,7 +19,54 @@
   <view class='withdraw-check'>
     提现到：
     <view class='weixin-view' style="{{item.selected?'border:2px solid rgba(52,162,99,1);':'border: 1px solid rgba(193, 193, 193, 1);'}}">
-      <image class='weixin-logo'></image>
+      <image class='weixin-logo' src='../images/weixin_logo.png'></image>
+      <text class='weixin-text'>微信零钱</text>
     </view>
   </view>
+
+  <view class='content-view'>
+    <view class='account-view'>
+      <text class='account-text'>账号</text>
+      <input type="text" class='account-input' placeholder="请输入微信账号" value='{{account}}' bindinput="getAccount"></input>
+    </view>
+    <view class='line-view'>
+      <view class='account-line'></view>
+    </view>
+
+    <view class='account-view'>
+      <text class='account-text'>户名</text>
+      <input type="text" class='account-input' placeholder="请输入真实姓名" value='{{name}}' bindinput="getName"></input>
+    </view>
+    <view class='line-view'>
+      <view class='account-line'></view>
+    </view>
+
+    <view class='account-view'>
+      <text class='account-text'>手机号</text>
+      <input type="number" class='account-input' maxlength="11" placeholder="请输入手机号" value='{{phone}}' bindinput="getPhone"></input>
+    </view>
+    <view class='line-view'>
+      <view class='account-line'></view>
+    </view>
+
+    <view class='account-phone-view'>
+      <view class='account-phone-left'>
+        <text class='account-text'>验证码</text>
+        <input type="number" class='account-input' style='width:238rpx;' maxlength="11" placeholder="手机验证码" value='{{code}}' bindinput="getCode"></input>
+      </view>
+
+      <text class='sendVerificationCode'>发送验证码</text>
+    </view>
+    <view class='line-view'>
+      <view class='account-line'></view>
+    </view>
+
+    <view class='footer'>
+      <view class='colse-view' bindtap='closePage'>关闭</view>
+      <view class='colse-view' style='background-color:#E83D2C;color:#FFFFFF;'>提现</view>
+    </view>
+
+  </view>
+
+
 </view>

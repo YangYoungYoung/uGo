@@ -1,0 +1,6 @@
+<!--pages/uploadingData/uploadingData.wxml-->
+<view class='container'>
+  <view class='upload-view'>
+    
+  </view>
+</view>

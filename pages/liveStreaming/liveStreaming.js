@@ -7,8 +7,9 @@ Page({
   data: {
     windowHeight:1334,
     showModalStatus:false,
-    showModalDetail:true,
-    
+    showModalDetail:false,
+    inputSelect:false,
+    message:''
   },
 
   /**
@@ -137,6 +138,26 @@ Page({
     that.setData({
       showModalDetail: false,
       showModalStatus: false,
+    })
+  },
+  //点击弹出输入框
+  inputSelectFunction:function(){
+    let that = this;
+    that.setData({
+      inputSelect:true
+    })
+  },
+
+  //发送评论
+  sendMessage:function(){
+
+  },
+  textInput:function(e){
+    let message = e.detail.value;
+    console.log(message);
+    let that = this;
+    that.setData({
+      message: message
     })
   }
 })

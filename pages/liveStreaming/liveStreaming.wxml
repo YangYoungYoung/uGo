@@ -18,17 +18,31 @@
 
   <view class='bottome'>
     <!-- <image class=''></image> -->
-    <view class='zb-cart' bindtap='showModel'></view>
-    <input class='bottom-input' type='text' placeholder="跟主播聊聊" bindinput="passwordInput"></input>
+    <block wx:if="{{!inputSelect}}">
+      <view class='zb-cart' bindtap='showModel'></view>
+      <!-- <input class='bottom-input' type='text' placeholder="跟主播聊聊" bindinput="passwordInput"></input> -->
+      <view class='bottom-input-view' bindtap='inputSelectFunction'>跟主播聊聊</view>
 
-    <image class='zb-share' src='../images/zb_share.png'></image>
-    <image class='zb-collect' src='../images/zb_collecticon.png'></image>
+      <image class='zb-share' src='../images/zb_share.png'></image>
+      <image class='zb-collect' src='../images/zb_collecticon.png'></image>
+    </block>
+    <block wx:else>
+      <input class='bottom-input' type='text' placeholder="跟主播聊聊" bindinput="textInput"></input>
+      <view class='bottom-btn' bindtap='sendMessage'>发送</view>
+    </block>
   </view>
   <view class='zb-content'>
-    <view class='zb-content-title'>
+    <view class='zb-content-left'>
+      <view class='zb-content-title'>
 
-      你爹来了</view>
-    <text class='zb-content-text'>asdfssfsdsfdfsdfs</text>
+        你爹来了</view>
+      <text class='zb-content-text'>asdfssfsdsfdfsdfs</text>
+    </view>
+
+    <view class='zb-content-right'>
+      
+    </view>
+
   </view>
 
 
@@ -96,9 +110,8 @@
 
       <view class='footer'>
         <view class='footer_btn' style='background-color:#3AB770' bindtap='joinCart'>加入购物车</view>
-        <view class='footer_btn'style='background-color:#E83D2C' bindtap='buyNow'>立即购买</view>
+        <view class='footer_btn' style='background-color:#E83D2C' bindtap='buyNow'>立即购买</view>
       </view>
     </view>
   </view>
-
 </view>

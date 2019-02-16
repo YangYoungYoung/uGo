@@ -1,6 +1,10 @@
 {
   "pages": [
+    "pages/uploadingData/uploadingData",
+    "pages/authorizationStatement/authorizationStatement",
+    "pages/drawings/drawings",
     "pages/liveStreaming/liveStreaming",
+    "pages/convas/convas",
     "pages/center/center",
     "pages/myBalance/myBalance",
     "pages/newAddress/newAddress",
@@ -8,11 +12,10 @@
     "pages/livecart/livecart",
     
     "pages/myaddress/myaddress",
-    "pages/drawings/drawings",
+    
     
     "pages/home/home",
     
-    "pages/convas/convas",
     "pages/integral_type/integral_type",
     "pages/integral_exchange/integral_exchange",
     "pages/integral_search/integral_search",

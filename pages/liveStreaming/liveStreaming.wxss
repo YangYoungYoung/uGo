@@ -79,13 +79,35 @@
 }
 
 .bottom-input {
-  width: 370rpx;
+  width: 652rpx;
   height: 64rpx;
   background-color: #fff;
-  margin-left: 30rpx;
-  border-radius: 8px;
-  opacity: 0.7489;
   color: #000;
+  line-height: 64rpx;
+  font-size: 24rpx;
+}
+
+.bottom-btn {
+  width: 98rpx;
+  height: 64rpx;
+  background-color: #e83d2c;
+  text-align: center;
+  color: #fff;
+  font-size: 24rpx;
+  line-height: 64rpx;
+}
+
+.bottom-input-view {
+  width: 370rpx;
+  height: 64rpx;
+  background: rgba(255, 255, 255, 1);
+  border-radius: 8rpx;
+  margin-left: 30rpx;
+  opacity: 0.7489;
+  font-size: 24rpx;
+  color: #c1c1c1;
+  text-align: center;
+  line-height: 64rpx;
 }
 
 .zb-share {
@@ -101,15 +123,23 @@
 }
 
 .zb-content {
+  width: 100%;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   height: 184rpx;
-  margin-left: 24rpx;
   position: fixed;
   bottom: 0;
   z-index: 999;
   margin-bottom: 121rpx;
   color: #fff;
+  justify-content: space-between;
+}
+
+.zb-content-left {
+  margin-left: 24rpx;
+  max-width: 600rpx;
+  display: flex;
+  flex-direction: column;
 }
 
 .zb-content-text {
@@ -311,7 +341,6 @@
 }
 
 .footer {
-  
   display: flex;
   flex-direction: row;
   position: fixed;
@@ -323,7 +352,7 @@
   width: 327rpx;
   height: 64rpx;
   line-height: 64rpx;
-  color: #FBFBFB;
+  color: #fbfbfb;
   font-size: 28rpx;
   text-align: center;
 }
