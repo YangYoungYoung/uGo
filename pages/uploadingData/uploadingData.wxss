@@ -15,4 +15,76 @@
   background: rgba(251, 251, 251, 1);
   border-radius: 12rpx;
   border: 2rpx solid rgba(193, 193, 193, 1);
+  margin-top: 24rpx;
+  text-align: center;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.upload-add {
+  width: 64rpx;
+  height: 64rpx;
+  margin-top: 126rpx;
+}
+
+.upload-text {
+  color: #616161;
+  font-size: 28rpx;
+  font-weight: bold;
+  /* font-family:PingFangSC-Medium; */
+  margin-top: 24rpx;
+}
+
+.shop-info-view {
+  width: 100%;
+  /* height: 138rpx; */
+  background: rgba(251, 251, 251, 1);
+  border: 1rpx solid rgba(193, 193, 193, 1);
+  margin-top: 48rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-sizing: border-box;
+}
+
+.shop-name {
+  width: 686rpx;
+  display: flex;
+  flex-direction: row;
+  margin-top: 20rpx;
+  margin-bottom: 20rpx;
+  align-items: center;
+  box-sizing: border-box;
+}
+
+.shop-name-text {
+  font-size: 28rpx;
+  color: #616161;
+}
+
+.text-input {
+  width: 562rpx;
+  font-size: 28rpx;
+  margin-left: 12rpx;
+}
+
+.upload-line {
+  width: 686rpx;
+  height: 1rpx;
+  background-color: #C1C1C1;
+  
+}
+
+.statement-btn {
+  width: 686rpx;
+  height: 80rpx;
+  box-shadow: 0rpx 2rpx 2rpx 1rpx rgba(229, 229, 229, 1);
+  border-radius: 44rpx;
+  text-align: center;
+  line-height: 80rpx;
+  color: #fff;
+  background-color: #E9AF3C;
+  font-size: 32rpx;
+  margin-top: 60rpx;
 }

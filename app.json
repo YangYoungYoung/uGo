@@ -1,5 +1,6 @@
 {
   "pages": [
+    "pages/authentication/authentication",
     "pages/uploadingData/uploadingData",
     "pages/authorizationStatement/authorizationStatement",
     "pages/drawings/drawings",

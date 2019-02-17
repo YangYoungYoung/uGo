@@ -1,6 +1,25 @@
 <!--pages/uploadingData/uploadingData.wxml-->
 <view class='container'>
-  <view class='upload-view'>
-    
+  <view class='upload-view' bindtap='chooseImageFront'>
+    <image class='upload-add' src='../images/upload_addicon.png'></image>
+    <text class='upload-text'>身份证人像面</text>
   </view>
+  <view class='upload-view' bindtap='chooseImageReverse'>
+    <image class='upload-add' src='../images/upload_addicon.png'></image>
+    <text class='upload-text'>身份证国徽面</text>
+  </view>
+
+  <view class='shop-info-view'>
+    <view class='shop-name'>
+      <text class='shop-name-text'>店铺名称</text>
+       <input type="text" class='text-input' placeholder="请输入店铺名称" value='{{shopName}}' bindinput="getShopName"></input>
+    </view>
+    <view class='upload-line'></view>
+    <view class='shop-name'>
+      <text class='shop-name-text'>联系方式</text>
+       <input type="number" class='text-input' placeholder="请输入手机号码" maxlength='11' value='{{shopPhone}}' bindinput="getShopPhone"></input>
+    </view>
+  </view>
+
+  <button class='statement-btn' bindtap='submit'>提交</button>
 </view>

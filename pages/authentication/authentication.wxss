@@ -1,0 +1,34 @@
+/* pages/authentication/authentication.wxss */
+
+.container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-sizing: border-box;
+}
+
+.authenticationImg {
+  margin-top: 323rpx;
+  width: 128rpx;
+  height: 121rpx;
+}
+
+.authenticationText {
+  margin-top: 49rpx;
+  color: #616161;
+  font-size: 28rpx;
+}
+
+.authenticationBtn {
+  width: 686rpx;
+  height: 80rpx;
+  background-color: #e9af3c;
+  box-shadow: 0rpx 2rpx 2rpx 1rpx rgba(229, 229, 229, 1);
+  border-radius: 44rpx;
+  font-size: 32rpx;
+  color: #fff;
+  line-height: 80rpx;
+  margin-top: 406rpx;
+}

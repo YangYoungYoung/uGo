@@ -1,0 +1,15 @@
+<!--pages/authentication/authentication.wxml-->
+<view class='container'>
+  <block wx:if="{{isAuthentication}}">
+    <image class='authenticationImg' src='../images/authentication_icon.png'></image>
+  </block>
+  <block wx:else>
+    <image class='authenticationImg' src='../images/authenticationFalse_icon.png'></image>
+  </block>
+
+
+  <text class='authenticationText'>{{text}}</text>
+  <block wx:if="{{!isAuthentication}}">
+  <button class='authenticationBtn' bindtap='resubmit'>重新提交</button>
+  </block>
+</view>
