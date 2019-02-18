@@ -1,4 +1,6 @@
 // pages/integral_order/integral_order.js
+var common = require("../../utils/common.js");
+var network = require("../../utils/network.js");
 Page({
 
   /**
@@ -65,4 +67,50 @@ Page({
     wx.stopPullDownRefresh();
     that.onShow()
   },
+  //确认订单
+  confirmOrder:function(){
+
+  },
+  //取消订单
+  cancelOrder:function(){
+    let that = this;
+    common.showModal('你确定取消订单吗？', '提示', true, function (e) {
+      if (e.confirm) {
+        let url = "https://mall.cmdd.tech/mall/api/delOrderStatus";
+        var params = {
+          orderId: orderId,
+          shopId: shopId
+        }
+        wx.showLoading({
+          title: '加载中...',
+        }),
+          network.POST(url, params).then((res) => {
+            wx.hideLoading();
+            console.log("取消订单的结果是：" + res.data);
+            if (res.data.status == 200) {
+              common.showTip('取消订单成功');
+              setTimeout(function () {
+                that.onShow()
+              }, 3000);
+            } else {
+              common.showTip('取消订单失败');
+              setTimeout(function () {
+                that.onShow()
+              }, 3000);
+            }
+          }).catch((errMsg) => {
+            wx.hideLoading();
+            console.log(errMsg); //错误提示信息
+            wx.showToast({
+              title: '网络错误',
+              icon: 'loading',
+              duration: 1500,
+            })
+          });
+        that.onShow()
+      }
+    });
+  },
+
+
 })

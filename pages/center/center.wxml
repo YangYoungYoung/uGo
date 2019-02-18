@@ -1,11 +1,15 @@
 <!--pages/center/center.wxml-->
 <van-panel>
-  <view style='background: #eee;'>
+  <view class='top-view' style='background: #eee;'>
 
     <view class="g-bda-userinfo">
-      <image class="userinfo-avatar" src="{{userInfo.avatarUrl}}"></image>
-      <text class="userinfo-nickname">{{userInfo.nickName}}</text>
-      <text class="userinfo-nickname">余额：{{balance}}元</text>
+      <view class='userinfo-left'>
+        <image class="userinfo-avatar" src="{{userInfo.avatarUrl}}"></image>
+        <text class="userinfo-nickname">希尔德{{userInfo.nickName}}</text>
+      </view>
+
+      <image class='toMerchantImage' src='' bindtap='toMerchant'></image>
+
     </view>
   </view>
 </van-panel>
@@ -18,7 +22,7 @@
   <van-panel>
     <view class='order-list'>
       <block wx:for="{{orderList}}" wx:key="index">
-        <view class='order-list-item'bindtap="toOrder" data-index='{{index}}'>
+        <view class='order-list-item' bindtap="toOrder" data-index='{{index}}'>
 
           <image class='order-list-item-image' src='{{item.src}}'></image>
           <text class='order-list-item-text'>{{item.name}}</text>
@@ -40,10 +44,10 @@
   </van-panel>
 
   <van-panel>
-    <van-cell title="我的地址"  is-link url="/pages/integral_order/integral_order" />
+    <van-cell title="我的地址" is-link url="/pages/integral_order/integral_order" />
   </van-panel>
   <van-panel>
-    <van-cell title="绑定手机号"  is-link url="/pages/integral_order/integral_order" />
+    <van-cell title="绑定手机号" is-link url="/pages/integral_order/integral_order" />
   </van-panel>
 
 

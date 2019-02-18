@@ -64,24 +64,45 @@ page {
 }
 
 .userinfo-avatar {
+  margin-left: 32rpx;
   width: 160rpx;
   height: 160rpx;
-  margin: 20rpx;
-  margin-bottom: 2rpx;
   border-radius: 50%;
-  border: 10rpx solid #ffd700;
+  border: 1rpx solid #fff;
 }
 
 .g-bda-userinfo {
-  padding-top: 38rpx;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  align-items: center;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.toMerchantImage {
+  width: 246rpx;
+  height: 284rpx;
+  background-color: #3333;
+}
+
+.userinfo-left {
+  display: flex;
+  flex-direction: row;
   align-items: center;
 }
 
 .userinfo-nickname {
-  color: #292929;
-  font-size: 15px;
+  font-size: 36rpx;
+  color: #b36f26;
+  margin-left: 32rpx;
+}
+
+.top-view {
+  width: 100%;
+  height: 284rpx;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 }
 
 /* .zan-cell {
@@ -381,8 +402,8 @@ input-holder {
 .balance-btn {
   width: 130rpx;
   height: 52rpx;
-  background-color: #E83D2C;
-  color: #FBFBFB;
+  background-color: #e83d2c;
+  color: #fbfbfb;
   font-size: 24rpx;
   line-height: 52rpx;
   text-align: center;

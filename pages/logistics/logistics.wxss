@@ -1,0 +1,34 @@
+/* pages/logistics/logistics.wxss */
+
+.container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  /* align-items: center; */
+}
+
+.order-line{
+  width: 100%;
+  height: 12rpx;
+  background-color: #E5E5E5;
+  margin-top: 24rpx;
+}
+
+.title {
+  padding-left: 24rpx;
+  display: flex;
+  flex-direction: row;
+  margin-top: 12rpx;
+}
+
+.order-title {
+  font-size: 24rpx;
+  color: #313131;
+}
+
+.order-info {
+  font-size: 24rpx;
+  color: #313131;
+  margin-left: 12rpx;
+}

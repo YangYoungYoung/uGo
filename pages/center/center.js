@@ -91,7 +91,11 @@ Page({
       wx.navigateTo({
         url: '../integral_order/integral_order?id='+index,
       })
-
-    
+  },
+  //成为商家
+  toMerchant:function(){
+    wx.navigateTo({
+      url: '../authorizationStatement/authorizationStatement',
+    })
   }
 })

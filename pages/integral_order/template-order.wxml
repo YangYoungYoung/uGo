@@ -1,44 +1,58 @@
-<!-- <view class="zan-cell"> -->
-<!-- <view class="zan-cell__bd">
-                 <view class="zan-pull-left smallsize">下单时间：{{item.createdAt}}</view> 
-                <view class="zan-pull-right" style="color:red">{{item.status}}</view>
-            </view> -->
-<!-- </view> -->
-<!-- <view class="zan-cell"> -->
-<!-- <view class="zan-cell__bd">
-                <view class="zan-pull-left smallsize">订单编号：{{item.orderId}}</view>
-            </view> -->
-<!-- </view> -->
-<!-- <view class="zan-cell">
-            <view class="zan-cell__bd">
-                <view class="zan-pull-left smallsize">备注：</view>
-                <view class="zan-pull-right smallsize" wx:if="{{item.remarks}}">{{item.remarks}}</view>
-                <view class="zan-pull-right smallsize" wx:else>无</view>
+<view class='shop-view'>
+  <view class='shop-info'>
+    <image class='shop-icon' src=''></image>
+    <view class='shop-content'>
+      <view class='content-left'>
+        <text class='shop-name'>金斯利水洗棉被</text>
+        <text class='shop-number'>商品数量</text>
+      </view>
+      <view class='content-right'>
+
+        <image class='content-right-statusImg' src='../images/daiduihuan_icon.png'></image>
+        <view class='content-right-right'>
+          <view class='content-right-right-top'>
+            <view class='content-right-price'>
+              <image class='content-price-logo' src='../images/jifen_icon.png'></image>
+              <text class='content-price-text'>90</text>
             </view>
-            </view>  -->
-
-<!-- <view class="zan-card">
-  <view class="zan-card__thumb">
-    <image class="zan-card__img" src="{{item.shopImage}}" mode="aspectFit"></image>
-  </view>
-  <view class="zan-card__detail">
-    <view class="zan-card__detail-row" style='"margin-top:20rpx"'>
-      <view class="zan-card__right-col">¥ {{item.integral}}</view>
-      <view class="zan-card__left-col zan-ellipsis--l2">
-        {{item.shopName }}
-      </view>
-    </view>
-    <view class="zan-card__detail-row zan-c-gray-darker">
-      <view class="zan-card__right-col">x{{item.number}}</view>
-      <view class="zan-card__left-col">
-        商品数量
+          </view>
+          <text class='content-right-number'>x2</text>
+        </view>
       </view>
     </view>
   </view>
-</view> -->
- <van-card num="{{item.number}}" price="{{item.integral}}" desc="描述信息" title="{{item.shopName}}" thumb="{{ item.shopImage }}" />
 
-<view class="zan-panel" style="padding: 5px;">
+  <view class="shop-bottom">
+    <view class='bottom-content'>
+      <view class="bottom-left">
+        <text class='total-text'>合计：</text>
+        <block wx:if="">
+          <text class='total-number'>￥290{{}}</text>
+        </block>
+        <block else>
+          <image class='integral-logo' src='../images/jifen_icon.png'></image>
+          <text class='total-number' style="margin-left:10rpx;">290{{}}</text>
+        </block>
+
+      </view>
+
+      <view class='bottom-right'>
+        <!-- <block wx:if=""> -->
+        <button class='cancel-btn' bindtap='cancelOrder'>取消订单</button>
+        <button class='status-btn' wx:if="{{item.status == '0'}}" bindtap='confirmOrder'>确认订单</button>
+
+        <button class='status-btn' wx:if="{{item.status == '1'}}" bindtap='confirmOrder'>已发货</button>
+        <button class='status-btn' wx:if="{{item.status == '1'}}" bindtap='confirmOrder'>未发货</button>
+        <button class='status-btn' wx:if="{{item.status == '1'}}" bindtap='confirmOrder'>再次购买</button>
+        <!-- </block> -->
+
+      </view>
+    </view>
+
+  </view>
+</view>
+
+<!-- <view class="zan-panel" style="padding: 5px;">
   <view class="zan-pull-left count">合计：￥{{item.totalMoney}}</view>
   <button class="zan-btn zan-btn--small zan-btn--danger zan-btn--plain zan-pull-right" style="margin-left:10px" wx:if="{{item.status == '0'}}" bindtap="payOrder" data-id="{{item.id}}" data-orderid="{{item.orderId}}" data-price="{{item.integral}}">确认付款</button>
   <button class="zan-btn zan-btn--small zan-pull-right" wx:if="{{item.status == '0'}}" bindtap="cancelOrder" data-id="{{item.id}}" data-orderid="{{item.orderId}}">取消订单</button>
@@ -47,7 +61,7 @@
   <button class="zan-btn zan-btn--small zan-btn--danger zan-btn--plain zan-pull-right" style="margin-left:10px" wx:if="{{item.status == '1'}}" data-id="{{item.id}}">未发货</button>
 
   <button class="zan-btn zan-btn--small zan-btn--danger zan-btn--plain zan-pull-right" style="margin-left:10px" wx:if="{{item.status == '2'}}" bindtap="confirmReceipt" data-id="{{item.id}}" data-orderid="{{item.orderId}}">确定收货</button>
-  <button class="zan-btn zan-btn--small zan-pull-right" wx:if="{{item.status == '2'}}" bindtap="logistics" data-id="{{item.id}}" data-orderid="{{item.orderId}}" >查看物流</button>
+  <button class="zan-btn zan-btn--small zan-pull-right" wx:if="{{item.status == '2'}}" bindtap="logistics" data-id="{{item.id}}" data-orderid="{{item.orderId}}">查看物流</button>
 
-<view class="zan-btn zan-btn--small zan-pull-right" wx:if="{{item.status == '3'}}"  data-id="{{item.id}}" data-orderid="{{item.orderId}}" >已完成</view>
-</view>
+  <view class="zan-btn zan-btn--small zan-pull-right" wx:if="{{item.status == '3'}}" data-id="{{item.id}}" data-orderid="{{item.orderId}}">已完成</view>
+</view> -->
