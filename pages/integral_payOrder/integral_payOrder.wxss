@@ -1,4 +1,5 @@
 /* pages/integral_payOrder/integral_payOrder.wxss */
+@import "../component/component.wxss";
 .container {
   padding-bottom: 55px;
 }
@@ -230,39 +231,40 @@ page {
 }
 
 .takeBill {
-  height: 44px;
+  height: 88rpx;
   background: #fff;
   position: relative;
 }
 
 .takeBill .box-right {
-  width: 140px;
-  height: 45px;
+  width: 280rpx;
+  height: 90rpx;
   background: #d81e06;
   position: absolute;
   right: 0;
-  top: -1px;
+  top: -1rpx;
   border-radius: 0;
   color: #fff;
-  line-height: 45px;
+  line-height: 90rpx;
   text-align: center;
-  font-size: 15px;
+  font-size: 30rpx;
 }
 
 .takeBill .box-cart {
-  width: 140px;
-  height: 45px;
+  width: 280rpx;
+  height: 90rpx;
   position: absolute;
-  right: 140px;
-  top: -1px;
+  right: 280rpx;
+  top: -1rpx;
   border-radius: 0;
-  line-height: 45px;
+  line-height: 90rpx;
   text-align: center;
-  font-size: 15px;
+  font-size: 30rpx;
+  align-items: center;
 }
 
 .box-left {
-  margin-left: 30px;
+  margin-left: 60rpx;
 }
 
 .box-left>view {
@@ -270,37 +272,37 @@ page {
 }
 
 .box-left .tips {
-  width: 30px;
+  width: 60rpx;
   position: relative;
-  background: url(http://bmob-cdn-8770.b0.upaiyun.com/2017/03/01/d2c8205d404de1228042eff53f758aed.png) no-repeat left 12px;
+  background: url(http://bmob-cdn-8770.b0.upaiyun.com/2017/03/01/d2c8205d404de1228042eff53f758aed.png) no-repeat left 24rpx;
   background-size: 100% auto;
-  height: 40px;
+  height: 80rpx;
   position: relative;
 }
 
 .box-left .tips view {
   position: absolute;
-  right: -5px;
-  top: 7px;
-  width: 20px;
-  height: 20px;
+  right: -10rpx;
+  top: 14rpx;
+  width: 40rpx;
+  height: 40rpx;
   background: #f55022;
   color: #fff;
-  border-radius: 10px;
+  border-radius: 20rpx;
   text-align: center;
-  line-height: 20px;
-  font-size: 12px;
+  line-height: 4r0px;
+  font-size: 24rpx;
 }
 
 .box-left .moeny {
   color: #fa4b22;
-  font-size: 17px;
-  margin-left: 10px;
-  margin-top: 15px;
+  font-size: 34rpx;
+  margin-left: 20rpx;
+  margin-top: 30rpx;
 }
 
 .clearCart {
-  height: 35px;
+  height: 70rpx;
   text-align: right;
   background: #f5f5f5;
 }
@@ -500,6 +502,7 @@ page {
 }
 
 /* 优惠券 */
+
 /* .all-selected.checked {
   background: url(https://cdn.it120.cc/images/weappshop/gou-red.png) no-repeat 30rpx center;
   background-size: 40rpx auto;
@@ -519,6 +522,221 @@ page {
   background-size: 40rpx auto;
 } */
 
-.price-style{
-  color: #E83D2C
+.price-style {
+  color: #e83d2c;
+}
+
+.shop-view {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 16rpx;
+  margin-bottom: 16rpx;
+}
+
+.shop-info-view {
+  width: 686rpx;
+  display: flex;
+  flex-direction: row;
+}
+
+.shop-info-img {
+  width: 144rpx;
+  height: 144rpx;
+  background-color: #000;
+}
+
+.shop-info-content {
+  width: 518rpx;
+  display: flex;
+  flex-direction: column;
+  margin-left: 24rpx;
+}
+
+.shop-content-name {
+  font-size: 24rpx;
+  color: #313131;
+}
+
+.shop-content-color {
+  font-size: 24rpx;
+  color: #919191;
+}
+
+.shop-price-number {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-top: 30rpx;
+}
+
+.shop-price {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.shop-price-img {
+  width: 24rpx;
+  height: 26rpx;
+}
+
+.shop-price-text {
+  font-size: 24rpx;
+  color: #616161;
+  margin-left: 5rpx;
+}
+
+.shop-number {
+  font-size: 24rpx;
+  color: #e83d2c;
+}
+
+.total-panel {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.total-view {
+  width: 686rpx;
+  height: 80rpx;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.total-text {
+  font-size: 24rpx;
+  color: #313131;
+}
+
+.total-right {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.total-img {
+  width: 24rpx;
+  height: 26rpx;
+}
+
+.total-price {
+  color: #616161;
+  font-size: 24rpx;
+  margin-left: 10rpx;
+}
+
+.box-cart-img {
+  width: 30rpx;
+  height: 32rpx;
+}
+
+/* 弹窗 */
+
+.modal-mask {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: #000;
+  opacity: 0.5;
+  overflow: hidden;
+  z-index: 9000;
+  color: #fff;
+}
+
+.paymentModal {
+  width: 100%;
+  height: 858rpx;
+  background: rgba(251, 251, 251, 1);
+  border-radius: 36rpx 36rpx 0rpx 0rpx;
+  overflow: hidden;
+  position: fixed;
+  bottom: 0;
+  z-index: 99999;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.confirmChange {
+  font-size: 32rpx;
+  color: #313131;
+  margin-top: 24rpx;
+}
+
+.confirm-view {
+  width: 702rpx;
+  height: 2rpx;
+  background-color: #c1c1c1;
+  margin-top: 24rpx;
+}
+
+.change-number-view {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-top: 60rpx;
+}
+
+.change-text {
+  font-size: 64rpx;
+  color: #616161;
+  margin-left: 10rpx;
+}
+
+.change-account-view {
+  width: 702rpx;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.account-text {
+  font-size: 24rpx;
+  color: #919191;
+}
+
+.account-name {
+  color: #313131;
+  font-size: 24rpx;
+}
+
+.confirm-footer {
+  width: 100%;
+  height: 114rpx;
+  background-color: #e5e5e5;
+  position: fixed;
+  bottom: 0;
+  text-align: center;
+  font-size: 32rpx;
+  color: #e83d2c;
+  line-height: 114rpx;
+}
+
+.pwdModal {
+  width: 100%;
+  height: 434rpx;
+  background: #fff;
+  border-radius: 36rpx 36rpx 36rpx 36rpx;
+  overflow: hidden;
+  position: fixed;
+  top: 30%;
+  z-index: 99999;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.forgetPwd{
+  font-size: 24rpx;
+  color: #919191;
+  margin-top: 64rpx;
 }

@@ -1,14 +1,14 @@
 <!--pages/center/center.wxml-->
 <van-panel>
-  <view class='top-view' style='background: #eee;'>
+  <view class='top-view' style='background: #F4E4C2;'>
 
     <view class="g-bda-userinfo">
       <view class='userinfo-left'>
         <image class="userinfo-avatar" src="{{userInfo.avatarUrl}}"></image>
-        <text class="userinfo-nickname">希尔德{{userInfo.nickName}}</text>
+        <text class="userinfo-nickname">{{userInfo.nickName}}</text>
       </view>
 
-      <image class='toMerchantImage' src='' bindtap='toMerchant'></image>
+      <image class='toMerchantImage' src='../images/toMerchant_icon.png' bindtap='toMerchant'></image>
 
     </view>
   </view>

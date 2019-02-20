@@ -1,5 +1,6 @@
 {
   "pages": [
+    "pages/integral_payOrder/integral_payOrder",
     "pages/center/center",
     "pages/integral_order/integral_order",
     "pages/logistics/logistics",
@@ -19,7 +20,7 @@
     "pages/integral_type/integral_type",
     "pages/integral_exchange/integral_exchange",
     "pages/integral_search/integral_search",
-    "pages/integral_payOrder/integral_payOrder",
+    
     "pages/integral_home/integral_home",
     "pages/search/search",
     "pages/integral_cart/integral_cart",

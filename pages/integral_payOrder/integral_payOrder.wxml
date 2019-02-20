@@ -11,13 +11,31 @@
     </van-panel>
 
 
-    <view class="zan-panel" style="margin-top:10px">
-      <block wx:for="{{detail}}" wx:key="index">
-        <van-card num="{{item.number}}" price="{{item.integral}}" desc="描述信息" title="{{item.shopName}}" thumb="{{ imageURL }}" />
+    <view class="zan-panel">
+      <!-- <block wx:for="{{detail}}" wx:key="index"> -->
+      <!-- <van-card num="{{item.number}}" price="{{item.integral}}" desc="描述信息" title="{{item.shopName}}" thumb="{{ imageURL }}" /> -->
+      <view class='shop-view'>
+        <view class='shop-info-view'>
+          <image class='shop-info-img'> </image>
+          <view class='shop-info-content'>
+            <text class='shop-content-name'>金斯利上海故事羊绒围巾</text>
+            <text class='shop-content-color'>颜色：红蓝格</text>
+            <view class='shop-price-number'>
+              <view class='shop-price'>
+                <image class='shop-price-img' src='../images/jifen_icon.png'></image>
+                <text class='shop-price-text'>90</text>
+              </view>
+              <text class='shop-number'>数量X1</text>
+            </view>
+          </view>
+        </view>
+      </view>
 
-      </block>
+
+
+      <!-- </block> -->
       <van-cell-group>
-        <van-field value="{{ message }}" label="留言" type="textarea" placeholder="请输入留言" autosize border="{{ false }}" />
+        <van-field value="{{ message }}" label="留言" type="textarea"  autosize border="{{ false }}" />
       </van-cell-group>
 
       <!-- <view class="zan-cell">
@@ -29,17 +47,26 @@
         </view>
       </view> -->
 
-      <van-cell title="合计" value-class='price-style' value=" 111 " />
+      <van-panel custom-class="total-panel">
+        <view class='total-view'>
+          <text class='total-text'>合计</text>
+          <view class='total-right'>
+            <image class='total-img' src='../images/jifen_icon.png'></image>
+            <text class='total-price'>90</text>
+          </view>
+        </view>
+      </van-panel>
     </view>
 
 
-    <van-cell title="运费" value-class='price-style' value=" 免运费 " />
+    <!-- <van-cell title="运费" value-class='price-style' value=" 免运费 " /> -->
     <!--下单-->
     <view class="Bill-layer" wx:if="{{showCart&&sumNum>0}}" bindtap="hiddenLayer"></view>
     <view class="Bill">
       <view class="takeBill {{showCart?'':'bdt'}}">
         <view class="box-cart">合计：
-          <text style="color:red">积分{{totalMoney}}</text>
+          <image class='box-cart-img' src='../images/jifen_icon.png'></image>
+          <text class='total-price' style='font-size:28rpx;margin-left:10rpx;'>90{{totalMoney}}</text>
         </view>
         <button class="box-right" formType="submit" bindtap='payOrder'>
           提交订单
@@ -47,4 +74,37 @@
       </view>
     </view>
   </form>
+
+  <!--兑换弹窗-->
+  <view class="modal-mask" bindtap="hideModal" catchtouchmove="preventTouchMove" wx:if="{{showModal}}"></view>
+  <view animation="{{animationData}}" class="paymentModal" wx:if="{{showModal}}">
+    <text class='confirmChange'>确认兑换</text>
+    <view class='confirm-view'></view>
+    <view class='change-number-view'>
+      <image class='shop-price-img' src='../images/jifen_icon.png'></image>
+      <text class='change-text'>90</text>
+    </view>
+    <view class='change-account-view'>
+      <text class='account-text'>兑换账号</text>
+      <text class='account-name'>1234567</text>
+    </view>
+    <view class='confirm-view'></view>
+
+    <view class='confirm-footer' bindtap='inputPwd'>
+      输入密码
+    </view>
+  </view>
+
+  <!--密码弹窗-->
+  <view class="modal-mask" bindtap="hidePwdModal" catchtouchmove="preventTouchMove" wx:if="{{showPwdModal}}"></view>
+
+  <view animation="{{animationData}}" class="pwdModal" wx:if="{{showPwdModal}}">
+    <text class='confirmChange'>请输入兑换密码</text>
+    <view class='confirm-view'></view>
+    <paySix style="margin-top:64rpx;" bindvalueSix="valueSix" input_value="{{inputData.input_value}}" value_length="{{inputData.value_length}}" isNext="{{inputData.isNext}}" get_focus="{{inputData.get_focus}}" focus_class="{{inputData.focus_class}}" value_num="{{inputData.value_num}}"
+      height="{{inputData.height}}" width="{{inputData.width}}" see="{{inputData.see}}" interval="{{inputData.interval}}">
+    </paySix>
+    <text class='forgetPwd' bindtap='forgetPwd'>忘记密码？</text>
+  </view> 
+
 </view>

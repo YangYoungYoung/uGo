@@ -3,7 +3,8 @@
     "van-cell-group": "../../miniprogram_npm/vant-weapp/cell-group/index",
     "van-panel": "../../miniprogram_npm/vant-weapp/panel/index",
     "van-cell": "../../miniprogram_npm/vant-weapp/cell/index",
-    "van-field": "../../miniprogram_npm/vant-weapp/field/index"
+    "van-field": "../../miniprogram_npm/vant-weapp/field/index",
+    "paySix": "../component/component"
     
 
   },

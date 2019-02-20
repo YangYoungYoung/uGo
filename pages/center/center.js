@@ -1,4 +1,5 @@
 // pages/center/center.js
+var app = getApp();
 Page({
 
   /**
@@ -24,20 +25,20 @@ Page({
       }
     ],
     orderList: [{
-        name: "未支付",
-        src: "../images/order_nopay1.png"
+        name: "待确认",
+        src: "../images/order_nopay.png"
       },
       {
-        name: "未发货",
-        src: "../images/order_unshipped1.png"
-      },
-      {
-        name: "已发货",
-        src: "../images/order_shiped1.png"
+        name: "待收货",
+        src: "../images/order_shiped.png"
       },
       {
         name: "已完成",
-        src: "../images/order_done1.png"
+        src: "../images/order_done.png"
+      },
+      {
+        name: "已取消",
+        src: "../images/order_canceled.png"
       },
     ]
   },
@@ -46,7 +47,41 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-
+    if (app.globalData.userInfo) {
+      console.log(app.globalData.userInfo.avatarUrl);
+      this.setData({
+        userInfo: app.globalData.userInfo,
+        hasUserInfo: true
+      })
+    } else if (this.data.canIUse) {
+      // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
+      // 所以此处加入 callback 以防止这种情况
+      app.userInfoReadyCallback = res => {
+        this.setData({
+          userInfo: res.userInfo,
+          hasUserInfo: true
+        })
+      }
+    } else {
+      // 在没有 open-type=getUserInfo 版本的兼容处理
+      wx.getUserInfo({
+        success: res => {
+          app.globalData.userInfo = res.userInfo;
+          this.setData({
+            userInfo: res.userInfo,
+            hasUserInfo: true
+          })
+        }
+      })
+    }
+  },
+  getUserInfo: function(e) {
+    // console.log(e);
+    app.globalData.userInfo = e.detail.userInfo;
+    this.setData({
+      userInfo: e.detail.userInfo,
+      hasUserInfo: true
+    })
   },
 
 
@@ -84,16 +119,16 @@ Page({
     })
   },
   //跳转到订单管理
-  toOrder:function(event){
+  toOrder: function(event) {
     let index = event.currentTarget.dataset.index;
-    console.log("index is:",index);
-    
-      wx.navigateTo({
-        url: '../integral_order/integral_order?id='+index,
-      })
+    console.log("index is:", index);
+
+    wx.navigateTo({
+      url: '../integral_order/integral_order?id=' + index,
+    })
   },
   //成为商家
-  toMerchant:function(){
+  toMerchant: function() {
     wx.navigateTo({
       url: '../authorizationStatement/authorizationStatement',
     })

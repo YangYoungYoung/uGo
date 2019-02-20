@@ -82,7 +82,7 @@ page {
 .toMerchantImage {
   width: 246rpx;
   height: 284rpx;
-  background-color: #3333;
+  /* background-color: #3333; */
 }
 
 .userinfo-left {
@@ -372,8 +372,8 @@ input-holder {
 }
 
 .order-list-item-image {
-  width: 60rpx;
-  height: 60rpx;
+  width: 50rpx;
+  height: 42rpx;
 }
 
 .order-list-item-text {
