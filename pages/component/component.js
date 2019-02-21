@@ -156,6 +156,7 @@ Component({
       }
       // 获取输入框值的长度
       let value_length = data.detail.value.length;
+      // console.log(now_val);
       // 更新数据
       that.setData({
         value_length: value_length,

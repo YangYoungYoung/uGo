@@ -141,5 +141,18 @@ Page({
   //忘记密码
   forgetPwd:function(){
 
-  }
+  },
+  // 当组件输入数字6位数时的自定义函数
+  valueSix(e) {
+    let that = this;
+    console.log(e.detail);
+  
+    
+    // 模态交互效果
+    wx.showToast({
+      title: '支付成功',
+      icon: 'success',
+      duration: 2000
+    })
+  },
 })

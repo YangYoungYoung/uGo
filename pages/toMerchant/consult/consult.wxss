@@ -1,0 +1,82 @@
+/* pages/toMerchant/consult/consult.wxss */
+
+.container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-sizing: border-box;
+}
+
+.info-view {
+  width: 686rpx;
+  height: 80rpx;
+  display: flex;
+  flex-direction: row;
+  border-radius: 8rpx;
+  border: 1px solid rgba(193, 193, 193, 1);
+  margin-top: 48rpx;
+  align-items: center;
+}
+
+.info-text {
+  color: #313131;
+  font-size: 32rpx;
+  margin-left: 24rpx;
+}
+
+.info-input {
+  width: 535rpx;
+  font-size: 32rpx;
+  color: #313131;
+}
+
+.more-img {
+  width: 34rpx;
+  height: 18rpx;
+}
+
+.summit-btn {
+  width: 686rpx;
+  height: 80rpx;
+  background-color: #e9af3c;
+  text-align: center;
+  line-height: 80rpx;
+  font-size: 32rpx;
+  color: #fff;
+  margin-top: 98rpx;
+  border-radius: 44rpx;
+}
+
+.summit-btn::after {
+  border: none;
+}
+
+.more-view {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  margin-top: 12rpx;
+  z-index: 999;
+}
+
+.more-list {
+  width: 559rpx;
+  border-radius: 8rpx;
+  border: 2rpx solid rgba(193, 193, 193, 1);
+  margin-right: 32rpx;
+}
+
+.more-item{
+  height: 86rpx;
+  font-size: 32rpx;
+  color: #313131;
+  margin-left: 24rpx;
+}
+.more-line{
+  width: 559rpx;
+  height: 1rpx;
+  background-color: #C1C1C1;
+}

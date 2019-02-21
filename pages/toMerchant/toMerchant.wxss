@@ -1,0 +1,15 @@
+/* pages/toMerchant/toMerchant.wxss */
+
+.button {
+  width: 460rpx;
+  height: 98rpx;
+  background-color: #E9AF3C;
+  line-height: 98rpx;
+  color: #fff;
+  font-size: 32rpx; 
+  border-radius:49rpx;
+}
+
+.button::after{
+  border: none;
+}

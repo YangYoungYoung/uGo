@@ -1,5 +1,7 @@
 {
   "pages": [
+    "pages/toMerchant/consult/consult",
+    "pages/toMerchant/toMerchant",
     "pages/integral_payOrder/integral_payOrder",
     "pages/center/center",
     "pages/integral_order/integral_order",
