@@ -11,20 +11,30 @@
   </view>
 
   <view class='info-view'>
-    <text class='info-text' decode="{{true}}">区&nbsp;&nbsp;&nbsp;域：</text>
-    <input class='info-input' style='width:475rpx;' type='text' placeholder="请选择您所在地区" value='{{name}}' bindinput="nameInput"></input>
-    <image class='more-img' src='../../images/more-icon.png' bindtap='moreArea'></image>
-  </view>
-  <view class='more-view'>
-    <view class='more-list'>
-      <text class='more-item'>区域1</text>
-      <view class='more-line'></view>
-      <text class='more-item'>区域2</text>
-      <view class='more-line'></view>
-      <text class='more-item'>区域3</text>
-      <view class='more-line'></view>
-    </view>
-  </view>
+    <picker class="picker" bindchange="bindPickerSeatChange" value="{{index}}" range="{{array}}">
+      <view class="picker-view">
+        <text class='picker-text' decode="{{true}}">区&nbsp;&nbsp;&nbsp;域:</text>
+        <block wx:if='{{showMore}}'>
+          <input class='info-input' style='margin-left:10rpx;' type='text' placeholder="请选择您所在位置" value='{{name}}' bindinput="phoneInput"></input>
+        </block>
+        <block wx:else>
+          <text class='info-text' style='margin-left:10rpx;'>{{array[index]}}</text>
+        </block>
+        <image class='more-img' src='../../images/more-icon.png' bindtap='moreArea'></image>
+      </view>
+    </picker>
 
-  <button class='summit-btn' bindtap=''>提交</button>
+  </view>
+  <!-- <view class='more-view'>
+   
+  </view> -->
+
+  <button class='summit-btn' bindtap='summit'>提交</button>
+
+  <!--弹窗-->
+  <view class="modal-mask" bindtap="hideModal" catchtouchmove="preventTouchMove" wx:if="{{showModal}}"></view>
+  <view class="modal-dialog" wx:if="{{showModal}}">
+    <image class='modal-close' src='../../images/consult_submit_close.png' bindtap="hideModal"></image>
+    <image class='modal-img' src='../../images/consult_submit_icon.png' bindtap=''></image>
+  </view>
 </view>

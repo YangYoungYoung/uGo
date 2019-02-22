@@ -1,5 +1,6 @@
 {
   "pages": [
+    "pages/uploadingData/uploadingData",
     "pages/toMerchant/consult/consult",
     "pages/toMerchant/toMerchant",
     "pages/integral_payOrder/integral_payOrder",
@@ -7,7 +8,7 @@
     "pages/integral_order/integral_order",
     "pages/logistics/logistics",
     "pages/authentication/authentication",
-    "pages/uploadingData/uploadingData",
+    
     "pages/authorizationStatement/authorizationStatement",
     "pages/drawings/drawings",
     "pages/liveStreaming/liveStreaming",
