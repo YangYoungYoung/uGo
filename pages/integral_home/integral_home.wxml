@@ -1,5 +1,9 @@
 <!--pages/integral_home/integral_home.wxml-->
 <view class="container">
+<view class='back-view'>
+  <image class='back-icon' src='../images/back_icon.png'></image>
+  <text class='back-text'>返回</text>
+</view>
   <swiper style="height:350rpx;width:100%;background:#eee" indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" circular="{{circular}}">
     <!--广告banner-->
     <block wx:for="{{ banner }}" wx:key="item">

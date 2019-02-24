@@ -24,20 +24,7 @@ Page({
 
   },
 
-  getShopName: function(e) {
-    let that = this;
-    console.log(e.detail.value);
-    that.setData({
-      shopName: e.detail.value
-    })
-  },
-  getShopPhone: function(e) {
-    let that = this;
-    console.log(e.detail.value);
-    that.setData({
-      shopPhone: e.detail.value
-    })
-  },
+  
   //提交
   submit: function() {
 
@@ -75,6 +62,23 @@ Page({
         console.log(imageFrontPath);
       }
     })
-  }
-
+  },
+  //获取姓名
+  nameInput: function (e) {
+    let that = this;
+    let name = e.detail.value;
+    that.setData({
+      name: name
+    })
+    console.log(name);
+  },
+  //获取手机号
+  phoneInput: function () {
+    let that = this;
+    let phone = e.detail.value;
+    console.log(phone);
+    that.setData({
+      phone: phone
+    })
+  },
 })

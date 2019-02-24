@@ -132,5 +132,11 @@ Page({
     wx.navigateTo({
       url: '../authorizationStatement/authorizationStatement',
     })
+  },
+  //兑换，跳转到积分商城
+  toIntegralShop:function(){
+    wx.switchTab({
+      url: '../integral_home/integral_home',
+    })
   }
 })

@@ -39,7 +39,7 @@
   <van-panel>
     <view class='balance-view'>
       <view class='balance-left'>当前积分 : {{}}</view>
-      <button class='balance-btn'>兑换</button>
+      <button class='balance-btn' bindtap='toIntegralShop'>兑换</button>
     </view>
   </van-panel>
 
@@ -48,6 +48,9 @@
   </van-panel>
   <van-panel>
     <van-cell title="绑定手机号" is-link url="/pages/integral_order/integral_order" />
+  </van-panel>
+  <van-panel>
+    <van-cell title="安全设置" is-link url="/pages/integral_order/integral_order" />
   </van-panel>
 
 

@@ -1,10 +1,13 @@
 {
   "pages": [
     "pages/uploadingData/uploadingData",
+    "pages/integral_detail/integral_detail",
+    "pages/center/center",
+    
     "pages/toMerchant/consult/consult",
     "pages/toMerchant/toMerchant",
     "pages/integral_payOrder/integral_payOrder",
-    "pages/center/center",
+    
     "pages/integral_order/integral_order",
     "pages/logistics/logistics",
     "pages/authentication/authentication",
@@ -27,7 +30,7 @@
     "pages/integral_home/integral_home",
     "pages/search/search",
     "pages/integral_cart/integral_cart",
-    "pages/integral_detail/integral_detail",
+    
     "pages/map/map",
     "pages/detail/detail",
     "pages/typeInfo/typeInfo",
