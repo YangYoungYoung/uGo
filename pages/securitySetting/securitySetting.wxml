@@ -1,0 +1,12 @@
+<!--pages/securitySetting/securitySetting.wxml-->
+<view class='container'>
+  <van-panel>
+    <van-cell title="手机号"  value="内容" is-link url="/pages/integral_order/integral_order" />
+  </van-panel>
+  <!-- <van-panel>
+    <van-cell title="我的地址" is-link url="/pages/integral_order/integral_order" />
+  </van-panel> -->
+  <van-panel>
+    <van-cell title="支付密码设置" is-link url="/pages/integral_order/integral_order" />
+  </van-panel>
+</view>

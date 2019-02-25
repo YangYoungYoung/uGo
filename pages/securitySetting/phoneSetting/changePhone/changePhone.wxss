@@ -1,0 +1,10 @@
+/* pages/securitySetting/phoneSetting/changePhone/changePhone.wxss */
+page{
+  background-color: #F0F0F0;
+}
+.state-view{
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  
+}

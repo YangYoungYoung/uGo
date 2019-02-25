@@ -1,0 +1,51 @@
+/* pages/securitySetting/phoneSetting/phoneSetting.wxss */
+
+page {
+  background-color: #f0f0f0;
+}
+
+.phone-view {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-top: 24rpx;
+  background-color: #fff;
+  height: 108rpx;
+  align-items: center;
+}
+
+.phone-text {
+  font-size: 32rpx;
+  color: #313131;
+  margin-left: 31rpx;
+}
+
+.phone-number {
+  color: #616161;
+  font-size: 32rpx;
+  margin-right: 32rpx;
+}
+
+.change-btn {
+  width: 686rpx;
+  height: 88rpx;
+  background: rgba(232, 61, 44, 1);
+  box-shadow: 0rpx 2rpx 4rpx 0rpx rgba(193, 193, 193, 1);
+  border-radius: 8rpx;
+  margin-top: 98rpx;
+  line-height: 88rpx;
+  font-size: 32rpx;
+  color: #fbfbfb;
+}
+
+.change-btn::after {
+  border: none;
+}
+
+.change-text {
+  text-align: center;
+  margin-top: 24rpx;
+  font-size: 24rpx;
+  color: #616161;
+}

@@ -1,22 +1,22 @@
 {
   "pages": [
+    "pages/securitySetting/phoneSetting/changePhone/changePhone",
+    "pages/securitySetting/phoneSetting/phoneSetting",
+    "pages/center/center",
+    "pages/securitySetting/securitySetting",
+
     "pages/uploadingData/uploadingData",
     "pages/integral_detail/integral_detail",
-    "pages/center/center",
-    
     "pages/toMerchant/consult/consult",
     "pages/toMerchant/toMerchant",
     "pages/integral_payOrder/integral_payOrder",
-    
     "pages/integral_order/integral_order",
     "pages/logistics/logistics",
     "pages/authentication/authentication",
-    
     "pages/authorizationStatement/authorizationStatement",
     "pages/drawings/drawings",
     "pages/liveStreaming/liveStreaming",
     "pages/convas/convas",
-    
     "pages/myBalance/myBalance",
     "pages/newAddress/newAddress",
     "pages/login/login",
@@ -26,11 +26,9 @@
     "pages/integral_type/integral_type",
     "pages/integral_exchange/integral_exchange",
     "pages/integral_search/integral_search",
-    
     "pages/integral_home/integral_home",
     "pages/search/search",
     "pages/integral_cart/integral_cart",
-    
     "pages/map/map",
     "pages/detail/detail",
     "pages/typeInfo/typeInfo",

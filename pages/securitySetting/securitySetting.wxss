@@ -1,0 +1,9 @@
+/* pages/securitySetting/securitySetting.wxss */
+page{
+  background-color: #F0F0F0;
+}
+.container{
+  margin-top: 24rpx;
+  font-size: 32rpx;
+  color: #313131;
+}

@@ -1,0 +1,5 @@
+<!--pages/securitySetting/phoneSetting/changePhone/changePhone.wxml-->
+<view class='container'>
+  <view class='state-view'></view>
+
+</view>
