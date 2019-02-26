@@ -1,5 +1,18 @@
 <!--pages/securitySetting/phoneSetting/changePhone/changePhone.wxml-->
 <view class='container'>
-  <view class='state-view'></view>
+  <van-panel style="margin-top:24rpx;">
+    <view class='state-view'>
+      <text class='left-text'>国家和地区</text>
+      <text class='right-text'>中国大陆</text>
+    </view>
+  </van-panel>
+  <van-panel >
+    <view class='state-view'>
+      <text class='left-text'>+86</text>
+      <input class='phone-input' type='number' maxlength='11' placeholder="请输入您的手机号" bindinput='phoneInput'></input>
+    </view>
+  </van-panel>
+
+  <button class='btn' disabled='{{clickable}}' style="{{clickable?'background-color:#E83D2C;color:#FBFBFB':'background-color:#C1C1C1;color:#919191'}}" bindtap='nextStep'>下一步</button>
 
 </view>

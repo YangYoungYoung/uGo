@@ -1,0 +1,26 @@
+/* pages/securitySetting/phoneSetting/verification/verification.wxss */
+page{
+  background-color: #F0F0F0;
+}
+.verification{
+  width: 100%;
+  height: 192rpx;
+  background-color: #fff;
+  margin-top: 24rpx;
+  text-align: center;
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  font-size: 32rpx;
+  color: #616161;
+}
+
+.verification-text{
+  height: 192rpx;
+  align-items: center;
+  text-align: center;
+  /* line-height: 192rpx; */
+}
+
+
+

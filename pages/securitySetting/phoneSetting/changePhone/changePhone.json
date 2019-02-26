@@ -1,4 +1,7 @@
 {
-  "usingComponents": {},
+  "usingComponents": {
+    "van-panel": "../../../../miniprogram_npm/vant-weapp/panel/index",
+    "van-cell": "../../../../miniprogram_npm/vant-weapp/cell/index"
+  },
   "navigationBarTitleText": "更换手机号"
 }
