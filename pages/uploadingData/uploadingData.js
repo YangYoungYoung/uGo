@@ -5,6 +5,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    hasfeedback:true,
     imageFrontPath: "",
     imageReversePath: "",
     items: [{

@@ -1,8 +1,10 @@
 /* pages/securitySetting/phoneSetting/verification/verification.wxss */
-page{
-  background-color: #F0F0F0;
+
+page {
+  background-color: #f0f0f0;
 }
-.verification{
+
+.verification {
   width: 100%;
   height: 192rpx;
   background-color: #fff;
@@ -15,12 +17,70 @@ page{
   color: #616161;
 }
 
-.verification-text{
+.verification-text {
   height: 192rpx;
   align-items: center;
   text-align: center;
   /* line-height: 192rpx; */
 }
 
+form {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+  margin-top: 90rpx;
+  align-items: center;
+  flex-direction: column;
+}
 
+form input {
+  height: 64rpx;
+  width: 94rpx;
+  border-bottom: 1rpx solid #cdcdcd;
+  /* border-radius: 8rpx; */
+  display: inline-block;
+  line-height: 64px;
+  text-align: center;
+  font-size: 48rpx;
+  color: #323232;
+  margin: 0 8rpx;
+}
 
+form .hidden_ipt {
+  height: 0rpx;
+  width: 0rpx;
+  border: none;
+  margin: 0;
+}
+
+.scan_code {
+  width: 400rpx;
+  height: 64rpx;
+  display: block;
+  margin: 0 auto;
+  line-height: 64rpx;
+  font-size: 32rpx;
+  color: #fff;
+  background: #6f5bde;
+  text-align: center;
+  border-radius: 50rpx;
+  margin-top: 60rpx;
+}
+
+.timer-view{
+ width: 100%;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  align-items: center;
+}
+.timer-text {
+ color: #616161;
+ font-size: 28rpx;
+}
+
+.noReception{
+  color: #E83D2C;
+  font-size: 32rpx;
+  margin-top: 32rpx;
+}

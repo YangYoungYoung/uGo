@@ -1,6 +1,14 @@
 <!--pages/uploadingData/uploadingData.wxml-->
 <scroll-view scroll-y>
   <view class='container'>
+    <block wx:if="{{hasfeedback}}">
+      <view class='information-title'>
+        <text class='information-text'>审核反馈</text>
+      </view>
+      <view class='feedback-view'>
+        <text class='feedback-text'>经审核：1、您的身份证人像面显示模糊；2、贵司营业执照已过期。请您重新选择较为清晰的图片上传，感谢！</text>
+      </view>
+    </block>
 
     <view class='information-title'>
       <text class='information-text'>申请人信息</text>
@@ -26,7 +34,9 @@
 
     </view>
 
-
+    <view class='information-title'>
+      <text class='information-text'>商铺认证信息</text>
+    </view>
     <view class='upload-view' bindtap='chooseImageFront'>
       <image class='upload-add' src='../images/upload_addicon.png'></image>
       <text class='upload-text'>身份证人像面</text>

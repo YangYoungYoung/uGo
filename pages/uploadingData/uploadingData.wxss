@@ -9,12 +9,11 @@
   box-sizing: border-box;
 }
 
-scroll-view {           
-  white-space:nowrap;
+scroll-view {
+  white-space: nowrap;
   height: 100%;
-  width: 100%;    /*从效果来看, 如果不设置宽度, scroll-view默认为屏幕宽度, 因此可以设置一下其宽度*/
+  width: 100%; /*从效果来看, 如果不设置宽度, scroll-view默认为屏幕宽度, 因此可以设置一下其宽度*/
 }
-
 
 .information-title {
   width: 100%;
@@ -41,7 +40,7 @@ scroll-view {
   font-size: 28rpx;
   color: #313131;
   font-family: PingFangSC-Medium;
-  font-weight: 500;
+  font-weight: bold;
 }
 
 .info-input {
@@ -130,6 +129,7 @@ scroll-view {
   background-color: #e9af3c;
   font-size: 32rpx;
   margin-top: 60rpx;
+  margin-bottom: 80rpx;
 }
 
 .radio-group {
@@ -140,11 +140,34 @@ scroll-view {
   color: #313131;
   margin-left: 32rpx;
 }
-radio{
-  transform:scale(0.7);
+
+radio {
+  transform: scale(0.7);
   font-size: 28rpx;
   color: #313131;
 }
 
+.feedback-view {
+  margin-top: 32rpx;
+  width: 686rpx;
+  height: 320rpx;
+  border-radius: 8rpx;
+  border: 1rpx solid rgba(193, 193, 193, 1);
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  
+  text-align: center;
+}
 
-
+.feedback-text {
+  color: #313131;
+  font-size: 28rpx;
+  width: 638rpx;
+  /* height: 320rpx; */
+  padding-top: 24rpx;
+  word-break: break-all;
+  /* word-break: keep-all; */
+  /* word-wrap: break-word; */
+  text-align: center;
+}

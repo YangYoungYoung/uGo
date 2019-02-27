@@ -5,62 +5,91 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    inputLen: 4,
+    iptValue: "",
+    isFocus: false,
+    time: "60",
+    currentTime: 60
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
-
+  onLoad: function(options) {
+    let that = this;
+    that.getCode();
   },
 
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
-  },
 
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function () {
+  onShow: function() {
 
   },
 
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
+  onFocus: function(e) {
+    var that = this;
+    that.setData({
+      isFocus: true
+    });
   },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
+  setValue: function(e) {
+    console.log(e.detail.value);
+    var that = this;
+    that.setData({
+      iptValue: e.detail.value
+    });
   },
+  // //倒计时方法
+  // countdown: function(that) {
+  //   var second = that.data.second;
+  //   if (second == 0) {
+  //     // console.log("Time Out...");
+  //     that.setData({
+  //       selected: false,
+  //       selected1: true,
+  //       second: 60,
+  //       nullHouse1: false,
+  //       nullHouse2: true
+  //     });
+  //     return;
+  //   }
+  //   var time = setTimeout(function() {
+  //     that.setData({
+  //       second: second - 1,
+  //       nullHouse1: true,
+  //       nullHouse2: false
+  //     });
+  //     countdown(that);
+  //   }, 1000)
+  // }
+  //验证码倒计时函数
+  getCode: function(options) {
+    var that = this;
+    var currentTime = that.data.currentTime;
+    that.setData({
+      time: currentTime
+    })
+    var interval = setInterval(function() {
+      currentTime--;
+      that.setData({
+        time: (currentTime)
+      })
 
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
+      if (currentTime <= 0) {
+        console.log('currentTime is:', currentTime);
+        clearInterval(interval)
+        that.setData({
+          time: '00',
+          currentTime: 60,
+          disabled: false
+        })
+      }
+    }, 1000)
   },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
+  //重新获取验证码
+  resend: function() {
 
   }
 })
