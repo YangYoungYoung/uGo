@@ -169,5 +169,5 @@ radio {
   word-break: break-all;
   /* word-break: keep-all; */
   /* word-wrap: break-word; */
-  text-align: center;
+  text-align: left;
 }

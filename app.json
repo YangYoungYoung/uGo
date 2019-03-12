@@ -1,5 +1,8 @@
 {
   "pages": [
+    "pages/home/home",
+    "pages/liveStreaming/liveStreaming",
+    "pages/login/login",
     "pages/uploadingData/uploadingData",
     "pages/securitySetting/phoneSetting/verification/verification",
     "pages/securitySetting/phoneSetting/changePhone/changePhone",
@@ -15,14 +18,13 @@
     "pages/authentication/authentication",
     "pages/authorizationStatement/authorizationStatement",
     "pages/drawings/drawings",
-    "pages/liveStreaming/liveStreaming",
+    
     "pages/convas/convas",
     "pages/myBalance/myBalance",
     "pages/newAddress/newAddress",
-    "pages/login/login",
     "pages/livecart/livecart",
     "pages/myaddress/myaddress",
-    "pages/home/home",
+    
     "pages/integral_type/integral_type",
     "pages/integral_exchange/integral_exchange",
     "pages/integral_search/integral_search",

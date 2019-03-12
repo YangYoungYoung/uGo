@@ -6,7 +6,7 @@
         <text class='information-text'>审核反馈</text>
       </view>
       <view class='feedback-view'>
-        <text class='feedback-text'>经审核：1、您的身份证人像面显示模糊；2、贵司营业执照已过期。请您重新选择较为清晰的图片上传，感谢！</text>
+        <text class='feedback-text'>经审核：1、您的身份证人像面显示模糊；\n2、贵司营业执照已过期。\n请您重新选择较为清晰的图片上传，感谢！</text>
       </view>
     </block>
 

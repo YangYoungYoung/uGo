@@ -12,7 +12,7 @@ page {
   color: #313131;
 }
 
-.banner-image{
+.banner-image {
   width: 100%;
   height: 320rpx;
 }
@@ -289,9 +289,9 @@ page {
   height: 292rpx;
   display: flex;
   flex-direction: row;
-  flex-wrap: wrap;
+  /* flex-wrap: wrap; */
   margin: 24rpx;
-  background-color: white;
+  /* background-color: white; */
   text-align: center;
   align-items: center;
 }
@@ -299,6 +299,88 @@ page {
 .optimization-list-item {
   width: 128rpx;
   height: 128rpx;
+}
+
+/* 商家直播 */
+
+.shop-live-item {
+  display: flex;
+  flex-direction: column;
+  width: 278rpx;
+  height: 269rpx;
+  background-color: black;
+}
+
+.shop-live-item-content {
+  display: flex;
+  flex-direction: row;
+  margin-left: 8rpx;
+  margin-top: 4rpx;
+  align-items: center;
+}
+
+.shop-live-item-people {
+  font-size: 22rpx;
+  color: #fff;
+  margin-left: 12rpx;
+}
+
+.shop-live-item-bottom {
+  display: flex;
+  flex-direction: row;
+  margin-left: 8rpx;
+  margin-top: 4rpx;
+  align-items: center;
+}
+
+.shop-live-bottom-img {
+  width: 32rpx;
+  height: 32rpx;
+  border-radius: 50%;
+  background-color: #fff;
+}
+
+.shop-live-bottom-name {
+  font-size: 24rpx;
+  color: #fff;
+  margin-left: 12rpx;
+}
+
+.shop-live-item-status {
+  width: 98rpx;
+  height: 32rpx;
+  background: rgba(232, 61, 44, 1);
+  border-radius: 4rpx;
+  color: #fbfbfb;
+  font-size: 22rpx;
+  text-align: center;
+}
+
+.shop-live-item-title {
+  font-size: 24rpx;
+  color: #fff;
+  margin-top: 141rpx;
+  display: flex;
+  margin-left: 8rpx;
+}
+
+/* 商家列表 */
+
+.optimizationShop-list {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  margin-left: 12rpx;
+  
+}
+
+.optimizationShop-item {
+  width: 128rpx;
+  height: 128rpx;
+  margin-right: 9rpx;
+  background-color: #232322;
+  margin-bottom: 12rpx;
 }
 
 .near-shop {
@@ -376,8 +458,7 @@ page {
 }
 
 .shop-title-left-discounts-text {
-  /* width: 100%; */
-  /* padding:2rpx 10rpx 2rpx 10rpx;  */
+  /* width: 100%; *//* padding:2rpx 10rpx 2rpx 10rpx;  */
   padding-left: 8rpx;
   padding-right: 8rpx;
   text-align: center;
@@ -461,7 +542,7 @@ page {
   flex-direction: row;
 }
 
-.shop-people-num{
+.shop-people-num {
   color: red;
 }
 
@@ -472,8 +553,6 @@ page {
   margin-top: 12rpx;
   margin-bottom: 14rpx;
 }
-
-
 
 .footer {
   width: 100%;
@@ -512,17 +591,13 @@ page {
   font-size: 24rpx;
 }
 
-
-.bottom-text{
+.bottom-text {
   width: 100%;
   font-size: 24rpx;
   text-align: center;
   align-items: center;
   color: #c1c1c1;
 }
-
-
-
 
 /* 弹窗 */
 
@@ -564,11 +639,10 @@ page {
   align-items: center;
 }
 
-.modal-content-text{
+.modal-content-text {
   color: #313131;
   font-size: 32rpx;
 }
-
 
 .modal-footer {
   display: flex;
@@ -579,8 +653,6 @@ page {
   line-height: 86rpx;
   text-align: center;
 }
-
-
 
 .btn-confirm {
   width: 100%;
