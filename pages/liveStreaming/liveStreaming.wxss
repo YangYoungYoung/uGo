@@ -356,3 +356,31 @@
   font-size: 28rpx;
   text-align: center;
 }
+
+/* 评论列表 */
+
+.msgs-wrapper {
+  position: absolute;
+  bottom: 100rpx;
+  left: 10rpx;
+  right: 10rpx;
+}
+
+.msgs {
+  max-width: 80%;
+  display: block;
+  padding: 5rpx;
+  color: #fff;
+  margin: 5rpx 0;
+  word-wrap: break-word;
+}
+
+.msg-item {
+  padding: 8rpx 5rpx;
+  border-radius: 4rpx;
+  font-size: 14px;
+}
+
+.nickname {
+  color: #ff7906;
+}

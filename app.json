@@ -1,7 +1,7 @@
 {
   "pages": [
-    "pages/home/home",
     "pages/liveStreaming/liveStreaming",
+    "pages/home/home",
     "pages/login/login",
     "pages/uploadingData/uploadingData",
     "pages/securitySetting/phoneSetting/verification/verification",

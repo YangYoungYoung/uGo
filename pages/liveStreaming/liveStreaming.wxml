@@ -33,14 +33,15 @@
   </view>
   <view class='zb-content'>
     <view class='zb-content-left'>
-      <view class='zb-content-title'>
-
-        你爹来了</view>
-      <text class='zb-content-text'>asdfssfsdsfdfsdfs</text>
+      <view class="msgs-wrapper">
+        <view class="msgs" wx:for="{{msgs}}" wx:key="index">
+          <text class="msg-item"><text class="nickname">{{item.fromAccountNick}}</text> : {{item.content}}</text>
+        </view>
+      </view>
     </view>
 
     <view class='zb-content-right'>
-      
+
     </view>
 
   </view>

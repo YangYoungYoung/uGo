@@ -73,33 +73,58 @@
     </view>
     <view class='optimization-shop'>
       <text class='optimization-shop-text'>商家优选</text>
-      <image class='optimization-shop-icon' src='../images/optimization__icon1.png'></image>
+      <!-- <image class='optimization-shop-icon' src='../images/optimization__icon1.png'></image> -->
     </view>
     <view class='optimization-list'>
       <!-- <block wx:for="{{}}" wx:key='index'> -->
-        <!-- <image class='optimization-list-item'></image> -->
-        <view class='shop-live'>
-          <!-- <block wx:for="{{}}" wx:key='index'> -->
-            <view class='shop-live-item'>
-              <view class='shop-live-item-title'>Aric美食推荐</view>
-              <view class='shop-live-item-content'>
-                <view class='shop-live-item-status'>●直播中</view>
-                <text class='shop-live-item-people'>666人观看</text>
-              </view>
-              <view class='shop-live-item-bottom'>
-                <image class='shop-live-bottom-img'></image>
-                <text class='shop-live-bottom-name'> Aric</text>
-              </view>
-            </view>
-          <!-- </block> -->
+      <!-- <image class='optimization-list-item'></image> -->
+      <view class='shop-live'>
+        <!-- <block wx:for="{{}}" wx:key='index'> -->
+        <view class='shop-live-item'>
+          <view class='shop-live-item-title'>Aric美食推荐</view>
+          <view class='shop-live-item-content'>
+            <view class='shop-live-item-status'>●直播中</view>
+            <text class='shop-live-item-people'>666人观看</text>
+          </view>
+          <view class='shop-live-item-bottom'>
+            <image class='shop-live-bottom-img'></image>
+            <text class='shop-live-bottom-name'> Aric</text>
+          </view>
         </view>
+        <!-- </block> -->
+      </view>
 
-        <view class='optimizationShop-list'>
-          <image class='optimizationShop-item'></image>
-          <image class='optimizationShop-item'></image>
-          <image class='optimizationShop-item'></image>
-          <image class='optimizationShop-item'></image>
+      <view class='optimizationShop-list'>
+        <image class='optimizationShop-item'></image>
+        <image class='optimizationShop-item'></image>
+        <image class='optimizationShop-item'></image>
+        <image class='optimizationShop-item'></image>
+      </view>
+      <!-- </block> -->
+    </view>
+    <view class='optimization-shop'>
+      <text class='optimization-shop-text'>直播卖场</text>
+      <!-- <image class='optimization-shop-icon' src='../images/optimization__icon1.png'></image> -->
+    </view>
+
+    <view class='optimization-list'>
+      <!-- <block wx:for="{{}}" wx:key='index'> -->
+      <!-- <image class='optimization-list-item'></image> -->
+      <view class='shop-live'>
+        <!-- <block wx:for="{{}}" wx:key='index'> -->
+        <view class='shop-live-item'>
+          <view class='shop-live-item-title'>Aric美食推荐</view>
+          <view class='shop-live-item-content'>
+            <view class='shop-live-item-status'>●直播中</view>
+            <text class='shop-live-item-people'>666人观看</text>
+          </view>
+          <view class='shop-live-item-bottom'>
+            <image class='shop-live-bottom-img'></image>
+            <text class='shop-live-bottom-name'> Aric</text>
+          </view>
         </view>
+        <!-- </block> -->
+      </view>
       <!-- </block> -->
     </view>
     <view class='near-shop'>
