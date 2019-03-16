@@ -7,6 +7,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    liveRooomList: [],
     clicked: false,
     showModal: false,
     indicatorDots: true, //是否出现焦点  
@@ -120,7 +121,8 @@ Page({
   onLoad: function(options) {
     let that = this;
     that.getUserLocation();
-    that.getShopList();
+    // that.getShopList();
+    that.getLiveRoomList();
 
 
 
@@ -283,7 +285,7 @@ Page({
     let addedIntegral = sineList[signedTimes].number;
     let openId = wx.getStorageSync('openId');
 
-    let url = "sign?userOpenId=" + openId + "&addedIntegral="+addedIntegral;
+    let url = "sign?userOpenId=" + openId + "&addedIntegral=" + addedIntegral;
     var params = {
       // userOpenId: openId,
       // addedIntegral: addedIntegral
@@ -371,4 +373,48 @@ Page({
       showModal: false
     });
   },
+
+  //获取直播列表
+  getLiveRoomList: function() {
+    let that = this;
+
+    let url = "zhiBo/room/list"
+    var params = {
+
+    }
+    let method = "GET";
+    wx.showLoading({
+        title: '加载中...',
+      }),
+      network.POST(url, params, method).then((res) => {
+        wx.hideLoading();
+        // console.log("返回值是：" + res.data);
+        let liveRooomList = res.data.zhiBoRoomDOList;
+        that.setData({
+          liveRooomList: liveRooomList
+        })
+
+      }).catch((errMsg) => {
+        wx.hideLoading();
+        console.log(errMsg); //错误提示信息
+        wx.showToast({
+          title: '网络错误',
+          icon: 'loading',
+          duration: 1500,
+        })
+      });
+  },
+  //进入直播室
+  toLiveRoom: function(event) {
+    let index = event.currentTarget.dataset.index;
+    console.log('index is:', index);
+
+    let that = this;
+    let liveRooomList = that.data.liveRooomList;
+    // let palyUrl = liveRooomList[index].palyUrl;
+    let userId = liveRooomList[index].userId;
+    wx.navigateTo({
+      url: '../liveStreaming/liveStreaming?userId=' + userId,
+    })
+  }
 })

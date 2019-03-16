@@ -309,6 +309,7 @@ page {
   width: 278rpx;
   height: 269rpx;
   background-color: black;
+  margin-right: 12rpx;
 }
 
 .shop-live-item-content {

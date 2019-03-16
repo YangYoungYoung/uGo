@@ -107,11 +107,8 @@
       <!-- <image class='optimization-shop-icon' src='../images/optimization__icon1.png'></image> -->
     </view>
 
-    <view class='optimization-list'>
-      <!-- <block wx:for="{{}}" wx:key='index'> -->
-      <!-- <image class='optimization-list-item'></image> -->
+    <!-- <view class='optimization-list'>
       <view class='shop-live'>
-        <!-- <block wx:for="{{}}" wx:key='index'> -->
         <view class='shop-live-item'>
           <view class='shop-live-item-title'>Aric美食推荐</view>
           <view class='shop-live-item-content'>
@@ -123,10 +120,34 @@
             <text class='shop-live-bottom-name'> Aric</text>
           </view>
         </view>
-        <!-- </block> -->
       </view>
-      <!-- </block> -->
-    </view>
+    </view> -->
+
+    <swiper style="height:292rpx;width:100%;background:#000" indicator-dots="{{indicatorDots}}" circular="{{circular}}">
+      <!--广告banner-->
+      <block wx:for="{{ liveRooomList }}" wx:key="item">
+        <swiper-item>
+          <view class='shop-live-item' bindtap='toLiveRoom' data-index='{{index}}'>
+            <view class='shop-live-item-title'>{{item.title}}</view>
+            <view class='shop-live-item-content'>
+              <view class='shop-live-item-status'>●直播中</view>
+              <text class='shop-live-item-people'>666人观看</text>
+            </view>
+            <view class='shop-live-item-bottom'>
+              <image class='shop-live-bottom-img' src='{{item.avatar}}'></image>
+              <text class='shop-live-bottom-name'>{{item.nikeName}}</text>
+            </view>
+          </view>
+        </swiper-item>
+      </block>
+    </swiper>
+
+
+
+
+
+
+
     <view class='near-shop'>
       <text class='near-title'>附近合作商家</text>
       <view class='near-shop-list'>

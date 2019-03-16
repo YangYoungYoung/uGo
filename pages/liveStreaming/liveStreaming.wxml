@@ -1,41 +1,34 @@
 <!--pages/liveStreaming/liveStreaming.wxml-->
 <view class="page-body">
 
-  <live-player id="player" src="rtmp://live-down.cmdd.tech/ugo365-live/local?auth_key=1548478413-0-0-bb0f5654a291b9af619212ac763fec61" mode="RTC" autoplay bindstatechange="statechange" binderror="error" style="width: 100%;height:{{windowHeight}}rpx" />
+  <live-player id="player" src="rtmp://video.ugo365.xyz/live/32?txSecret=f87ab7f70b65ee8a0b2cb4f82679bfa0&txTime=61B322E3" mode="RTC" autoplay='true' bindstatechange="statechange" binderror="error" style="width: 100%;height:400rpx"></live-player>
 
   <view class='top'>
-    <image class='head-image' src=''></image>
+    <image class='head-image' src='{{avatar}}'></image>
     <view class='top-content'>
       <view class='content-title'>
-        <text class=''>张三数码</text>
+        <view class=''>{{nikeName}}</view>
         <view class='title-view'></view>
-        <text class=''>河北省</text>
+        <view class=''>{{location}}</view>
       </view>
-      <text class='content-number'>2000人观看</text>
+      <view class='content-number'>2000人观看</view>
     </view>
   </view>
 
-
   <view class='bottome'>
-    <!-- <image class=''></image> -->
-    <block wx:if="{{!inputSelect}}">
-      <view class='zb-cart' bindtap='showModel'></view>
-      <!-- <input class='bottom-input' type='text' placeholder="跟主播聊聊" bindinput="passwordInput"></input> -->
-      <view class='bottom-input-view' bindtap='inputSelectFunction'>跟主播聊聊</view>
-
-      <image class='zb-share' src='../images/zb_share.png'></image>
-      <image class='zb-collect' src='../images/zb_collecticon.png'></image>
-    </block>
-    <block wx:else>
-      <input class='bottom-input' type='text' placeholder="跟主播聊聊" bindinput="textInput"></input>
-      <view class='bottom-btn' bindtap='sendMessage'>发送</view>
-    </block>
+    <image class='zb-cart' src='../images/zb_carticon.png' bindtap='showModel'></image>
+    <view>
+      <input class='bottom-input-view' type='text' placeholder="跟主播聊聊" value="{{msgContent}}" bindconfirm="bindConfirm"></input>
+    </view>
+    <image class='zb-share' src='../images/zb_share.png'></image>
+    <image class='zb-collect' src='../images/zb_collecticon.png'></image>
   </view>
   <view class='zb-content'>
     <view class='zb-content-left'>
       <view class="msgs-wrapper">
         <view class="msgs" wx:for="{{msgs}}" wx:key="index">
-          <text class="msg-item"><text class="nickname">{{item.fromAccountNick}}</text> : {{item.content}}</text>
+          <view class="msg-item">
+            <view class="nickname">{{item.fromAccountNick}}</view> : {{item.content}}</view>
         </view>
       </view>
     </view>
@@ -53,7 +46,7 @@
   <!--弹出框  -->
   <view class='commodity_view' wx:if="{{showModalStatus}}">
     <view class='commodity_title'>
-      <text class='commodity_text'>共7件商品</text>
+      <view class='commodity_text'>共7件商品</view>
       <view>
         <image class='commodity_image' src='../images/live_buyicon.png'></image>
         <view class="reddot">1</view>
@@ -67,8 +60,8 @@
           <view class='shop-item' bindtap='toDetail'>
             <image class='shop-item-icon' src=''></image>
             <view class='shop-item-content'>
-              <text class='item-content-name'></text>
-              <text class='item-content-price'></text>
+              <view class='item-content-name'></view>
+              <view class='item-content-price'></view>
             </view>
             <image class='item-content-cart' src='../images/zb-carticon.png' bindtap=''></image>
           </view>
@@ -98,12 +91,12 @@
         <view class='detail_left'>
           <image class='detail_image' src=''></image>
           <view class='detail_info'>
-            <text class='detail_price'>￥6800</text>
-            <text class='detail_inventory'>库存320件</text>
+            <view class='detail_price'>￥6800</view>
+            <view class='detail_inventory'>库存320件</view>
           </view>
         </view>
         <view class='detail_buyNum'>
-          <text class='buy_text'>购买数量</text>
+          <view class='buy_text'>购买数量</view>
           <van-stepper custom-class="stepper" min='0' value="{{ productList[index].count}}" bind:change="onNumberChange" />
         </view>
         <view class='detail_line'></view>
@@ -115,4 +108,5 @@
       </view>
     </view>
   </view>
+
 </view>
