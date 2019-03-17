@@ -127,10 +127,10 @@
   width: 100%;
   display: flex;
   flex-direction: row;
-  height: 100rpx;
+  height: 300rpx;
   position: fixed;
   bottom: 0;
-  /* z-index: 999; */
+  z-index: 999;
   margin-bottom: 121rpx;
   color: #fff;
   justify-content: space-between;
@@ -369,10 +369,10 @@
 }
 
 .msgs {
-  max-width: 80%;
+  max-width: 100%;
   display: block;
   padding: 3rpx;
-  color: #313131;
+  color: #fff;
   margin: 3rpx 0;
   word-wrap: break-word;
 }
