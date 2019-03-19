@@ -18,7 +18,8 @@ Page({
     identifier: '', // 当前用户身份标识，必选
     userSig: 'eJw9j0uPgjAURv8LW4y20DqjiQvUYjA64SE*2DQNlKY6YsViNMb-LuIjuatzFt*5N2Mxi9pMKZlRpqldZkbfAEarwfyiZMkpyzUvawwxxhYAHyszXmiZy8ZV4gDf-CRFDeYkGHnkgv*i49T6h56bbMnaER0NZyxQu26VqE1c2MuJSdw8TDxHDqPYDok79X5stNqEwMTnFA3nfg8HkSl6Sbx1fLH3F50xCgaDz1i2o039sw8BAH8Rgt231HLPX91Wfda3nKXpoSo01VfFm3fvD6ZWTR0_', // 当前用户签名，必选
     nickName: '', // 当前用户昵称，选填
-    msgContent: ''
+    msgContent: '',
+    userId:'1'
   },
 
   /**
@@ -41,7 +42,8 @@ Page({
     //   userId: userId
     // })
     // that.getLiveInfo();
-    that.initIM();
+    that.getGoodsList();
+    // that.initIM();
 
   },
 
@@ -367,5 +369,122 @@ Page({
           duration: 1500,
         })
       });
+  },
+
+
+  //数量加
+  jiaBtnTap: function (e) {
+    // console.log("youmeiyou ");
+    var index = e.currentTarget.dataset.index;
+    var list = this.data.goodsList.list;
+    if (index !== "" && index != null) {
+      if (list[parseInt(index)].number < 99) {
+        list[parseInt(index)].number++;
+        // this.setGoodsList(this.getSaveHide(), this.totalPrice(), this.allSelect(), this.noSelect(), list);
+      }
+    }
+  },
+  //数量减
+  jianBtnTap: function (e) {
+    var index = e.currentTarget.dataset.index;
+    var list = this.data.goodsList.list;
+    if (index !== "" && index != null) {
+      if (list[parseInt(index)].number > 1) {
+        list[parseInt(index)].number--;
+        // this.setGoodsList(this.getSaveHide(), this.totalPrice(), this.allSelect(), this.noSelect(), list);
+      }
+    }
+  },
+
+  //点赞
+  giveLike:function(){
+    let that = this;
+    let userId = that.data.userId;
+
+    let url = "zhiBo/room/" + userId +"?operateType=2";
+    var params = {
+
+    }
+    let method = "pUT";
+    wx.showLoading({
+      title: '加载中...',
+    }),
+      network.POST(url, params, method).then((res) => {
+        wx.hideLoading();
+        // console.log("返回值是：" + res.data);
+        if(res.data.code==200){
+
+        }
+
+      }).catch((errMsg) => {
+        wx.hideLoading();
+        console.log(errMsg); //错误提示信息
+        wx.showToast({
+          title: '网络错误',
+          icon: 'loading',
+          duration: 1500,
+        })
+      });
+  },
+  //获取直播商品信息
+  getGoodsList:function(){
+    let that = this;
+    let userId = that.data.userId;
+
+    let url = "goods/list/selected?userId=" + userId;
+    var params = {
+
+    }
+    let method = "GET";
+    wx.showLoading({
+      title: '加载中...',
+    }),
+      network.POST(url, params, method).then((res) => {
+        wx.hideLoading();
+        // console.log("返回值是：" + res.data);
+        if (res.data.code == 200) {
+
+        }
+
+      }).catch((errMsg) => {
+        wx.hideLoading();
+        console.log(errMsg); //错误提示信息
+        wx.showToast({
+          title: '网络错误',
+          icon: 'loading',
+          duration: 1500,
+        })
+      });
+  },
+  //添加到购物车
+  addToCart(){
+    let that = this;
+    let userId = that.data.userId;
+
+    let url = "shoppingCart/add";
+    var params = {
+
+    }
+    let method = "pUT";
+    wx.showLoading({
+      title: '加载中...',
+    }),
+      network.POST(url, params, method).then((res) => {
+        wx.hideLoading();
+        // console.log("返回值是：" + res.data);
+        if (res.data.code == 200) {
+
+        }
+
+      }).catch((errMsg) => {
+        wx.hideLoading();
+        console.log(errMsg); //错误提示信息
+        wx.showToast({
+          title: '网络错误',
+          icon: 'loading',
+          duration: 1500,
+        })
+      });
   }
+
 })

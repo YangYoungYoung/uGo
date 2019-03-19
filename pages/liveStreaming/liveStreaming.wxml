@@ -100,7 +100,13 @@
           </cover-view>
           <cover-view class='detail_buyNum'>
             <cover-view class='buy_text'>购买数量</cover-view>
-            <van-stepper custom-class="stepper" min='0' value="{{ productList[index].count}}" bind:change="onNumberChange" />
+            <!-- <van-stepper custom-class="stepper" min='0' value="{{ productList[index].count}}" bind:change="onNumberChange" /> -->
+
+            <cover-view class="buy-num">
+                <cover-view class="jian-btn {{item.number==1? 'disabled' : ''}}" catchtap="jianBtnTap" data-index="{{index}}">-</cover-view>
+                <cover-view class='input-view'>{{number}}</cover-view>
+                <cover-view class="jia-btn {{item.number==999? 'disabled' : ''}}" catchtap="jiaBtnTap" data-index="{{index}}">+</cover-view>
+              </cover-view>
           </cover-view>
           <cover-view class='detail_line'></cover-view>
         </cover-view>
@@ -118,6 +124,6 @@
       <input class='bottom-input-view' type='text' placeholder="跟主播聊聊" value="{{msgContent}}" bindconfirm="bindConfirm"></input>
     </view>
     <image class='zb-share' src='../images/zb_share.png'></image>
-    <image class='zb-collect' src='../images/zb_collecticon.png'></image>
+    <image class='zb-collect' src='../images/zb_collecticon.png' bindtap='giveLike'></image>
   </view>
 </view>
