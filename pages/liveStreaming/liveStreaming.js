@@ -11,7 +11,7 @@ Page({
   data: {
     windowHeight: 1334,
     showModalStatus: false,
-    showModalDetail: false,
+    showModalDetail: true,
     inputSelect: false,
     message: '',
     avChatRoomId: '20190201',
@@ -19,7 +19,10 @@ Page({
     userSig: 'eJw9j0uPgjAURv8LW4y20DqjiQvUYjA64SE*2DQNlKY6YsViNMb-LuIjuatzFt*5N2Mxi9pMKZlRpqldZkbfAEarwfyiZMkpyzUvawwxxhYAHyszXmiZy8ZV4gDf-CRFDeYkGHnkgv*i49T6h56bbMnaER0NZyxQu26VqE1c2MuJSdw8TDxHDqPYDok79X5stNqEwMTnFA3nfg8HkSl6Sbx1fLH3F50xCgaDz1i2o039sw8BAH8Rgt231HLPX91Wfda3nKXpoSo01VfFm3fvD6ZWTR0_', // 当前用户签名，必选
     nickName: '', // 当前用户昵称，选填
     msgContent: '',
-    userId:'1'
+    roomId: '1',
+    goodsList: [],
+    userId: '1',
+    num: 1, //初始数量
   },
 
   /**
@@ -44,7 +47,7 @@ Page({
     // that.getLiveInfo();
     that.getGoodsList();
     // that.initIM();
-
+    that.toDetail();
   },
 
 
@@ -148,13 +151,16 @@ Page({
   },
   //跳转到购物车
   toCart: function() {
-
+    wx.navigateTo({
+      url: '../integral_cart/integral_cart',
+    })
   },
   //关闭弹窗
   closeModel: function() {
     let that = this;
     that.setData({
-      showModalDetail: false
+      showModalDetail: false,
+      num:1
     })
   },
   //跳转到详情
@@ -373,7 +379,7 @@ Page({
 
 
   //数量加
-  jiaBtnTap: function (e) {
+  jiaBtnTap: function(e) {
     // console.log("youmeiyou ");
     var index = e.currentTarget.dataset.index;
     var list = this.data.goodsList.list;
@@ -385,7 +391,7 @@ Page({
     }
   },
   //数量减
-  jianBtnTap: function (e) {
+  jianBtnTap: function(e) {
     var index = e.currentTarget.dataset.index;
     var list = this.data.goodsList.list;
     if (index !== "" && index != null) {
@@ -397,22 +403,22 @@ Page({
   },
 
   //点赞
-  giveLike:function(){
+  giveLike: function() {
     let that = this;
     let userId = that.data.userId;
 
-    let url = "zhiBo/room/" + userId +"?operateType=2";
+    let url = "zhiBo/room/" + userId + "?operateType=2";
     var params = {
 
     }
     let method = "pUT";
     wx.showLoading({
-      title: '加载中...',
-    }),
+        title: '加载中...',
+      }),
       network.POST(url, params, method).then((res) => {
         wx.hideLoading();
         // console.log("返回值是：" + res.data);
-        if(res.data.code==200){
+        if (res.data.code == 200) {
 
         }
 
@@ -427,7 +433,7 @@ Page({
       });
   },
   //获取直播商品信息
-  getGoodsList:function(){
+  getGoodsList: function() {
     let that = this;
     let userId = that.data.userId;
 
@@ -437,13 +443,16 @@ Page({
     }
     let method = "GET";
     wx.showLoading({
-      title: '加载中...',
-    }),
+        title: '加载中...',
+      }),
       network.POST(url, params, method).then((res) => {
         wx.hideLoading();
         // console.log("返回值是：" + res.data);
         if (res.data.code == 200) {
-
+          let goodsList = res.data.data.goodss;
+          that.setData({
+            goodsList: goodsList
+          })
         }
 
       }).catch((errMsg) => {
@@ -457,23 +466,30 @@ Page({
       });
   },
   //添加到购物车
-  addToCart(){
+  addToCart: function(event) {
     let that = this;
+    let index = event.currentTarget.dataset.index;
     let userId = that.data.userId;
+    let goodsList = that.data.goodsList;
+    let good = goodsList[index];
 
     let url = "shoppingCart/add";
     var params = {
-
+      goodsId: good.id,
+      goodsName: good.name,
+      number: 1,
+      price: good.unitPrice,
+      userId: taht.data.userId
     }
-    let method = "pUT";
+    let method = "POST";
     wx.showLoading({
-      title: '加载中...',
-    }),
+        title: '加载中...',
+      }),
       network.POST(url, params, method).then((res) => {
         wx.hideLoading();
         // console.log("返回值是：" + res.data);
         if (res.data.code == 200) {
-
+          common.showTip("添加成功", 'success');
         }
 
       }).catch((errMsg) => {
@@ -485,6 +501,111 @@ Page({
           duration: 1500,
         })
       });
+  },
+  //展示商品详情
+  toDetail: function(event) {
+    // let goodId = event.currentTarget.dataset.id;
+    let that = this;
+
+    let url = "goods?goodsId=1";
+    var params = {}
+    let method = "GET";
+    wx.showLoading({
+        title: '加载中...',
+      }),
+      network.POST(url, params, method).then((res) => {
+        wx.hideLoading();
+        // console.log("返回值是：" + res.data);
+        if (res.data.code == 200) {
+          // common.showTip("添加成功", 'success');
+          let good = res.data.data.goods;
+          that.setData({
+            showModalDetail: true,
+            good: good
+
+          })
+        }
+
+      }).catch((errMsg) => {
+        wx.hideLoading();
+        console.log(errMsg); //错误提示信息
+        wx.showToast({
+          title: '网络错误',
+          icon: 'loading',
+          duration: 1500,
+        })
+      });
+
+  },
+
+
+  /* 点击减号 */
+  bindMinus: function() {
+    var num = this.data.num;
+    // 如果大于1时，才可以减  
+    if (num > 1) {
+      num--;
+    }
+    // 只有大于一件的时候，才能normal状态，否则disable状态  
+    var minusStatus = num <= 1 ? 'disabled' : 'normal';
+    // 将数值与状态写回  
+    this.setData({
+      num: num,
+      minusStatus: minusStatus
+    });
+  },
+  /* 点击加号 */
+  bindPlus: function() {
+    var num = this.data.num;
+    // 不作过多考虑自增1  
+    num++;
+    // 只有大于一件的时候，才能normal状态，否则disable状态  
+    var minusStatus = num < 1 ? 'disabled' : 'normal';
+    // 将数值与状态写回  
+    this.setData({
+      num: num,
+      minusStatus: minusStatus
+    });
+  },
+  //从详情加入购物车
+  detaiJoinCart:function(){
+    let that = this;
+    let userId = that.data.userId;
+    
+    let good = that.data.good;
+
+    let url = "shoppingCart/add";
+    var params = {
+      goodsId: good.id,
+      goodsName: good.name,
+      number:that.data.num,
+      price: good.unitPrice,
+      userId: that.data.userId
+    }
+    let method = "POST";
+    wx.showLoading({
+      title: '加载中...',
+    }),
+      network.POST(url, params, method).then((res) => {
+        wx.hideLoading();
+        // console.log("返回值是：" + res.data);
+        if (res.data.code == 200) {
+          common.showTip("添加成功", 'success');
+        }
+
+      }).catch((errMsg) => {
+        wx.hideLoading();
+        console.log(errMsg); //错误提示信息
+        wx.showToast({
+          title: '网络错误',
+          icon: 'loading',
+          duration: 1500,
+        })
+      });
+  },
+  //详情立即购买
+  detailBuyNow:function(){
+    
   }
 
 })

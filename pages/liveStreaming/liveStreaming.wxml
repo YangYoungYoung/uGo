@@ -57,6 +57,7 @@
 
       </cover-view>
 
+      <!-- 产品列表 -->
       <cover-view animation="{{animationData}}" class="commodity_attr_box">
         <scroll-view class='change-scroll' scroll-y>
           <block wx:for="{{}}" wx:key="id">
@@ -66,7 +67,7 @@
                 <cover-view class='item-content-name'></cover-view>
                 <cover-view class='item-content-price'></cover-view>
               </cover-view>
-              <cover-image class='item-content-cart' src='../images/zb-carticon.png' bindtap=''></cover-image>
+              <cover-image class='item-content-cart' src='../images/zb-carticon.png' catchtap='addToCart'></cover-image>
             </cover-view>
             <cover-view class='line'></cover-view>
           </block>
@@ -92,28 +93,38 @@
         </cover-view>
         <cover-view class='commodity_detail'>
           <cover-view class='detail_left'>
-            <cover-image class='detail_image' src=''></cover-image>
+            <cover-image class='detail_image' src='{{good.primaryPicUrl}}'></cover-image>
             <cover-view class='detail_info'>
-              <cover-view class='detail_price'>￥6800</cover-view>
-              <cover-view class='detail_inventory'>库存320件</cover-view>
+              <cover-view class='detail_price'>￥{{good.unitPrice}}</cover-view>
+              <cover-view class='detail_inventory'>库存{{good.serialNumber}}件</cover-view>
             </cover-view>
           </cover-view>
           <cover-view class='detail_buyNum'>
             <cover-view class='buy_text'>购买数量</cover-view>
             <!-- <van-stepper custom-class="stepper" min='0' value="{{ productList[index].count}}" bind:change="onNumberChange" /> -->
 
-            <cover-view class="buy-num">
-                <cover-view class="jian-btn {{item.number==1? 'disabled' : ''}}" catchtap="jianBtnTap" data-index="{{index}}">-</cover-view>
-                <cover-view class='input-view'>{{number}}</cover-view>
-                <cover-view class="jia-btn {{item.number==999? 'disabled' : ''}}" catchtap="jiaBtnTap" data-index="{{index}}">+</cover-view>
-              </cover-view>
+            <!-- <cover-view class="buy-num">
+              <cover-view class="jian-btn {{item.number==1? 'disabled' : ''}}" catchtap="jianBtnTap" data-index="{{index}}">-</cover-view>
+              <cover-view class='input-view'>{{good.number}}</cover-view>
+              <cover-view class="jia-btn {{item.number==999? 'disabled' : ''}}" catchtap="jiaBtnTap" data-index="{{index}}">+</cover-view>
+            </cover-view> -->
+
+            <cover-view class="stepper">
+              <!-- 减号 -->
+              <cover-view class="{{minusStatus}}" style="width:19px;height:42rpx;line-height:42rpx;" bindtap="bindMinus;color:#000;" bindtap="bindMinus">-</cover-view>
+              <!-- 数值 -->
+              <cover-view class='numberText'>{{num}}</cover-view>
+              <!-- 加号 -->
+              <cover-view class="normal" style="width:19px;height:42rpx;line-height:42rpx;text-align: center;" bindtap="bindPlus">+</cover-view>
+            </cover-view>
+
           </cover-view>
           <cover-view class='detail_line'></cover-view>
         </cover-view>
 
         <cover-view class='footer'>
-          <cover-view class='footer_btn' style='background-color:#3AB770' bindtap='joinCart'>加入购物车</cover-view>
-          <cover-view class='footer_btn' style='background-color:#E83D2C' bindtap='buyNow'>立即购买</cover-view>
+          <cover-view class='footer_btn' style='background-color:#3AB770' bindtap='detaiJoinCart'>加入购物车</cover-view>
+          <cover-view class='footer_btn' style='background-color:#E83D2C' bindtap='detailBuyNow'>立即购买</cover-view>
         </cover-view>
       </cover-view>
     </cover-view>
