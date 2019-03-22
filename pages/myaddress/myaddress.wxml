@@ -1,18 +1,34 @@
 <!--pages/myaddress/myaddress.wxml-->
 <view class='container'>
-
-  <view class='list-item'>
-    <view class='name-phone'>
-      <text class='name'></text>
-      <text class='phone'></text>
-    </view>
-    <view class='address-edit'>
-      <text class='address'></text>
-      <image class='edit' src=''></image>
-    </view>
-    <view class='line'></view>
-  </view>
-  <view class='footer'>
+  <block wx:for="{{addressList}}" wx:key="index">
+    <block wx:if="{{chooseAddress}}">
+      <view class='list-item' bindtap='chooseAddress'>
+        <view class='name-phone'>
+          <text class='name'>{{item.consignee}}</text>
+          <text class='phone'>{{item.telNumber}}</text>
+        </view>
+        <view class='address-edit'>
+          <text class='address'>{{item.district}}{{item.detailInfo}}</text>
+          <image class='edit' src='../images/edit_icon.png' catchtap='editAddress' data-index='{{index}}'></image>
+        </view>
+        <view class='line'></view>
+      </view>
+    </block>
+    <block else>
+      <view class='list-item'>
+        <view class='name-phone'>
+          <text class='name'>{{item.consignee}}</text>
+          <text class='phone'>{{item.telNumber}}</text>
+        </view>
+        <view class='address-edit'>
+          <text class='address'>{{item.district}}{{item.detailInfo}}</text>
+          <image class='edit' src='../images/edit_icon.png' catchtap='editAddress' data-index='{{index}}'></image>
+        </view>
+        <view class='line'></view>
+      </view>
+    </block>
+  </block>
+  <view class='footer' bindtap='newAddress'>
     <text class='footer-text'>+  新建地址</text>
   </view>
 

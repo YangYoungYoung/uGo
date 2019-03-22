@@ -1,9 +1,11 @@
 {
   "pages": [
+    "pages/myaddress/myaddress",
+    "pages/login/login",
+    "pages/newAddress/newAddress",
     "pages/integral_cart/integral_cart",
     "pages/liveStreaming/liveStreaming",
     "pages/home/home",
-    "pages/login/login",
     "pages/uploadingData/uploadingData",
     "pages/securitySetting/phoneSetting/verification/verification",
     "pages/securitySetting/phoneSetting/changePhone/changePhone",
@@ -22,9 +24,9 @@
     
     "pages/convas/convas",
     "pages/myBalance/myBalance",
-    "pages/newAddress/newAddress",
+    
     "pages/livecart/livecart",
-    "pages/myaddress/myaddress",
+    
     
     "pages/integral_type/integral_type",
     "pages/integral_exchange/integral_exchange",

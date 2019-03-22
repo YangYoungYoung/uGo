@@ -1,4 +1,6 @@
 // pages/newAddress/newAddress.js
+var common = require("../../utils/common.js");
+var network = require("../../utils/network.js");
 Page({
 
   /**
@@ -6,10 +8,11 @@ Page({
    */
   data: {
     showModal: false,
-    name:'',
-    phone:'',
-    street:'',
-    cityText:'',
+    name: '',
+    phone: '',
+    street: '',
+    cityText: '',
+    isNew:true,
     areaList: {
       province_list: {
         110000: '北京市',
@@ -3800,6 +3803,24 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
+    if(options.address!=undefined){
+      wx.setNavigationBarTitle({
+        title: '修改地址',
+      })
+      let address = JSON.parse(options.address)
+      let that = this;
+      that.setData({
+        isNew:false,
+        name: address.consignee,
+        phone: address.telNumber,
+        street: address.detailInfo,
+        cityText: address.district,
+      })
+    }else{
+      wx.setNavigationBarTitle({
+        title: '新建地址',
+      })
+    }
 
   },
 
@@ -3832,9 +3853,9 @@ Page({
   confirmFunction: function(e) {
     let that = this;
     let value = e.detail.values;
-    let cityText="";
-    for(var i=0;i<value.length;i++){
-      cityText+=value[i].name;
+    let cityText = "";
+    for (var i = 0; i < value.length; i++) {
+      cityText += value[i].name;
     }
 
     let index = e.detail.indexs;
@@ -3848,11 +3869,65 @@ Page({
     that.hideModal();
   },
   //保存
-  saveFunction:function(){
+  saveFunction: function() {
+    let that = this;
+    let name = that.data.name;
+    let phone = that.data.phone;
+    let cityText = that.data.cityText;
+    let street = that.data.street;
+
+    if (name == '' || name == undefined) {
+      common.showTip('收货人姓名不能为空', 'loading');
+      return;
+    }
+    if (phone == '' || phone == undefined) {
+      common.showTip('电话不能为空', 'loading');
+      return;
+    } 
+    if (cityText == '' || cityText == undefined) {
+      common.showTip('地址不能为空', 'loading');
+      return;
+    }
+    if (street == '' || street == undefined) {
+      common.showTip('地址不能为空', 'loading');
+      return;
+    }
+    let userId = wx.getStorageSync('userId');    
+    
+    let url = "address/add"
+    var params = {
+      consignee: name,
+      detailInfo: street,
+      district: cityText,
+      telNumber: phone,
+      userId: 1
+    }
+    let method = "POST";
+    wx.showLoading({
+      title: '加载中...',
+    }),
+      network.POST(url, params, method).then((res) => {
+        wx.hideLoading();
+        console.log("返回值是：" + res.data);
+       if(res.data.code==200){
+         common.showTip('保存成功','success');
+       }
+
+
+      }).catch((errMsg) => {
+        wx.hideLoading();
+        console.log(errMsg); //错误提示信息
+        wx.showToast({
+          title: '网络错误',
+          icon: 'loading',
+          duration: 1500,
+        })
+      });
+
 
   },
   //姓名输入取值
-  nameInput:function(e){
+  nameInput: function(e) {
     let that = this;
     let name = e.detail.value;
     that.setData({
@@ -3860,7 +3935,7 @@ Page({
     })
   },
   //手机输入取值
-  phoneInput: function (e) {
+  phoneInput: function(e) {
     let that = this;
     let phone = e.detail.value;
     that.setData({
@@ -3868,12 +3943,69 @@ Page({
     })
   },
   //详细地址输入取值
-  streetInput: function (e) {
+  streetInput: function(e) {
     let that = this;
     let street = e.detail.value;
     that.setData({
       street: street
     })
   },
+
+  //修改保存
+  editSaveFunction:function(){
+    let that = this;
+    let name = that.data.name;
+    let phone = that.data.phone;
+    let cityText = that.data.cityText;
+    let street = that.data.street;
+
+    if (name == '' || name == undefined) {
+      common.showTip('收货人姓名不能为空', 'loading');
+      return;
+    }
+    if (phone == '' || phone == undefined) {
+      common.showTip('电话不能为空', 'loading');
+      return;
+    }
+    if (cityText == '' || cityText == undefined) {
+      common.showTip('地址不能为空', 'loading');
+      return;
+    }
+    if (street == '' || street == undefined) {
+      common.showTip('地址不能为空', 'loading');
+      return;
+    }
+    let userId = wx.getStorageSync('userId');
+
+    let url = "address/modify"
+    var params = {
+      consignee: name,
+      detailInfo: street,
+      district: cityText,
+      telNumber: phone,
+      userId: 1
+    }
+    let method = "PUT";
+    wx.showLoading({
+      title: '加载中...',
+    }),
+      network.POST(url, params, method).then((res) => {
+        wx.hideLoading();
+        console.log("返回值是：" + res.data);
+        if (res.data.code == 200) {
+          common.showTip('保存成功', 'success');
+        }
+
+
+      }).catch((errMsg) => {
+        wx.hideLoading();
+        console.log(errMsg); //错误提示信息
+        wx.showToast({
+          title: '网络错误',
+          icon: 'loading',
+          duration: 1500,
+        })
+      });
+  }
 
 })

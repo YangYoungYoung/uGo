@@ -1,6 +1,6 @@
 {
   "usingComponents": {
     "van-area": "../../miniprogram_npm/vant-weapp/area/index"
-  },
-  "navigationBarTitleText": "新建地址"
+  }
+  
 }

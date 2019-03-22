@@ -8,7 +8,7 @@
 
   <view class='name-view'>
     <text class='name-text'>手机号码</text>
-    <input class="inputText" type='number' placeholder="请输入手机号码" value='{{phone}}'bindinput="phoneInput" />
+    <input class="inputText" type='number' placeholder="请输入手机号码" value='{{phone}}' bindinput="phoneInput" />
   </view>
   <view class='line'></view>
   <view class='name-view' bindtap='showDialogBtn'>
@@ -27,10 +27,16 @@
   <view class='modal-area' wx:if="{{showModal}}">
     <van-area area-list="{{ areaList }}" bind:confirm='confirmFunction' bind:cancel='hideModal' />
   </view>
-
-  <view class='footer' bindtap='saveFunction'>
-    保存
-  </view>
+  <block wx:if="{{isNew}}">
+    <view class='footer' bindtap='saveFunction'>
+      保存
+    </view>
+  </block>
+  <block else>
+    <view class='footer' bindtap='editSaveFunction'>
+      保存
+    </view>
+  </block>
 
 
 </view>
