@@ -117,8 +117,61 @@ Page({
   delItem: function(e) {
     var index = e.currentTarget.dataset.index;
     var list = this.data.goodsList.list;
-    list.splice(index, 1);
-    this.setGoodsList(this.getSaveHide(), this.totalPrice(), this.allSelect(), this.noSelect(), list);
+    let that = this;
+    let userId = wx.getStorageSync('userId');
+    let deleteList = [];
+
+    deleteList.push(list[index].goodsId);
+    // deleteList.push(0);
+    console.log('goodsId is ....', list[index].goodsId);
+    console.log("deleteList is:", deleteList);
+    // let url = "shoppingCart/delete"
+    // var params = {
+
+    // }
+    // let method = "GET";
+    // wx.showLoading({
+    //   title: '加载中...',
+    // }),
+    //   network.POST(url, params, method).then((res) => {
+    //     wx.hideLoading();
+    //     console.log("返回值是：" + res.data);
+    //     let addressList = res.data.data.addressS;
+    //     that.setData({
+    //       addressList: addressList
+    //     })
+
+
+    //   }).catch((errMsg) => {
+    //     wx.hideLoading();
+    //     console.log(errMsg); //错误提示信息
+    //     wx.showToast({
+    //       title: '网络错误',
+    //       icon: 'loading',
+    //       duration: 1500,
+    //     })
+    //   });
+    wx.request({
+      url: 'http://132.232.142.23:8088/api/shoppingCart/delete',
+
+      data: deleteList,
+      method: 'DELETE',
+      header: {
+        'content-type': 'application/json'
+      },
+      success: function(res) {
+        // console.log("提交返回：" + res.data);
+        if (res.data.code == 200) {
+          // common.showTip("提交成功", 'success');
+          list.splice(index, 1);
+          this.setGoodsList(this.getSaveHide(), this.totalPrice(), this.allSelect(), this.noSelect(), list);
+
+        }
+      }
+    });
+
+
+
   },
 
   selectTap: function(e) {
@@ -333,7 +386,7 @@ Page({
   //跳转到订单页面
   navigateToPayOrder: function() {
     //清除购物车库存
-    wx.removeStorageSync('cartResult')
+    // wx.removeStorageSync('cartResult')
     wx.hideLoading();
     wx.navigateTo({
       url: "../payOrder/payOrder?orderId=" + orderId

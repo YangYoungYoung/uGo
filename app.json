@@ -1,9 +1,9 @@
 {
   "pages": [
+    "pages/integral_cart/integral_cart",
     "pages/myaddress/myaddress",
     "pages/login/login",
     "pages/newAddress/newAddress",
-    "pages/integral_cart/integral_cart",
     "pages/liveStreaming/liveStreaming",
     "pages/home/home",
     "pages/uploadingData/uploadingData",
