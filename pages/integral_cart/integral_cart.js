@@ -173,13 +173,55 @@ Page({
 
 
   },
-
+  //勾选或者取消
   selectTap: function(e) {
+
+    let that = this;
+    let userId = wx.getStorageSync('userId');
+    let url = "shoppingCart/updateGoods"
+    let method = "PUT";
     var index = e.currentTarget.dataset.index;
     var list = this.data.goodsList.list;
+    let scList = [];
     if (index !== "" && index != null) {
       list[parseInt(index)].active = !list[parseInt(index)].active;
-      this.setGoodsList(this.getSaveHide(), this.totalPrice(), this.allSelect(), this.noSelect(), list);
+      if (list[parseInt(index)].active) {
+
+        var params = {
+          scList: [{
+            id: list[parseInt(index)].goodsId,
+            isChecked: 1
+          }]
+
+        }
+      } else {
+        var params = {
+          scList: [{
+            id: list[parseInt(index)].goodsId,
+            isChecked: 0
+          }]
+        }
+      }
+      wx.showLoading({
+          title: '加载中...',
+        }),
+        network.POST(url, params, method).then((res) => {
+          wx.hideLoading();
+          console.log("返回值是：" + res.data);
+          if (res.data.code == 200) {
+            this.setGoodsList(this.getSaveHide(), this.totalPrice(), this.allSelect(), this.noSelect(), list);
+          }
+        }).catch((errMsg) => {
+          wx.hideLoading();
+          console.log(errMsg); //错误提示信息
+          wx.showToast({
+            title: '网络错误',
+            icon: 'loading',
+            duration: 1500,
+          })
+        });
+
+
     }
   },
   //总价
@@ -189,7 +231,7 @@ Page({
     for (var i = 0; i < list.length; i++) {
       var curItem = list[i];
       if (curItem.active) {
-        total += parseFloat(curItem.integral) * curItem.number;
+        total += parseFloat(curItem.price) * curItem.number;
       }
     }
     return total;
@@ -245,28 +287,109 @@ Page({
   bindAllSelect: function() {
     var currentAllSelect = this.data.goodsList.allSelect;
     var list = this.data.goodsList.list;
+
+    let that = this;
+    let userId = wx.getStorageSync('userId');
+    let url = "shoppingCart/updateGoods"
+
+    let method = "PUT";
+    let scList = [];
     if (currentAllSelect) {
       for (var i = 0; i < list.length; i++) {
         var curItem = list[i];
+        let obj = {
+          id: curItem.goodsId,
+          isChecked: 1,
+        };
+        scList.push(obj);
+
         curItem.active = false;
       }
+
+      var params = {
+        scList: scList
+      }
+
     } else {
       for (var i = 0; i < list.length; i++) {
         var curItem = list[i];
         curItem.active = true;
+        let obj = {
+          id: curItem.goodsId,
+          isChecked: 0,
+        };
+        scList.push(obj);
+      }
+      var params = {
+        scList: scList
       }
     }
+    wx.showLoading({
+        title: '加载中...',
+      }),
+      network.POST(url, params, method).then((res) => {
+        wx.hideLoading();
+        console.log("全选返回值是：" + res.data);
+        if (res.data.code == 200) {
+          this.setGoodsList(this.getSaveHide(), this.totalPrice(), !currentAllSelect, this.noSelect(), list);
+        }
+        // let addressList = res.data.data.addressS;
+        // that.setData({
+        //   addressList: addressList
+        // })
+      }).catch((errMsg) => {
+        wx.hideLoading();
+        console.log(errMsg); //错误提示信息
+        wx.showToast({
+          title: '网络错误',
+          icon: 'loading',
+          duration: 1500,
+        })
+      });
 
-    this.setGoodsList(this.getSaveHide(), this.totalPrice(), !currentAllSelect, this.noSelect(), list);
+
   },
   //数量加
   jiaBtnTap: function(e) {
     var index = e.currentTarget.dataset.index;
     var list = this.data.goodsList.list;
+    let that = this;
+    let userId = wx.getStorageSync('userId');
+    let url = "shoppingCart/updateGoods"
+
+    let method = "PUT";
+    let scList = [];
     if (index !== "" && index != null) {
-      if (list[parseInt(index)].number < 10) {
+      if (list[parseInt(index)].number < 999) {
         list[parseInt(index)].number++;
-        this.setGoodsList(this.getSaveHide(), this.totalPrice(), this.allSelect(), this.noSelect(), list);
+        var params = {
+          scList: [{
+            id: list[parseInt(index)].goodsId,
+            number: list[parseInt(index)].number
+          }]
+        }
+        wx.showLoading({
+            title: '加载中...',
+          }),
+          network.POST(url, params, method).then((res) => {
+            wx.hideLoading();
+            console.log("数量加返回值是：" + res.data);
+            if (res.data.code == 200) {
+              this.setGoodsList(this.getSaveHide(), this.totalPrice(), !currentAllSelect, this.noSelect(), list);
+            }
+            // let addressList = res.data.data.addressS;
+            // that.setData({
+            //   addressList: addressList
+            // })
+          }).catch((errMsg) => {
+            wx.hideLoading();
+            console.log(errMsg); //错误提示信息
+            wx.showToast({
+              title: '网络错误',
+              icon: 'loading',
+              duration: 1500,
+            })
+          });
       }
     }
   },
@@ -274,10 +397,41 @@ Page({
   jianBtnTap: function(e) {
     var index = e.currentTarget.dataset.index;
     var list = this.data.goodsList.list;
+    let that = this;
+    let userId = wx.getStorageSync('userId');
+    let url = "shoppingCart/updateGoods"
+
+    let method = "PUT";
+    let scList = [];
     if (index !== "" && index != null) {
       if (list[parseInt(index)].number > 1) {
         list[parseInt(index)].number--;
-        this.setGoodsList(this.getSaveHide(), this.totalPrice(), this.allSelect(), this.noSelect(), list);
+
+        var params = {
+          scList: [{
+            id: list[parseInt(index)].goodsId,
+            number: list[parseInt(index)].number
+          }]
+        }
+        wx.showLoading({
+            title: '加载中...',
+          }),
+          network.POST(url, params, method).then((res) => {
+            wx.hideLoading();
+            console.log("数量减返回值是：" + res.data);
+            if (res.data.code == 200) {
+              this.setGoodsList(this.getSaveHide(), this.totalPrice(), !currentAllSelect, this.noSelect(), list);
+            }
+
+          }).catch((errMsg) => {
+            wx.hideLoading();
+            console.log(errMsg); //错误提示信息
+            wx.showToast({
+              title: '网络错误',
+              icon: 'loading',
+              duration: 1500,
+            })
+          });
       }
     }
   },
@@ -345,30 +499,16 @@ Page({
       }
     }
     //将选择的商品ID传给服务器生成订单
-    let url = "https://mall.cmdd.tech/mall/api/createOrder"
-    let openId = wx.getStorageSync('openId');
-    console.log("用户的opnId是：" + openId);
-    /**
-     *  var params = {
-      orderList: JSON.stringify(orderResult),
-      openId: openId
-    }
-     * 
-     */
-
-    var params = {
-      orderList: orderResult,
-      openId: openId
-    }
+    let userId = wx.getStorageSync('userId');
+    let url = "shoppingCart/settleAccounts?userId=" + userId +"&isIntegralShop=1"
     wx.showLoading({
         title: '加载中...',
       }),
       network.POST(url, params, 'POST', 'application/json').then((res) => {
         wx.hideLoading();
-        // console.log("这里的结果是：" + res.data.orderId); //正确返回结果
+        console.log("提交订单的结果是：" + res.data.code); //正确返回结果
         //返回的是订单Id
-        orderId = res.data.orderId;
-        that.navigateToPayOrder();
+       
       }).catch((errMsg) => {
         // wx.hideLoading();
         // console.log(errMsg); //错误提示信息
@@ -398,7 +538,7 @@ Page({
     let that = this;
     let userId = that.data.userId;
 
-    let url = "shoppingCart/detail?userId=1";
+    let url = "shoppingCart/detail?userId=1" +"&isIntegralShop=1";
     var params = {
 
     }

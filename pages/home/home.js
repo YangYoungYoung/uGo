@@ -8,6 +8,8 @@ Page({
    */
   data: {
     liveRooomList: [],
+    shopCategorys:[],
+    swiperList: [],
     clicked: false,
     showModal: false,
     indicatorDots: true, //是否出现焦点  
@@ -123,6 +125,8 @@ Page({
     that.getUserLocation();
     // that.getShopList();
     that.getLiveRoomList();
+    that.getSwiperList();
+    that.getShopCategory();
 
 
 
@@ -416,5 +420,67 @@ Page({
     wx.navigateTo({
       url: '../liveStreaming/liveStreaming?userId=' + userId,
     })
+  },
+  //获取轮播图
+  getSwiperList: function() {
+    let that = this;
+    let url = "dg/carouselPicture/list?isIntegralShop=0"
+    var params = {
+
+    }
+    let method = "GET";
+    wx.showLoading({
+        title: '加载中...',
+      }),
+      network.POST(url, params, method).then((res) => {
+        wx.hideLoading();
+        // console.log("返回值是：" + res.data);
+        let swiperList = res.data.data.carouselPictures;
+        that.setData({
+          swiperList: swiperList
+        })
+      }).catch((errMsg) => {
+        wx.hideLoading();
+        console.log(errMsg); //错误提示信息
+        wx.showToast({
+          title: '网络错误',
+          icon: 'loading',
+          duration: 1500,
+        })
+      });
+  },
+  //获取类别
+  getShopCategory: function() {
+    let that = this;
+    let url = "dg/shopCategory/list?isIntegralShop=0"
+    var params = {
+
+    }
+    let method = "GET";
+    wx.showLoading({
+        title: '加载中...',
+      }),
+      network.POST(url, params, method).then((res) => {
+        wx.hideLoading();
+        // console.log("返回值是：" + res.data);
+      let shopCategorys = res.data.data.shopCategorys;
+        that.setData({
+          shopCategorys: shopCategorys
+        })
+      }).catch((errMsg) => {
+        wx.hideLoading();
+        console.log(errMsg); //错误提示信息
+        wx.showToast({
+          title: '网络错误',
+          icon: 'loading',
+          duration: 1500,
+        })
+      });
+  },
+
+  //获取商家列表
+  getShopList:function(){
+    
   }
+
 })

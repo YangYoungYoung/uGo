@@ -27,7 +27,7 @@ page {
   font-size: 16px;
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  /* justify-content: space-between; */
   flex-wrap: wrap;
   padding-bottom: 20rpx;
 }
@@ -55,6 +55,7 @@ page {
 .item-head image {
   width: 83rpx;
   height: 100%;
+  border-radius: 24rpx;
 }
 
 .score-list-view {
@@ -204,7 +205,7 @@ page {
   margin-left: 7rpx;
 }
 
-.back-view{
+.back-view {
   width: 100%;
   display: flex;
   flex-direction: row;
@@ -216,7 +217,8 @@ page {
   height: 40rpx;
   /* margin-left: 24rpx; */
 }
-.back-text{
+
+.back-text {
   font-size: 32rpx;
   color: #313131;
   margin-left: 10rpx;

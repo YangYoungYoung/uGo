@@ -9,7 +9,7 @@
     <block wx:for="{{ banner }}" wx:key="item">
       <swiper-item>
         <!-- <navigator url="/pages/good/index?id={{item.id}}"> -->
-        <image src="{{ item }}" class="slide-image" mode='aspectFill' />
+        <image src="{{ item.iconUrl }}" class="slide-image" mode='aspectFill' />
         <!-- </navigator> -->
       </swiper-item>
     </block>
@@ -19,10 +19,10 @@
   </view>
 
   <view id='types'>
-    <block wx:for="{{menu}}" wx:key="item">
+    <block wx:for="{{shopCategorys}}" wx:key="item">
       <view class='list-item' bindtap="navigateToFunction" data-id="{{item.id}}">
         <view class='item-head'>
-          <image src="{{item.picture}}" mode="scaleToFill"></image>
+          <image src="{{item.iconUrl}}"></image>
         </view>
         <view class='item-foot'>
           {{item.name}}
