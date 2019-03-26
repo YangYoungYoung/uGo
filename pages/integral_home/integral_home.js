@@ -118,4 +118,14 @@ Page({
         })
       });
   },
+  //获取商品列表
+  getGoodsList:function(){
+    
+  },
+  //回到首页
+  toHome:function(){
+    wx.redirectTo({
+      url: '../home/home',
+    })
+  }
 })

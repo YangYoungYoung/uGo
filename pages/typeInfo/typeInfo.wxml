@@ -13,29 +13,33 @@
   </view> -->
   <scroll-view class='scroll' scroll-y="true" style="height: 100%;">
     <view class='shop-list'>
-      <view class='shop-list-item'>
-        <view class='shop-item-image'>
-          <image class='shop-item-logo' src='../images/integral_logo.png'></image>
-        </view>
 
-        <view class='shop-item-info'>
-          <text class='shop-info-name'>忠顺斋</text>
-          <view class='shop-info-location-distance'>
-            <view class='shop-info-location'>
-              <text class='shop-info-type'>中餐</text>
-              <text class='shop-info-loca'>易县城区</text>
-            </view>
-            <text class='shop-info-distance'>840m</text>
+      <block wx:for='{{shopList}}' wx:key='index'>
+        <view class='shop-list-item' bindtap='toshopDetail' data-id='{{item.id}}'>
+          <view class='shop-item-image'>
+            <image class='shop-item-logo' src='{{item.pic}}'></image>
           </view>
-          <block>
-            <view class='shop-info-discounts'>
-              <image class='shop-discounts-logo' src='../images/shop_discounts_logo.png'></image>
-              <text class='shop-discounts-text'>地方垃圾堆了房间里</text>
-              <image class='shop-discounts-end' src='../images/shop_discounts_end.png'></image>
+
+          <view class='shop-item-info'>
+            <text class='shop-info-name'>{{item.name}}</text>
+            <view class='shop-info-location-distance'>
+              <view class='shop-info-location'>
+                <text class='shop-info-type'>{{item.categoryName}}</text>
+                <text class='shop-info-loca'>{{item.district}}</text>
+              </view>
+              <text class='shop-info-distance'>{{item.distance}}m</text>
             </view>
-          </block>
+            <block>
+              <view class='shop-info-discounts'>
+                <image class='shop-discounts-logo' src='../images/shop_discounts_logo.png'></image>
+                <text class='shop-discounts-text'>{{item.preferential}}</text>
+                <image class='shop-discounts-end' src='../images/shop_discounts_end.png'></image>
+              </view>
+            </block>
+          </view>
         </view>
-      </view>
+      </block>
+
     </view>
   </scroll-view>
 

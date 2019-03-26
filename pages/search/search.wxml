@@ -37,7 +37,7 @@
       <image class='local-more' src='../images/local_more.png' mode='aspectFill'></image>
     </view>
     <view class='local-list'>
-      <block wx:for="{{localList}}">
+      <block wx:for="{{localList}}" wx:key="index">
         <text class='local-list-item'>{{item}}</text>
       </block>
     </view>

@@ -24,6 +24,7 @@
 }
 
 .shop-location {
+  margin-right: 32rpx;
   font-size: 24rpx;
   color: #616161;
 }
@@ -34,16 +35,20 @@
   margin: 24rpx;
   flex-wrap: wrap;
   box-sizing: border-box;
-  background-color: #eee;
+  /* background-color: #eee; */
+  justify-content: space-between;
 }
 
 .image-item {
   width: 342rpx;
   height: 257rpx;
   border-radius: 24rpx;
+  /* margin-right: 29rpx; */
 }
 
 .shop-time {
+  text-align: center;
+  align-items: center;
   display: flex;
   flex-direction: row;
   /* text-align: center;
@@ -95,6 +100,7 @@
   margin-top: 24rpx;
 }
 .location-info{
+  align-items: center;
   display: flex;
   flex-direction: row;
   margin-left: 24rpx;

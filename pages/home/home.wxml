@@ -23,7 +23,7 @@
 
     <view id='types'>
       <block wx:for="{{shopCategorys}}" wx:key="item">
-        <view class='list-item' bindtap="navigateToFunction" data-index="{{index}}">
+        <view class='list-item' bindtap="navigateToType" data-id="{{item.id}}">
           <view class='item-head'>
             <image src="{{item.iconUrl}}" ></image>
           </view>

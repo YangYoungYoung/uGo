@@ -8,7 +8,7 @@ Page({
    */
   data: {
     liveRooomList: [],
-    shopCategorys:[],
+    shopCategorys: [],
     swiperList: [],
     clicked: false,
     showModal: false,
@@ -19,47 +19,6 @@ Page({
     circular: true,
     addIntegral: 0,
     signedTimes: 0,
-    menu: [{
-        image: '../images/menu_1.png',
-        // name: '餐饮美食'
-      },
-      {
-        image: '../images/menu_2.png',
-        // name: '服装内衣'
-      },
-      {
-        image: '../images/menu_3.png',
-        // name: '数码家电'
-      },
-      {
-        image: '../images/menu_4.png',
-        // name: '挂果蔬菜'
-      },
-      {
-        image: '../images/menu_5.png',
-        // name: '酒店宾馆'
-      },
-      {
-        image: '../images/menu_6.png',
-        // name: '休闲娱乐'
-      },
-      {
-        image: '../images/menu_7.png',
-        // name: '彩妆护肤'
-      },
-      {
-        image: '../images/menu_8.png',
-        // name: '日用百货'
-      },
-      {
-        image: '../images/menu_9.png',
-        // name: '母婴用品'
-      },
-      {
-        image: '../images/menu_10.png',
-        // name: '其他'
-      },
-    ],
     footerList: [{
         name: '首页',
         src_yes: '../images/footer_home_y.png',
@@ -123,22 +82,21 @@ Page({
   onLoad: function(options) {
     let that = this;
     that.getUserLocation();
-    // that.getShopList();
+
     that.getLiveRoomList();
     that.getSwiperList();
     that.getShopCategory();
-
-
 
   },
   //获取商铺信息
   getShopList: function() {
     let that = this;
-    let menu = that.data.menu;
-    let openId = wx.getStorageSync('openId');
-    let url = "home"
+    let url = "dg/shop/list"
     var params = {
-      userOpenId: openId
+
+      district: that.data.district,
+      latFrom: that.data.latitude, //纬度
+      lngFrom: that.data.longitude //经度
     }
     let method = "GET";
     wx.showLoading({
@@ -146,42 +104,11 @@ Page({
       }),
       network.POST(url, params, method).then((res) => {
         wx.hideLoading();
-        // console.log("返回值是：" + res.data);
-        let bannerList = res.data.bannerList;
-        // let shopList = res.data.shopList;
-
-        let categoryList = res.data.categoryList;
-        for (var i = 0; i < categoryList.length; i++) {
-          menu[i].name = categoryList[i].name;
-          // console.log('menu :', menu[i].name);
-        }
-        let shopList = res.data.shopList;
-        if (res.data.shopUser != null) {
-          let shopUser = res.data.shopUser;
-          let signedTimes = shopUser.signedTimes;
-          console.log('signedTime is ', signedTimes);
-          let sineList = that.data.sineList;
-          for (i = 0; i < signedTimes; i++) {
-            if (i == signedTimes) {
-              sineList[index].select = true;
-            }
-          }
-          console.log('addIntegral :', sineList[signedTimes].number)
-          that.setData({
-            signedTimes: signedTimes,
-            addIntegral: sineList[signedTimes].number,
-            sineList: sineList
-          })
-        }
+        console.log("商铺列表返回值是：" + res.data);
+        let shopList = res.data.data.shops;
         that.setData({
-          shopList: shopList,
-          bannerList: bannerList,
-          menu: menu,
-          shopList: shopList,
-
+          shopList: shopList
         })
-
-
       }).catch((errMsg) => {
         wx.hideLoading();
         console.log(errMsg); //错误提示信息
@@ -199,7 +126,13 @@ Page({
     let that = this;
     wx.getLocation({
       success: function(res) {
-        console.log(res)
+        // console.log(res)
+        wx.setStorageSync('latitude', res.latitude);
+        wx.setStorageSync('longitude', res.longitude);
+        that.setData({
+          latitude: res.latitude,
+          longitude: res.longitude
+        })
         // let location = res.latitude
         let qqMapApi = 'http://apis.map.qq.com/ws/geocoder/v1/' + "?location=" + res.latitude + ',' +
           res.longitude + "&key=F24BZ-B5FKQ-6PC5F-GTQJO-RETFK-C7F5M" + "&get_poi=1";
@@ -217,6 +150,8 @@ Page({
             that.setData({
               district: res.data.result.address_component.district
             })
+            that.getShopList();
+            that.getRecommendShopList();
           }
         });
 
@@ -335,6 +270,7 @@ Page({
       url: '../map/map',
     })
   },
+  //跳转到商铺详情
   toShop: function(event) {
     let id = event.currentTarget.dataset.id;
     console.log("id is", id);
@@ -463,7 +399,7 @@ Page({
       network.POST(url, params, method).then((res) => {
         wx.hideLoading();
         // console.log("返回值是：" + res.data);
-      let shopCategorys = res.data.data.shopCategorys;
+        let shopCategorys = res.data.data.shopCategorys;
         that.setData({
           shopCategorys: shopCategorys
         })
@@ -479,8 +415,43 @@ Page({
   },
 
   //获取商家列表
-  getShopList:function(){
-    
+  getRecommendShopList: function() {
+    let that = this;
+    let url = "dg/shop/list"
+    var params = {
+      type:3,
+      district: that.data.district,
+      latFrom: that.data.latitude, //纬度
+      lngFrom: that.data.longitude //经度
+    }
+    let method = "GET";
+    wx.showLoading({
+        title: '加载中...',
+      }),
+      network.POST(url, params, method).then((res) => {
+        wx.hideLoading();
+        console.log("商铺列表返回值是：" + res.data);
+        let shopList = res.data.data.shops;
+        that.setData({
+          shopList: shopList
+        })
+      }).catch((errMsg) => {
+        wx.hideLoading();
+        console.log(errMsg); //错误提示信息
+        wx.showToast({
+          title: '网络错误',
+          icon: 'loading',
+          duration: 1500,
+        })
+      });
+  },
+  //跳转到类型详情
+  navigateToType:function(event){
+    let id = event.currentTarget.dataset.id;
+    console.log('type id is:',id);
+    wx.navigateTo({
+      url: '../typeInfo/typeInfo?id='+id,
+    })
   }
 
 })

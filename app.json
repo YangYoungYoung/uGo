@@ -1,6 +1,9 @@
 {
   "pages": [
+    "pages/integral_home/integral_home",
     "pages/home/home",
+    "pages/typeInfo/typeInfo",
+    "pages/detail/detail",
     "pages/integral_cart/integral_cart",
     "pages/myaddress/myaddress",
     "pages/login/login",
@@ -27,11 +30,11 @@
     "pages/integral_type/integral_type",
     "pages/integral_exchange/integral_exchange",
     "pages/integral_search/integral_search",
-    "pages/integral_home/integral_home",
+    
     "pages/search/search",
     "pages/map/map",
-    "pages/detail/detail",
-    "pages/typeInfo/typeInfo",
+    
+    
     "pages/index/index"
   ],
   "window": {
