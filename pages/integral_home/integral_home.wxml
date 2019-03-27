@@ -5,7 +5,7 @@
     <text class='back-text'>返回</text>
   </view>
 
-  <scroll-view scroll-y style="height: 1284rpx;margin-top:24rpx;" bindscrolltoupper="upper" bindscrolltolower="lower" bindscroll="scroll" scroll-into-view="{{toView}}" scroll-top="{{scrollTop}}">
+  <scroll-view scroll-y style="height: 1284rpx;margin-top:48rpx;" bindscrolltoupper="upper" bindscrolltolower="lower" bindscroll="scroll" scroll-into-view="{{toView}}" scroll-top="{{scrollTop}}">
 
 
     <swiper style="height:350rpx;width:100%;background:#eee;" indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" circular="{{circular}}">
@@ -50,14 +50,14 @@
     </view>
 
     <view class='shop_grid'>
-      <block wx:for="{{ shopInfo }}" wx:key="item">
+      <block wx:for="{{ goodsS }}" wx:key="item">
         <view class='item_view' bindtap='toDetail' data-id='{{item.id}}'>
           <view class='item_head'>
-            <image class='head_image' src='{{item.shopImage}}' mode="scaleToFill"></image>
+            <image class='head_image' src='{{item.primaryPicUrl}}'></image>
           </view>
           <view class='item_foot'>
 
-            <view class='item_title'>{{item.shopName}}</view>
+            <view class='item_title'>{{item.name}}</view>
             <view class='item_integral'>
               <view class='jifen_view'>积分</view>
               <image class='jifen_logo' src='../images/jifen_icon.png'></image>
@@ -70,7 +70,7 @@
             </i-tag>
             <view class='price_info'>{{item.money}}元</view>
           </view> -->
-            <view class='item_sold'>库存：{{item.stock}} 已售：{{item.sold}}</view>
+            <view class='item_sold'>库存：{{item.inventory}} 已售：{{item.sold}}</view>
           </view>
         </view>
       </block>

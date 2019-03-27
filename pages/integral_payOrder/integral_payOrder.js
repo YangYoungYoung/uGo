@@ -1,4 +1,6 @@
 // pages/integral_payOrder/integral_payOrder.js
+var network = require("../../utils/network.js")
+var common = require("../../utils/common.js")
 Page({
 
   /**
@@ -18,7 +20,7 @@ Page({
       see: false, //是否明文展示
       interval: true, //是否显示间隔格子
     },
-    showAddr: true,
+    showAddr: false,
     showAddAddr: true,
     showModal: false,
     showPwdModal: false
@@ -28,7 +30,28 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
+    // let orderId = options.orderId;
+    // let that = this;
+    // // let scroe = index+1;
+    // let url = "goods/list?orderId=1";
+    // var params = {}
+    // let method = "POST";
+    // wx.showLoading({
+    //     title: '加载中...',
+    //   }),
+    //   network.POST(url, params, method).then((res) => {
+    //     wx.hideLoading();
+    //     console.log("订单返回值是：" + res.data);
 
+    //   }).catch((errMsg) => {
+    //     wx.hideLoading();
+    //     console.log(errMsg); //错误提示信息
+    //     wx.showToast({
+    //       title: '网络错误',
+    //       icon: 'loading',
+    //       duration: 1500,
+    //     })
+    //   });
   },
 
 
@@ -42,23 +65,26 @@ Page({
 
   //获取用户地址
   getAddress() {
-    if (wx.chooseAddress) {
+    // if (wx.chooseAddress) {
 
-      wx.chooseAddress({
-        success: (res) => {
-          this.setData({
-            showAddAddr: false,
-            showAddr: true,
-            name: res.userName,
-            addrdetail: res.provinceName + res.cityName + res.countyName + res.detailInfo,
-            tel: res.telNumber
-          })
+    //   wx.chooseAddress({
+    //     success: (res) => {
+    //       this.setData({
+    //         showAddAddr: false,
+    //         showAddr: true,
+    //         name: res.userName,
+    //         addrdetail: res.provinceName + res.cityName + res.countyName + res.detailInfo,
+    //         tel: res.telNumber
+    //       })
 
-        },
-      })
-    } else {
-      common.showTip("当前微信版本不支持获取地址", "loading");
-    }
+    //     },
+    //   })
+    // } else {
+    //   common.showTip("当前微信版本不支持获取地址", "loading");
+    // }
+    wx.navigateTo({
+      url: '../myaddress/myaddress?chooseAddress=1',
+    })
   },
 
   //提交订单
@@ -67,7 +93,7 @@ Page({
     let that = this;
     that.showModal();
   },
-  
+
   //显示对话框
   showModal: function() {
     // 显示遮罩层
@@ -132,22 +158,22 @@ Page({
     });
   },
   //隐藏密码弹窗
-  hidePwdModal: function () {
+  hidePwdModal: function() {
     this.setData({
       showPwdModal: false
     });
   },
 
   //忘记密码
-  forgetPwd:function(){
+  forgetPwd: function() {
 
   },
   // 当组件输入数字6位数时的自定义函数
   valueSix(e) {
     let that = this;
     console.log(e.detail);
-  
-    
+
+
     // 模态交互效果
     wx.showToast({
       title: '支付成功',

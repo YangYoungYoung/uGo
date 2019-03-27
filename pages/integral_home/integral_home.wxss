@@ -160,6 +160,7 @@ page {
   white-space: nowrap;
   text-overflow: ellipsis;
   color: #4f4f4f;
+  text-align: left
 }
 
 .item_integral {
@@ -212,6 +213,7 @@ page {
   display: flex;
   flex-direction: row;
   align-items: center;
+  z-index: 999;
 }
 
 .back-icon {

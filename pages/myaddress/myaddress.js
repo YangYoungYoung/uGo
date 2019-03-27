@@ -8,7 +8,7 @@ Page({
    */
   data: {
     addressList: [],
-    chooseAddress:true
+    chooseAddress:false
   },
 
   /**
@@ -20,7 +20,7 @@ Page({
     }
     let that = this;
     let userId = wx.getStorageSync('userId');
-    let url = "address/list?userId=1"
+    let url = "address/list?userId=32"
     var params = {}
     let method = "GET";
     wx.showLoading({

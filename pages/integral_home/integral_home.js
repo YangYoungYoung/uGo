@@ -7,8 +7,10 @@ Page({
    * 页面的初始数据
    */
   data: {
-    shopCategorys:[],
-    swiperList:[],
+    shopCategorys: [],
+    goodsS: [],
+    swiperList: [],
+    index:0,
     scroreList: [{
         score: "0-1000",
         select: true,
@@ -35,6 +37,7 @@ Page({
     let that = this;
     that.getSwiperList();
     that.getShopCategory();
+    that.getGoodsList();
   },
 
 
@@ -59,8 +62,10 @@ Page({
       }
     }
     that.setData({
+      index:index,
       scroreList: scroreList
     })
+    that.getGoodsList();
   },
   //获取轮播图
   getSwiperList: function() {
@@ -91,7 +96,7 @@ Page({
       });
   },
   //获取类别
-  getShopCategory: function () {
+  getShopCategory: function() {
     let that = this;
     let url = "dg/shopCategory/list?isIntegralShop=1"
     var params = {
@@ -99,8 +104,8 @@ Page({
     }
     let method = "GET";
     wx.showLoading({
-      title: '加载中...',
-    }),
+        title: '加载中...',
+      }),
       network.POST(url, params, method).then((res) => {
         wx.hideLoading();
         // console.log("返回值是：" + res.data);
@@ -119,13 +124,48 @@ Page({
       });
   },
   //获取商品列表
-  getGoodsList:function(){
-    
+  getGoodsList: function() {
+    let that = this;
+    // let scroe = index+1;
+
+    let index = that.data.index+1;
+    let url = "goods/list?isIntegralShop=1" + "&integralLevel=" + index;
+    var params = {
+
+    }
+    let method = "GET";
+    wx.showLoading({
+        title: '加载中...',
+      }),
+      network.POST(url, params, method).then((res) => {
+        wx.hideLoading();
+        // console.log("返回值是：" + res.data);
+      let goodsS = res.data.data.goodsS;
+        that.setData({
+          goodsS: goodsS
+        })
+      }).catch((errMsg) => {
+        wx.hideLoading();
+        console.log(errMsg); //错误提示信息
+        wx.showToast({
+          title: '网络错误',
+          icon: 'loading',
+          duration: 1500,
+        })
+      });
+
   },
   //回到首页
-  toHome:function(){
+  toHome: function() {
     wx.redirectTo({
       url: '../home/home',
+    })
+  },
+  //跳转到商品详情
+  toDetail:function(event){
+    let goodsId = event.currentTarget.dataset.id;
+    wx.navigateTo({
+      url: '../integral_detail/integral_detail?goodsId=' + goodsId,
     })
   }
 })

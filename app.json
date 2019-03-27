@@ -1,5 +1,9 @@
 {
   "pages": [
+    "pages/integral_order/integral_order",
+    "pages/logistics/logistics",
+    "pages/integral_payOrder/integral_payOrder",
+    "pages/integral_detail/integral_detail",
     "pages/integral_home/integral_home",
     "pages/home/home",
     "pages/typeInfo/typeInfo",
@@ -15,12 +19,12 @@
     "pages/securitySetting/phoneSetting/phoneSetting",
     "pages/center/center",
     "pages/securitySetting/securitySetting",
-    "pages/integral_detail/integral_detail",
+    
     "pages/toMerchant/consult/consult",
     "pages/toMerchant/toMerchant",
-    "pages/integral_payOrder/integral_payOrder",
-    "pages/integral_order/integral_order",
-    "pages/logistics/logistics",
+    
+    
+    
     "pages/authentication/authentication",
     "pages/authorizationStatement/authorizationStatement",
     "pages/drawings/drawings",

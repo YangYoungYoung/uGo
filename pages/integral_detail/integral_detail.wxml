@@ -1,18 +1,18 @@
 <!--pages/integral_detail/integral_detail.wxml-->
 <view class="container">
   <scroll-view class='scroll' scroll-y="true" style="height: 100%;">
-    <image class='detail_image' src="{{orderPath}}"></image>
+    <image class='detail_image' src="{{goods.primaryPicUrl}}"></image>
 
 
     <view class='detail_margin'>
-      <view class='detail_name'>{{goodName}}</view>
+      <view class='detail_name'>{{goods.name}}</view>
       <view class='checknumber'>
-        <view class='detail_newprice'>积分 : {{integral}}</view>
+        <view class='detail_newprice'>积分 : {{goods.integral}}</view>
 
-        <view class='sold'>已售{{sold}}件</view>
+        <view class='sold'>已售{{goods.sold}}件</view>
       </view>
       <view class='checknumber'>
-        <view class='detail_oldprice'>原价 : ￥{{goodPrice}}元</view>
+        <view class='detail_oldprice'>原价 : ￥{{goods.unitPrice}}元</view>
       </view>
 
     </view>
@@ -20,7 +20,7 @@
     <view class='details_content'>
       <view class='content_title'>商品详情</view>
       <view class='details_images'>
-        <block wx:for-items="{{list_image}}" wx:key="{{item.id}}">
+        <block wx:for-items="{{imagList}}" wx:key="index">
           <image class='image_item' wx:if="{{item}}" src="{{item}}" mode="widthFix"></image>
         </block>
       </view>
@@ -38,13 +38,13 @@
   <!--弹出框  -->
   <view animation="{{animationData}}" class="commodity_attr_box" wx:if="{{showModalStatus}}">
     <view class='commImg'>
-      <image src='{{orderPath}}' mode="aspectFit"></image>
+      <image src='{{goods.primaryPicUrl}}' mode="aspectFit"></image>
     </view>
     <view class='column'>
       <view class='price-view'>
         <view class='integral-view'>积分</view>
         <image class='integral-icon' src='../images/jifen_icon.png'></image>
-        <text class='integral-text'>90</text>
+        <text class='integral-text'>{{goods.integral }}</text>
       </view>
       <!-- <text class="sku-price">{{integral}}</text> -->
       <!-- <text class="sku-title"><block wx:if="{{gg_txt==''}}">请选择规格</block><block wx:else>已选择{{gg_txt}}ml</block></text> -->
@@ -83,7 +83,7 @@
     <text class="line"></text>
     <view class='btn'>
       <button class="button-add" bindtap="addToCart">加入购物车</button>
-      <button class="button-buy" bindtap="buyNow">立即购买</button>
+      <button class="button-buy" bindtap="getOrderItem">立即购买</button>
     </view>
   </view>
 </view>
