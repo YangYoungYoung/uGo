@@ -2,7 +2,7 @@
 <view class='container'>
   <block wx:for="{{addressList}}" wx:key="index">
     <block wx:if="{{chooseAddress}}">
-      <view class='list-item' bindtap='chooseAddress'>
+      <view class='list-item' bindtap='chooseAddress' data-index='{{index}}'>
         <view class='name-phone'>
           <text class='name'>{{item.consignee}}</text>
           <text class='phone'>{{item.telNumber}}</text>

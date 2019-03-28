@@ -1,16 +1,17 @@
 {
   "pages": [
+    "pages/integral_exchange/integral_exchange",
+    "pages/login/login",
+    "pages/home/home",
+    "pages/integral_payOrder/integral_payOrder",
     "pages/integral_order/integral_order",
     "pages/logistics/logistics",
-    "pages/integral_payOrder/integral_payOrder",
     "pages/integral_detail/integral_detail",
     "pages/integral_home/integral_home",
-    "pages/home/home",
     "pages/typeInfo/typeInfo",
     "pages/detail/detail",
     "pages/integral_cart/integral_cart",
     "pages/myaddress/myaddress",
-    "pages/login/login",
     "pages/newAddress/newAddress",
     "pages/liveStreaming/liveStreaming",
     "pages/uploadingData/uploadingData",
@@ -32,7 +33,7 @@
     "pages/myBalance/myBalance",
     "pages/livecart/livecart",
     "pages/integral_type/integral_type",
-    "pages/integral_exchange/integral_exchange",
+    
     "pages/integral_search/integral_search",
     
     "pages/search/search",

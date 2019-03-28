@@ -60,28 +60,20 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function() {
-
+    let address = wx.getStorageSync('address');
+    console.log('address is :', address);
+    that.setData({
+      showAddAddr: false,
+      showAddr: true,
+      name: address.consignee,
+      address: address.district + address.detailInfo,
+      tel: address.telNumber
+    })
   },
 
   //获取用户地址
   getAddress() {
-    // if (wx.chooseAddress) {
 
-    //   wx.chooseAddress({
-    //     success: (res) => {
-    //       this.setData({
-    //         showAddAddr: false,
-    //         showAddr: true,
-    //         name: res.userName,
-    //         addrdetail: res.provinceName + res.cityName + res.countyName + res.detailInfo,
-    //         tel: res.telNumber
-    //       })
-
-    //     },
-    //   })
-    // } else {
-    //   common.showTip("当前微信版本不支持获取地址", "loading");
-    // }
     wx.navigateTo({
       url: '../myaddress/myaddress?chooseAddress=1',
     })
@@ -181,4 +173,39 @@ Page({
       duration: 2000
     })
   },
+  //提交订单
+  submitOrder: function() {
+
+    let that = this;
+    // let scroe = index+1;
+    let userId = wx.getStorageSync('userId');
+    let url = "order/add";
+    var params = {
+      order: {
+        address: that.data.address,
+        consignee: that.data.name,
+        mobile: that.data.tel,
+        userId: userId
+      },
+      isIntegralShop:1
+
+    }
+    let method = "POST";
+    wx.showLoading({
+        title: '加载中...',
+      }),
+      network.POST(url, params, method).then((res) => {
+        wx.hideLoading();
+        console.log("提交订单返回值是：" + res.data);
+
+      }).catch((errMsg) => {
+        wx.hideLoading();
+        console.log(errMsg); //错误提示信息
+        wx.showToast({
+          title: '网络错误',
+          icon: 'loading',
+          duration: 1500,
+        })
+      });
+  }
 })

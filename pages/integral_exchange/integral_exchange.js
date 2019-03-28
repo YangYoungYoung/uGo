@@ -1,4 +1,6 @@
 // pages/integral_exchange/integral_exchange.js
+var common = require("../../utils/common.js");
+var network = require("../../utils/network.js");
 Page({
 
   /**
@@ -11,56 +13,46 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
+  onLoad: function(options) {
+    this.getGoodsList();
+  },
+  //获取商品列表
+  getGoodsList: function() {
+    let that = this;
+    // let scroe = index+1;
+
+    let index = that.data.index + 1;
+    let url = "goods/list?isIntegralShop=1" + "&integralLevel=0" + "&userId=32";
+    var params = {
+
+    }
+    let method = "GET";
+    wx.showLoading({
+        title: '加载中...',
+      }),
+      network.POST(url, params, method).then((res) => {
+        wx.hideLoading();
+        // console.log("返回值是：" + res.data);
+        let goodsS = res.data.data.goodsS;
+        that.setData({
+          goodsS: goodsS
+        })
+      }).catch((errMsg) => {
+        wx.hideLoading();
+        console.log(errMsg); //错误提示信息
+        wx.showToast({
+          title: '网络错误',
+          icon: 'loading',
+          duration: 1500,
+        })
+      });
 
   },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
+  //跳转到商品详情
+  toDetail: function(event) {
+    let goodsId = event.currentTarget.dataset.id;
+    wx.navigateTo({
+      url: '../integral_detail/integral_detail?goodsId=' + goodsId,
+    })
   }
 })

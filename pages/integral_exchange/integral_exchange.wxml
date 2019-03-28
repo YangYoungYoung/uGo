@@ -1,14 +1,14 @@
 <!--pages/integral_exchange/integral_exchange.wxml-->
 <view class='search-list'>
-  <block>
-    <view class='search-list-item'>
-      <image class='item-image' src='{{item.image}}'></image>
+  <block wx:for="{{goodsS}}" wx:key="index">
+    <view class='search-list-item' bindtap='toDtail' data-id='{{item.id}}'>
+      <image class='item-image' src='{{item.primaryPicUrl}}'></image>
       <view class='item-info'>
         <text class='item-name'>{{item.name}}</text>
         <view class='item-price'>
           <view class='item-jifen'>积分 </view>
           <image class='item-jifen-icon' src='../images/jifen_icon.png'></image>
-          <text class='item-price-text'>90</text>
+          <text class='item-price-text'>{{item.integral}}</text>
         </view>
       </view>
     </view>

@@ -1,6 +1,6 @@
 <!--pages/home/home.wxml-->
 <view class='container'>
-  <scroll-view class='scroll' scroll-y>
+  <scroll-view class='scroll' scroll-y style='height:100%'>
     <swiper style="height:320rpx;width:100%;background:#eee" indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" circular="{{circular}}">
       <!--广告banner-->
       <block wx:for="{{ swiperList }}" wx:key="item">

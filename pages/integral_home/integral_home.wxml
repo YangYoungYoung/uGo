@@ -1,11 +1,12 @@
 <!--pages/integral_home/integral_home.wxml-->
 <view class="container">
-  <view class='back-view' bindtap='toHome'>
-    <image class='back-icon' src='../images/back_icon.png'></image>
-    <text class='back-text'>返回</text>
-  </view>
+  <scroll-view scroll-y style="height: 100%;" scroll-into-view="{{toView}}" scroll-top="{{scrollTop}}">
+    <view class='back-view' bindtap='toHome'>
+      <image class='back-icon' src='../images/back_icon.png'></image>
+      <text class='back-text'>返回</text>
+    </view>
 
-  <scroll-view scroll-y style="height: 1284rpx;margin-top:48rpx;" bindscrolltoupper="upper" bindscrolltolower="lower" bindscroll="scroll" scroll-into-view="{{toView}}" scroll-top="{{scrollTop}}">
+
 
 
     <swiper style="height:350rpx;width:100%;background:#eee;" indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" circular="{{circular}}">

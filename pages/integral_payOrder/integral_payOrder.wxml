@@ -10,7 +10,6 @@
       <van-cell title="请选择地址" is-link />
     </van-panel>
 
-
     <view class="zan-panel">
       <!-- <block wx:for="{{detail}}" wx:key="index"> -->
       <!-- <van-card num="{{item.number}}" price="{{item.integral}}" desc="描述信息" title="{{item.shopName}}" thumb="{{ imageURL }}" /> -->

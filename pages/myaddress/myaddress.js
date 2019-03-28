@@ -8,15 +8,15 @@ Page({
    */
   data: {
     addressList: [],
-    chooseAddress:false
+    chooseAddress: false
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-    if (options.chooseAddress!=undefined){
-      chooseAddress:true
+    if (options.chooseAddress != undefined) {
+      chooseAddress: true
     }
     let that = this;
     let userId = wx.getStorageSync('userId');
@@ -46,27 +46,30 @@ Page({
       });
   },
   //修改地址
-  editAddress:function(event){
+  editAddress: function(event) {
     let that = this;
     let index = event.currentTarget.dataset.index;
     let address = that.data.addressList[index];
     wx.navigateTo({
-      url: '../newAddress/newAddress?address=' + JSON.stringify(address) ,
+      url: '../newAddress/newAddress?address=' + JSON.stringify(address),
     })
 
   },
   //新建地址
-  newAddress:function(){
+  newAddress: function() {
     wx.navigateTo({
       url: '../newAddress/newAddress',
     })
   },
 
   //选择地址
-  chooseAddress:function(){
+  chooseAddress: function(event) {
     console.log('选择这个地址');
+    let index = evnet.currentTarget.dataset.index;
+    let addressList = that.data.addressList;
+    let address = addressList[index];
+    wx.setStorageSync('address', address);
+    wx.navigateBack();
 
   }
-
-
 })
