@@ -8,6 +8,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    isIntegral:1,
     goodsList: {
       saveHidden: true,
       totalPrice: 0,
@@ -41,7 +42,13 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function() {
+  onLoad: function (options) {
+    if (options.isIntegral!=undefined){
+      let isIntegral = options.isIntegral;
+      that.setData({
+        isIntegral: isIntegral
+      })
+    }
     this.initEleWidth();
     this.onShow();
   },
@@ -169,9 +176,6 @@ Page({
         }
       }
     });
-
-
-
   },
   //勾选或者取消
   selectTap: function(e) {
@@ -537,8 +541,9 @@ Page({
 
     let that = this;
     let userId = that.data.userId;
+    let isIntegral = that.data.isIntegral;
 
-    let url = "shoppingCart/detail?userId=1" +"&isIntegralShop=1";
+    let url = "shoppingCart/detail?userId=1" + "&isIntegralShop=" + isIntegral;
     var params = {
 
     }

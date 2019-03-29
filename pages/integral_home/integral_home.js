@@ -167,5 +167,11 @@ Page({
     wx.navigateTo({
       url: '../integral_detail/integral_detail?goodsId=' + goodsId,
     })
+  },
+  navigateToType:function(event){
+    let id = event.currentTarget.dataset.id;
+    wx.navigateTo({
+      url: '../integral_type/integral_type?id='+id,
+    })
   }
 })

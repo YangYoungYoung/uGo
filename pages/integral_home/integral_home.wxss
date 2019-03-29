@@ -156,6 +156,7 @@ page {
   width: 100%;
   padding: 15rpx 10rpx 10rpx 15rpx;
   text-align: center;
+  color: #616161;
 }
 
 .item_title {
@@ -167,7 +168,7 @@ page {
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
-  color: #4f4f4f;
+  
   text-align: left;
 }
 
@@ -193,7 +194,7 @@ page {
   float: right;
   font-size: 24rpx;
   padding-right: 40rpx;
-  color: #ff919191;
+  color: #919191;
 }
 
 .jifen_view {

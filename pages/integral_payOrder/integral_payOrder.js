@@ -7,6 +7,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    pwd: '',
     // 输入框参数设置
     inputData: {
       input_value: "", //输入框的初始内容
@@ -23,7 +24,11 @@ Page({
     showAddr: false,
     showAddAddr: true,
     showModal: false,
-    showPwdModal: false
+    showPwdModal: false,
+    address: '',
+    name: '',
+    tel: ''
+
   },
 
   /**
@@ -60,15 +65,28 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function() {
+    let that = this;
     let address = wx.getStorageSync('address');
     console.log('address is :', address);
-    that.setData({
-      showAddAddr: false,
-      showAddr: true,
-      name: address.consignee,
-      address: address.district + address.detailInfo,
-      tel: address.telNumber
-    })
+    // if (address !== undefined || address !== "" || address !== null) {
+
+    //   that.setData({
+    //     showAddAddr: false,
+    //     showAddr: true,
+    //     name: address.consignee,
+    //     address: address.district + address.detailInfo,
+    //     tel: address.telNumber
+    //   })
+    // }
+    if (address.length > 0) {
+      that.setData({
+        showAddAddr: false,
+        showAddr: true,
+        name: address.consignee,
+        address: address.district + address.detailInfo,
+        tel: address.telNumber
+      })
+    }
   },
 
   //获取用户地址
@@ -164,14 +182,13 @@ Page({
   valueSix(e) {
     let that = this;
     console.log(e.detail);
-
-
-    // 模态交互效果
-    wx.showToast({
-      title: '支付成功',
-      icon: 'success',
-      duration: 2000
+    let pwd = e.detail;
+    that.setData({
+      pwd: pwd
     })
+
+    that.checkPwd();
+
   },
   //提交订单
   submitOrder: function() {
@@ -187,7 +204,7 @@ Page({
         mobile: that.data.tel,
         userId: userId
       },
-      isIntegralShop:1
+      isIntegralShop: 1
 
     }
     let method = "POST";
@@ -198,6 +215,40 @@ Page({
         wx.hideLoading();
         console.log("提交订单返回值是：" + res.data);
 
+      }).catch((errMsg) => {
+        wx.hideLoading();
+        console.log(errMsg); //错误提示信息
+        wx.showToast({
+          title: '网络错误',
+          icon: 'loading',
+          duration: 1500,
+        })
+      });
+  },
+  //校验积分密码
+  checkPwd: function() {
+    let that = this;
+    // let scroe = index+1;
+    let userId = wx.getStorageSync('userId');
+    let orderId = that.data.orderId;
+    let integral = that.data.integral;
+    let integralPayPasswordInpt = that.data.pwd;
+
+    let url = "order/modify?orderId=" + orderId + "&type=10" + "&isIntegralShop=1" + "&userId=" + userId + "&integralPayPasswordInpt=" + integralPayPasswordInpt + "&integral=" + integral;
+    var params = {
+
+
+    }
+    let method = "PUT";
+    wx.showLoading({
+        title: '加载中...',
+      }),
+      network.POST(url, params, method).then((res) => {
+        wx.hideLoading();
+        console.log("校验密码的返回值是：" + res.data);
+        if (res.data.code == 200) {
+          that.submitOrder();
+        }
       }).catch((errMsg) => {
         wx.hideLoading();
         console.log(errMsg); //错误提示信息

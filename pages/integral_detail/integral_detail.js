@@ -16,6 +16,9 @@ Page({
   onLoad: function(options) {
     let that = this;
     let goodsId = options.goodsId;
+    that.setData({
+      goodsId: goodsId
+    })
     let index = that.data.index;
     // let url = "goods/goods?goodsId=" + goodsId;
     let url = "goods?goodsId=1";
@@ -135,22 +138,24 @@ Page({
   //加入购物车
   addToCart: function() {
     let that = this;
-    let id = that.data.goods.id;
+    let goodsId = that.data.goods.id;
     // let orderPath = that.data.orderPath;
     // let goodName = that.data.goodName;
     // let goodPrice = that.data.goodPrice;
     let integral = that.data.integral;
     let number = that.data.num;
-    let goodsId = options.goodsId;
+    let goodsName = that.data.goods.name;
     let index = that.data.index;
+    let price = that.data.goods.integral;
     let userId = wx.getStorageSync('userId');
     // let url = "goods/goods?goodsId=" + goodsId;
     let url = "shoppingCart/add";
     var params = {
       sIntegralShop: 1,
-      id: id,
+      goodsId: goodsId,
       number: number,
-      userId: 1
+      userId: 1,
+      price: price
     }
     let method = "POST";
     wx.showLoading({
