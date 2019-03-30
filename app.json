@@ -1,8 +1,9 @@
 {
   "pages": [
+    "pages/search/search",
+    "pages/login/login",
     "pages/integral_payOrder/integral_payOrder",
     "pages/integral_order/integral_order",
-    "pages/login/login",
     "pages/integral_exchange/integral_exchange",
     "pages/home/home",
     "pages/logistics/logistics",
@@ -36,7 +37,7 @@
     
     "pages/integral_search/integral_search",
     
-    "pages/search/search",
+    
     "pages/map/map",
     
     

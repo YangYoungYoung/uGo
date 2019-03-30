@@ -34,7 +34,7 @@
 
       <!-- </block> -->
       <van-cell-group>
-        <van-field value="{{ message }}" label="留言" type="textarea"  autosize border="{{ false }}" />
+        <van-field value="{{ message }}" label="留言" type="textarea" autosize border="{{ false }}" />
       </van-cell-group>
 
       <!-- <view class="zan-cell">
@@ -67,9 +67,17 @@
           <image class='box-cart-img' src='../images/jifen_icon.png'></image>
           <text class='total-price' style='font-size:28rpx;margin-left:10rpx;'>90{{totalMoney}}</text>
         </view>
-        <button class="box-right" formType="submit" bindtap='payOrder'>
-          提交订单
-        </button>
+        <block wx:if="{{isIntegralShop}}">
+          <button class="box-right" formType="submit" bindtap='payOrder'>
+            提交订单
+          </button>
+        </block>
+        <block else>
+          <button class="box-right" formType="submit" bindtap='liveSubmitOrder'>
+            提交订单
+          </button>
+        </block>
+
       </view>
     </view>
   </form>
@@ -104,6 +112,6 @@
       height="{{inputData.height}}" width="{{inputData.width}}" see="{{inputData.see}}" interval="{{inputData.interval}}">
     </paySix>
     <text class='forgetPwd' bindtap='forgetPwd'>忘记密码？</text>
-  </view> 
+  </view>
 
 </view>

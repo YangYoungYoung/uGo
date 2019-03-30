@@ -87,13 +87,14 @@ Page({
         title: '加载中...',
       }),
       wx.request({
-        url: "https://weixin.cmdd.tech/weixin/ugo365/getOpenId",
+        url: "http://132.232.142.23:8088/api/common/weiXin/getAccessToken?code=" + app.globalData.code,
         data: {
-          code: app.globalData.code
+          // code: app.globalData.code
         },
         header: {
           'content-type': 'application/json'
         },
+        method: "GET", //get为默认方法/POST
         success: function(res) {
           wx.hideLoading();
           console.log("openId的结果是：" + res.data.openid); //正确返回结果
@@ -104,11 +105,11 @@ Page({
             })
           } else {
 
-          wx.showToast({
-            title: '网络错误',
-            icon: 'loading',
-            duration: 1500,
-          })
+            wx.showToast({
+              title: '网络错误',
+              icon: 'loading',
+              duration: 1500,
+            })
           }
         },
         fail: function(res) {

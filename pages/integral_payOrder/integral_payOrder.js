@@ -27,7 +27,8 @@ Page({
     showPwdModal: false,
     address: '',
     name: '',
-    tel: ''
+    tel: '',
+    isIntegralShop: 1 //是否是积分商品，默认为是
 
   },
 
@@ -35,6 +36,12 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
+    if (options.isIntegralShop != undefined) {
+      // let isIntegralShop = options.isIntegralShop;
+      this.setData({
+        isIntegralShop: 0
+      })
+    }
     // let orderId = options.orderId;
     // let that = this;
     // // let scroe = index+1;
@@ -97,7 +104,7 @@ Page({
     })
   },
 
-  //提交订单
+  //积分商品提交订单
   payOrder: function() {
 
     let that = this;
@@ -237,6 +244,93 @@ Page({
     let url = "order/modify?orderId=" + orderId + "&type=10" + "&isIntegralShop=1" + "&userId=" + userId + "&integralPayPasswordInpt=" + integralPayPasswordInpt + "&integral=" + integral;
     var params = {
 
+    }
+    let method = "PUT";
+    wx.showLoading({
+        title: '加载中...',
+      }),
+      network.POST(url, params, method).then((res) => {
+        wx.hideLoading();
+        console.log("校验密码的返回值是：" + res.data);
+        if (res.data.code == 200) {
+          that.submitOrder();
+        }
+      }).catch((errMsg) => {
+        wx.hideLoading();
+        console.log(errMsg); //错误提示信息
+        wx.showToast({
+          title: '网络错误',
+          icon: 'loading',
+          duration: 1500,
+        })
+      });
+  },
+  //直播提交订单
+  liveSubmitOrder: function() {
+    var that = this;
+    var totalFee = that.data.totalPrice * 100;
+    let sn = that.data.sn;
+
+    // var openId = wx.getStorageSync("openId")
+    // var order_id = "25767795778125825";
+
+    // console.log("当前的订单总价是：" + money);
+    wx.request({
+      url: 'http://132.232.142.23:8088/api/common/weiXin/pay/createWXOrder?sn=' + sn + "&totalFee=" + totalFee,
+      data: {},
+      header: { //请求头
+        "Content-Type": "applciation/json"
+      },
+      method: "POST", //get为默认方法/POST
+
+      success: function(res) {
+        wx.hideLoading();
+        if (res.data.code == 200) {
+          wx.requestPayment({
+            'timeStamp': res.data.data.timeStamp,
+            'nonceStr': res.data.data.nonceStr,
+            'package': res.data.data.prepayId,
+            'signType': 'MD5',
+            'paySign': res.data.data.sign,
+            'success': function(res) {
+              // console.log("调起支付成功")
+              wx.hideLoading();
+              wx.showToast({
+                title: "支付成功",
+                icon: 'succes',
+                duration: 1500
+              })
+              that.payRequest();
+            },
+            'fail': function(res) {
+              // console.log("调起支付失败" + res.err_desc)
+              wx.showToast({
+                title: "支付失败",
+                duration: 1500
+              })
+            },
+            'complete': function(res) {}
+          })
+        }
+
+      },
+      fail: function(err) {
+        common.showTip("网络错误", "loading");
+      }, //请求失败
+      complete: function() {} //请求完成后执行的函数
+    })
+  },
+  //支付成功回调
+  payRequest: function() {
+    let that = this;
+    // let scroe = index+1;
+    let userId = wx.getStorageSync('userId');
+    let orderId = that.data.orderId;
+    let integral = that.data.integral;
+    let integralPayPasswordInpt = that.data.pwd;
+
+    let url = "order/modify?orderId=" + orderId + "&type=10" + "&isIntegralShop=0";
+    var params = {
 
     }
     let method = "PUT";
