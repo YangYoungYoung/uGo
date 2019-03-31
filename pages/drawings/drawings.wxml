@@ -63,7 +63,7 @@
 
     <view class='footer'>
       <view class='colse-view' bindtap='closePage'>关闭</view>
-      <view class='colse-view' style='background-color:#E83D2C;color:#FFFFFF;'>提现</view>
+      <view class='colse-view' style='background-color:#E83D2C;color:#FFFFFF;' bindtap='extract'>提现</view>
     </view>
 
   </view>

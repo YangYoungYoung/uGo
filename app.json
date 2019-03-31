@@ -1,11 +1,13 @@
 {
   "pages": [
+    "pages/home/home",
+    "pages/switchcity/switchcity",
     "pages/search/search",
     "pages/login/login",
     "pages/integral_payOrder/integral_payOrder",
     "pages/integral_order/integral_order",
     "pages/integral_exchange/integral_exchange",
-    "pages/home/home",
+    
     "pages/logistics/logistics",
     "pages/integral_detail/integral_detail",
     "pages/integral_home/integral_home",

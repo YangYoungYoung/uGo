@@ -5,28 +5,28 @@ Page({
    * 页面的初始数据
    */
   data: {
-    number:0,
-    name:'',
-    account:'',
-    phone:'',
-    code:''
+    number: 0,
+    name: '',
+    account: '',
+    phone: '',
+    code: ''
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
+  onLoad: function(options) {
 
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function () {
+  onShow: function() {
 
   },
   //获取金额
-  getNumber:function(e){
+  getNumber: function(e) {
     let that = this;
     console.log(e.detail.value);
     that.setData({
@@ -34,15 +34,15 @@ Page({
     })
   },
   //全部提现
-  allWithdrawal:function(){
-    
+  allWithdrawal: function() {
+
   },
   //关闭当前页面
-  closePage:function(){
+  closePage: function() {
 
   },
   //获取微信账号
-  getAccount:function(e){
+  getAccount: function(e) {
     let that = this;
     console.log(e.detail.value);
     that.setData({
@@ -50,7 +50,7 @@ Page({
     })
   },
   //获取姓名
-  getName:function(e){
+  getName: function(e) {
     let that = this;
     console.log(e.detail.value);
     that.setData({
@@ -58,7 +58,7 @@ Page({
     })
   },
   //获取手机号
-  getPhone:function(){
+  getPhone: function() {
     let that = this;
     console.log(e.detail.value);
     that.setData({
@@ -66,12 +66,37 @@ Page({
     })
   },
   //获取验证码
-  getCode:function(){
+  getCode: function() {
     let that = this;
     console.log(e.detail.value);
     that.setData({
       code: e.detail.value
     })
+  },
+  //提现
+  extract: function() {
+    let that = this;
+    let userId = wx.getStorageSync('userId');
+    let amount = that.data.number;
+    let url = "common/weiXin/pay/entPay?userId=" + userId + "&amount=" + amount;
+    var params = {}
+    let method = "POST";
+    wx.showLoading({
+        title: '加载中...',
+      }),
+      network.POST(url, params, method).then((res) => {
+        wx.hideLoading();
+        console.log("提现返回值是：" + res.data);
+        
+      }).catch((errMsg) => {
+        wx.hideLoading();
+        console.log(errMsg); //错误提示信息
+        wx.showToast({
+          title: '网络错误',
+          icon: 'loading',
+          duration: 1500,
+        })
+      });
   }
 
 })

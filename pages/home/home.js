@@ -168,7 +168,12 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function() {
-
+    let that = this;
+    let district = that.data.district;
+    console.log("district is :", district);
+    that.getLiveRoomList();
+    that.getSwiperList();
+    that.getShopCategory();
   },
   //跳转到不同分类
   navigateToType: function(event) {
@@ -267,7 +272,7 @@ Page({
   },
   toMap: function() {
     wx.navigateTo({
-      url: '../map/map',
+      url: '../switchcity/switchcity',
     })
   },
   //跳转到商铺详情
@@ -419,7 +424,7 @@ Page({
     let that = this;
     let url = "dg/shop/list"
     var params = {
-      type:3,
+      type: 3,
       district: that.data.district,
       latFrom: that.data.latitude, //纬度
       lngFrom: that.data.longitude //经度
@@ -446,11 +451,11 @@ Page({
       });
   },
   //跳转到类型详情
-  navigateToType:function(event){
+  navigateToType: function(event) {
     let id = event.currentTarget.dataset.id;
-    console.log('type id is:',id);
+    console.log('type id is:', id);
     wx.navigateTo({
-      url: '../typeInfo/typeInfo?id='+id,
+      url: '../typeInfo/typeInfo?id=' + id,
     })
   }
 
