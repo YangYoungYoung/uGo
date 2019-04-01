@@ -1,9 +1,11 @@
 {
   "pages": [
+    "pages/login/login",
+    "pages/authentication/authentication",
+    "pages/uploadingData/uploadingData",
     "pages/home/home",
     "pages/switchcity/switchcity",
     "pages/search/search",
-    "pages/login/login",
     "pages/integral_payOrder/integral_payOrder",
     "pages/integral_order/integral_order",
     "pages/integral_exchange/integral_exchange",
@@ -17,7 +19,7 @@
     "pages/myaddress/myaddress",
     "pages/newAddress/newAddress",
     "pages/liveStreaming/liveStreaming",
-    "pages/uploadingData/uploadingData",
+    
     "pages/securitySetting/phoneSetting/verification/verification",
     "pages/securitySetting/phoneSetting/changePhone/changePhone",
     "pages/securitySetting/phoneSetting/phoneSetting",
@@ -29,7 +31,7 @@
     
     
     
-    "pages/authentication/authentication",
+    
     "pages/authorizationStatement/authorizationStatement",
     "pages/drawings/drawings",
     "pages/convas/convas",

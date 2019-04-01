@@ -16,6 +16,7 @@
 }
 
 .authenticationText {
+  text-align: center;
   margin-top: 49rpx;
   color: #616161;
   font-size: 28rpx;

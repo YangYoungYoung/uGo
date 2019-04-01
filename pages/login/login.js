@@ -87,7 +87,7 @@ Page({
         title: '加载中...',
       }),
       wx.request({
-        url: "http://132.232.142.23:8088/api/common/weiXin/getAccessToken?code=" + app.globalData.code,
+      url: "http://132.232.142.23:8088/api/common/weiXIn/openId?code=" + app.globalData.code,
         data: {
           // code: app.globalData.code
         },
@@ -97,9 +97,9 @@ Page({
         method: "GET", //get为默认方法/POST
         success: function(res) {
           wx.hideLoading();
-          console.log("openId的结果是：" + res.data.openid); //正确返回结果
-          if (res.data.openid != undefined) {
-            wx.setStorageSync('openId', res.data.openid); // 单独存储openid
+          console.log("openId的结果是：" + res.data.data.openId); //正确返回结果
+          if (res.data.data.openId != undefined) {
+            wx.setStorageSync('openId', res.data.data.openId); // 单独存储openid
             wx.redirectTo({
               url: '../home/home',
             })

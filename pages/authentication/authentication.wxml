@@ -10,6 +10,9 @@
 
   <text class='authenticationText'>{{text}}</text>
   <block wx:if="{{!isAuthentication}}">
-  <button class='authenticationBtn' bindtap='resubmit'>重新提交</button>
+    <button class='authenticationBtn' bindtap='resubmit'>重新提交</button>
+  </block>
+  <block wx:else>
+    <button class='authenticationBtn' bindtap='resubmit'>确定</button>
   </block>
 </view>

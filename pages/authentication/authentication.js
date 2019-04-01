@@ -5,8 +5,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-    text:"抱歉，您的资料未通过审核， 请重新提交。",
-    isAuthentication:false
+    text:"恭喜您，通过审核， 欢迎您入驻优购365，祝您生意兴隆！",
+    isAuthentication:true
   },
 
   /**
