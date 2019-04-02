@@ -7,7 +7,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    district:'',
+    district: '',
     liveRooomList: [],
     shopCategorys: [],
     swiperList: [],
@@ -87,6 +87,7 @@ Page({
     that.getLiveRoomList();
     that.getSwiperList();
     that.getShopCategory();
+    that.getBanner();
 
   },
   //获取商铺信息
@@ -152,7 +153,7 @@ Page({
               district: res.data.result.address_component.district
             })
             that.getShopList();
-            that.getRecommendShopList();
+            // that.getRecommendShopList();
           }
         });
 
@@ -175,6 +176,8 @@ Page({
     that.getLiveRoomList();
     that.getSwiperList();
     that.getShopCategory();
+    that.getBanner();
+    // that.setData();
   },
   //跳转到不同分类
   navigateToType: function(event) {
@@ -421,14 +424,52 @@ Page({
   },
 
   //获取商家列表
-  getRecommendShopList: function() {
+  // getRecommendShopList: function() {
+  //   let that = this;
+  //   let url = "dg/shop/list"
+  //   var params = {
+  //     type: 3,
+  //     district: that.data.district,
+  //     latFrom: that.data.latitude, //纬度
+  //     lngFrom: that.data.longitude //经度
+  //   }
+  //   let method = "GET";
+  //   wx.showLoading({
+  //       title: '加载中...',
+  //     }),
+  //     network.POST(url, params, method).then((res) => {
+  //       wx.hideLoading();
+  //       console.log("商铺列表返回值是：" + res.data);
+  //       let shopList = res.data.data.shops;
+  //       that.setData({
+  //         shopList: shopList
+  //       })
+  //     }).catch((errMsg) => {
+  //       wx.hideLoading();
+  //       console.log(errMsg); //错误提示信息
+  //       wx.showToast({
+  //         title: '网络错误',
+  //         icon: 'loading',
+  //         duration: 1500,
+  //       })
+  //     });
+  // },
+  //跳转到类型详情
+  navigateToType: function(event) {
+    let id = event.currentTarget.dataset.id;
+    console.log('type id is:', id);
+    wx.navigateTo({
+      url: '../typeInfo/typeInfo?id=' + id,
+    })
+  },
+  //获取商家优选接口
+  getBanner: function() {
+
+
     let that = this;
-    let url = "dg/shop/list"
+    let url = "dg/banner/list"
     var params = {
-      type: 3,
-      district: that.data.district,
-      latFrom: that.data.latitude, //纬度
-      lngFrom: that.data.longitude //经度
+
     }
     let method = "GET";
     wx.showLoading({
@@ -436,10 +477,12 @@ Page({
       }),
       network.POST(url, params, method).then((res) => {
         wx.hideLoading();
-        console.log("商铺列表返回值是：" + res.data);
-        let shopList = res.data.data.shops;
+        // console.log("返回值是：" + res.data);11000
+        // let shopCategorys = res.data.data.shopCategorys;
+        let bannerList = res.data.data.banners;
+        // console.log("返回值是：" + res.data);
         that.setData({
-          shopList: shopList
+          bannerList: bannerList
         })
       }).catch((errMsg) => {
         wx.hideLoading();
@@ -451,12 +494,12 @@ Page({
         })
       });
   },
-  //跳转到类型详情
-  navigateToType: function(event) {
-    let id = event.currentTarget.dataset.id;
-    console.log('type id is:', id);
+  //商家优选点击
+  bannerItem: function(e) {
+    let id = e.currentTarget.dataset.id;
+    console.log('banner id is :', id);
     wx.navigateTo({
-      url: '../typeInfo/typeInfo?id=' + id,
+      url: '../detail/detail?id=' + id,
     })
   }
 
