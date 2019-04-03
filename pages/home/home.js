@@ -338,7 +338,7 @@ Page({
       network.POST(url, params, method).then((res) => {
         wx.hideLoading();
         // console.log("返回值是：" + res.data);
-        let liveRooomList = res.data.zhiBoRoomDOList;
+        let liveRooomList = res.data.data;
         that.setData({
           liveRooomList: liveRooomList
         })
