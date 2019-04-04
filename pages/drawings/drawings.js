@@ -1,4 +1,6 @@
 // pages/drawings/drawings.js
+var network = require("../../utils/network.js")
+var common = require("../../utils/common.js")
 Page({
 
   /**
@@ -9,14 +11,16 @@ Page({
     name: '',
     account: '',
     phone: '',
-    code: ''
+    code: '',
+    enableWithdrawBalance:0,
+    balance:0
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-
+    this.getExtractInfo();
   },
 
   /**
@@ -87,7 +91,38 @@ Page({
       network.POST(url, params, method).then((res) => {
         wx.hideLoading();
         console.log("提现返回值是：" + res.data);
-        
+
+      }).catch((errMsg) => {
+        wx.hideLoading();
+        console.log(errMsg); //错误提示信息
+        wx.showToast({
+          title: '网络错误',
+          icon: 'loading',
+          duration: 1500,
+        })
+      });
+  },
+  //
+  getExtractInfo: function() {
+    let that = this;
+    let userId = wx.getStorageSync('userId');
+    let amount = that.data.number;
+    let url = "common/ali/pay/encash/info?userId=32";
+    var params = {}
+    let method = "GET";
+    wx.showLoading({
+        title: '加载中...',
+      }),
+      network.POST(url, params, method).then((res) => {
+        wx.hideLoading();
+        console.log("提现返回值是：" + res.data);
+        let balance = res.data.data.balance;
+        let enableWithdrawBalance = res.data.data.enableWithdrawBalance;
+        that.setData({
+          balance: balance,
+          enableWithdrawBalance: enableWithdrawBalance
+        })
+
       }).catch((errMsg) => {
         wx.hideLoading();
         console.log(errMsg); //错误提示信息

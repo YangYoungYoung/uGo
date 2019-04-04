@@ -1,5 +1,6 @@
 {
   "pages": [
+    "pages/drawings/drawings",
     "pages/login/login",
     "pages/authentication/authentication",
     "pages/uploadingData/uploadingData",
@@ -33,7 +34,7 @@
     
     
     "pages/authorizationStatement/authorizationStatement",
-    "pages/drawings/drawings",
+    
     "pages/convas/convas",
     "pages/myBalance/myBalance",
     "pages/livecart/livecart",

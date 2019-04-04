@@ -10,9 +10,9 @@
   <view class='current-state'>
     <view class='current-left'>
       <text class='available-balance'>可用余额：</text>
-      <text class='available-balance-text'>￥{{}}0</text>
+      <text class='available-balance-text'>￥{{enableWithdrawBalance}}</text>
       <text class='available-balance' style='margin-left:20rpx;'>当前余额：</text>
-      <text class='available-balance-text'>￥{{}}0</text>
+      <text class='available-balance-text'>￥{{balance}}0</text>
     </view>
     <view class='current-right' bindtap='allWithdrawal'>全部提现</view>
   </view>
