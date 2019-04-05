@@ -7,13 +7,13 @@ Page({
    * 页面的初始数据
    */
   data: {
-    number: 0,
+    // number: 0,
     name: '',
     account: '',
     phone: '',
     code: '',
-    enableWithdrawBalance:0,
-    balance:0
+    enableWithdrawBalance: 0,
+    balance: 0
   },
 
   /**
@@ -39,10 +39,17 @@ Page({
   },
   //全部提现
   allWithdrawal: function() {
-
+    let that = this;
+    let number = that.data.enableWithdrawBalance;
+    that.setData({
+      number: number
+    })
   },
   //关闭当前页面
   closePage: function() {
+    wx.navigateBack({
+      data:1
+    })
 
   },
   //获取微信账号
@@ -62,7 +69,7 @@ Page({
     })
   },
   //获取手机号
-  getPhone: function() {
+  getPhone: function(e) {
     let that = this;
     console.log(e.detail.value);
     that.setData({
@@ -70,7 +77,7 @@ Page({
     })
   },
   //获取验证码
-  getCode: function() {
+  getCode: function(e) {
     let that = this;
     console.log(e.detail.value);
     that.setData({
@@ -91,6 +98,12 @@ Page({
       network.POST(url, params, method).then((res) => {
         wx.hideLoading();
         console.log("提现返回值是：" + res.data);
+        let msg = res.data.msg;
+        if(res.data.code==200){
+          common.showTip(msg,'success');
+        }else{
+          common.showTip(msg, 'loading');
+        }
 
       }).catch((errMsg) => {
         wx.hideLoading();
@@ -102,7 +115,7 @@ Page({
         })
       });
   },
-  //
+  //获取提现信息
   getExtractInfo: function() {
     let that = this;
     let userId = wx.getStorageSync('userId');
@@ -122,6 +135,95 @@ Page({
           balance: balance,
           enableWithdrawBalance: enableWithdrawBalance
         })
+
+      }).catch((errMsg) => {
+        wx.hideLoading();
+        console.log(errMsg); //错误提示信息
+        wx.showToast({
+          title: '网络错误',
+          icon: 'loading',
+          duration: 1500,
+        })
+      });
+  },
+  //发送验证码
+  sendVerificationCode: function() {
+    let that = this;
+    // let userId = wx.getStorageSync('userId');
+    let mobile = that.data.phone;
+    if (mobile == undefined || mobile.length != 11) {
+      common.showTip("请填写手机号", 'loading');
+      return;
+    }
+    let url = "common/smscode?mobile=" + mobile;
+    var params = {}
+    let method = "GET";
+    wx.showLoading({
+        title: '加载中...',
+      }),
+      network.POST(url, params, method).then((res) => {
+        wx.hideLoading();
+        console.log("提现返回值是：" + res.data);
+        if (res.data.code == 200) {
+          common.showTip('验证码发送成功', 'sueccess');
+        }
+
+      }).catch((errMsg) => {
+        wx.hideLoading();
+        console.log(errMsg); //错误提示信息
+        wx.showToast({
+          title: '网络错误',
+          icon: 'loading',
+          duration: 1500,
+        })
+      });
+  },
+  //校验验证码
+  verifyCode: function() {
+    let that = this;
+    // let userId = wx.getStorageSync('userId');
+    let mobile = that.data.phone;
+    let account = that.data.account;
+    let name = that.data.name;
+    let code = that.data.code;
+    let number =that.data.number;
+    console.log('当前金额是：',number);
+    if (parseInt(number) <1 || number == undefined) {
+      common.showTip("请填写提现金额", 'loading');
+      return;
+    }
+    if (account.length == 0 || account==undefined){
+      common.showTip("请填写微信账号", 'loading');
+      return;
+    }
+    if (name.length == 0 || name == undefined) {
+      common.showTip("请填写真实姓名", 'loading');
+      return;
+    }
+    if (mobile == undefined || mobile.length != 11) {
+      common.showTip("请填写手机号", 'loading');
+      return;
+    }
+    if (code == undefined) {
+      common.showTip('请填写验证码', 'loading');
+      return;
+    }
+    let url = "common/verify?mobile=" + mobile +"&captcha="+code;
+    var params = {}
+    let method = "GET";
+    wx.showLoading({
+        title: '加载中...',
+      }),
+      network.POST(url, params, method).then((res) => {
+        wx.hideLoading();
+        console.log("提现返回值是：" + res.data);
+        if (res.data.code == 200) {
+          // common.showTip('验证成功', 'sueccess');
+          that.extract();
+        }else{
+          let msg = res.data.msg;
+          common.showTip(msg, 'loading');
+        }
 
       }).catch((errMsg) => {
         wx.hideLoading();

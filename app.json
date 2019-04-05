@@ -1,5 +1,6 @@
 {
   "pages": [
+    "pages/center/center",
     "pages/drawings/drawings",
     "pages/login/login",
     "pages/authentication/authentication",
@@ -24,7 +25,7 @@
     "pages/securitySetting/phoneSetting/verification/verification",
     "pages/securitySetting/phoneSetting/changePhone/changePhone",
     "pages/securitySetting/phoneSetting/phoneSetting",
-    "pages/center/center",
+    
     "pages/securitySetting/securitySetting",
     
     "pages/toMerchant/consult/consult",

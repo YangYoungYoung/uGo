@@ -134,9 +134,19 @@ Page({
     })
   },
   //兑换，跳转到积分商城
-  toIntegralShop:function(){
+  toIntegralShop: function() {
     wx.switchTab({
       url: '../integral_home/integral_home',
+    })
+  },
+  //扫一扫
+  scanCode: function() {
+    // 只允许从相机扫码
+    wx.scanCode({
+      onlyFromCamera: true,
+      success(res) {
+        console.log(res)
+      }
     })
   }
 })

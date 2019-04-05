@@ -32,6 +32,11 @@
   </van-panel>
   <van-panel>
     <view class='balance-view'>
+      <view class='balance-left' bindtap='scanCode'>扫一扫</view>
+    </view>
+  </van-panel>
+  <van-panel>
+    <view class='balance-view'>
       <view class='balance-left'>当前余额 : {{}}</view>
       <button class='balance-btn'>提现</button>
     </view>
