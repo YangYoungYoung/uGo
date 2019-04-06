@@ -78,7 +78,7 @@ Page({
       })
     }
   },
-  //获取用户信息接口
+  //获取用户openId接口
   getOP: function(res) { //提交用户信息 获取用户id
     let that = this
     let userInfo = res
@@ -87,7 +87,7 @@ Page({
         title: '加载中...',
       }),
       wx.request({
-      url: "http://132.232.142.23:8088/api/common/weiXIn/openId?code=" + app.globalData.code,
+        url: "http://132.232.142.23:8088/api/common/weiXIn/openId?code=" + app.globalData.code,
         data: {
           // code: app.globalData.code
         },
@@ -100,6 +100,9 @@ Page({
           console.log("openId的结果是：" + res.data.data.openId); //正确返回结果
           if (res.data.data.openId != undefined) {
             wx.setStorageSync('openId', res.data.data.openId); // 单独存储openid
+            that.setData({
+              openId: res.data.data.openId
+            })
             wx.redirectTo({
               url: '../home/home',
             })
@@ -124,4 +127,35 @@ Page({
       });
 
   },
+  //获取用户信息
+  getUserId: function() {
+    let that = this;
+    let openId = that.data.openId;
+
+    let url = "userInfo?openId=" + openId;
+    var params = {}
+    let method = "POST";
+    wx.showLoading({
+        title: '加载中...',
+      }),
+      network.POST(url, params, method).then((res) => {
+        wx.hideLoading();
+        console.log("提现返回值是：" + res.data);
+        let msg = res.data.msg;
+        if (res.data.code == 200) {
+          common.showTip(msg, 'success');
+        } else {
+          common.showTip(msg, 'loading');
+        }
+
+      }).catch((errMsg) => {
+        wx.hideLoading();
+        console.log(errMsg); //错误提示信息
+        wx.showToast({
+          title: '网络错误',
+          icon: 'loading',
+          duration: 1500,
+        })
+      });
+  }
 })

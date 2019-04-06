@@ -6,6 +6,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    showModal: false,
     footerList: [{
         name: '首页',
         src_yes: '../images/footer_home_y.png',
@@ -141,12 +142,120 @@ Page({
   },
   //扫一扫
   scanCode: function() {
+    let that = this;
     // 只允许从相机扫码
     wx.scanCode({
       onlyFromCamera: true,
       success(res) {
-        console.log(res)
+
+        let result = res.result;
+        // console.log(result);
+        var index = result.lastIndexOf("\=");
+        let shopId = result.substring(index + 1, result.length);
+        console.log(shopId);
+        if (shopId != undefined || shopId.length != 0) {
+          that.setData({
+            shopId:shopId
+          })
+          that.showDialogBtn();
+        }
+
+        // return obj;
       }
     })
-  }
+  },
+  //获取到支付金额
+  inputChange: function(e) {
+    let that = this;
+    let money = e.detail.value;
+    console.log("money is:", money);
+    that.setData({
+      money: money
+    })
+  },
+  //下单支付
+  creatOrder: function() {
+    // let openId = wx.getStorageSync("openId");
+    // console.log("openId is:", openId);
+    var timestamp = Date.parse(new Date());
+    let shopId = this.data.shopId;
+    timestamp = timestamp / 1000;
+    let userId = wx.getStorageSync('userId');
+    console.log('userId is:',userId);
+    console.log("当前时间戳为：" + timestamp);
+    let sn = 'ugo365' + shopId + userId + timestamp;
+    console.log('sn is :',sn);
+
+
+  },
+  /**
+   * 弹窗
+   */
+  showDialogBtn: function() {
+    this.creatOrder();
+    this.setData({
+      showModal: true
+    })
+  },
+  /**
+   * 弹出框蒙层截断touchmove事件
+   */
+  preventTouchMove: function() {},
+  /**
+   * 隐藏模态对话框
+   */
+  hideModal: function() {
+    this.setData({
+      showModal: false
+    });
+  },
+  /**
+   * 对话框取消按钮点击事件
+   */
+  onCancel: function() {
+    this.hideModal();
+  },
+  /**
+   * 提现对话框确认按钮点击事件
+   */
+  onConfirm: function() {
+    this.hideModal();
+    let that = this;
+    // let url = "http://192.168.0.146:8083/api/putForward"
+    let url = "common/weiXin/pay/createWXOrder"
+    let method = "GET"
+    // let openId = wx.getStorageSync("openId");
+    var money = that.data.money;
+
+    console.log("价格是：" + money);
+    var params = {
+      openId: openId,
+      money: money,
+      shopId: that.data.shopId,
+      parentId: that.data.parentId,
+      role: that.data.role
+    }
+    wx.showLoading({
+        title: '加载中...',
+      }),
+      network.POST(url, params, method).then((res) => {
+        wx.hideLoading();
+        //后台交互
+        if (res.data.status == 200) {
+          common.showTip("提现申请成功", "success");
+        } else {
+          var message = res.data.message
+          common.showTip(message, "loading");
+        }
+
+      }).catch((errMsg) => {
+        wx.hideLoading();
+        console.log(errMsg); //错误提示信息
+        wx.showToast({
+          title: '网络错误',
+          icon: 'loading',
+          duration: 1500,
+        })
+      });
+  },
 })
