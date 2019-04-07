@@ -224,45 +224,51 @@ Page({
       url: '../search/search',
     })
   },
-  //签到按钮
-  sineInClick: function() {
+  //获取签到信息
+  getSignInfo: function() {
     let that = this;
-    let integral = that.data.integral;
-    let sineList = that.data.sineList;
-    let signedTimes = that.data.signedTimes;
-    let addedIntegral = sineList[signedTimes].number;
-    let openId = wx.getStorageSync('openId');
 
-    let url = "sign?userOpenId=" + openId + "&addedIntegral=" + addedIntegral;
+    let userId = wx.getStorageSync('userId');
+
+    let url = "dg/sign/detail?userId=" + userId;
     var params = {
-      // userOpenId: openId,
-      // addedIntegral: addedIntegral
+
     }
-    let method = "PUT";
+    let method = "GET";
     wx.showLoading({
         title: '加载中...',
       }),
       network.POST(url, params, method).then((res) => {
         wx.hideLoading();
         if (res.data.code == 200) {
-          that.getShopList();
-          for (var i = 0; i <= signedTimes; i++) {
-            if (i <= signedTimes) {
-              sineList[i].select = true;
+          // that.getShopList();
+          let isSign = res.data.data.isSign;
+          if (isSign == 0) {
+            let signedTimes = res.data.data.signedTimes;
+            for (var i = 0; i <= signedTimes; i++) {
+              if (i <= signedTimes) {
+                sineList[i].select = true;
+              }
             }
+            that.setData({
+              sineList: sineList,
+              signedTimes: signedTimes
+            })
+          } else {
+            let signedTimes = res.data.data.signedTimes;
+            for (var i = 0; i <= signedTimes; i++) {
+              if (i <= signedTimes) {
+                sineList[i].select = true;
+              }
+            }
+            that.setData({
+              sineList: sineList,
+              clicked: true,
+              signedTimes: signedTimes
+            })
           }
-          that.setData({
-            sineList: sineList,
-            clicked: true
-          })
 
-          wx.showToast({
-            title: '积分+' + addedIntegral,
-            icon: 'success',
-            duration: 1500,
-          })
         }
-
 
       }).catch((errMsg) => {
         wx.hideLoading();
@@ -273,6 +279,63 @@ Page({
           duration: 1500,
         })
       });
+  },
+  //签到按钮
+  sineInClick: function() {
+    let that = this;
+    let integral = that.data.integral;
+    let sineList = that.data.sineList;
+    let signedTimes = that.data.signedTimes;
+    if (signedTimes == 7) {
+      wx.navigateTo({
+        url: '../convas/convas',
+      })
+    } else {
+      let addedIntegral = sineList[signedTimes].number;
+      let openId = wx.getStorageSync('openId');
+
+      let url = "sign?userOpenId=" + openId + "&addedIntegral=" + addedIntegral;
+      var params = {
+        // userOpenId: openId,
+        // addedIntegral: addedIntegral
+      }
+      let method = "PUT";
+      wx.showLoading({
+          title: '加载中...',
+        }),
+        network.POST(url, params, method).then((res) => {
+          wx.hideLoading();
+          if (res.data.code == 200) {
+            that.getShopList();
+            for (var i = 0; i <= signedTimes; i++) {
+              if (i <= signedTimes) {
+                sineList[i].select = true;
+              }
+            }
+            that.setData({
+              sineList: sineList,
+              clicked: true
+            })
+
+            wx.showToast({
+              title: '积分+' + addedIntegral,
+              icon: 'success',
+              duration: 1500,
+            })
+          }
+
+
+        }).catch((errMsg) => {
+          wx.hideLoading();
+          console.log(errMsg); //错误提示信息
+          wx.showToast({
+            title: '网络错误',
+            icon: 'loading',
+            duration: 1500,
+          })
+        });
+    }
+
   },
   toMap: function() {
     wx.navigateTo({
