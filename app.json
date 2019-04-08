@@ -1,5 +1,6 @@
 {
   "pages": [
+    "pages/integral_search/integral_search",
     "pages/login/login",
     "pages/center/center",
     "pages/drawings/drawings",
@@ -41,7 +42,7 @@
     "pages/livecart/livecart",
     "pages/integral_type/integral_type",
     
-    "pages/integral_search/integral_search",
+    
     
     
     "pages/map/map",

@@ -27,6 +27,14 @@ page {
   padding-bottom: 100rpx;
 }
 
+/*隐藏滚动条*/
+
+::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+  color: transparent;
+}
+
 .location-search {
   width: 100%;
   display: flex;
@@ -373,7 +381,6 @@ page {
   flex-wrap: wrap;
   align-items: center;
   margin-left: 12rpx;
-  
 }
 
 .optimizationShop-item {

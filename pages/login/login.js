@@ -150,9 +150,9 @@ Page({
             wx.redirectTo({
               url: '../home/home',
             })
+          } else {
+            that.register();
           }
-        } else {
-          that.register();
         }
 
       }).catch((errMsg) => {
@@ -212,8 +212,8 @@ Page({
         console.log("获取用户信息返回值是：" + res.data);
 
         if (res.data.code == 200) {
-          let userId = that.data.data.user.userId;
-          console.log('userId is:',userId);
+          let userId = res.data.data.user.userId;
+          console.log('userId is:', userId);
           wx.setStorageSync('userId', userId);
           common.showTip(res.data.msg);
           wx.redirectTo({

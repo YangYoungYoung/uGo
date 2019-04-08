@@ -16,6 +16,14 @@
   flex-direction: column;
 }
 
+/*隐藏滚动条*/
+
+::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+  color: transparent;
+}
+
 .search-list-item {
   display: flex;
   flex-direction: row;
@@ -104,6 +112,18 @@
   z-index: 1;
 }
 
+.food-content {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  text-align: center;
+  margin-top: 16rpx;
+}
+
+
+
 .goods .menu-wrapper {
   flex: 0 0 80px;
   width: 80px;
@@ -167,7 +187,7 @@
   background: #f3f5f7;
 }
 
-.food-item {
+/* .food-item {
   display: flex;
   flex-direction: column;
   width: 160rpx;
@@ -175,6 +195,21 @@
   text-align: center;
   align-items: center;
   margin-bottom: 24rpx;
+} */
+
+.food-item {
+  box-sizing: border-box;
+  /* width: 170rpx;
+  height: 122rpx; */
+  text-align: left;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  /* border: 1rpx solid #035c86; */
+  /* border-radius: 10rpx; */
+  /* line-height: 165rpx; */
+  margin-bottom: 13rpx;
+  margin-left: 20rpx;
 }
 
 .food-image {

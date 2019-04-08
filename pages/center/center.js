@@ -155,7 +155,7 @@ Page({
         console.log(shopId);
         if (shopId != undefined || shopId.length != 0) {
           that.setData({
-            shopId:shopId
+            shopId: shopId
           })
           that.showDialogBtn();
         }
@@ -181,10 +181,19 @@ Page({
     let shopId = this.data.shopId;
     timestamp = timestamp / 1000;
     let userId = wx.getStorageSync('userId');
-    console.log('userId is:',userId);
+    console.log('userId is:', userId);
     console.log("当前时间戳为：" + timestamp);
-    let sn = 'ugo365' + shopId + userId + timestamp;
-    console.log('sn is :',sn);
+    // let deviceInfo = 
+    try {
+      const res = wx.getSystemInfoSync();
+      var model = res.model;
+      console.log(res.model)
+
+    } catch (e) {
+      // Do something when catch error
+    }
+    let sn = 'ugo365' + shopId + model + userId + timestamp;
+    console.log('sn is :', sn);
 
 
   },

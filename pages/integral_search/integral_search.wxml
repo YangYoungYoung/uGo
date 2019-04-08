@@ -28,7 +28,7 @@
 <view class="goods">
   <view class="menu-wrapper">
     <scroll-view scroll-y="true" style="height: 450px;">
-      <view wx:for="{{goods}}" wx:key='id' class="menu-item border-1px" bindtap="selectMenu" data-item-index="{{index}}">
+      <view wx:for="{{shopCategorys}}" wx:key='id' class="menu-item border-1px" bindtap="selectMenu" data-item-index="{{index}}">
         <view class="text">
           {{item.name}}
         </view>
@@ -36,12 +36,12 @@
     </scroll-view>
   </view>
   <scroll-view scroll-y="true" scroll-into-view="{{toView}}" class="foods-wrapper" style='margin-top:10rpx;'>
-    <view wx:for="{{goods}}" wx:key='id' class="food-list food-list-hook" wx:for-index="parentIndex">
+    <view wx:for="{{shopCategorys}}" wx:key='id' class="food-list food-list-hook" wx:for-index="parentIndex">
       <view id="order{{parentIndex}}" class="title">{{item.name}}</view>
       <view class='food-content'>
-        <view wx:for="{{item.productList}}" wx:key='id' wx:for-item="productList" class="food-item" style="{{productList.count>0?'background-color: #2131f4;':'background-color: #0fb0f9'}}" data-food="{{productList}}" bindtap="showDetail" data-parentIndex="{{parentIndex}}"
+        <view wx:for="{{item.subList}}" wx:key='id' wx:for-item="productList" class="food-item" data-food="{{productList}}" bindtap="toSubList" data-parentIndex="{{parentIndex}}"
           data-index='{{index}}'>
-        <image class='food-image' src='{{item.url}}'></image>
+        <image class='food-image' src='{{item.iconUrl}}'></image>
         <text class='food-name'>{{item.name}}</text>
         </view>
       </view>

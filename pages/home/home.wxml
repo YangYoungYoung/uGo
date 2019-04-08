@@ -42,7 +42,7 @@
         </view>
         <view class='sine-left-number'>
           <image class='sine-left-number-icon' src='../images/icon_people.png'></image>
-          <text class='sine-left-people-num'>100万人已领取</text>
+          <text class='sine-left-people-num'>{{numberSigned}}万人已领取</text>
         </view>
       </view>
       <view class='sine-in-line'></view>

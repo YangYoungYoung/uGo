@@ -84,10 +84,10 @@ Page({
     let that = this;
     that.getUserLocation();
 
-    that.getLiveRoomList();
-    that.getSwiperList();
-    that.getShopCategory();
-    that.getBanner();
+    // that.getLiveRoomList();
+    // that.getSwiperList();
+    // that.getShopCategory();
+    // that.getBanner();
 
   },
   //获取商铺信息
@@ -177,6 +177,7 @@ Page({
     that.getSwiperList();
     that.getShopCategory();
     that.getBanner();
+    that.getSignInfo();
     // that.setData();
   },
   //跳转到不同分类
@@ -243,8 +244,16 @@ Page({
         if (res.data.code == 200) {
           // that.getShopList();
           let isSign = res.data.data.isSign;
+          let sineList = that.data.sineList;
+          let signedTimes = res.data.data.signedTimes;
+          let addIntegral =  sineList[signedTimes-1].number;
+          let numberSigned = res.data.data.numberSigned;
+          that.setData({
+            numberSigned: numberSigned,
+            addIntegral: addIntegral
+          })
           if (isSign == 0) {
-            let signedTimes = res.data.data.signedTimes;
+
             for (var i = 0; i <= signedTimes; i++) {
               if (i <= signedTimes) {
                 sineList[i].select = true;
@@ -255,9 +264,9 @@ Page({
               signedTimes: signedTimes
             })
           } else {
-            let signedTimes = res.data.data.signedTimes;
-            for (var i = 0; i <= signedTimes; i++) {
-              if (i <= signedTimes) {
+
+            for (var i = 0; i < signedTimes; i++) {
+              if (i < signedTimes) {
                 sineList[i].select = true;
               }
             }
@@ -292,9 +301,9 @@ Page({
       })
     } else {
       let addedIntegral = sineList[signedTimes].number;
-      let openId = wx.getStorageSync('openId');
+      let userId = wx.getStorageSync('userId');
 
-      let url = "sign?userOpenId=" + openId + "&addedIntegral=" + addedIntegral;
+      let url = "dg/sign/sign?userId=" + userId + "&addedIntegral=" + addedIntegral + "&isSign=1";
       var params = {
         // userOpenId: openId,
         // addedIntegral: addedIntegral
@@ -323,8 +332,6 @@ Page({
               duration: 1500,
             })
           }
-
-
         }).catch((errMsg) => {
           wx.hideLoading();
           console.log(errMsg); //错误提示信息
@@ -337,6 +344,7 @@ Page({
     }
 
   },
+  //选择城市
   toMap: function() {
     wx.navigateTo({
       url: '../switchcity/switchcity',
