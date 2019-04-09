@@ -39,10 +39,10 @@
     <view wx:for="{{shopCategorys}}" wx:key='id' class="food-list food-list-hook" wx:for-index="parentIndex">
       <view id="order{{parentIndex}}" class="title">{{item.name}}</view>
       <view class='food-content'>
-        <view wx:for="{{item.subList}}" wx:key='id' wx:for-item="productList" class="food-item" data-food="{{productList}}" bindtap="toSubList" data-parentIndex="{{parentIndex}}"
+        <view wx:for="{{item.subList}}" wx:key='id' wx:for-item="productList" class="food-item" bindtap="toSubList" data-id="{{productList.id}}"
           data-index='{{index}}'>
-        <image class='food-image' src='{{item.iconUrl}}'></image>
-        <text class='food-name'>{{item.name}}</text>
+        <image class='food-image' src='{{productList.iconUrl}}'></image>
+        <text class='food-name'>{{productList.name}}</text>
         </view>
       </view>
     </view>

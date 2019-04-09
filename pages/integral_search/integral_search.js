@@ -7,7 +7,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    shopCategorys:[]
+    shopCategorys: []
   },
 
   /**
@@ -18,7 +18,7 @@ Page({
   },
 
   //获取类别
-  getShopCategory: function () {
+  getShopCategory: function() {
     let that = this;
     let url = "dg/shopCategory/list?isIntegralShop=1"
     var params = {
@@ -26,8 +26,8 @@ Page({
     }
     let method = "GET";
     wx.showLoading({
-      title: '加载中...',
-    }),
+        title: '加载中...',
+      }),
       network.POST(url, params, method).then((res) => {
         wx.hideLoading();
         // console.log("返回值是：" + res.data);
@@ -46,15 +46,28 @@ Page({
       });
   },
   //左边栏选择
-  selectMenu: function (e) {
+  selectMenu: function(e) {
     var index = e.currentTarget.dataset.itemIndex;
     this.setData({
-      toView: 'order' + index.toString()
+      toView: 'order' + index.toString(),
+      index: index
     })
     console.log(this.data.toView);
   },
   //跳转到二级分类
-  toSubList:function(){
-    
+  toSubList: function(e) {
+    let subId = e.currentTarget.dataset.id;
+    console.log("subId is:", subId);
+    wx.navigateTo({
+      url: '../integral_subList/integral_subList?id=' + subId,
+    })
+  },
+  //搜索
+  onSearch: function (event){
+    let value = event.detail;
+    wx.navigateTo({
+      url: '../integral_subList/integral_subList?value=' + value,
+    })
   }
+
 })

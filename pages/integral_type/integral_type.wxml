@@ -1,5 +1,6 @@
 <!--pages/integral_type/integral_type.wxml-->
 <view class="container">
+
   <view class='title'>{{shopInfo[0].typeName}}</view>
 
 
