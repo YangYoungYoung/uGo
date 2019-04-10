@@ -17,6 +17,16 @@ Page({
     color: ["#FFB932", "#ffd57c"], //扇形的背景颜色交替；
     text: ["一等奖", "二等奖", "三等奖", "四等奖", "五等奖", "六等奖"], //每个扇形中的文字填充
     isRotate: 0,
+    imageAward: [
+      '../images/icon_118.png',
+
+      '../images/icon_288.png',
+
+      '../images/icon_588.png',
+      '../images/icon_888.png',
+      '../images/icon_2000.png',
+      '../images/icon_5000.png'
+    ], //奖品图片数组
   },
   start() { //点击抽奖按钮, 为了达到慢速开始慢速结束的效果，在这里使用css3的过渡效果
     console.log("start");
@@ -30,14 +40,42 @@ Page({
 
     // 指定获奖结果
     let n = that.data.isRotate; //传入指定的旋转角度，内部指定获奖结果。在指定角度上加上旋转基数模拟转盘随机旋转。
-
+    let numberArr = that.data.numberArr;
     //随机获奖结果
-    let rand = Math.random() * 1000; //取一个随机的旋转角度，使获奖结果随机化。
-    n = n + rand - (rand % 60) + 1440; //1440为旋转基数，最低要旋转1440度，即4圈。rand-(rand%60) 这个是让指针永远停在扇形中心的算法。n + 是为了重复点击的时候有足够的旋转角度。
-    console.log(n % 360);
-    that.setData({
-      isRotate: n,
-    })
+    let rand = Math.floor(Math.random() * 100);
+    let number = numberArr[rand];
+    let rand2 = Math.floor(Math.random() * 100);
+    let temp = numberArr[rand2];
+    console.log('number is : ', numberArr[rand]);
+    console.log("rand is:", rand); //取一个随机的旋转角度，使获奖结果随机化。
+    if(number == 188){
+      // n = rand - (rand % 60) + 1440; //1440为旋转基数，最低要旋转1440度，即4圈。rand-(rand%60) 这个是让指针永远停在扇形中心的算法。n + 是为了重复点击的时候有足够的旋转角度。
+      // console.log(n%360);
+      that.setData({
+        isRotate: 1680,
+      })
+    } else if (number == 288){
+      that.setData({
+        isRotate: 1620,
+      })
+    } else if (number == 588 && rand2 > 10) {
+      that.setData({
+        isRotate: 1560,
+      })
+    } else if (number == 888 && rand2>20) {
+      that.setData({
+        isRotate: 1500,
+      })
+    } else if (number == 2000 && rand2>50) {
+      that.setData({
+        isRotate: 1440,
+      })
+    } else if (number ==5000 &&temp==5000) {
+      that.setData({
+        isRotate: 1740,
+      })
+    }
+   
   },
   // startt() {
   //   let that = this;
@@ -58,6 +96,26 @@ Page({
    */
   onLoad: function(e) {
     let that = this;
+    let numberArr = [];
+    for (var i = 0; i < 100; i++) {
+      if (i < 59) {
+        numberArr.push(188);
+      } else if (i < 81 && i >= 59) {
+        numberArr.push(288);
+      } else if (i < 90 && i >= 81) {
+        numberArr.push(588);
+      } else if (i < 96 && i >= 80) {
+        numberArr.push(888);
+      } else if (i < 99 && i >= 86) {
+        numberArr.push(2000);
+      } else if (i < 100 && i >= 89) {
+        numberArr.push(5000);
+      }
+    }
+    console.log('numberArr is:', numberArr);
+    that.setData({
+      numberArr: numberArr
+    })
     let itemsArc = 360 / that.data.itemsNum; //获取大转盘每等分的角度。
     that.setData({
       itemsArc
@@ -148,13 +206,13 @@ Page({
       ctx.fill();
       ctx.save();
       ctx.beginPath();
-      ctx.setFontSize(12); //设置文字字号大小
-      ctx.setFillStyle("#000"); //设置文字颜色
-      ctx.setTextAlign("center"); //使文字垂直居中显示
-      ctx.setTextBaseline("middle"); //使文字水平居中显示
+      // ctx.setFontSize(12); //设置文字字号大小
+      // ctx.setFillStyle("#000"); //设置文字颜色
+      // ctx.setTextAlign("center"); //使文字垂直居中显示
+      // ctx.setTextBaseline("middle"); //使文字水平居中显示
       ctx.translate(w1, h1); //将原点移至圆形圆心位置
       ctx.rotate((itemsArc * (i + 2)) * Math.PI / 180); //旋转文字，从 i+2 开始，因为扇形是从数学意义上的第四象限第一个开始的，文字目前的位置是在圆心正上方，所以起始位置要将其旋转2个扇形的角度让其与第一个扇形的位置一致。
-      ctx.fillText(text[i], 0, -(h1 * 0.8));
+      // ctx.fillText(text[i], 0, -(h1 * 0.8));
       ctx.restore(); //保存绘图上下文，使上一个绘制的扇形保存住。
     }
     that.Images();
@@ -164,13 +222,14 @@ Page({
   Images() { //绘制奖品图片，与绘制文字方法一致。
     let that = this;
     let itemsArc = that.data.itemsArc;
+    let imageAward = that.data.imageAward;
     let Num = that.data.itemsNum;
     for (let i = 0; i < Num; i++) {
       ctx.save();
       ctx.beginPath();
       ctx.translate(w1, h1);
       ctx.rotate(itemsArc * (i + 2) * Math.PI / 180);
-      ctx.drawImage("../images/quan.jpg", -(w1 * 0.2), -(h1 * 0.6), (w1 * 0.4), (h1 * 0.2));
+      ctx.drawImage(imageAward[i], -(w1 * 0.2), -(h1 * 0.9), (w1 * 0.4), (h1 * 0.5));
       ctx.restore();
     }
   },

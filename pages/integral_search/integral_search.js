@@ -14,6 +14,10 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
+
+
+  },
+  onShow: function() {
     this.getShopCategory();
   },
 
@@ -35,6 +39,16 @@ Page({
         that.setData({
           shopCategorys: shopCategorys
         })
+        var index = wx.getStorageSync('menuIndex');
+        console.log('menuIndex is:', index);
+
+        if (index != undefined) {
+
+          this.setData({
+            toView: 'order' + index.toString(),
+            index: index
+          })
+        }
       }).catch((errMsg) => {
         wx.hideLoading();
         console.log(errMsg); //错误提示信息
@@ -63,7 +77,7 @@ Page({
     })
   },
   //搜索
-  onSearch: function (event){
+  onSearch: function(event) {
     let value = event.detail;
     wx.navigateTo({
       url: '../integral_subList/integral_subList?value=' + value,

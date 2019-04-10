@@ -10,7 +10,7 @@ Page({
     shopCategorys: [],
     goodsS: [],
     swiperList: [],
-    index:0,
+    index: 0,
     scroreList: [{
         score: "0-1000",
         select: true,
@@ -62,7 +62,7 @@ Page({
       }
     }
     that.setData({
-      index:index,
+      index: index,
       scroreList: scroreList
     })
     that.getGoodsList();
@@ -128,7 +128,7 @@ Page({
     let that = this;
     // let scroe = index+1;
 
-    let index = that.data.index+1;
+    let index = that.data.index + 1;
     let url = "goods/list?isIntegralShop=1" + "&integralLevel=" + index;
     var params = {
 
@@ -140,7 +140,7 @@ Page({
       network.POST(url, params, method).then((res) => {
         wx.hideLoading();
         // console.log("返回值是：" + res.data);
-      let goodsS = res.data.data.goodsS;
+        let goodsS = res.data.data.goodsS;
         that.setData({
           goodsS: goodsS
         })
@@ -162,16 +162,18 @@ Page({
     })
   },
   //跳转到商品详情
-  toDetail:function(event){
+  toDetail: function(event) {
     let goodsId = event.currentTarget.dataset.id;
     wx.navigateTo({
       url: '../integral_detail/integral_detail?goodsId=' + goodsId,
     })
   },
-  navigateToType:function(event){
-    let id = event.currentTarget.dataset.id;
-    wx.navigateTo({
-      url: '../integral_type/integral_type?id='+id,
+  navigateToType: function(event) {
+    let index = event.currentTarget.dataset.index;
+    wx.setStorageSync('menuIndex', index);
+    console.log('index is : ', index);
+    wx.switchTab({
+      url: '../integral_search/integral_search'
     })
   }
 })

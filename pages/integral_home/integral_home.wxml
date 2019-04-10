@@ -6,9 +6,6 @@
       <text class='back-text'>返回</text>
     </view>
 
-
-
-
     <swiper style="height:350rpx;width:100%;background:#eee;" indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" circular="{{circular}}">
       <!--广告banner-->
       <block wx:for="{{ banner }}" wx:key="item">
@@ -25,7 +22,7 @@
 
     <view id='types'>
       <block wx:for="{{shopCategorys}}" wx:key="item">
-        <view class='list-item' bindtap="navigateToType" data-id="{{item.id}}">
+        <view class='list-item' bindtap="navigateToType" data-index="{{index}}">
           <view class='item-head'>
             <image src="{{item.iconUrl}}"></image>
           </view>

@@ -1,5 +1,7 @@
 {
   "pages": [
+    "pages/convas/convas",
+    "pages/home/home",
     "pages/integral_search/integral_search",
     "pages/integral_subList/integral_subList",
     "pages/login/login",
@@ -7,13 +9,11 @@
     "pages/drawings/drawings",
     "pages/authentication/authentication",
     "pages/uploadingData/uploadingData",
-    "pages/home/home",
     "pages/switchcity/switchcity",
     "pages/search/search",
     "pages/integral_payOrder/integral_payOrder",
     "pages/integral_order/integral_order",
     "pages/integral_exchange/integral_exchange",
-    
     "pages/logistics/logistics",
     "pages/integral_detail/integral_detail",
     "pages/integral_home/integral_home",
@@ -23,32 +23,18 @@
     "pages/myaddress/myaddress",
     "pages/newAddress/newAddress",
     "pages/liveStreaming/liveStreaming",
-    
     "pages/securitySetting/phoneSetting/verification/verification",
     "pages/securitySetting/phoneSetting/changePhone/changePhone",
     "pages/securitySetting/phoneSetting/phoneSetting",
-    
     "pages/securitySetting/securitySetting",
-    
     "pages/toMerchant/consult/consult",
     "pages/toMerchant/toMerchant",
-    
-    
-    
-    
     "pages/authorizationStatement/authorizationStatement",
     
-    "pages/convas/convas",
     "pages/myBalance/myBalance",
     "pages/livecart/livecart",
     "pages/integral_type/integral_type",
-    
-    
-    
-    
     "pages/map/map",
-    
-    
     "pages/index/index"
   ],
   "window": {

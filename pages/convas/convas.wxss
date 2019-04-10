@@ -2,7 +2,7 @@
 .content{
   width: 90%;
   height: 600rpx;
-  background-color: #666;
+  /* background-color: #666; */
   margin: 0 auto;
   margin-top: 100rpx;
   position: relative;
