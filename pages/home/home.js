@@ -246,7 +246,7 @@ Page({
           let isSign = res.data.data.isSign;
           let sineList = that.data.sineList;
           let signedTimes = res.data.data.signedTimes;
-          let addIntegral =  sineList[signedTimes-1].number;
+          let addIntegral = res.data.data.integral;
           let numberSigned = res.data.data.numberSigned;
           that.setData({
             numberSigned: numberSigned,
@@ -480,6 +480,11 @@ Page({
         wx.hideLoading();
         // console.log("返回值是：" + res.data);
         let shopCategorys = res.data.data.shopCategorys;
+        for (var i = 0; i < shopCategorys.length; i++) {
+          let temp = i+1;
+          shopCategorys[i].iconUrl = '../images/menu_' + temp + '.png';
+        }
+
         that.setData({
           shopCategorys: shopCategorys
         })

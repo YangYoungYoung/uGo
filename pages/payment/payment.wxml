@@ -1,0 +1,55 @@
+<!--pages/payment/payment.wxml-->
+<view class='container'>
+  <view class='order-view'>
+    <text class='order-text'>订单金额:</text>
+    <input class='order-input' placeholder="请输入订单金额"></input>
+  </view>
+  <view class='title'>
+    <text class='title-text'>选择支付方式</text>
+  </view>
+  <view class='payment-view' style='border-bottom: 1rpx solid #F0F0F0;'>
+    <view class='payment-left'>
+      <image class='left-img' src='../images/weixin_logo.png' style='width:88rpx;height:78rpx;'></image>
+      <view class='content'>
+        <view class='content-top'>
+          <text class='content-name'>微信支付</text>
+          <image class='recommend-logo' src='../images/recommend_logo.png'></image>
+        </view>
+        <text class='content-text'>亿万用户的选择，更快更安全</text>
+      </view>
+    </view>
+    <view bindtap='chooseCheck'>
+      <block wx:if='{{isChecked}}'>
+        <image class="check-box" src='../images/icon_gou.png'></image>
+      </block>
+      <block wx:else>
+        <image class="check-box" src='../images/icon_quan.png'></image>
+      </block>
+    </view>
+
+  </view>
+  <view class='payment-view'>
+    <view class='payment-left'>
+      <image class='left-img' src='../images/yue_icon.png' style='width:88rpx;height:88rpx;'></image>
+      <view class='content'>
+        <view class='content-top'>
+          <text class='content-name'>钱包余额</text>
+
+        </view>
+        <text class='content-text'>可用余额{{balance}}</text>
+      </view>
+    </view>
+    <view bindtap='chooseCheck'>
+      <block wx:if='{{isChecked}}'>
+        <image class="check-box" src='../images/icon_quan.png'></image>
+      </block>
+      <block wx:else>
+        <image class="check-box" src='../images/icon_gou.png'></image>
+
+      </block>
+    </view>
+
+  </view>
+
+
+</view>

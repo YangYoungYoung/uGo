@@ -1,10 +1,12 @@
 {
   "pages": [
+    "pages/payment/payment",
+    "pages/login/login",
     "pages/convas/convas",
     "pages/home/home",
     "pages/integral_search/integral_search",
     "pages/integral_subList/integral_subList",
-    "pages/login/login",
+    
     "pages/center/center",
     "pages/drawings/drawings",
     "pages/authentication/authentication",
