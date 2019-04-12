@@ -2,7 +2,7 @@
 <view class='container'>
   <view class='order-view'>
     <text class='order-text'>订单金额:</text>
-    <input class='order-input' placeholder="请输入订单金额"></input>
+    <input class='order-input' placeholder="请输入订单金额" type="number" bindinput='getNumber'></input>
   </view>
   <view class='title'>
     <text class='title-text'>选择支付方式</text>
@@ -28,7 +28,7 @@
     </view>
 
   </view>
-  <view class='payment-view'>
+  <view class='payment-view' style="background:{{balanceUse?'#fff':'#C1C1C1'}}">
     <view class='payment-left'>
       <image class='left-img' src='../images/yue_icon.png' style='width:88rpx;height:88rpx;'></image>
       <view class='content'>
@@ -36,10 +36,10 @@
           <text class='content-name'>钱包余额</text>
 
         </view>
-        <text class='content-text'>可用余额{{balance}}</text>
+        <text class='content-text'>可用余额 {{balance}}元</text>
       </view>
     </view>
-    <view bindtap='chooseCheck'>
+    <view bindtap='chooseCheck' wx:if="{{balanceUse}}">
       <block wx:if='{{isChecked}}'>
         <image class="check-box" src='../images/icon_quan.png'></image>
       </block>
@@ -51,5 +51,6 @@
 
   </view>
 
+  <view class='payment-btn' bindtap='creatOrder'>立即支付</view>
 
 </view>

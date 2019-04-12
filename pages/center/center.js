@@ -154,10 +154,13 @@ Page({
         let shopId = result.substring(index + 1, result.length);
         console.log(shopId);
         if (shopId != undefined || shopId.length != 0) {
-          that.setData({
-            shopId: shopId
+          // that.setData({
+          //   shopId: shopId
+          // })
+          // that.showDialogBtn();
+          wx.navigateTo({
+            url: '../payment/payment?shopId=' + shopId,
           })
-          that.showDialogBtn();
         }
 
         // return obj;
@@ -173,30 +176,7 @@ Page({
       money: money
     })
   },
-  //下单支付
-  creatOrder: function() {
-    // let openId = wx.getStorageSync("openId");
-    // console.log("openId is:", openId);
-    var timestamp = Date.parse(new Date());
-    let shopId = this.data.shopId;
-    timestamp = timestamp / 1000;
-    let userId = wx.getStorageSync('userId');
-    console.log('userId is:', userId);
-    console.log("当前时间戳为：" + timestamp);
-    // let deviceInfo = 
-    try {
-      const res = wx.getSystemInfoSync();
-      var model = res.model;
-      console.log(res.model)
-
-    } catch (e) {
-      // Do something when catch error
-    }
-    let sn = 'ugo365' + shopId + model + userId + timestamp;
-    console.log('sn is :', sn);
-
-
-  },
+ 
   /**
    * 弹窗
    */

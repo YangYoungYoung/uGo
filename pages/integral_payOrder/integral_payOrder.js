@@ -289,7 +289,7 @@ Page({
           wx.requestPayment({
             'timeStamp': res.data.data.timeStamp,
             'nonceStr': res.data.data.nonceStr,
-            'package': res.data.data.prepayId,
+            'package': 'prepay_id=' + res.data.data.prepayId,
             'signType': 'MD5',
             'paySign': res.data.data.sign,
             'success': function(res) {
@@ -352,5 +352,6 @@ Page({
           duration: 1500,
         })
       });
-  }
+  },
+
 })

@@ -1,10 +1,17 @@
 /* pages/payment/payment.wxss */
 
+page {
+  width: 100%;
+  height: 100%;
+  background-color: #f0f0f0;
+}
+
 .container {
   width: 100%;
   height: 100%;
   display: flex;
   flex-direction: column;
+  align-items: center;
 }
 
 .order-view {
@@ -14,6 +21,7 @@
   flex-direction: row;
   text-align: center;
   align-items: center;
+  background: #fff;
 }
 
 .order-text {
@@ -32,7 +40,6 @@
 .title {
   width: 100%;
   height: 72rpx;
-  background-color: #f0f0f0;
 }
 
 .title-text {
@@ -48,7 +55,7 @@
   justify-content: space-between;
   width: 100%;
   height: 123rpx;
-  
+  background: #fff;
 }
 
 .payment-left {
@@ -60,38 +67,54 @@
 .left-img {
   margin-left: 32rpx;
 }
-.content{
+
+.content {
   display: flex;
   flex-direction: column;
   margin-left: 24rpx;
 }
 
-.content-top{
+.content-top {
   display: flex;
   flex-direction: row;
   align-items: center;
 }
 
-.content-name{
+.content-name {
   font-size: 32rpx;
   color: #313131;
   font-weight: bolder;
 }
 
-.recommend-logo{
+.recommend-logo {
   width: 64rpx;
   height: 28rpx;
   margin-left: 8rpx;
 }
 
-.content-text{
+.content-text {
   margin-top: 10rpx;
   font-size: 24rpx;
   color: #616161;
 }
 
-.check-box{
+.check-box {
   width: 36rpx;
   height: 36rpx;
   margin-right: 32rpx;
+}
+
+.payment-btn {
+  width: 686rpx;
+  height: 88rpx;
+  background-color: #f60;
+  border-radius: 8px;
+  position: fixed;
+  bottom: 0;
+  margin-bottom: 44rpx;
+  text-align: center;
+  
+  line-height: 88rpx;
+  color: #FBFBFB;
+  font-size: 36rpx;
 }

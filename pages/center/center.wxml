@@ -179,7 +179,7 @@
     </view>
   </view>
   <!--弹窗-->
-  <view class="modal-mask" bindtap="hideModal" catchtouchmove="preventTouchMove" wx:if="{{showModal}}"></view>
+  <!-- <view class="modal-mask" bindtap="hideModal" catchtouchmove="preventTouchMove" wx:if="{{showModal}}"></view>
   <view class="modal-dialog" wx:if="{{showModal}}">
     <view class="modal-title">支付</view>
     <view class="modal-content">
@@ -191,5 +191,5 @@
       <view class="btn-cancel" bindtap="onCancel" data-status="cancel">取消</view>
       <view class="btn-confirm" bindtap="onConfirm" data-status="confirm">确定</view>
     </view>
-  </view>
+  </view> -->
 </view>

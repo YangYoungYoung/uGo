@@ -1,7 +1,7 @@
 {
   "pages": [
-    "pages/payment/payment",
     "pages/login/login",
+    "pages/payment/payment",
     "pages/convas/convas",
     "pages/home/home",
     "pages/integral_search/integral_search",

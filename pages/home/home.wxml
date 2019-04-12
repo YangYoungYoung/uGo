@@ -5,7 +5,7 @@
       <!--广告banner-->
       <block wx:for="{{ swiperList }}" wx:key="item">
         <swiper-item>
-          <image class="banner-image" src="{{ item.picUrl }}" />
+          <image class="banner-image" src="{{ item.picUrl }}"/>
         </swiper-item>
       </block>
     </swiper>
