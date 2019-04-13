@@ -8,10 +8,10 @@
 
     <swiper style="height:350rpx;width:100%;background:#eee;" indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" circular="{{circular}}">
       <!--广告banner-->
-      <block wx:for="{{ banner }}" wx:key="item">
+      <block wx:for="{{ swiperList }}" wx:key="item">
         <swiper-item>
           <!-- <navigator url="/pages/good/index?id={{item.id}}"> -->
-          <image src="{{ item.iconUrl }}" class="slide-image" mode='aspectFill' />
+          <image src="{{ item.picUrl }}" class="slide-image" mode='aspectFill' />
           <!-- </navigator> -->
         </swiper-item>
       </block>

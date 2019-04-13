@@ -38,7 +38,7 @@
   <van-panel>
     <view class='balance-view'>
       <view class='balance-left'>当前余额 : {{}}</view>
-      <button class='balance-btn'>提现</button>
+      <button class='balance-btn' bindtap='toMyBalance'>提现</button>
     </view>
   </van-panel>
   <van-panel>

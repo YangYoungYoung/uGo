@@ -167,51 +167,14 @@ Page({
       }
     })
   },
-  //获取到支付金额
-  inputChange: function(e) {
-    let that = this;
-    let money = e.detail.value;
-    console.log("money is:", money);
-    that.setData({
-      money: money
-    })
-  },
- 
+  
   /**
-   * 弹窗
-   */
-  showDialogBtn: function() {
-    this.creatOrder();
-    this.setData({
-      showModal: true
-    })
-  },
-  /**
-   * 弹出框蒙层截断touchmove事件
-   */
-  preventTouchMove: function() {},
-  /**
-   * 隐藏模态对话框
-   */
-  hideModal: function() {
-    this.setData({
-      showModal: false
-    });
-  },
-  /**
-   * 对话框取消按钮点击事件
-   */
-  onCancel: function() {
-    this.hideModal();
-  },
-  /**
-   * 提现对话框确认按钮点击事件
+   * 获取到用户信息
    */
   onConfirm: function() {
     this.hideModal();
-    let that = this;
-    // let url = "http://192.168.0.146:8083/api/putForward"
-    let url = "common/weiXin/pay/createWXOrder"
+    let that = this; 
+    let url = "userInfo"
     let method = "GET"
     // let openId = wx.getStorageSync("openId");
     var money = that.data.money;
@@ -247,4 +210,11 @@ Page({
         })
       });
   },
+  //跳转到余额页面
+  toMyBalance:function(){
+    wx.navigateTo({
+      url: '../myBalance/myBalance',
+    })
+  },
+
 })

@@ -2,7 +2,7 @@
 <view class='container'>
   <image class='balance-image' src='../images/yue_icon.png'></image>
   <text class='balance-text'>￥{{balance}}</text>
-  <button class='withdraw-btn'>申请提现</button>
+  <button class='withdraw-btn' bindtap='toDrawings'>申请提现</button>
   <view class='explain-view'>
     <view class='explain-line'></view>
 

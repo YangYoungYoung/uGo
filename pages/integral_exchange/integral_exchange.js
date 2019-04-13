@@ -20,9 +20,9 @@ Page({
   getGoodsList: function() {
     let that = this;
     // let scroe = index+1;
-
+    let userId = wx.getStorageSync('userId');
     let index = that.data.index + 1;
-    let url = "goods/list?isIntegralShop=1" + "&integralLevel=0" + "&userId=32";
+    let url = "goods/list?isIntegralShop=1" + "&integralLevel=0" + "&userId="+userId;
     var params = {
 
     }

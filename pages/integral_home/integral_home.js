@@ -7,6 +7,11 @@ Page({
    * 页面的初始数据
    */
   data: {
+    indicatorDots: true, //是否出现焦点  
+    autoplay: true, //是否自动播放轮播图  
+    interval: 4000, //时间间隔
+    duration: 1000, //延时时间
+    circular: true,
     shopCategorys: [],
     goodsS: [],
     swiperList: [],
@@ -110,6 +115,11 @@ Page({
         wx.hideLoading();
         // console.log("返回值是：" + res.data);
         let shopCategorys = res.data.data.shopCategorys;
+        for (var i = 0; i < shopCategorys.length; i++) {
+          let temp = shopCategorys[i].iconUrl;
+          shopCategorys[i].iconUrl = '../images/' + temp;
+        }
+
         that.setData({
           shopCategorys: shopCategorys
         })
@@ -129,6 +139,7 @@ Page({
     // let scroe = index+1;
 
     let index = that.data.index + 1;
+    console.log('index is:', index);
     let url = "goods/list?isIntegralShop=1" + "&integralLevel=" + index;
     var params = {
 

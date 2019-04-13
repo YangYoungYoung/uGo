@@ -1,13 +1,13 @@
 {
   "pages": [
     "pages/login/login",
+    "pages/center/center",
+    "pages/myBalance/myBalance",
     "pages/payment/payment",
     "pages/convas/convas",
     "pages/home/home",
     "pages/integral_search/integral_search",
     "pages/integral_subList/integral_subList",
-    
-    "pages/center/center",
     "pages/drawings/drawings",
     "pages/authentication/authentication",
     "pages/uploadingData/uploadingData",
@@ -32,8 +32,6 @@
     "pages/toMerchant/consult/consult",
     "pages/toMerchant/toMerchant",
     "pages/authorizationStatement/authorizationStatement",
-    
-    "pages/myBalance/myBalance",
     "pages/livecart/livecart",
     "pages/integral_type/integral_type",
     "pages/map/map",

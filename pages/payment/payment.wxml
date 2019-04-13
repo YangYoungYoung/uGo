@@ -51,6 +51,6 @@
 
   </view>
 
-  <view class='payment-btn' bindtap='creatOrder'>立即支付</view>
+  <view class='payment-btn' bindtap='userPay'>立即支付</view>
 
 </view>

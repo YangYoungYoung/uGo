@@ -21,7 +21,7 @@ Page({
     })
     let index = that.data.index;
     // let url = "goods/goods?goodsId=" + goodsId;
-    let url = "goods?goodsId=1";
+    let url = "goods?goodsId=" + goodsId;
     var params = {
 
     }

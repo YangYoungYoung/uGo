@@ -120,7 +120,7 @@ Page({
     let that = this;
     let userId = wx.getStorageSync('userId');
     let amount = that.data.number;
-    let url = "common/ali/pay/encash/info?userId=32";
+    let url = "common/ali/pay/encash/info?userId=" + userId;
     var params = {}
     let method = "GET";
     wx.showLoading({

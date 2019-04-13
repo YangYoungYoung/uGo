@@ -83,6 +83,17 @@ Page({
       number: number
     })
   },
+  //用户支付
+  userPay: function() {
+    let that = this;
+    // let number = that.data.number;
+    let isChecked = that.data.isChecked;
+    if (isChecked) {
+      that.creatOrder();
+    } else {
+      that.balancePay();
+    }
+  },
   //下单支付
   creatOrder: function() {
     let that = this;
@@ -102,7 +113,7 @@ Page({
       return;
     }
 
-    let url = "common/weiXin/pay/createWXOrder?sn=" + sn + "&totalFee=" + totalFee * 100;
+    let url = "common/weiXin/pay/createWXOrder?sn=" + sn + "&totalFee=" + totalFee * 100 + "&type=1" + "&openId=" + openId;
     var params = {}
     let method = "POST";
     wx.showLoading({
@@ -116,7 +127,7 @@ Page({
           wx.requestPayment({
             'timeStamp': res.data.data.timeStamp,
             'nonceStr': res.data.data.nonceStr,
-            'package': 'prepay_id='+res.data.data.prepayId,
+            'package': 'prepay_id=' + res.data.data.prepayId,
             'signType': 'MD5',
             'paySign': res.data.data.sign,
             'success': function(res) {
@@ -138,10 +149,7 @@ Page({
             },
             'complete': function(res) {}
           })
-
-
         }
-
       }).catch((errMsg) => {
         wx.hideLoading();
         console.log(errMsg); //错误提示信息
@@ -155,14 +163,14 @@ Page({
   },
 
   //扫码支付成功回调
-  payRequest: function () {
+  payRequest: function() {
     let that = this;
     // let scroe = index+1;
     let userId = wx.getStorageSync('userId');
-    
-    let ammount  = that.data.number;
-    let shopId = that.data.shopId ;
-    
+
+    let ammount = that.data.number;
+    let shopId = that.data.shopId;
+
 
     let url = "common/pay/return?userId=" + userId + "&shopId=" + shopId + "&ammount=" + ammount;
     var params = {
@@ -170,13 +178,13 @@ Page({
     }
     let method = "POST";
     wx.showLoading({
-      title: '加载中...',
-    }),
+        title: '加载中...',
+      }),
       network.POST(url, params, method).then((res) => {
         wx.hideLoading();
-        
+
         if (res.data.code == 200) {
-          
+
         }
       }).catch((errMsg) => {
         wx.hideLoading();
@@ -188,4 +196,35 @@ Page({
         })
       });
   },
+  //余额支付
+  balancePay: function() {
+    let that = this;
+    // let scroe = index+1;
+    let userId = wx.getStorageSync('userId');
+
+    let ammount = that.data.number;
+    let url = "common/pay/balance?userId=" + userId + "&ammount=" + ammount;
+    var params = {
+
+    }
+    let method = "POST";
+    wx.showLoading({
+        title: '加载中...',
+      }),
+      network.POST(url, params, method).then((res) => {
+        wx.hideLoading();
+
+        if (res.data.code == 200) {
+          common.showTip('支付成功', 'success');
+        }
+      }).catch((errMsg) => {
+        wx.hideLoading();
+        console.log(errMsg); //错误提示信息
+        wx.showToast({
+          title: '网络错误',
+          icon: 'loading',
+          duration: 1500,
+        })
+      });
+  }
 })
