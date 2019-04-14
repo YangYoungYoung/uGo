@@ -181,7 +181,10 @@ Page({
         console.log("获取用户信息返回值是：" + res.data);
 
         if (res.data.code == 200) {
-          that.userLogin();
+          wx.redirectTo({
+            url: '../setPassword/setPassword',
+          })
+          // that.userLogin();
         } else {
           common.showTip(msg, 'loading');
         }

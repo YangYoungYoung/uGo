@@ -152,8 +152,12 @@ Page({
         wx.hideLoading();
         // console.log("返回值是：" + res.data);
         let goodsS = res.data.data.goodsS;
+        let showGoods = [];
+      for (var i = 0; i < 10;i++){
+        showGoods.push(goodsS[i]);
+      }
         that.setData({
-          goodsS: goodsS
+          goodsS: showGoods
         })
       }).catch((errMsg) => {
         wx.hideLoading();

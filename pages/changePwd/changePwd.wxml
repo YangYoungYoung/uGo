@@ -1,0 +1,13 @@
+<!--pages/changePwd/changePwd.wxml-->
+
+<view class='container'>
+  <view class='text-content'>
+    <text class='text'>您是否记得账号当前使用的支付密码</text>
+  </view>
+
+  <view class='btn-view'>
+    <button class='remember-btn' style='color:#313131' bindtap='forget'>不记得</button>
+    <button class='remember-btn' style='background-color: #e83d2c;color:#FBFBFB' bindtap='remeber'>记得</button>
+  </view>
+
+</view>

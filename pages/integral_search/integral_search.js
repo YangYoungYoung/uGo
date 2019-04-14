@@ -82,6 +82,9 @@ Page({
     wx.navigateTo({
       url: '../integral_subList/integral_subList?value=' + value,
     })
+  },
+  onHide:function(){
+    wx.setStorageSync('menuIndex', 0);
   }
 
 })

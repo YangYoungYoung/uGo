@@ -1,4 +1,6 @@
 // pages/center/center.js
+var network = require("../../utils/network.js")
+var common = require("../../utils/common.js")
 var app = getApp();
 Page({
 
@@ -6,6 +8,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    user:{},
     showModal: false,
     footerList: [{
         name: '首页',
@@ -90,7 +93,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function() {
-
+    this.onConfirm();
   },
 
   //底部导航栏切换
@@ -167,25 +170,18 @@ Page({
       }
     })
   },
-  
+
   /**
    * 获取到用户信息
    */
   onConfirm: function() {
-    this.hideModal();
-    let that = this; 
-    let url = "userInfo"
-    let method = "GET"
-    // let openId = wx.getStorageSync("openId");
-    var money = that.data.money;
 
-    console.log("价格是：" + money);
+    let that = this;
+    let openId = wx.getStorageSync("openId");
+    let url = "userInfo?openId=" + openId;
+    let method = "GET";
     var params = {
-      openId: openId,
-      money: money,
-      shopId: that.data.shopId,
-      parentId: that.data.parentId,
-      role: that.data.role
+
     }
     wx.showLoading({
         title: '加载中...',
@@ -193,13 +189,12 @@ Page({
       network.POST(url, params, method).then((res) => {
         wx.hideLoading();
         //后台交互
-        if (res.data.status == 200) {
-          common.showTip("提现申请成功", "success");
-        } else {
-          var message = res.data.message
-          common.showTip(message, "loading");
+        if (res.data.code == 200) {
+          console.log("balance is:", res.data.data.balance);
+            that.setData({
+              user: res.data.data
+            })
         }
-
       }).catch((errMsg) => {
         wx.hideLoading();
         console.log(errMsg); //错误提示信息
@@ -211,7 +206,7 @@ Page({
       });
   },
   //跳转到余额页面
-  toMyBalance:function(){
+  toMyBalance: function() {
     wx.navigateTo({
       url: '../myBalance/myBalance',
     })
