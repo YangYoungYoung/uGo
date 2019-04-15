@@ -1,0 +1,9 @@
+<!--pages/changePwd/newPayPwd/newPayPwd.wxml-->
+<view class='container'>
+  <view class='text-content'>
+    <text class='text'>输入支付密码完成身份验证</text>
+  </view>
+  <paySix style="margin-top:64rpx;" bindvalueSix="valueSix" input_value="{{inputData.input_value}}" value_length="{{inputData.value_length}}" isNext="{{inputData.isNext}}" get_focus="{{inputData.get_focus}}" focus_class="{{inputData.focus_class}}" value_num="{{inputData.value_num}}"
+    height="{{inputData.height}}" width="{{inputData.width}}" see="{{inputData.see}}" interval="{{inputData.interval}}">
+  </paySix>
+</view>

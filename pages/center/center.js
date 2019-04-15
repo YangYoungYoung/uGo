@@ -189,7 +189,10 @@ Page({
       network.POST(url, params, method).then((res) => {
         wx.hideLoading();
         //后台交互
+        
         if (res.data.code == 200) {
+          let payPwd = res.data.data.integralPayPassword;
+          wx.setStorageSync('payPwd', payPwd);
           console.log("balance is:", res.data.data.balance);
             that.setData({
               user: res.data.data

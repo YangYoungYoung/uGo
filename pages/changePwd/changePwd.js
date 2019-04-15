@@ -43,10 +43,10 @@ Page({
               confirmText: '是',
               success(res) {
                 if (res.cancel) {
-                  // 用户点击了取消属性的按钮，对应选择了'女'
+                  // 用户点击了取消属性的按钮，
                   
                 } else if (res.confirm) {
-                  // 用户点击了确定属性的按钮，对应选择了'男'
+                  // 用户点击了确定属性的按钮
                  wx.navigateTo({
                    url: '',
                  })
@@ -79,6 +79,8 @@ Page({
     })
   },
   remeber:function(){
-
+    wx.navigateTo({
+      url: 'newPayPwd/newPayPwd',
+    })
   }
 })

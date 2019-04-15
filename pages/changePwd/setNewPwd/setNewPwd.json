@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "paySix": "../../component/component"
+  },
+  "navigationBarTitleText": "修改支付密码"
+}

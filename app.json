@@ -1,6 +1,9 @@
 {
   "pages": [
     "pages/center/center",
+    "pages/changePwd/setAgainPwd/setAgainPwd",
+    "pages/changePwd/setNewPwd/setNewPwd",
+    "pages/changePwd/newPayPwd/newPayPwd",
     "pages/changePwd/changePwd",
     "pages/setPassword/setPassword",
     "pages/login/login",
