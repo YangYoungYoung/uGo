@@ -13,6 +13,6 @@
     </view>
   </van-panel>
 
-  <button class='btn' disabled='{{clickable}}' style="{{clickable?'background-color:#E83D2C;color:#FBFBFB':'background-color:#C1C1C1;color:#919191'}}" bindtap='nextStep'>下一步</button>
+  <button class='btn' disabled='{{!clickable}}' style="{{clickable?'background-color:#E83D2C;color:#FBFBFB':'background-color:#C1C1C1;color:#919191'}}" bindtap='getVerificationCode'>下一步</button>
 
 </view>

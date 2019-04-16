@@ -52,7 +52,7 @@
     <van-cell title="我的地址" is-link url="/pages/myaddress/myaddress" />
   </van-panel>
   <van-panel>
-    <van-cell title="绑定手机号" is-link url="/pages/integral_order/integral_order" />
+    <van-cell title="绑定手机号" is-link url="/pages/bindPhone/bindPhone" />
   </van-panel>
   <van-panel>
     <van-cell title="安全设置" is-link url="/pages/securitySetting/securitySetting" />

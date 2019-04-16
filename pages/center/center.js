@@ -193,6 +193,8 @@ Page({
         if (res.data.code == 200) {
           let payPwd = res.data.data.integralPayPassword;
           wx.setStorageSync('payPwd', payPwd);
+          let mobile = res.data.data.mobile;
+          wx.setStorageSync('mobile', mobile)
           console.log("balance is:", res.data.data.balance);
             that.setData({
               user: res.data.data

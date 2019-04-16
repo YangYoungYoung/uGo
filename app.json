@@ -1,12 +1,14 @@
 {
   "pages": [
+    "pages/login/login",
     "pages/center/center",
+    "pages/securitySetting/phoneSetting/verification/verification",
+    "pages/bindPhone/bindPhone",
     "pages/changePwd/setAgainPwd/setAgainPwd",
     "pages/changePwd/setNewPwd/setNewPwd",
     "pages/changePwd/newPayPwd/newPayPwd",
     "pages/changePwd/changePwd",
     "pages/setPassword/setPassword",
-    "pages/login/login",
     "pages/myBalance/myBalance",
     "pages/payment/payment",
     "pages/convas/convas",
@@ -30,7 +32,7 @@
     "pages/myaddress/myaddress",
     "pages/newAddress/newAddress",
     "pages/liveStreaming/liveStreaming",
-    "pages/securitySetting/phoneSetting/verification/verification",
+    
     "pages/securitySetting/phoneSetting/changePhone/changePhone",
     "pages/securitySetting/phoneSetting/phoneSetting",
     "pages/securitySetting/securitySetting",

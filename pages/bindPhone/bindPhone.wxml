@@ -1,0 +1,18 @@
+<!--pages/bindPhone/bindPhone.wxml-->
+<view class='container'>
+  <view class='phone-view'>
+    <text class='phone-text'>手机号:</text>
+    <input class='phone-input' type='number' placeholder="请输入手机号" bindinput='getMobile'></input>
+  </view>
+
+  <view class='verification-view'>
+    <view class='verification-left'>
+      <text class='phone-text'>验证:</text>
+      <input class='phone-input' type='number' placeholder="请输入验证码" bindinput='getCode'></input>
+
+    </view>
+    <view class='getVerificationCode' bindtap='getVerificationCode'>获取验证码</view>
+  </view>
+
+  <view class='btn' bindtap='submit'>确认</view>
+</view>

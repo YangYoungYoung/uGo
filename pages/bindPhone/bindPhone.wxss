@@ -1,0 +1,77 @@
+/* pages/bindPhone/bindPhone.wxss */
+
+.container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.phone-view {
+  margin-top: 42rpx;
+  width: 686rpx;
+  height: 88rpx;
+  background: rgba(255, 255, 255, 1);
+  border-radius: 8rpx;
+  border: 1rpx solid rgba(193, 193, 193, 1);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.phone-text {
+  width: 148rpx;
+  font-size: 36rpx;
+  color: #313131;
+  margin-left: 24rpx;
+}
+
+.verification-view {
+  margin-top: 42rpx;
+  display: flex;
+  flex-direction: row;
+  width: 686rpx;
+  height: 88rpx;
+}
+
+.verification-left {
+  width: 418rpx;
+  height: 88rpx;
+  background: rgba(255, 255, 255, 1);
+  border-radius: 8rpx;
+  border: 1rpx solid rgba(193, 193, 193, 1);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.phone-input {
+  font-size: 36rpx;
+}
+
+.getVerificationCode {
+  width: 244rpx;
+  height: 88rpx;
+  background: rgba(255, 255, 255, 1);
+  border-radius: 8rpx;
+  border: 1rpx solid rgba(193, 193, 193, 1);
+  margin-left: 24rpx;
+  text-align: center;
+  font-size: 36rpx;
+  align-items: center;
+  color: #e83d2c;
+  line-height: 88rpx;
+}
+
+.btn {
+  width: 686rpx;
+  height: 88rpx;
+  background:#E83D2C;
+  box-shadow: 1rpx 2rpx 2rpx 2rpx rgba(229, 229, 229, 1);
+  border-radius: 16rpx;
+  text-align: center;
+  line-height: 88rpx;
+  color: #FBFBFB;
+  margin-top: 56rpx;
+}
