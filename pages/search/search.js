@@ -7,8 +7,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-    foundList: ["KTV", "温泉", "酒店", "好年纪"],
-    localList: ["KTV水电费", "温泉安抚", "酒店东方闪电", "好年纪发送到", "KTV水电费", "温泉安抚", "酒店东方闪电", "好年纪发送到"],
+    // foundList: ["KTV", "温泉", "酒店", "好年纪"],
+    // localList: ["KTV水电费", "温泉安抚", "酒店东方闪电", "好年纪发送到", "KTV水电费", "温泉安抚", "酒店东方闪电", "好年纪发送到"],
     showList: false
   },
 
@@ -69,6 +69,13 @@ Page({
         })
       });
     // }
+  },
+  //跳转到商铺详情
+  toshopDetail: function (event) {
+    let id = event.currentTarget.dataset.id;
+    wx.navigateTo({
+      url: '../detail/detail?id=' + id,
+    })
   }
 
 

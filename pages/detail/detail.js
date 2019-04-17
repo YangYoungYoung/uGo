@@ -22,7 +22,7 @@ Page({
     let that = this;
     // let menu = that.data.menu;
     // let openId = wx.getStorageSync('openId');
-    let url = "dg/shop/detail?id=1";
+    let url = "dg/shop/detail?id=" + id;
     var params = {}
     let method = "GET";
     wx.showLoading({

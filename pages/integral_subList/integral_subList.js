@@ -29,9 +29,9 @@ Page({
     let name = that.data.searchText;
     let id = that.data.id;
     console.log('id is :', id);
-    if ( name.length > 0 || name != '') {
+    if (name.length > 0 || name != '') {
       var url = "goods/list?isIntegralShop=1" + "&name=" + name;
-    } else if ( id != 0) {
+    } else if (id != 0) {
       var url = "goods/list?isIntegralShop=1" + "&categoryId=" + id;
     }
 
@@ -82,6 +82,20 @@ Page({
       value: searchText
     })
   },
-
+  //跳转到商品详情
+  toDetail: function(event) {
+    let goodsId = event.currentTarget.dataset.id;
+    wx.navigateTo({
+      url: '../integral_detail/integral_detail?goodsId=' + goodsId,
+    })
+  },
+  navigateToType: function(event) {
+    let index = event.currentTarget.dataset.index;
+    wx.setStorageSync('menuIndex', index);
+    console.log('index is : ', index);
+    wx.switchTab({
+      url: '../integral_search/integral_search'
+    })
+  }
 
 })

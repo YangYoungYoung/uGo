@@ -1,16 +1,23 @@
 /* pages/convas/convas.wxss */
-.content{
+
+page {
+  background-color: #fc5c79;
+}
+
+.content {
   width: 90%;
   height: 600rpx;
   /* background-color: #666; */
   margin: 0 auto;
-  margin-top: 100rpx;
+  margin-top: 200rpx;
   position: relative;
   /* display: flex;
   align-items: center;
   justify-content: center; */
+  
 }
-.canvasI{
+
+.canvasI {
   width: 500rpx;
   height: 500rpx;
   position: absolute;
@@ -19,9 +26,10 @@
   right: 0;
   bottom: 0;
   margin: auto auto;
-  transition:all 3s ease;
+  transition: all 3s ease;
 }
-.canvasII{
+
+.canvasII {
   width: 600rpx;
   height: 600rpx;
   position: absolute;
@@ -31,7 +39,8 @@
   bottom: 0;
   margin: auto auto;
 }
-.start{
+
+.start {
   position: absolute;
   width: 100rpx;
   height: 100rpx;

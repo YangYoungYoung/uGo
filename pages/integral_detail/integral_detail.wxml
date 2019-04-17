@@ -11,9 +11,9 @@
 
         <view class='sold'>已售{{goods.sold}}件</view>
       </view>
-      <view class='checknumber'>
+      <!-- <view class='checknumber'>
         <view class='detail_oldprice'>原价 : ￥{{goods.unitPrice}}元</view>
-      </view>
+      </view> -->
 
     </view>
     <view class='line-view'></view>
@@ -58,12 +58,12 @@
     </view>
     <text class="line"></text> -->
     <view class='type-view'>
-      <text class='type-text'>颜色</text>
+      <text class='type-text'>规格</text>
       <view class='type-list'>
 
-        <view class='type-item' style="{{item.select?'border:1px solid #E83D2C; background-color:#FFF3F2;color:#E83D2C':'background-color:#E5E5E5;border:none;color:#313131'}}">
+        <!-- <view class='type-item' style="{{item.select?'border:1px solid #E83D2C; background-color:#FFF3F2;color:#E83D2C':'background-color:#E5E5E5;border:none;color:#313131'}}">
           <text class='type-item-text'>红蓝格</text>
-        </view>
+        </view> -->
       </view>
     </view>
 

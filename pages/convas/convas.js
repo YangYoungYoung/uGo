@@ -18,14 +18,14 @@ Page({
     text: ["一等奖", "二等奖", "三等奖", "四等奖", "五等奖", "六等奖"], //每个扇形中的文字填充
     isRotate: 0,
     imageAward: [
-      '../images/icon_118.png',
+      '../images/icon_28.png',
 
-      '../images/icon_288.png',
+      '../images/icon_38.png',
 
-      '../images/icon_588.png',
-      '../images/icon_888.png',
-      '../images/icon_2000.png',
-      '../images/icon_5000.png'
+      '../images/icon_58.png',
+      '../images/icon_68.png',
+      '../images/icon_88.png',
+      '../images/icon_100.png'
     ], //奖品图片数组
   },
   start() { //点击抽奖按钮, 为了达到慢速开始慢速结束的效果，在这里使用css3的过渡效果
@@ -48,34 +48,51 @@ Page({
     let temp = numberArr[rand2];
     console.log('number is : ', numberArr[rand]);
     console.log("rand is:", rand); //取一个随机的旋转角度，使获奖结果随机化。
-    if(number == 188){
+    if (number == 28) {
       // n = rand - (rand % 60) + 1440; //1440为旋转基数，最低要旋转1440度，即4圈。rand-(rand%60) 这个是让指针永远停在扇形中心的算法。n + 是为了重复点击的时候有足够的旋转角度。
       // console.log(n%360);
       that.setData({
         isRotate: 1680,
       })
-    } else if (number == 288){
+    } else if (number == 38) {
       that.setData({
         isRotate: 1620,
       })
-    } else if (number == 588 && rand2 > 10) {
+    } else if (number == 58 && rand2 > 10) {
       that.setData({
         isRotate: 1560,
       })
-    } else if (number == 888 && rand2>20) {
+    } else if (number == 68 && rand2 > 20) {
       that.setData({
         isRotate: 1500,
       })
-    } else if (number == 2000 && rand2>50) {
+    } else if (number == 88 && rand2 > 50) {
       that.setData({
         isRotate: 1440,
       })
-    } else if (number ==5000 &&temp==5000) {
+    } else if (number == 100 && temp == 5000) {
       that.setData({
         isRotate: 1740,
       })
     }
-   
+    var timeOut = setTimeout(function() {
+      // console.log("延迟调用============")
+      wx.showModal({
+        title: '恭喜！',
+        content: '恭喜您获得' + number + '积分！',
+        showCancel: false, //是否显示取消按钮
+        confirmColor: '#E83D2C', //确定文字的颜色
+        success: function(res) {
+          if (res.confirm) {
+            //点击取消,默认隐藏弹框
+            this.sineInClick();
+          }
+        },
+        fail: function(res) {}, //接口调用失败的回调函数
+        complete: function(res) {}, //接口调用结束的回调函数（调用成功、失败都会执行）
+      })
+    }, 3000)
+
   },
   // startt() {
   //   let that = this;
@@ -99,20 +116,20 @@ Page({
     let numberArr = [];
     for (var i = 0; i < 100; i++) {
       if (i < 59) {
-        numberArr.push(188);
+        numberArr.push(28);
       } else if (i < 81 && i >= 59) {
-        numberArr.push(288);
+        numberArr.push(38);
       } else if (i < 90 && i >= 81) {
-        numberArr.push(588);
+        numberArr.push(58);
       } else if (i < 96 && i >= 80) {
-        numberArr.push(888);
+        numberArr.push(68);
       } else if (i < 99 && i >= 86) {
-        numberArr.push(2000);
+        numberArr.push(88);
       } else if (i < 100 && i >= 89) {
-        numberArr.push(5000);
+        numberArr.push(100);
       }
     }
-    console.log('numberArr is:', numberArr);
+    // console.log('numberArr is:', numberArr);
     that.setData({
       numberArr: numberArr
     })
@@ -239,5 +256,41 @@ Page({
    */
   onShow: function() {
 
+  },
+  //签到按钮
+  sineInClick: function() {
+    let that = this;
+    let integral = that.data.integral;
+    let sineList = that.data.sineList;
+    let signedTimes = that.data.signedTimes;
+
+    let addedIntegral = sineList[signedTimes].number;
+    let userId = wx.getStorageSync('userId');
+
+    let url = "dg/sign/sign?userId=" + userId + "&addedIntegral=" + addedIntegral;
+    var params = {
+      // userOpenId: openId,
+      // addedIntegral: addedIntegral
+    }
+    let method = "PUT";
+    wx.showLoading({
+        title: '加载中...',
+      }),
+      network.POST(url, params, method).then((res) => {
+        wx.hideLoading();
+        if (res.data.code == 200) {
+          wx.navigateBack({
+            delta: 1
+          })
+        }
+      }).catch((errMsg) => {
+        wx.hideLoading();
+        console.log(errMsg); //错误提示信息
+        wx.showToast({
+          title: '网络错误',
+          icon: 'loading',
+          duration: 1500,
+        })
+      });
   }
 })

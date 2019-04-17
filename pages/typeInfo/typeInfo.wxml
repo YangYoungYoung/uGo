@@ -29,7 +29,7 @@
               </view>
               <text class='shop-info-distance'>{{item.distance}}m</text>
             </view>
-            <block>
+            <block wx:if="{{item.preferential.length>0}}">
               <view class='shop-info-discounts'>
                 <image class='shop-discounts-logo' src='../images/shop_discounts_logo.png'></image>
                 <text class='shop-discounts-text'>{{item.preferential}}</text>

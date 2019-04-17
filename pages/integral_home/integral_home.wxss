@@ -220,12 +220,17 @@ page {
   top: 0; */
   width: 100%;
   display: flex;
+  height: 88rpx;
+  background-color: #E83D2C;
   flex-direction: row;
   align-items: center;
+  
+  line-height: 88rpx;
   /* z-index: 999; */
 }
 
 .back-icon {
+  margin-left: 24rpx;
   width: 30rpx;
   height: 40rpx;
   /* margin-left: 24rpx; */
@@ -233,6 +238,6 @@ page {
 
 .back-text {
   font-size: 32rpx;
-  color: #313131;
+  color: #FBFBFB;
   margin-left: 10rpx;
 }

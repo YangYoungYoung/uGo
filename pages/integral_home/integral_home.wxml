@@ -2,7 +2,7 @@
 <view class="container">
   <scroll-view scroll-y style="height: 100%;" scroll-into-view="{{toView}}" scroll-top="{{scrollTop}}">
     <view class='back-view' bindtap='toHome'>
-      <image class='back-icon' src='../images/back_icon.png'></image>
+      <image class='back-icon' src='../images/fanhui1.png'></image>
       <text class='back-text'>返回</text>
     </view>
 

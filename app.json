@@ -1,5 +1,7 @@
 {
   "pages": [
+    "pages/home/home",
+    "pages/convas/convas",
     "pages/login/login",
     "pages/center/center",
     "pages/securitySetting/phoneSetting/verification/verification",
@@ -11,8 +13,8 @@
     "pages/setPassword/setPassword",
     "pages/myBalance/myBalance",
     "pages/payment/payment",
-    "pages/convas/convas",
-    "pages/home/home",
+    
+    
     "pages/integral_search/integral_search",
     "pages/integral_subList/integral_subList",
     "pages/drawings/drawings",

@@ -39,33 +39,33 @@ Page({
     ],
     sineList: [{
         name: "第1天",
-        number: 5,
+        number: 2,
         select: false
       },
       {
         name: "第2天",
-        number: 12,
+        number: 2,
         select: false
       },
       {
         name: "第3天",
-        number: 40,
+        number: 3,
         select: false
       },
       {
         name: "第4天",
-        number: 19,
+        number: 3,
         select: false
       },
       {
         name: "第5天",
-        number: 26,
+        number: 10,
         select: false
 
       },
       {
         name: "第6天",
-        number: 68,
+        number: 15,
         select: false
       },
       {
@@ -246,7 +246,7 @@ Page({
           let isSign = res.data.data.isSign;
           let sineList = that.data.sineList;
           let signedTimes = res.data.data.signedTimes;
-          let addIntegral = res.data.data.integral;
+          let addIntegral = sineList[signedTimes].number;
           let numberSigned = res.data.data.numberSigned;
           that.setData({
             numberSigned: numberSigned,
@@ -316,6 +316,7 @@ Page({
           wx.hideLoading();
           if (res.data.code == 200) {
             that.getShopList();
+            signedTimes = signedTimes+1;
             for (var i = 0; i <= signedTimes; i++) {
               if (i <= signedTimes) {
                 sineList[i].select = true;
@@ -481,7 +482,7 @@ Page({
         // console.log("返回值是：" + res.data);
         let shopCategorys = res.data.data.shopCategorys;
         for (var i = 0; i < shopCategorys.length; i++) {
-          let temp = i+1;
+          let temp = i + 1;
           shopCategorys[i].iconUrl = '../images/menu_' + temp + '.png';
         }
 

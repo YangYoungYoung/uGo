@@ -43,6 +43,7 @@
   width: 342rpx;
   height: 257rpx;
   border-radius: 24rpx;
+  margin-bottom: 21rpx;
   /* margin-right: 29rpx; */
 }
 

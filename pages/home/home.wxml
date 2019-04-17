@@ -5,7 +5,7 @@
       <!--广告banner-->
       <block wx:for="{{ swiperList }}" wx:key="item">
         <swiper-item>
-          <image class="banner-image" src="{{ item.picUrl }}"/>
+          <image class="banner-image" src="{{ item.picUrl }}" />
         </swiper-item>
       </block>
     </swiper>
@@ -42,7 +42,7 @@
         </view>
         <view class='sine-left-number'>
           <image class='sine-left-number-icon' src='../images/icon_people.png'></image>
-          <text class='sine-left-people-num'>{{numberSigned}}万人已领取</text>
+          <text class='sine-left-people-num'>{{numberSigned}}人已领取</text>
         </view>
       </view>
       <view class='sine-in-line'></view>
@@ -56,7 +56,8 @@
             <view class='sine-in-list-item'>
               <block wx:if="{{index<6}}">
                 <view class='sine-list-item-image' style="{{item.select?'background-color:#0AACFB':'background-color:#C1C1C1'}}">
-                  <text class='sine-list-image-number'>{{item.number}}\n积分</text>
+                  <text class='sine-list-image-number'>{{item.number}}</text>
+                  <text class='sine-list-image-number' style='margin-top:-7rpx;'>积分</text>
                 </view>
               </block>
               <block wx:else>
@@ -79,8 +80,8 @@
       <!-- <block wx:for="{{}}" wx:key='index'> -->
       <!-- <image class='optimization-list-item'></image> -->
       <!-- <view class='shop-live'> -->
-        <!-- <block wx:for="{{}}" wx:key='index'> -->
-        <!-- <view class='shop-live-item'>
+      <!-- <block wx:for="{{}}" wx:key='index'> -->
+      <!-- <view class='shop-live-item'>
           <view class='shop-live-item-title'>Aric美食推荐</view>
           <view class='shop-live-item-content'>
             <view class='shop-live-item-status'>●直播中</view>
@@ -91,12 +92,12 @@
             <text class='shop-live-bottom-name'> Aric</text>
           </view>
         </view> -->
-        <!-- </block> -->
+      <!-- </block> -->
       <!-- </view> -->
 
       <view class='optimizationShop-list'>
         <block wx:for="{{bannerList}}" wx:key='index'>
-        <image class='optimizationShop-item' src='{{item.picUrl}}' data-id='{{item.id}}' bindtap='bannerItem'></image>
+          <image class='optimizationShop-item' src='{{item.picUrl}}' data-id='{{item.id}}' bindtap='bannerItem'></image>
         </block>
       </view>
       <!-- </block> -->
@@ -158,11 +159,13 @@
               <view class='shop-info-title'>
                 <view class='shop-info-title-left'>
                   <text class='shop-title-left-name'>{{item.name}}</text>
-                  <view class='shop-title-left-discounts'>
-                    <text class='shop-title-left-discounts-text'>{{item.activity}}</text>
-                  </view>
+                  <!-- <block wx:if="{{item.activity!=''||item.activity!=null}}">
+                    <view class='shop-title-left-discounts'>
+                      <text class='shop-title-left-discounts-text'>{{item.activity}}</text>
+                    </view>
+                  </block> -->
                 </view>
-                <text class='shop-distance'>{{distance}}</text>
+                <text class='shop-distance'>{{item.distance}}</text>
               </view>
               <view class='shop-grade-hour'>
                 <van-rate custom-class='shop-grade' value="{{item.sort}}" size='15' readonly='true' />

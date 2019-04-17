@@ -2,7 +2,25 @@
 <view class='content'>
   <canvas canvas-id='bgCanvas' id='canvas-bg' class='canvasII'></canvas>
   <view class='canvasI' style="{{isRotate?'transform:rotate('+isRotate+'deg)':''}};">
-  <canvas canvas-id='canvasI' id="canvas-one" class='canvasI' ></canvas>
+    <canvas canvas-id='canvasI' id="canvas-one" class='canvasI'></canvas>
   </view>
   <cover-image class='start' src="../images/start.png" catchtap='start' />
 </view>
+<!--弹窗-->
+<!-- <view class="modal-mask" bindtap="hideModal" catchtouchmove="preventTouchMove" wx:if="{{showModal}}"></view>
+<view class="modal-dialog" wx:if="{{showModal}}">
+  <view class="modal-title">恭喜你！！</view>
+  <view class="modal-content">
+    <view class='content-text'>
+      您抽中了
+      <span style='color:red'>{{prize}}!</span>
+      <view>积分！</view>
+      
+    </view>
+    
+  </view>
+  <view class="modal-footer">
+    <view class="btn-cancel" bindtap="onCancel" data-status="cancel">取消</view>
+    <view class="btn-confirm" bindtap="onConfirm" data-status="confirm">确定</view>
+  </view>
+</view> -->

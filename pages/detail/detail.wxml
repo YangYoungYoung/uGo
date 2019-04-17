@@ -13,7 +13,7 @@
 
   <view class='shop-time'>
     <image class='shop-time-image' src='../images/shop_time_icon.png'></image>
-    <text class='shop-time-text'>营业时间{{shopInfo.business_hours}}</text>
+    <text class='shop-time-text'>{{shopInfo.business_hours}}</text>
   </view>
   <view class='shop-location-view'>
     <view class='shop-location-info'>
