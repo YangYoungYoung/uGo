@@ -1,8 +1,8 @@
 {
   "pages": [
+    "pages/login/login",
     "pages/home/home",
     "pages/convas/convas",
-    "pages/login/login",
     "pages/center/center",
     "pages/securitySetting/phoneSetting/verification/verification",
     "pages/bindPhone/bindPhone",

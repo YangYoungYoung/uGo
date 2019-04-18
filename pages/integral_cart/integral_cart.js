@@ -50,7 +50,7 @@ Page({
       })
     }
     this.initEleWidth();
-    this.onShow();
+    
   },
 
   /**
@@ -100,6 +100,7 @@ Page({
       if (index != "" && index != null) {
         list[parseInt(index)].left = left;
         this.setGoodsList(this.getSaveHide(), this.totalPrice(), this.allSelect(), this.noSelect(), list);
+        // that.getCartGoods();
       }
     }
   },
@@ -116,6 +117,7 @@ Page({
       if (index !== "" && index != null) {
         list[parseInt(index)].left = left;
         this.setGoodsList(this.getSaveHide(), this.totalPrice(), this.allSelect(), this.noSelect(), list);
+        // that.getCartGoods();
 
       }
     }
@@ -128,36 +130,7 @@ Page({
     let userId = wx.getStorageSync('userId');
     let deleteList = [];
 
-    deleteList.push(list[index].goodsId);
-    // deleteList.push(0);
-    console.log('goodsId is ....', list[index].goodsId);
-    console.log("deleteList is:", deleteList);
-    // let url = "shoppingCart/delete"
-    // var params = {
-
-    // }
-    // let method = "GET";
-    // wx.showLoading({
-    //   title: '加载中...',
-    // }),
-    //   network.POST(url, params, method).then((res) => {
-    //     wx.hideLoading();
-    //     console.log("返回值是：" + res.data);
-    //     let addressList = res.data.data.addressS;
-    //     that.setData({
-    //       addressList: addressList
-    //     })
-
-
-    //   }).catch((errMsg) => {
-    //     wx.hideLoading();
-    //     console.log(errMsg); //错误提示信息
-    //     wx.showToast({
-    //       title: '网络错误',
-    //       icon: 'loading',
-    //       duration: 1500,
-    //     })
-    //   });
+    deleteList.push(list[index].id);
     wx.request({
       url: 'http://132.232.142.23:8088/api/shoppingCart/delete',
 
@@ -171,8 +144,8 @@ Page({
         if (res.data.code == 200) {
           // common.showTip("提交成功", 'success');
           list.splice(index, 1);
-          this.setGoodsList(this.getSaveHide(), this.totalPrice(), this.allSelect(), this.noSelect(), list);
-
+          that.setGoodsList(that.getSaveHide(), that.totalPrice(), that.allSelect(), that.noSelect(), list);
+          // that.getCartGoods();
         }
       }
     });
@@ -193,7 +166,7 @@ Page({
 
         var params = {
           scList: [{
-            id: list[parseInt(index)].goodsId,
+            id: list[parseInt(index)].id,
             isChecked: 1
           }]
 
@@ -201,7 +174,7 @@ Page({
       } else {
         var params = {
           scList: [{
-            id: list[parseInt(index)].goodsId,
+            id: list[parseInt(index)].id,
             isChecked: 0
           }]
         }
@@ -214,6 +187,7 @@ Page({
           console.log("返回值是：" + res.data);
           if (res.data.code == 200) {
             this.setGoodsList(this.getSaveHide(), this.totalPrice(), this.allSelect(), this.noSelect(), list);
+            // that.getCartGoods();
           }
         }).catch((errMsg) => {
           wx.hideLoading();
@@ -302,7 +276,7 @@ Page({
       for (var i = 0; i < list.length; i++) {
         var curItem = list[i];
         let obj = {
-          id: curItem.goodsId,
+          id: curItem.id,
           isChecked: 1,
         };
         scList.push(obj);
@@ -319,7 +293,7 @@ Page({
         var curItem = list[i];
         curItem.active = true;
         let obj = {
-          id: curItem.goodsId,
+          id: curItem.id,
           isChecked: 0,
         };
         scList.push(obj);
@@ -328,14 +302,15 @@ Page({
         scList: scList
       }
     }
-    wx.showLoading({
-        title: '加载中...',
-      }),
+    // wx.showLoading({
+    //     title: '加载中...',
+    //   }),
       network.POST(url, params, method).then((res) => {
-        wx.hideLoading();
+        // wx.hideLoading();
         console.log("全选返回值是：" + res.data);
         if (res.data.code == 200) {
           this.setGoodsList(this.getSaveHide(), this.totalPrice(), !currentAllSelect, this.noSelect(), list);
+          // that.getCartGoods();
         }
         // let addressList = res.data.data.addressS;
         // that.setData({
@@ -368,18 +343,19 @@ Page({
         list[parseInt(index)].number++;
         var params = {
           scList: [{
-            id: list[parseInt(index)].goodsId,
+            id: list[parseInt(index)].id,
             number: list[parseInt(index)].number
           }]
         }
-        wx.showLoading({
-            title: '加载中...',
-          }),
+        // wx.showLoading({
+        //     title: '加载中...',
+        //   }),
           network.POST(url, params, method).then((res) => {
-            wx.hideLoading();
+            // wx.hideLoading();
             console.log("数量加返回值是：" + res.data);
             if (res.data.code == 200) {
-              this.setGoodsList(this.getSaveHide(), this.totalPrice(), !currentAllSelect, this.noSelect(), list);
+              this.setGoodsList(this.getSaveHide(), this.totalPrice(), this.allSelect(), this.noSelect(), list);
+              // that.getCartGoods();
             }
             // let addressList = res.data.data.addressS;
             // that.setData({
@@ -413,18 +389,19 @@ Page({
 
         var params = {
           scList: [{
-            id: list[parseInt(index)].goodsId,
+            id: list[parseInt(index)].id,
             number: list[parseInt(index)].number
           }]
         }
-        wx.showLoading({
-            title: '加载中...',
-          }),
+        // wx.showLoading({
+        //     title: '加载中...',
+        //   }),
           network.POST(url, params, method).then((res) => {
-            wx.hideLoading();
+            // wx.hideLoading();
             console.log("数量减返回值是：" + res.data);
             if (res.data.code == 200) {
-              this.setGoodsList(this.getSaveHide(), this.totalPrice(), !currentAllSelect, this.noSelect(), list);
+              this.setGoodsList(this.getSaveHide(), this.totalPrice(), this.allSelect(), this.noSelect(), list);
+              // that.getCartGoods();
             }
 
           }).catch((errMsg) => {
@@ -447,6 +424,7 @@ Page({
       curItem.active = false;
     }
     this.setGoodsList(!this.getSaveHide(), this.totalPrice(), this.allSelect(), this.noSelect(), list);
+    // that.getCartGoods();
   },
   //完成
   saveTap: function() {
@@ -456,21 +434,45 @@ Page({
       curItem.active = true;
     }
     this.setGoodsList(!this.getSaveHide(), this.totalPrice(), this.allSelect(), this.noSelect(), list);
+    // that.getCartGoods();
   },
   //完成隐藏
   getSaveHide: function() {
     var saveHidden = this.data.goodsList.saveHidden;
     return saveHidden;
   },
+
+  //删除全部
   deleteSelected: function() {
     var list = this.data.goodsList.list;
+    let deleteList = [];
+    let that = this;
     for (var i = 0; i < list.length; i++) {
       var curItem = list[i];
+      
       if (curItem.active) {
+        deleteList.push(curItem.id);
         list.splice(i--, 1);
       }
     }
-    this.setGoodsList(this.getSaveHide(), this.totalPrice(), this.allSelect(), this.noSelect(), list);
+    wx.request({
+      url: 'http://132.232.142.23:8088/api/shoppingCart/delete',
+
+      data: deleteList,
+      method: 'DELETE',
+      header: {
+        'content-type': 'application/json'
+      },
+      success: function (res) {
+        // console.log("提交返回：" + res.data);
+        if (res.data.code == 200) {
+          // common.showTip("提交成功", 'success');
+          
+          that.setGoodsList(that.getSaveHide(), that.totalPrice(), that.allSelect(), that.noSelect(), list);
+          // that.getCartGoods();
+        }
+      }
+    });  
   },
   //提交订单
   toPayOrder: function() {
@@ -505,9 +507,11 @@ Page({
     //将选择的商品ID传给服务器生成订单
     let userId = wx.getStorageSync('userId');
     let url = "shoppingCart/settleAccounts?userId=" + userId +"&isIntegralShop=1"
+    let params = {};
     wx.showLoading({
         title: '加载中...',
       }),
+     
       network.POST(url, params, 'POST', 'application/json').then((res) => {
         wx.hideLoading();
         console.log("提交订单的结果是：" + res.data.code); //正确返回结果
@@ -540,10 +544,11 @@ Page({
   getCartGoods: function() {
 
     let that = this;
-    let userId = that.data.userId;
+    // let userId = that.data.userId;
     let isIntegral = that.data.isIntegral;
+    let userId = wx.getStorageSync('userId');
 
-    let url = "shoppingCart/detail?userId=1" + "&isIntegralShop=" + isIntegral;
+    let url = "shoppingCart/detail?userId="+userId + "&isIntegralShop=" + isIntegral;
     var params = {
 
     }
@@ -557,6 +562,7 @@ Page({
         let orderItem = res.data.data.orderItem;
         that.data.goodsList.list = orderItem;
         this.setGoodsList(this.getSaveHide(), this.totalPrice(), this.allSelect(), this.noSelect(), this.data.goodsList.list);
+      // that.getCartGoods();
 
       }).catch((errMsg) => {
         wx.hideLoading();

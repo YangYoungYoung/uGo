@@ -254,7 +254,7 @@ Page({
           })
           if (isSign == 0) {
 
-            for (var i = 0; i <= signedTimes; i++) {
+            for (var i = 0; i < signedTimes; i++) {
               if (i <= signedTimes) {
                 sineList[i].select = true;
               }
@@ -316,7 +316,7 @@ Page({
           wx.hideLoading();
           if (res.data.code == 200) {
             that.getShopList();
-            signedTimes = signedTimes+1;
+            // signedTimes = signedTimes+1;
             for (var i = 0; i <= signedTimes; i++) {
               if (i <= signedTimes) {
                 sineList[i].select = true;

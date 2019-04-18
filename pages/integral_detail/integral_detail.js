@@ -34,6 +34,24 @@ Page({
         // console.log("返回值是：" + res.data);
         let goods = res.data.data.goods;
         let imagList = res.data.data.goods.listPicUrl.split(",");
+        let specificationValues = goods.specificationValues;
+      
+      let temp = specificationValues.split(";");
+      console.log("temp is :", temp);
+      let guiGe = [];
+      let obj = {};
+      let body = []
+      for(var i =0;i<temp.length;i++){
+        let str = temp[i];
+        let strArr = str.split(",");
+        obj.name = strArr[0];
+        
+        for (var j = 1; j < strArr.length;j++){
+          body.push(strArr[j]);
+          obj.body= body;
+        }
+        console.log("obj is:", obj);
+      }
 
         that.setData({
           goods: goods,
@@ -150,13 +168,15 @@ Page({
     let userId = wx.getStorageSync('userId');
     // let url = "goods/goods?goodsId=" + goodsId;
     let url = "shoppingCart/add";
-    var params = {
-      sIntegralShop: 1,
+    let orderItem = {
+      isIntegralShop: 1,
       goodsId: goodsId,
       number: number,
-      userId: 1,
-      price: price
+      userId: userId,
+      price: price,
+      goodsName: goodsName
     }
+    var params = orderItem;
     let method = "POST";
     wx.showLoading({
         title: '加载中...',
@@ -166,6 +186,7 @@ Page({
         // console.log("返回值是：" + res.data);
         if (res.data.code == 200) {
           common.showTip("添加成功", "success");
+          that.hideModal();
         }
       }).catch((errMsg) => {
         wx.hideLoading();
@@ -214,7 +235,7 @@ Page({
   buyNow: function(id) {
     let that = this;
     // let id = that.data.goodId;
-    let url = "shoppingCart/settleAccounts?userId=32" + "&orderItemId=" + id + "&isIntegralShop=1";
+    let url = "shoppingCart/settleAccounts?userId=" + userId + "&orderItemId=" + id + "&isIntegralShop=1";
     // let userId = wx.getStorageSync("userId");
 
     let params = {
@@ -258,11 +279,11 @@ Page({
     let userId = wx.getStorageSync("userId");
 
     let params = {
-      userId: 32,
+      userId: userId,
       goodName: goodName,
       goodsId: goodsId,
       price: price,
-      number: 1,
+      number: number,
       isIntegralShop: 1
     }
     let method = "POST";
