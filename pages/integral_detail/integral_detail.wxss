@@ -391,10 +391,17 @@ button {
   margin-top: 24rpx;
 }
 
+.type-big-list{
+  display: flex;
+  flex-direction: column;
+  /* align-items: center; */
+  
+}
+
 .type-list {
   display: flex;
   flex-direction: row;
-  align-items: center;
+  /* align-items: center; */
   flex-wrap: wrap;
   margin-top: 16rpx;
 }
@@ -412,6 +419,7 @@ button {
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-right: 24rpx;
 }
 .type-item-text{
   font-size: 24rpx;

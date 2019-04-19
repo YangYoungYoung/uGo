@@ -59,12 +59,23 @@
     <text class="line"></text> -->
     <view class='type-view'>
       <text class='type-text'>规格</text>
-      <view class='type-list'>
+      <view class='type-big-list'>
+        <block wx:for="{{guiGe}}" wx:key='item' wx:for-item="item">
+          <view class='type-item'  style="background-color:#E5E5E5;border:none;color:#313131;margin-top:16rpx;">
+            <text class='type-item-text'>{{item.name}}</text>
+          </view>
+          <view class='type-list'>
+            <block wx:for="{{item.body}}" wx:key='item' wx:for-item="body">
+              <view class='type-item' style="{{body.select?'border:1px solid #E83D2C; background-color:#FFF3F2;color:#E83D2C':'background-color:#E5E5E5;border:none;color:#313131'}}" bindtap='guiGeSelect' data-index='{{index}}' data-id='{{item.id}}'>
+                <text class='type-item-text'>{{body.content}}</text>
+              </view>
+            </block>
 
-        <!-- <view class='type-item' style="{{item.select?'border:1px solid #E83D2C; background-color:#FFF3F2;color:#E83D2C':'background-color:#E5E5E5;border:none;color:#313131'}}">
-          <text class='type-item-text'>红蓝格</text>
-        </view> -->
+          </view>
+        </block>
+
       </view>
+
     </view>
 
     <view class="row">

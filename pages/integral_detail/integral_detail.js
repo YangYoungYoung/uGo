@@ -7,7 +7,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-    num: 1
+    num: 1,
+    goodsSpecifitionValue: ''
   },
 
   /**
@@ -35,25 +36,48 @@ Page({
         let goods = res.data.data.goods;
         let imagList = res.data.data.goods.listPicUrl.split(",");
         let specificationValues = goods.specificationValues;
-      
-      let temp = specificationValues.split(";");
-      console.log("temp is :", temp);
-      let guiGe = [];
-      let obj = {};
-      let body = []
-      for(var i =0;i<temp.length;i++){
-        let str = temp[i];
-        let strArr = str.split(",");
-        obj.name = strArr[0];
-        
-        for (var j = 1; j < strArr.length;j++){
-          body.push(strArr[j]);
-          obj.body= body;
+
+        let temp = specificationValues.split(";");
+        console.log("temp is :", temp);
+        var guiGe = [];
+
+        var strArr = [];
+        var allList = [];
+
+
+        for (var i = 0; i < temp.length; i++) {
+          let str = temp[i];
+          strArr = str.split(",");
+          allList.push(strArr);
         }
-        console.log("obj is:", obj);
-      }
+        console.log("allList:", allList);
+
+        for (var i = 0; i < allList.length; i++) {
+          var list = allList[i];
+          var body = [];
+          var obj = {};
+          for (var j = 0; j < list.length; j++) {
+
+
+            if (j == 0) {
+              obj.name = list[j];
+            } else {
+              let item = {};
+              item.content = list[j];
+              item.select = false;
+              body.push(item);
+
+            }
+            obj.body = body;
+          }
+          obj.id = i;
+          guiGe.push(obj);
+          console.log('guiGe is: ', guiGe);
+        }
+
 
         that.setData({
+          guiGe: guiGe,
           goods: goods,
           imagList: imagList
         })
@@ -315,6 +339,28 @@ Page({
           duration: 1500,
         })
       });
-  }
+  },
 
+  guiGeSelect: function(e) {
+    let that = this;
+    let index = e.currentTarget.dataset.index;
+    let id = e.currentTarget.dataset.id;
+    console.log('index is:', index);
+    console.log('id is:', id);
+    
+
+    let guiGe = that.data.guiGe;
+    for (var i = 0; i < guiGe[id].body.length; i++) {
+      if (i == index) {
+        guiGe[id].body[i].select = true;
+        
+      } else {
+        guiGe[id].body[i].select = false;
+      }
+    }
+
+    that.setData({
+      guiGe: guiGe
+    })
+  }
 })
