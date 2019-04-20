@@ -28,20 +28,21 @@ Page({
     address: '',
     name: '',
     tel: '',
-    isIntegralShop: 1 //是否是积分商品，默认为是
-
+    isIntegralShop: 1, //是否是积分商品，默认为是
+    integralTotal: 0
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-    if (options.isIntegralShop != undefined) {
-      // let isIntegralShop = options.isIntegralShop;
-      this.setData({
-        isIntegralShop: 0
-      })
-    }
+    // if (options.isIntegralShop != undefined) {
+    //   // let isIntegralShop = options.isIntegralShop;
+    //   this.setData({
+    //     isIntegralShop: 0
+    //   })
+    // }
+    this.getAdvanceOrder();
     // let orderId = options.orderId;
     // let that = this;
     // // let scroe = index+1;
@@ -183,7 +184,9 @@ Page({
 
   //忘记密码
   forgetPwd: function() {
-
+    wx.navigateTo({
+      url: '../changePwd/changePwd',
+    })
   },
   // 当组件输入数字6位数时的自定义函数
   valueSix(e) {
@@ -201,19 +204,31 @@ Page({
   submitOrder: function() {
 
     let that = this;
+    let cartItems = that.data.cartItems;
     // let scroe = index+1;
+    let freightPrice = that.data.freightPrice;
+    let description = that.data.description;
+    let orderPrice = that.data.orderPrice;
+    let integralTotal = that.data.integralTotal;
     let userId = wx.getStorageSync('userId');
     let url = "order/add";
-    var params = {
-      order: {
-        address: that.data.address,
-        consignee: that.data.name,
-        mobile: that.data.tel,
-        userId: userId
-      },
-      isIntegralShop: 1
+    let order = {
+      address: that.data.address,
+      consignee: that.data.name,
+      mobile: that.data.tel,
+      userId: userId,
+      isIntegralShop: 1,
+      freightPrice: freightPrice,
+      goodsPrice: integralTotal,
+      orderPrice: orderPrice,
+      description: description,
+      status: 0,
 
-    }
+
+    };
+
+    var params = order
+
     let method = "POST";
     wx.showLoading({
         title: '加载中...',
@@ -221,6 +236,14 @@ Page({
       network.POST(url, params, method).then((res) => {
         wx.hideLoading();
         console.log("提交订单返回值是：" + res.data);
+        if (res.data.code == 200) {
+          let orderId = res.data.data.order.id;
+          that.setData({
+            orderId: orderId
+          })
+          that.payOrder();
+
+        }
 
       }).catch((errMsg) => {
         wx.hideLoading();
@@ -238,10 +261,10 @@ Page({
     // let scroe = index+1;
     let userId = wx.getStorageSync('userId');
     let orderId = that.data.orderId;
-    let integral = that.data.integral;
+    let integralTotal = that.data.integralTotal;
     let integralPayPasswordInpt = that.data.pwd;
 
-    let url = "order/modify?orderId=" + orderId + "&type=10" + "&isIntegralShop=1" + "&userId=" + userId + "&integralPayPasswordInpt=" + integralPayPasswordInpt + "&integral=" + integral;
+    let url = "order/modify?orderId=" + orderId + "&type=10" + "&isIntegralShop=1" + "&userId=" + userId + "&integralPayPasswordInpt=" + integralPayPasswordInpt + "&integral=" + integralTotal;
     var params = {
 
     }
@@ -254,6 +277,8 @@ Page({
         console.log("校验密码的返回值是：" + res.data);
         if (res.data.code == 200) {
           that.submitOrder();
+        }else{
+          common.showTip(res.data.msg,'loading');
         }
       }).catch((errMsg) => {
         wx.hideLoading();
@@ -353,5 +378,46 @@ Page({
         })
       });
   },
+  //获取预订单列表
+  getAdvanceOrder: function() {
+    let that = this;
+
+    let userId = wx.getStorageSync('userId');
+    let url = "shoppingCart/settleAccounts?userId=" + userId + "&isIntegralShop=1"
+    let params = {};
+    wx.showLoading({
+        title: '加载中...',
+      }),
+
+      network.POST(url, params, 'POST', 'application/json').then((res) => {
+        wx.hideLoading();
+        console.log("提交订单的结果是：" + res.data.code); //正确返回结果
+        //返回的是订单Id
+        if (res.data.code == 200) {
+          let cartItems = res.data.data.cartItems;
+          let integralTotal = res.data.data.integralTotal;
+
+          let freightPrice = res.data.data.freightPrice;
+
+          let orderPrice = parseFloat(integralTotal) + parseFloat(freightPrice);
+          console.log('integralTotal is ', integralTotal);
+          that.setData({
+            cartItems: cartItems,
+            freightPrice: freightPrice,
+            integralTotal: integralTotal,
+            orderPrice: orderPrice
+          })
+        }
+
+      }).catch((errMsg) => {
+        // wx.hideLoading();
+        // console.log(errMsg); //错误提示信息
+        wx.showToast({
+          title: '网络错误',
+          icon: 'loading',
+          duration: 1500,
+        })
+      });
+  }
 
 })

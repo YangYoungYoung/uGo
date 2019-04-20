@@ -3875,6 +3875,7 @@ Page({
     let phone = that.data.phone;
     let cityText = that.data.cityText;
     let street = that.data.street;
+    
 
     if (name == '' || name == undefined) {
       common.showTip('收货人姓名不能为空', 'loading');
@@ -3900,7 +3901,7 @@ Page({
       detailInfo: street,
       district: cityText,
       telNumber: phone,
-      userId: 1
+      userId: userId
     }
     let method = "POST";
     wx.showLoading({

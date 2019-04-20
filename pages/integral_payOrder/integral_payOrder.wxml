@@ -11,72 +11,58 @@
     </van-panel>
 
     <view class="zan-panel">
-      <!-- <block wx:for="{{detail}}" wx:key="index"> -->
-      <!-- <van-card num="{{item.number}}" price="{{item.integral}}" desc="描述信息" title="{{item.shopName}}" thumb="{{ imageURL }}" /> -->
-      <view class='shop-view'>
-        <view class='shop-info-view'>
-          <image class='shop-info-img'> </image>
-          <view class='shop-info-content'>
-            <text class='shop-content-name'>金斯利上海故事羊绒围巾</text>
-            <text class='shop-content-color'>颜色：红蓝格</text>
-            <view class='shop-price-number'>
-              <view class='shop-price'>
-                <image class='shop-price-img' src='../images/jifen_icon.png'></image>
-                <text class='shop-price-text'>90</text>
+      <block wx:for="{{cartItems}}" wx:key="index">
+        <view class='shop-view'>
+          <view class='shop-info-view'>
+            <image class='shop-info-img' src='{{item.primaryPicUrl}}'> </image>
+            <view class='shop-info-content'>
+              <text class='shop-content-name'>{{item.goodsName}}</text>
+              <!-- <text class='shop-content-color'>颜色：红蓝格</text> -->
+              <view class='shop-price-number'>
+                <view class='shop-price'>
+                  <image class='shop-price-img' src='../images/jifen_icon.png'></image>
+                  <text class='shop-price-text'>{{item.price}}</text>
+                </view>
+                <text class='shop-number'>数量X{{item.number}}</text>
               </view>
-              <text class='shop-number'>数量X1</text>
             </view>
           </view>
         </view>
-      </view>
-
-
-
-      <!-- </block> -->
+      </block>
       <van-cell-group>
         <van-field value="{{ message }}" label="留言" type="textarea" autosize border="{{ false }}" />
       </van-cell-group>
 
-      <!-- <view class="zan-cell">
-        <view class="zan-cell__bd">
-          合计
-        </view>
-        <view class="zan-cell__ft" style="color:red">
-          ￥{{totalMoney}}
-        </view>
-      </view> -->
-
-      <van-panel custom-class="total-panel">
+      <!-- <van-panel custom-class="total-panel">
         <view class='total-view'>
           <text class='total-text'>合计</text>
           <view class='total-right'>
             <image class='total-img' src='../images/jifen_icon.png'></image>
-            <text class='total-price'>90</text>
+            <text class='total-price'>{{integralTotal}</text>
           </view>
         </view>
-      </van-panel>
+      </van-panel> -->
     </view>
 
 
-    <!-- <van-cell title="运费" value-class='price-style' value=" 免运费 " /> -->
     <!--下单-->
     <view class="Bill-layer" wx:if="{{showCart&&sumNum>0}}" bindtap="hiddenLayer"></view>
     <view class="Bill">
       <view class="takeBill {{showCart?'':'bdt'}}">
         <view class="box-cart">合计：
           <image class='box-cart-img' src='../images/jifen_icon.png'></image>
-          <text class='total-price' style='font-size:28rpx;margin-left:10rpx;'>90{{totalMoney}}</text>
+          <text class='total-price' style='font-size:28rpx;margin-left:10rpx;'>{{integralTotal}}</text>
         </view>
-        <block wx:if="{{isIntegralShop}}">
-          <button class="box-right" formType="submit" bindtap='payOrder'>
+        <!-- <block wx:if="{{isIntegralShop==1}}"> -->
+          <button class="box-right" formType="submit" bindtap='submitOrder'>
             提交订单
           </button>
-        </block>
-        <block else>
+        <!-- </block> -->
+        <!-- <block else>
           <button class="box-right" formType="submit" bindtap='liveSubmitOrder'>
             提交订单
           </button>
-        </block>
+        </block> -->
 
       </view>
     </view>
@@ -89,12 +75,12 @@
     <view class='confirm-view'></view>
     <view class='change-number-view'>
       <image class='shop-price-img' src='../images/jifen_icon.png'></image>
-      <text class='change-text'>90</text>
+      <text class='change-text'>{{integralTotal}}</text>
     </view>
-    <view class='change-account-view'>
+    <!-- <view class='change-account-view'>
       <text class='account-text'>兑换账号</text>
       <text class='account-name'>1234567</text>
-    </view>
+    </view> -->
     <view class='confirm-view'></view>
 
     <view class='confirm-footer' bindtap='inputPwd'>

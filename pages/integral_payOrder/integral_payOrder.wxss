@@ -254,7 +254,7 @@ page {
   width: 280rpx;
   height: 90rpx;
   position: absolute;
-  right: 280rpx;
+  right: 380rpx;
   top: -1rpx;
   border-radius: 0;
   line-height: 90rpx;

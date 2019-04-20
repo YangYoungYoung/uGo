@@ -20,7 +20,7 @@ Page({
     }
     let that = this;
     let userId = wx.getStorageSync('userId');
-    let url = "address/list?userId=32"
+    let url = "address/list?userId=" +userId;
     var params = {}
     let method = "GET";
     wx.showLoading({

@@ -315,7 +315,7 @@ Page({
         network.POST(url, params, method).then((res) => {
           wx.hideLoading();
           if (res.data.code == 200) {
-            that.getShopList();
+            // that.getShopList();
             // signedTimes = signedTimes+1;
             for (var i = 0; i <= signedTimes; i++) {
               if (i <= signedTimes) {
@@ -500,37 +500,37 @@ Page({
       });
   },
 
-  //获取商家列表
-  // getRecommendShopList: function() {
-  //   let that = this;
-  //   let url = "dg/shop/list"
-  //   var params = {
-  //     type: 3,
-  //     district: that.data.district,
-  //     latFrom: that.data.latitude, //纬度
-  //     lngFrom: that.data.longitude //经度
-  //   }
-  //   let method = "GET";
-  //   wx.showLoading({
-  //       title: '加载中...',
-  //     }),
-  //     network.POST(url, params, method).then((res) => {
-  //       wx.hideLoading();
-  //       console.log("商铺列表返回值是：" + res.data);
-  //       let shopList = res.data.data.shops;
-  //       that.setData({
-  //         shopList: shopList
-  //       })
-  //     }).catch((errMsg) => {
-  //       wx.hideLoading();
-  //       console.log(errMsg); //错误提示信息
-  //       wx.showToast({
-  //         title: '网络错误',
-  //         icon: 'loading',
-  //         duration: 1500,
-  //       })
-  //     });
-  // },
+  // 获取商家列表
+  getRecommendShopList: function() {
+    let that = this;
+    let url = "dg/shop/list"
+    var params = {
+      type: 3,
+      district: that.data.district,
+      latFrom: that.data.latitude, //纬度
+      lngFrom: that.data.longitude //经度
+    }
+    let method = "GET";
+    wx.showLoading({
+        title: '加载中...',
+      }),
+      network.POST(url, params, method).then((res) => {
+        wx.hideLoading();
+        console.log("商铺列表返回值是：" + res.data);
+        let shopList = res.data.data.shops;
+        that.setData({
+          shopList: shopList
+        })
+      }).catch((errMsg) => {
+        wx.hideLoading();
+        console.log(errMsg); //错误提示信息
+        wx.showToast({
+          title: '网络错误',
+          icon: 'loading',
+          duration: 1500,
+        })
+      });
+  },
   //跳转到类型详情
   navigateToType: function(event) {
     let id = event.currentTarget.dataset.id;
@@ -571,6 +571,7 @@ Page({
         })
       });
   },
+
   //商家优选点击
   bannerItem: function(e) {
     let id = e.currentTarget.dataset.id;

@@ -504,28 +504,8 @@ Page({
         }
       }
     }
-    //将选择的商品ID传给服务器生成订单
-    let userId = wx.getStorageSync('userId');
-    let url = "shoppingCart/settleAccounts?userId=" + userId +"&isIntegralShop=1"
-    let params = {};
-    wx.showLoading({
-        title: '加载中...',
-      }),
-     
-      network.POST(url, params, 'POST', 'application/json').then((res) => {
-        wx.hideLoading();
-        console.log("提交订单的结果是：" + res.data.code); //正确返回结果
-        //返回的是订单Id
-       
-      }).catch((errMsg) => {
-        // wx.hideLoading();
-        // console.log(errMsg); //错误提示信息
-        wx.showToast({
-          title: '网络错误',
-          icon: 'loading',
-          duration: 1500,
-        })
-      });
+    that.navigateToPayOrder();
+   
     // wx.setStorage({
     //   key: "orderResult",
     //   data: orderResult
@@ -537,7 +517,7 @@ Page({
     // wx.removeStorageSync('cartResult')
     wx.hideLoading();
     wx.navigateTo({
-      url: "../payOrder/payOrder?orderId=" + orderId
+      url: "../integral_payOrder/integral_payOrder"
     })
   },
   //获取购物车商品列表

@@ -176,14 +176,39 @@ Page({
       minusStatus: minusStatus
     });
   },
+  //获取选择的规格
+  getGuiGe: function() {
+    let that = this;
+    let guiGe = that.data.guiGe;
+    let goodsSpecifitionValue = "";
+    for (var i = 0; i < guiGe.length; i++) {
+      var list = guiGe[i].body;
+
+      for (var j = 0; j < list.length; j++) {
+        console.log('list[j] is:', list[j]);
+        if (list[j].select) {
+          goodsSpecifitionValue += guiGe[i].name + "," + list[j].content + ";"
+        }
+      }
+    }
+
+    // that.setData({
+    //   goodsSpecifitionValue: goodsSpecifitionValue
+    // });
+    return goodsSpecifitionValue;
+  },
 
   //加入购物车
   addToCart: function() {
     let that = this;
     let goodsId = that.data.goods.id;
-    // let orderPath = that.data.orderPath;
-    // let goodName = that.data.goodName;
-    // let goodPrice = that.data.goodPrice;
+    let goodsSpecifitionValue = that.getGuiGe();
+    console.log('goodsSpecifitionValue is:', goodsSpecifitionValue);
+    if (goodsSpecifitionValue == '' || goodsSpecifitionValue==undefined){
+      common.showTip('请选择规格','loading');
+      return;
+    }
+   
     let integral = that.data.integral;
     let number = that.data.num;
     let goodsName = that.data.goods.name;
@@ -198,7 +223,8 @@ Page({
       number: number,
       userId: userId,
       price: price,
-      goodsName: goodsName
+      goodsName: goodsName,
+      goodsSpecifitionValue: goodsSpecifitionValue
     }
     var params = orderItem;
     let method = "POST";
@@ -297,7 +323,12 @@ Page({
     let goodsId = that.data.goods.id;
     let goodName = that.data.goods.name;
     let price = that.data.goods.integral;
-
+    let goodsSpecifitionValue = that.getGuiGe();
+    console.log('goodsSpecifitionValue is:', goodsSpecifitionValue);
+    if (goodsSpecifitionValue == '' || goodsSpecifitionValue == undefined) {
+      common.showTip('请选择规格', 'loading');
+      return;
+    }
     let number = that.data.num;
     let url = "shoppingCart/add";
     let userId = wx.getStorageSync("userId");
@@ -308,7 +339,8 @@ Page({
       goodsId: goodsId,
       price: price,
       number: number,
-      isIntegralShop: 1
+      isIntegralShop: 1,
+      goodsSpecifitionValue: goodsSpecifitionValue
     }
     let method = "POST";
     let contentType = 'application/json'
@@ -347,13 +379,13 @@ Page({
     let id = e.currentTarget.dataset.id;
     console.log('index is:', index);
     console.log('id is:', id);
-    
+
 
     let guiGe = that.data.guiGe;
     for (var i = 0; i < guiGe[id].body.length; i++) {
       if (i == index) {
         guiGe[id].body[i].select = true;
-        
+
       } else {
         guiGe[id].body[i].select = false;
       }
