@@ -36,12 +36,13 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-    // if (options.isIntegralShop != undefined) {
-    //   // let isIntegralShop = options.isIntegralShop;
-    //   this.setData({
-    //     isIntegralShop: 0
-    //   })
-    // }
+    if (options.orderId != undefined) {
+      // console.log('orderId');
+      let orderId = options.orderId;
+      this.setData({
+        orderId: orderId
+      })
+    }
     this.getAdvanceOrder();
     // let orderId = options.orderId;
     // let that = this;
@@ -76,17 +77,7 @@ Page({
     let that = this;
     let address = wx.getStorageSync('address');
     console.log('address is :', address);
-    // if (address !== undefined || address !== "" || address !== null) {
-
-    //   that.setData({
-    //     showAddAddr: false,
-    //     showAddr: true,
-    //     name: address.consignee,
-    //     address: address.district + address.detailInfo,
-    //     tel: address.telNumber
-    //   })
-    // }
-    if (address.length > 0) {
+    if (address != undefined) {
       that.setData({
         showAddAddr: false,
         showAddr: true,
@@ -211,7 +202,8 @@ Page({
     let orderPrice = that.data.orderPrice;
     let integralTotal = that.data.integralTotal;
     let userId = wx.getStorageSync('userId');
-    let url = "order/add";
+    let orderItemId = that.data.orderItemId;
+    let url = "order/add?isIntegralShop=1";
     let order = {
       address: that.data.address,
       consignee: that.data.name,
@@ -227,7 +219,7 @@ Page({
 
     };
 
-    var params = order
+    var params = order;
 
     let method = "POST";
     wx.showLoading({
@@ -277,8 +269,8 @@ Page({
         console.log("校验密码的返回值是：" + res.data);
         if (res.data.code == 200) {
           that.submitOrder();
-        }else{
-          common.showTip(res.data.msg,'loading');
+        } else {
+          common.showTip(res.data.msg, 'loading');
         }
       }).catch((errMsg) => {
         wx.hideLoading();
@@ -381,9 +373,14 @@ Page({
   //获取预订单列表
   getAdvanceOrder: function() {
     let that = this;
-
+    let orderId = that.data.orderId;
     let userId = wx.getStorageSync('userId');
-    let url = "shoppingCart/settleAccounts?userId=" + userId + "&isIntegralShop=1"
+    if (orderId != undefined) {
+      var url = "shoppingCart/settleAccounts?userId=" + userId + "&orderItemId=" + orderId + "&isIntegralShop=1";
+    } else {
+      var url = "shoppingCart/settleAccounts?userId=" + userId + "&isIntegralShop=1"
+    }
+
     let params = {};
     wx.showLoading({
         title: '加载中...',

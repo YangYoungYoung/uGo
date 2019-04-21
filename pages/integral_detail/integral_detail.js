@@ -204,11 +204,11 @@ Page({
     let goodsId = that.data.goods.id;
     let goodsSpecifitionValue = that.getGuiGe();
     console.log('goodsSpecifitionValue is:', goodsSpecifitionValue);
-    if (goodsSpecifitionValue == '' || goodsSpecifitionValue==undefined){
-      common.showTip('请选择规格','loading');
+    if (goodsSpecifitionValue == '' || goodsSpecifitionValue == undefined) {
+      common.showTip('请选择规格', 'loading');
       return;
     }
-   
+
     let integral = that.data.integral;
     let number = that.data.num;
     let goodsName = that.data.goods.name;
@@ -285,14 +285,11 @@ Page({
   buyNow: function(id) {
     let that = this;
     // let id = that.data.goodId;
-    let url = "shoppingCart/settleAccounts?userId=" + userId + "&orderItemId=" + id + "&isIntegralShop=1";
-    // let userId = wx.getStorageSync("userId");
+    let userId = wx.getStorageSync("userId");
 
-    let params = {
-      // userId: 32,
-      // orderItemId: id,
-      // isIntegralShop: 1
-    }
+    let url = "shoppingCart/settleAccounts?userId=" + userId + "&orderItemId=" + id + "&isIntegralShop=1";
+
+    let params = {}
     let method = "POST";
     let contentType = 'application/json'
     wx.showLoading({
@@ -306,7 +303,6 @@ Page({
             url: '../integral_payOrder/integral_payOrder?orderId=' + res.data.orderId,
           })
         }
-
       }).catch((errMsg) => {
         wx.hideLoading();
         console.log(errMsg); //错误提示信息
@@ -321,7 +317,7 @@ Page({
   getOrderItem: function() {
     let that = this;
     let goodsId = that.data.goods.id;
-    let goodName = that.data.goods.name;
+    let goodsName = that.data.goods.name;
     let price = that.data.goods.integral;
     let goodsSpecifitionValue = that.getGuiGe();
     console.log('goodsSpecifitionValue is:', goodsSpecifitionValue);
@@ -334,12 +330,12 @@ Page({
     let userId = wx.getStorageSync("userId");
 
     let params = {
-      userId: userId,
-      goodName: goodName,
-      goodsId: goodsId,
-      price: price,
-      number: number,
       isIntegralShop: 1,
+      goodsId: goodsId,
+      number: number,
+      userId: userId,
+      price: price,
+      goodsName: goodsName,
       goodsSpecifitionValue: goodsSpecifitionValue
     }
     let method = "POST";
@@ -352,16 +348,11 @@ Page({
         console.log("返回值是：" + res.data);
         if (res.data.code == 200) {
           let orderItemId = res.data.data.orderItem.id;
-          that.buyNow(orderItemId);
-
+          // that.buyNow(orderItemId);
+          wx.navigateTo({
+            url: '../integral_payOrder/integral_payOrder?orderId=' + orderItemId,
+          })
         }
-
-        // if (res.data.orderId > 0) {
-        //   wx.navigateTo({
-        //     url: '../payOrder/payOrder?orderId=' + res.data.orderId,
-        //   })
-        // }
-
       }).catch((errMsg) => {
         wx.hideLoading();
         console.log(errMsg); //错误提示信息

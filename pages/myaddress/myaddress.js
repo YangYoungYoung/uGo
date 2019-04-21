@@ -15,12 +15,23 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
+    console.log("chooseAddress", options.chooseAddress);
     if (options.chooseAddress != undefined) {
-      chooseAddress: true
+      this.setData({
+        chooseAddress: true
+      })
+
     }
+
+  },
+  onShow: function() {
+    this.getAddressList();
+  },
+  //获取地址列表
+  getAddressList: function() {
     let that = this;
     let userId = wx.getStorageSync('userId');
-    let url = "address/list?userId=" +userId;
+    let url = "address/list?userId=" + userId;
     var params = {}
     let method = "GET";
     wx.showLoading({
@@ -64,8 +75,9 @@ Page({
 
   //选择地址
   chooseAddress: function(event) {
+    let that = this;
     console.log('选择这个地址');
-    let index = evnet.currentTarget.dataset.index;
+    let index = event.currentTarget.dataset.index;
     let addressList = that.data.addressList;
     let address = addressList[index];
     wx.setStorageSync('address', address);

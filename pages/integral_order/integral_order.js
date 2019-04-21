@@ -119,7 +119,7 @@ Page({
     let currentTab = that.data.currentTab;
     let status = 0;
     if (currentTab == 0) {
-      var url = "order/list?userId=2" ;
+      var url = "order/list?userId=" + userId;
     } else if (currentTab == 1) {
       //待确认
       var url = "order/list?userId=" + userId + "&status=" + status;
@@ -144,10 +144,45 @@ Page({
       }),
       network.POST(url, params, method).then((res) => {
         wx.hideLoading();
-        console.log("列表返回值是：" + res.data);
-        let orders = res.data.data.orders;
+        // console.log("列表返回值是：" + res.data);
+        // let orders = res.data.data.orders;
+        // that.setData({
+        //   orders: orders
+        // })
+        //订单列表初始化
+
+        var allOrder = [],
+          noPayment = [], //待付款
+          bought = [], //未发货
+          used = [], //已完成
+          cancel = []; //已取消
+
+
+        switch (currentTab) {
+          case 0: //待付款
+            allOrder = res.data.data.orders;
+            break;
+          case 1: //未发货
+            noPayment = res.data.data.orders;
+            break;
+          case 2: //已发货
+            bought = res.data.data.orders;
+            break;
+          case 3: //已完成
+            used = res.data.data.orders;
+            break;
+          case 3: //已完成
+            cancel = res.data.data.orders;
+            break;
+          default: //全部状态
+        }
+        // console.log(noPayment[1].shopInfo.shopName);
         that.setData({
-          orders: orders
+          allOrder: allOrder,
+          noPayment: noPayment,
+          bought: bought,
+          used: used,
+          cancel: cancel
         })
       }).catch((errMsg) => {
         wx.hideLoading();
