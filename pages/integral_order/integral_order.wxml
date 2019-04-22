@@ -1,6 +1,7 @@
 <!--pages/integral_order/integral_order.wxml-->
 <!-- <import src="/zan_dist/loadmore/index.wxml" /> -->
 <import src="./template-order.wxml" />
+<import src="./template-orderList.wxml" />
 <view class="swiper-tab">
   <view class="swiper-tab-list {{currentTab==0 ? 'on' : ''}}" data-current="0" bindtap="swichNav">全部
     <view class="red-dot" wx:if="{{have.length != 0}}"></view>
@@ -23,11 +24,19 @@
 <swiper current="{{currentTab}}" class="swiper-box" duration="300" style="height:{{winHeight - 41}}px;background:#F9F9F9; overflow:hidden;" bindchange="bindChange" circular="true">
   <!-- 全部 -->
   <swiper-item style="overflow:scroll;">
-  <view class="container" wx:if="{{allOrder.length> 0}}">
+
+    <view class="container" wx:if="{{allOrder.length> 0}}">
       <scroll-view scroll-y="true" style="height: 100%">
-        <view class="zan-panel" wx:for="{{allOrder}}" wx:key="item">
-          <include src="../order/template-order.wxml" />
-        </view>
+        <block wx:for="{{allOrder}}" wx:key="index">
+          <block wx:if="{{item.orderItemList.length<2}}">
+            <include src="../integral_order/template-order.wxml" data="{{...item}}" />
+          </block>
+          <block wx:else>
+            <include src="../integral_order/template-orderList.wxml" data="{{...item.orderItemList}}" />
+          </block>
+        </block>
+
+
       </scroll-view>
     </view>
 
@@ -37,6 +46,7 @@
         <view class="text">暂无订单</view>
       </view>
     </view>
+
   </swiper-item>
 
   <!-- 待确认 -->
@@ -44,9 +54,15 @@
 
     <view class="container" wx:if="{{noPayment.length> 0}}">
       <scroll-view scroll-y="true" style="height: 100%">
-        <view class="zan-panel" wx:for="{{noPayment}}" wx:key="item">
-          <include src="../order/template-order.wxml" />
-        </view>
+        <block wx:for="{{noPayment}}" wx:key="index">
+          <block wx:if="{{item.orderItemList.length<2}}">
+            <include src="../integral_order/template-order.wxml" data="{{...item}}" />
+          </block>
+          <block wx:else>
+            <include src="../integral_order/template-orderList.wxml" data="{{...item.orderItemList}}" />
+          </block>
+        </block>
+
       </scroll-view>
     </view>
 
@@ -62,11 +78,17 @@
   <!--待收货-->
   <swiper-item style="overflow:scroll;">
 
-    <view class="container" wx:if="{{bought.length > 0}}">
+    <view class="container" wx:if="{{bought.length> 0}}">
       <scroll-view scroll-y="true" style="height: 100%">
-        <view class="zan-panel" wx:for="{{bought}}" wx:key="item">
-          <include src="../order/template-order.wxml" />
-        </view>
+        <block wx:for="{{bought}}" wx:key="index">
+          <block wx:if="{{item.orderItemList.length<2}}">
+            <include src="../integral_order/template-order.wxml" data="{{...item}}" />
+          </block>
+          <block wx:else>
+            <include src="../integral_order/template-orderList.wxml" data="{{...item.orderItemList}}" />
+          </block>
+        </block>
+
       </scroll-view>
     </view>
 
@@ -81,11 +103,17 @@
   <!--已完成-->
   <swiper-item style="overflow:scroll;">
 
-    <view class="container" wx:if="{{used.length > 0}}">
+    <view class="container" wx:if="{{used.length> 0}}">
       <scroll-view scroll-y="true" style="height: 100%">
-        <view class="zan-panel" wx:for="{{used}}" wx:key="item">
-          <include src="../order/template-order.wxml" />
-        </view>
+        <block wx:for="{{used}}" wx:key="index">
+          <block wx:if="{{item.orderItemList.length<2}}">
+            <include src="../integral_order/template-order.wxml" data="{{...item}}" />
+          </block>
+          <block wx:else>
+            <include src="../integral_order/template-orderList.wxml" data="{{...item.orderItemList}}" />
+          </block>
+        </block>
+
       </scroll-view>
     </view>
     <view wx:else>
@@ -99,11 +127,17 @@
   <!--已取消-->
   <swiper-item style="overflow:scroll;">
 
-    <view class="container" wx:if="{{cancel.length > 0}}">
+    <view class="container" wx:if="{{cancel.length> 0}}">
       <scroll-view scroll-y="true" style="height: 100%">
-        <view class="zan-panel" wx:for="{{cancel}}" wx:key="item">
-          <include src="../order/template-order.wxml" />
-        </view>
+        <block wx:for="{{cancel}}" wx:key="index">
+          <block wx:if="{{item.orderItemList.length<2}}">
+            <include src="../integral_order/template-order.wxml" data="{{...item}}" />
+          </block>
+          <block wx:else>
+            <include src="../integral_order/template-orderList.wxml" data="{{...item.orderItemList}}" />
+          </block>
+        </block>
+
       </scroll-view>
     </view>
     <view wx:else>

@@ -1,4 +1,4 @@
-// pages/integral_payOrder/integral_payOrder.js
+// pages/integral_orderInfo/integral_orderInfo.js
 var network = require("../../utils/network.js")
 var common = require("../../utils/common.js")
 Page({
@@ -44,31 +44,7 @@ Page({
       })
     }
     this.getAdvanceOrder();
-    // let orderId = options.orderId;
-    // let that = this;
-    // // let scroe = index+1;
-    // let url = "goods/list?orderId=1";
-    // var params = {}
-    // let method = "POST";
-    // wx.showLoading({
-    //     title: '加载中...',
-    //   }),
-    //   network.POST(url, params, method).then((res) => {
-    //     wx.hideLoading();
-    //     console.log("订单返回值是：" + res.data);
-
-    //   }).catch((errMsg) => {
-    //     wx.hideLoading();
-    //     console.log(errMsg); //错误提示信息
-    //     wx.showToast({
-    //       title: '网络错误',
-    //       icon: 'loading',
-    //       duration: 1500,
-    //     })
-    //   });
   },
-
-
 
   /**
    * 生命周期函数--监听页面显示
@@ -136,27 +112,6 @@ Page({
       showModal: false
     });
   },
-  //显示密码弹窗
-  // showPwdModal: function() {
-  //   // 显示遮罩层
-  //   var animation = wx.createAnimation({
-  //     duration: 200,
-  //     timingFunction: "linear",
-  //     delay: 0
-  //   })
-  //   this.animation = animation
-  //   animation.translateY(300).step()
-  //   this.setData({
-  //     animationData: animation.export(),
-  //     showPwdModal: true
-  //   })
-  //   setTimeout(function() {
-  //     animation.translateY(0).step()
-  //     this.setData({
-  //       animationData: animation.export()
-  //     })
-  //   }.bind(this), 200)
-  // },
 
   inputPwd: function() {
     let that = this;
@@ -285,11 +240,6 @@ Page({
     var that = this;
     var totalFee = that.data.totalPrice * 100;
     let sn = that.data.sn;
-
-    // var openId = wx.getStorageSync("openId")
-    // var order_id = "25767795778125825";
-
-    // console.log("当前的订单总价是：" + money);
     wx.request({
       url: 'http://132.232.142.23:8088/api/common/weiXin/pay/createWXOrder?sn=' + sn + "&totalFee=" + totalFee,
       data: {},
@@ -368,16 +318,14 @@ Page({
         })
       });
   },
-  //获取预订单列表
+  //获取订单详情
   getAdvanceOrder: function() {
     let that = this;
     let orderId = that.data.orderId;
     let userId = wx.getStorageSync('userId');
-    if (orderId != undefined) {
-      var url = "shoppingCart/settleAccounts?userId=" + userId + "&orderItemId=" + orderId + "&isIntegralShop=1";
-    } else {
-      var url = "shoppingCart/settleAccounts?userId=" + userId + "&isIntegralShop=1"
-    }
+
+    var url = "order/detail?orderId=" + orderId;
+
 
     let params = {};
     wx.showLoading({
@@ -389,18 +337,30 @@ Page({
         console.log("提交订单的结果是：" + res.data.code); //正确返回结果
         //返回的是订单Id
         if (res.data.code == 200) {
-          let cartItems = res.data.data.cartItems;
-          let integralTotal = res.data.data.integralTotal;
-
-          let freightPrice = res.data.data.freightPrice;
-
-          let orderPrice = parseFloat(integralTotal) + parseFloat(freightPrice);
+          let cartItems = res.data.data.order.orderItemList;
+          //价格
+          let integralTotal = res.data.data.order.goodsPrice;
+          //运费
+          let freightPrice = res.data.data.order.freightPrice;
+          //订单总价
+          let orderPrice = res.data.data.order.orderPrice;
+          //地址
+          let address = res.data.data.order.address;
+          //姓名
+          let consignee = res.data.data.order.consignee;
+          //联系电话
+          let mobile = res.data.data.order.mobile;
           console.log('integralTotal is ', integralTotal);
           that.setData({
             cartItems: cartItems,
             freightPrice: freightPrice,
             integralTotal: integralTotal,
-            orderPrice: orderPrice
+            orderPrice: orderPrice,
+            showAddAddr: false,
+            showAddr: true,
+            name: consignee,
+            address: address,
+            tel: mobile
           })
         }
 

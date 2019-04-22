@@ -1,0 +1,56 @@
+<view class='shop-view'>
+  <view class='shop-info'>
+    <block wx:for="{{item.orderItemList}}" wx:key wx:if="{{index<3}}">
+      <image class='shop-icon' style='margin-right:14rpx;' src='{{item.primaryPicUrl}}'></image>
+    </block>
+    <view class='shop-content'>
+      <view class='content-right'>
+        <block wx:if='{{item.status==0}}'>
+          <!-- <image class='content-right-statusImg' src='../images/daiduihuan_icon.png'></image> -->
+          <text class='status-text' style="color: #E83D2C;font-size: 24rpx;">待兑换</text>
+        </block>
+        <block wx:elif='{{item.status==1}}'>
+          <!-- <image class='content-right-statusImg' src='../images/daiduihuan_icon.png'></image> -->
+          <text class='status-text' style="color: #E83D2C;font-size: 24rpx;">待发货</text>
+        </block>
+        <block wx:elif='{{item.status==2}}'>
+          <image class='content-right-statusImg' src='../images/done_icon.png'></image>
+          <!-- <text class=''>待收货</text> -->
+        </block>
+        <block wx:elif='{{item.status==3}}'>
+          <image class='content-right-statusImg' src='../images/cancel_icon.png'></image>
+          <!-- <text class=''>待收货</text> -->
+        </block>
+
+      </view>
+    </view>
+  </view>
+
+  <view class="shop-bottom">
+    <view class='bottom-content'>
+      <view class="bottom-left">
+        <text class='total-text'>合计：</text>
+        <block wx:if="">
+          <text class='total-number'>￥{{item.orderPrice}}</text>
+        </block>
+        <block else>
+          <image class='integral-logo' src='../images/jifen_icon.png'></image>
+          <text class='total-number' style="margin-left:10rpx;">{{item.orderPrice}}</text>
+        </block>
+      </view>
+      <view class='bottom-right'>
+        
+        <button class='cancel-btn' wx:if="{{item.status == '0'}}" bindtap='cancelOrder' data-orderid="{{item.orderItemList[0].orderId}}">取消订单</button>
+        <button class='status-btn' wx:if="{{item.status == '0'}}" bindtap='confirmOrder' data-id='{{item.orderItemList[0].orderId}}'>确认订单</button>
+        <button class='status-btn' wx:if="{{item.status == '1'}}" data-id='{{item.orderItemList[0].orderId}}' bindtap='confirmReceipt'>确认收货</button>
+        <button class='status-btn' wx:if="{{item.status == '1'}}" data-id='{{item.orderItemList[0].orderId}}' bindtap='checkLogistics'>查看物流</button>
+
+
+        <button class='status-btn' wx:if="{{item.status == '2'}}" bindtap='confirmOrder'>再次购买</button>
+        <button class='status-btn' wx:if="{{item.status == '3'}}" bindtap='confirmOrder'>再次购买</button>
+        <!-- </block> -->
+      </view>
+    </view>
+
+  </view>
+</view>

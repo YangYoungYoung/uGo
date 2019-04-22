@@ -21,7 +21,7 @@ Page({
         currentTab: options.id
       })
     }
-    that.getorderList();
+    // that.getorderList();
 
     // 页面初始化 options为页面跳转所带来的参数
     wx.getSystemInfo({
@@ -38,7 +38,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function() {
-
+    this.getorderList();
   },
 
   swichNav: function(e) {
@@ -68,48 +68,49 @@ Page({
     that.onShow()
   },
   //确认订单
-  confirmOrder: function() {
+  confirmOrder: function(e) {
+    var orderId = e.target.dataset.orderid;
+    console.log('orderId is:', orderId);
+    wx.navigateTo({
+      url: '../integral_orderInfo/integral_orderInfo?orderId=' + orderId,
+    })
 
   },
   //取消订单
-  cancelOrder: function() {
+  cancelOrder: function(e) {
     let that = this;
-    common.showModal('你确定取消订单吗？', '提示', true, function(e) {
-      if (e.confirm) {
-        let url = "https://mall.cmdd.tech/mall/api/delOrderStatus";
-        var params = {
-          orderId: orderId,
-          shopId: shopId
+    // let scroe = index+1;
+    var orderId = e.target.dataset.orderid;
+    console.log('orderId is:', orderId);
+    if (orderId == undefined) {
+      return;
+    }
+    let url = "order/modify?orderId=" + orderId + "&type=3";
+    var params = {
+
+    }
+    let method = "PUT";
+    wx.showLoading({
+        title: '加载中...',
+      }),
+      network.POST(url, params, method).then((res) => {
+        wx.hideLoading();
+        console.log("取消订单的返回值是：" + res.data);
+        if (res.data.code == 200) {
+          // that.submitOrder();
+          that.onShow();
+        } else {
+          common.showTip(res.data.msg, 'loading');
         }
-        wx.showLoading({
-            title: '加载中...',
-          }),
-          network.POST(url, params).then((res) => {
-            wx.hideLoading();
-            console.log("取消订单的结果是：" + res.data);
-            if (res.data.status == 200) {
-              common.showTip('取消订单成功');
-              setTimeout(function() {
-                that.onShow()
-              }, 3000);
-            } else {
-              common.showTip('取消订单失败');
-              setTimeout(function() {
-                that.onShow()
-              }, 3000);
-            }
-          }).catch((errMsg) => {
-            wx.hideLoading();
-            console.log(errMsg); //错误提示信息
-            wx.showToast({
-              title: '网络错误',
-              icon: 'loading',
-              duration: 1500,
-            })
-          });
-        that.onShow()
-      }
-    });
+      }).catch((errMsg) => {
+        wx.hideLoading();
+        console.log(errMsg); //错误提示信息
+        wx.showToast({
+          title: '网络错误',
+          icon: 'loading',
+          duration: 1500,
+        })
+      });
   },
   //获取订单列表
   getorderList: function() {
@@ -120,8 +121,10 @@ Page({
     let status = 0;
     if (currentTab == 0) {
       var url = "order/list?userId=" + userId;
-    } else if (currentTab == 1) {
+    } 
+    else if (currentTab == 1) {
       //待确认
+      let status =0;
       var url = "order/list?userId=" + userId + "&status=" + status;
     } else if (currentTab == 2) {
       //待收货
@@ -161,9 +164,11 @@ Page({
         switch (currentTab) {
           case 0: //待付款
             allOrder = res.data.data.orders;
+            console.log('allOrder is:', allOrder);
             break;
           case 1: //未发货
             noPayment = res.data.data.orders;
+            console.log('noPayment is:', noPayment);
             break;
           case 2: //已发货
             bought = res.data.data.orders;
@@ -171,7 +176,7 @@ Page({
           case 3: //已完成
             used = res.data.data.orders;
             break;
-          case 3: //已完成
+          case 4: //已完成
             cancel = res.data.data.orders;
             break;
           default: //全部状态
@@ -193,6 +198,52 @@ Page({
           duration: 1500,
         })
       });
+  },
+  //确认收货
+  confirmReceipt:function(e){
+    let that = this;
+    // let scroe = index+1;
+    var orderId = e.target.dataset.orderid;
+    console.log('orderId is:', orderId);
+    if (orderId == undefined) {
+      return;
+    }
+    let url = "order/modify?orderId=" + orderId + "&type=2";
+    var params = {
+
+    }
+    let method = "PUT";
+    wx.showLoading({
+      title: '加载中...',
+    }),
+      network.POST(url, params, method).then((res) => {
+        wx.hideLoading();
+        console.log("确认收货的返回值是：" + res.data);
+        if (res.data.code == 200) {
+          // that.submitOrder();
+          that.onShow();
+        } else {
+          common.showTip(res.data.msg, 'loading');
+        }
+      }).catch((errMsg) => {
+        wx.hideLoading();
+        console.log(errMsg); //错误提示信息
+        wx.showToast({
+          title: '网络错误',
+          icon: 'loading',
+          duration: 1500,
+        })
+      });
+  },
+
+  //查看物流
+  checkLogistics:function(e){
+    let nu = e.target.dataset.nu;
+    let tel = e.target.dataset.tel;
+    wx.navigateTo({
+      url: '../logistics/logistics?nu='+nu+"&tel="+tel,
+    })
   }
+
 
 })

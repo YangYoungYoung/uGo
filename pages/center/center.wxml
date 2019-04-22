@@ -133,18 +133,18 @@
 
 
     <view class="deg">
-      <button catchtap="listenerButton" session-from="weapp">
+      <button catchtap="listenerButton"  open-type="share"session-from="weapp">
         推广新人
       </button>
       <!--弹窗-->
-      <view class="modal-mask" bindtap="hideShareModal" catchtouchmove="preventTouchMove" wx:if="{{showShare}}"></view>
+      <!-- <view class="modal-mask" bindtap="hideShareModal" catchtouchmove="preventTouchMove" wx:if="{{showShare}}"></view>
       <view class="modal-dialog" wx:if="{{showShare}}">
         <view class="modal-title">确认分享</view>
         <view class="modal-footer">
           <button class="share-cancel" bindtap="hideShareModal" data-status="cancel">取消</button>
           <button class="share-confirm" type="primary" open-type="share" data-status="confirm">确定</button>
         </view>
-      </view>
+      </view> -->
     </view>
     <view class="deg">
       <button open-type="contact" session-from="weapp">

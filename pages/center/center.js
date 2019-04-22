@@ -124,7 +124,7 @@ Page({
   },
   //跳转到订单管理
   toOrder: function(event) {
-    let index = event.currentTarget.dataset.index;
+    let index = event.currentTarget.dataset.index+1;
     console.log("index is:", index);
 
     wx.navigateTo({

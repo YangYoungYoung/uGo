@@ -1,18 +1,79 @@
 <!--pages/logistics/logistics.wxml-->
 <view class="container">
-  <view class='title' style='margin-top:12rpx;'>
-    <text class='order-title'>订单编号：</text>
-    <text class='order-info'>123456789</text>
-  </view>
-  <view class='title'>
-    <text class='order-title'>订单编号：</text>
-    <text class='order-info'>123456789</text>
-  </view>
-  <view class='title'>
-    <text class='order-title'>订单编号：</text>
-    <text class='order-info'>123456789</text>
-  </view>
-  <view class='order-line'></view>
-  <van-steps steps="{{ steps }}" active="{{ active }}" direction="vertical" active-color="#f44" />
+  <scroll-view scroll-y="true" style="height: 100%">
+    <view class='title' style='margin-top:12rpx;'>
+      <text class='order-title'>订单编号：</text>
+      <text class='order-info'>{{nu}}</text>
+    </view>
+    <view class='title'>
+      <text class='order-title'>国内承运人：</text>
+      <text class='order-info'>{{expTextName}}</text>
+    </view>
 
+    <view class='order-line'></view>
+    <!-- <van-steps steps="{{ steps }}" active="{{ active }}" direction="vertical" active-color="#f44" /> -->
+    <view class='content-view'>
+      <!-- <block wx:for="{{postDetail}}" wx:key="index">
+        <view class='list-item'>
+          <text class='item-text'>{{item.statusName}}</text>
+          <van-steps steps="{{ item.postList }}" active="{{ active }}" direction="vertical" active-color="#f44" />
+        </view>
+      </block> -->
+
+
+      <!-- 追踪 -->
+      <!-- <view class='logisit' wx:for="{{postDetail}}" wx:key="key">
+
+        <!-- 列表 -->
+      <!-- <view class='list'>
+          <!-- 判断列表中id==0并且长度大于1  已完成ICON带线 -->
+      <!-- <image class='list_img_tab1' wx:if="{{index==0&&postDetail.length>1}}" src='../images/icon_xuanze_pre.png'></image> -->
+      <!-- 判断列表中id==0并且长度小于1  已完成ICON无线 -->
+      <!-- <image class='list_img' wx:if="{{index==0&&postDetail.length==1}}" src='../images/icon_xuanze_pre.png'></image> -->
+      <!-- 判断列表中id==1  灰色ICON -->
+      <!-- <image class='list_imgs' wx:if="{{index==1}}" src='../images/huise_icon.png'></image> -->
+      <!-- 判断列表中id==2  灰色ICON -->
+      <!-- <image class='list_imgs' wx:if="{{index==2}}" src='../images/huise_icon.png'></image> -->
+      <!-- 判断列表中id==3  飞机ICON -->
+      <!-- <image class='list_img' wx:if="{{index==3}}" src='../images/feiji_icon.png'></image>
+          <view class='list_name_page'> -->
+      <!-- 列表名称 -->
+      <!-- <lable class='list_name'>{{item.statusName}}</lable>
+          </view>
+          <view class=''></view> -->
+      <!-- 时间 -->
+      <!-- <view class='list_dates_page'>{{item.dates}}</view> -->
+
+      <!-- </view> -->
+      <!-- 列表底线 -->
+      <!-- <view class='writes'></view> -->
+
+
+      <!-- </view>   -->
+
+
+      <view class="listview-container">
+        <block wx:for="{{postDetail}}" wx:key="">
+          <view class="playlog-item" bindtap="itemTapped">
+            <view class="dotline">
+              <!-- 竖线 -->
+              <view class="line"></view>
+              <!-- 圆点 -->
+              <view class="dot"></view>
+              <!-- 时间戳 -->
+            </view>
+            <view class="content">
+              <text class="course">{{item.statusName}}</text>
+              <block wx:for="{{item.postList}}" wx:key='index' wx:for-item="list">
+                <text class="chapter">{{list.context}}</text>
+                <text class="chapter">{{list.time}}</text>
+              </block>
+            </view>
+          </view>
+          <ad unit-id="adunit-5abb45645905fc90" wx:if="{{index % 5 == 4}}"></ad>
+        </block>
+      </view>
+
+    </view>
+  </scroll-view>
 </view>

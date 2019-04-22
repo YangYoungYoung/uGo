@@ -1,22 +1,22 @@
 <view class='shop-view'>
   <view class='shop-info'>
-    <image class='shop-icon' src=''></image>
+    <image class='shop-icon' src='{{item.orderItemList[0].primaryPicUrl}}'></image>
     <view class='shop-content'>
       <view class='content-left'>
-        <text class='shop-name'>金斯利水洗棉被</text>
+        <text class='shop-name'>{{item.orderItemList[0].goodsName}}</text>
         <text class='shop-number'>商品数量</text>
       </view>
       <view class='content-right'>
 
-        <image class='content-right-statusImg' src='../images/daiduihuan_icon.png'></image>
+        <!-- <image class='content-right-statusImg' src='../images/daiduihuan_icon.png'></image> -->
         <view class='content-right-right'>
           <view class='content-right-right-top'>
             <view class='content-right-price'>
               <image class='content-price-logo' src='../images/jifen_icon.png'></image>
-              <text class='content-price-text'>90</text>
+              <text class='content-price-text'>{{item.orderItemList[0].price}}</text>
             </view>
           </view>
-          <text class='content-right-number'>x2</text>
+          <text class='content-right-number'>x{{item.orderItemList[0].number}}</text>
         </view>
       </view>
     </view>
@@ -27,41 +27,32 @@
       <view class="bottom-left">
         <text class='total-text'>合计：</text>
         <block wx:if="">
-          <text class='total-number'>￥290{{}}</text>
+          <text class='total-number'>￥{{item.orderItemList[0].totalMoney}}</text>
         </block>
         <block else>
           <image class='integral-logo' src='../images/jifen_icon.png'></image>
-          <text class='total-number' style="margin-left:10rpx;">290{{}}</text>
+          <text class='total-number' style="margin-left:10rpx;">{{item.orderItemList[0].totalMoney}}</text>
         </block>
-
       </view>
-
       <view class='bottom-right'>
         <!-- <block wx:if=""> -->
-        <button class='cancel-btn' bindtap='cancelOrder'>取消订单</button>
-        <button class='status-btn' wx:if="{{item.status == '0'}}" bindtap='confirmOrder'>确认订单</button>
-
+        <!-- <button class='cancel-btn' wx:if="{{item.status == '0'}}" bindtap='cancelOrder' data-id='{{item.orderId}}'>取消订单</button>
+        <button class='status-btn' wx:if="{{item.status == '0'}}" data-id='{{item.orderId}}' bindtap='confirmOrder'>确认订单</button>
         <button class='status-btn' wx:if="{{item.status == '1'}}" bindtap='confirmOrder'>已发货</button>
-        <button class='status-btn' wx:if="{{item.status == '1'}}" bindtap='confirmOrder'>未发货</button>
-        <button class='status-btn' wx:if="{{item.status == '1'}}" bindtap='confirmOrder'>再次购买</button>
-        <!-- </block> -->
+        <button class='status-btn' wx:if="{{item.status == '2'}}" bindtap='confirmOrder'>未发货</button>
+        <button class='status-btn' wx:if="{{item.status == '3'}}" data-id='{{item.orderId}}' bindtap='confirmOrder'>再次购买</button> -->
 
+
+        <button class='cancel-btn' wx:if="{{item.status == '0'}}" bindtap='cancelOrder' data-orderid="{{item.orderItemList[0].orderId}}">取消订单</button>
+        <button class='status-btn' wx:if="{{item.status == '0'}}" bindtap='confirmOrder' data-id='{{item.orderItemList[0].orderId}}'>确认订单</button>
+        <button class='status-btn' wx:if="{{item.status == '1'}}" data-id='{{item.orderItemList[0].orderId}}' bindtap='confirmReceipt'>确认收货</button>
+        <button class='status-btn' wx:if="{{item.status == '1'}}" data-nu='{{item.nu}}' data-tel='{{item.nu}}'bindtap='checkLogistics'>查看物流</button>
+
+        <button class='status-btn' wx:if="{{item.status == '2'}}" bindtap='confirmOrder'>再次购买</button>
+        <button class='status-btn' wx:if="{{item.status == '3'}}" bindtap='confirmOrder'>再次购买</button>
+        
       </view>
     </view>
 
   </view>
 </view>
-
-<!-- <view class="zan-panel" style="padding: 5px;">
-  <view class="zan-pull-left count">合计：￥{{item.totalMoney}}</view>
-  <button class="zan-btn zan-btn--small zan-btn--danger zan-btn--plain zan-pull-right" style="margin-left:10px" wx:if="{{item.status == '0'}}" bindtap="payOrder" data-id="{{item.id}}" data-orderid="{{item.orderId}}" data-price="{{item.integral}}">确认付款</button>
-  <button class="zan-btn zan-btn--small zan-pull-right" wx:if="{{item.status == '0'}}" bindtap="cancelOrder" data-id="{{item.id}}" data-orderid="{{item.orderId}}">取消订单</button>
-
-
-  <button class="zan-btn zan-btn--small zan-btn--danger zan-btn--plain zan-pull-right" style="margin-left:10px" wx:if="{{item.status == '1'}}" data-id="{{item.id}}">未发货</button>
-
-  <button class="zan-btn zan-btn--small zan-btn--danger zan-btn--plain zan-pull-right" style="margin-left:10px" wx:if="{{item.status == '2'}}" bindtap="confirmReceipt" data-id="{{item.id}}" data-orderid="{{item.orderId}}">确定收货</button>
-  <button class="zan-btn zan-btn--small zan-pull-right" wx:if="{{item.status == '2'}}" bindtap="logistics" data-id="{{item.id}}" data-orderid="{{item.orderId}}">查看物流</button>
-
-  <view class="zan-btn zan-btn--small zan-pull-right" wx:if="{{item.status == '3'}}" data-id="{{item.id}}" data-orderid="{{item.orderId}}">已完成</view>
-</view> -->
