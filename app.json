@@ -1,6 +1,8 @@
 {
   "pages": [
     "pages/login/login",
+    "pages/moreShop/moreShop",
+    "pages/share/share",
     "pages/logistics/logistics",
     "pages/integral_orderInfo/integral_orderInfo",
     "pages/home/home",
@@ -15,8 +17,6 @@
     "pages/setPassword/setPassword",
     "pages/myBalance/myBalance",
     "pages/payment/payment",
-    
-    
     "pages/integral_search/integral_search",
     "pages/integral_subList/integral_subList",
     "pages/drawings/drawings",
@@ -27,7 +27,6 @@
     "pages/integral_payOrder/integral_payOrder",
     "pages/integral_order/integral_order",
     "pages/integral_exchange/integral_exchange",
-    
     "pages/integral_detail/integral_detail",
     "pages/integral_home/integral_home",
     "pages/typeInfo/typeInfo",
@@ -36,7 +35,6 @@
     "pages/myaddress/myaddress",
     "pages/newAddress/newAddress",
     "pages/liveStreaming/liveStreaming",
-    
     "pages/securitySetting/phoneSetting/changePhone/changePhone",
     "pages/securitySetting/phoneSetting/phoneSetting",
     "pages/securitySetting/securitySetting",

@@ -2,7 +2,9 @@
 <view class='container'>
   <scroll-view class='scroll' scroll-y="true" style="height: 100%;">
     <view class='search'>
-      <van-search value="{{ value }}" placeholder="请输入关键词搜索" bind:change="onSearch" />
+      <van-search value="{{ value }}" use-action-slot placeholder="请输入关键词搜索" bind:change="onChange" >
+        <view slot="action" bind:tap="onSearch">搜索</view>
+      </van-search>
     </view>
     <block wx:if="{{showList}}">
       <view class='shop-list'>

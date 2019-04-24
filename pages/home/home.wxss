@@ -297,11 +297,12 @@ page {
   height: 292rpx;
   display: flex;
   flex-direction: row;
-  /* flex-wrap: wrap; */
-  margin: 24rpx;
+  /* flex-wrap: wrap; *//* margin: 24rpx; */
+  margin-left: 24rpx;
   /* background-color: white; */
   text-align: center;
   align-items: center;
+  margin-top: 30rpx;
 }
 
 .optimization-list-item {
@@ -380,25 +381,28 @@ page {
   flex-direction: row;
   flex-wrap: wrap;
   align-items: center;
-  margin-left: 12rpx;
+  justify-content: space-between;
+  /* margin-left: 12rpx; */
+  margin-top: 30rpx;
 }
 
 .optimizationShop-item {
-  width: 128rpx;
-  height: 128rpx;
-  margin-right: 9rpx;
-  background-color: #232322;
+  width: 166rpx;
+  height: 166rpx;
+  /* margin-right: 11rpx; */
+  background-color: #eee;
   margin-bottom: 12rpx;
 }
 
 .near-shop {
+  margin-top: 50rpx;
   width: 100%;
   display: flex;
   flex-direction: column;
 }
 
 .near-title {
-  width: 100%;
+  /* width: 100%; */
   font-size: 32rpx;
   margin-left: 44rpx;
 }
@@ -419,11 +423,13 @@ page {
 .shop-item-image {
   width: 160rpx;
   height: 144rpx;
+  box-sizing: border-box;
+  display: block;
 }
 
 .shop-item-info {
   margin-left: 16rpx;
-  width: 100%;
+  /* width: 100%; */
 }
 
 .shop-info-title {
@@ -666,4 +672,23 @@ page {
   width: 100%;
   color: #ec5300;
   text-align: center;
+}
+
+.near-title-view {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.near-more{
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  margin-right: 24rpx;
+
+}
+
+.more-icon {
+  margin-left: 15rpx;
+  width: 24rpx;
+  height: 20rpx;
 }

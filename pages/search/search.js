@@ -25,10 +25,32 @@ Page({
   onShow: function() {
 
   },
-  //搜索店铺
-  onSearch: function(event) {
-    let name = event.detail;
+  //搜索功能
+  onSearch: function (event) {
+    // console.log('搜索功能', event.detail);
     let that = this;
+    let searchText = that.data.value;
+    console.log('搜索功能', searchText);
+    that.setData({
+      searchText: searchText
+    })
+    if (searchText != '' && searchText != null) {
+      that.onSearchShop();
+    }
+
+  },
+  onChange: function (event) {
+    let that = this;
+    let searchText = event.detail;
+    that.setData({
+      value: searchText
+    })
+  },
+  //搜索店铺
+  onSearchShop: function(event) {
+    // let name = event.detail;
+    let that = this;
+    let name = that.data.searchText;
     // if (options.id != undefined) {
     //   let id = options.id;
     //   this.setData({

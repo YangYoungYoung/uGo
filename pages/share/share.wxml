@@ -1,0 +1,2 @@
+<!--pages/share/share.wxml-->
+<web-view src="{{url}}?userId={{userId}}&phone={{phone}}" ></web-view>

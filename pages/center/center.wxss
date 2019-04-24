@@ -1,15 +1,24 @@
 /* pages/center/center.wxss */
 
 page {
+  width: 100%;
+  height: 100%;
   background: #eee;
   color: #313131;
   font-size: 24rpx;
 }
 
+/* .container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+} */
+
 .centerContainer {
   background: #f9f9f9;
   overflow: hidden;
   box-sizing: border-box;
+  margin-bottom: 120rpx;
 }
 
 .logo {
@@ -410,9 +419,6 @@ input-holder {
   margin-right: 32rpx;
 }
 
-
-
-
 /* 弹窗 */
 
 .modal-mask {
@@ -442,7 +448,6 @@ input-holder {
 
 .modal-title {
   padding-top: 30rpx;
-  
   font-size: 36rpx;
   color: #030303;
   text-align: center;
@@ -459,7 +464,6 @@ input-holder {
   border-radius: 4rpx;
   font-size: 28rpx;
 }
-
 
 .input {
   width: 100%;

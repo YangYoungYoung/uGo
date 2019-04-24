@@ -8,7 +8,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    user:{},
+    user: {},
     showModal: false,
     footerList: [{
         name: '首页',
@@ -124,7 +124,7 @@ Page({
   },
   //跳转到订单管理
   toOrder: function(event) {
-    let index = event.currentTarget.dataset.index+1;
+    let index = event.currentTarget.dataset.index + 1;
     console.log("index is:", index);
 
     wx.navigateTo({
@@ -189,16 +189,15 @@ Page({
       network.POST(url, params, method).then((res) => {
         wx.hideLoading();
         //后台交互
-        
         if (res.data.code == 200) {
           let payPwd = res.data.data.integralPayPassword;
           wx.setStorageSync('payPwd', payPwd);
           let mobile = res.data.data.mobile;
           wx.setStorageSync('mobile', mobile)
           console.log("balance is:", res.data.data.balance);
-            that.setData({
-              user: res.data.data
-            })
+          that.setData({
+            user: res.data.data
+          })
         }
       }).catch((errMsg) => {
         wx.hideLoading();
@@ -217,4 +216,31 @@ Page({
     })
   },
 
+  /**
+   * 用户点击右上角分享
+   */
+  onShareAppMessage: function() {
+    var that = this;
+    var userId = wx.getStorageSync("userId");
+    let phone = wx.getStorageSync('mobile');
+    if (phone == undefined || phone == null) {
+      phone = '';
+    }
+    return {
+      title: '优购365导购平台',
+      path: '/pages/share/share?userId=' + userId + "&phone=" + phone,
+      success(e) {
+        wx.showShareMenu({
+          // 要求小程序返回分享目标信息
+          withShareTicket: true
+        });
+      },
+      fail(e) {
+        // shareAppMessage:fail cancel
+        // shareAppMessage:fail(detail message) 
+        // console.log("用户取消了分享");
+      },
+      complete() {}
+    }
+  }
 })

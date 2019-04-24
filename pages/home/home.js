@@ -49,7 +49,7 @@ Page({
       },
       {
         name: "第3天",
-        number: 3,
+        number: 10,
         select: false
       },
       {
@@ -59,7 +59,7 @@ Page({
       },
       {
         name: "第5天",
-        number: 10,
+        number: 3,
         select: false
 
       },
@@ -94,8 +94,10 @@ Page({
   getShopList: function() {
     let that = this;
     let url = "dg/shop/list"
+    let latitude = wx.getStorageSync('latitude');
+    let longitude = wx.getStorageSync('longitude');
     var params = {
-
+      type: 3,
       district: that.data.district,
       latFrom: that.data.latitude, //纬度
       lngFrom: that.data.longitude //经度
@@ -137,7 +139,7 @@ Page({
         })
         // let location = res.latitude
         let qqMapApi = 'http://apis.map.qq.com/ws/geocoder/v1/' + "?location=" + res.latitude + ',' +
-          res.longitude + "&key=F24BZ-B5FKQ-6PC5F-GTQJO-RETFK-C7F5M" + "&get_poi=1";
+          res.longitude + "&key=34NBZ-PON6G-S5RQ3-IGP5R-RFZHZ-DYFUP" + "&get_poi=1";
         wx.request({
           url: qqMapApi,
           data: {
@@ -147,13 +149,15 @@ Page({
           success: (res) => {
             console.log(res.data);
             console.log(res.data.result.address_component.district)
+            let district = res.data.result.address_component.district;
+            wx.setStorageSync('district', district);
 
             //取位置名
             that.setData({
-              district: res.data.result.address_component.district
+              district: district
             })
             that.getShopList();
-            // that.getRecommendShopList();
+            that.getRecommendShopList();
           }
         });
 
@@ -172,12 +176,19 @@ Page({
   onShow: function() {
     let that = this;
     let district = that.data.district;
-    console.log("district is :", district);
+    console.log('district is:', district);
+    wx.setStorageSync('district', district.length);
+    if ( district.length!=0) {
+      that.getShopList();
+    }
     that.getLiveRoomList();
     that.getSwiperList();
     that.getShopCategory();
-    that.getBanner();
+    // that.getBanner();
     that.getSignInfo();
+
+    // that.getRecommendShopList();
+
     // that.setData();
   },
   //跳转到不同分类
@@ -500,15 +511,15 @@ Page({
       });
   },
 
-  // 获取商家列表
+  // 获取优选商家列表
   getRecommendShopList: function() {
     let that = this;
     let url = "dg/shop/list"
     var params = {
-      type: 3,
+      type: 1,
       district: that.data.district,
-      latFrom: that.data.latitude, //纬度
-      lngFrom: that.data.longitude //经度
+      // latFrom: that.data.latitude, //纬度
+      // lngFrom: that.data.longitude //经度
     }
     let method = "GET";
     wx.showLoading({
@@ -519,7 +530,7 @@ Page({
         console.log("商铺列表返回值是：" + res.data);
         let shopList = res.data.data.shops;
         that.setData({
-          shopList: shopList
+          bannerList: shopList
         })
       }).catch((errMsg) => {
         wx.hideLoading();
@@ -578,6 +589,12 @@ Page({
     console.log('banner id is :', id);
     wx.navigateTo({
       url: '../detail/detail?id=' + id,
+    })
+  },
+  //查看更多附近商家
+  moreShop: function() {
+    wx.navigateTo({
+      url: '../moreShop/moreShop',
     })
   }
 
