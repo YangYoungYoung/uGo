@@ -132,7 +132,7 @@ Page({
 
     deleteList.push(list[index].id);
     wx.request({
-      url: 'http://132.232.142.23:8088/api/shoppingCart/delete',
+      url: 'https://mall.cmdd.tech/api/shoppingCart/delete',
 
       data: deleteList,
       method: 'DELETE',
@@ -456,7 +456,7 @@ Page({
       }
     }
     wx.request({
-      url: 'http://132.232.142.23:8088/api/shoppingCart/delete',
+      url: 'https://mall.cmdd.tech/api/shoppingCart/delete',
 
       data: deleteList,
       method: 'DELETE',

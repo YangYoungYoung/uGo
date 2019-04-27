@@ -1,5 +1,6 @@
 {
   "pages": [
+    "pages/center/center",
     "pages/login/login",
     "pages/moreShop/moreShop",
     "pages/share/share",
@@ -7,7 +8,6 @@
     "pages/integral_orderInfo/integral_orderInfo",
     "pages/home/home",
     "pages/convas/convas",
-    "pages/center/center",
     "pages/securitySetting/phoneSetting/verification/verification",
     "pages/bindPhone/bindPhone",
     "pages/changePwd/setAgainPwd/setAgainPwd",

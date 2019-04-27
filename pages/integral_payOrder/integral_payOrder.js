@@ -77,7 +77,7 @@ Page({
     let that = this;
     let address = wx.getStorageSync('address');
     console.log('address is :', address);
-    if (address != undefined) {
+    if (address != undefined && address != '') {
       that.setData({
         showAddAddr: false,
         showAddr: true,
@@ -285,28 +285,29 @@ Page({
     var that = this;
     var totalFee = that.data.totalPrice * 100;
     let sn = that.data.sn;
+    let orderId = that.data.orderId;
+    var openId = wx.getStorageSync("openId");
 
-    // var openId = wx.getStorageSync("openId")
     // var order_id = "25767795778125825";
 
     // console.log("当前的订单总价是：" + money);
     wx.request({
-      url: 'http://132.232.142.23:8088/api/common/weiXin/pay/createWXOrder?sn=' + sn + "&totalFee=" + totalFee,
+      url: 'https://mall.cmdd.tech/api/common/getRepayId?outTradeNo=' + sn + "&money=" + totalFee + "&openId=" + openId + "&orderId=" + orderId,
       data: {},
       header: { //请求头
         "Content-Type": "applciation/json"
       },
-      method: "POST", //get为默认方法/POST
+      method: "GET", //get为默认方法/POST
 
       success: function(res) {
         wx.hideLoading();
         if (res.data.code == 200) {
           wx.requestPayment({
-            'timeStamp': res.data.data.timeStamp,
-            'nonceStr': res.data.data.nonceStr,
-            'package': 'prepay_id=' + res.data.data.prepayId,
+            'timeStamp': res.data.timeStamp,
+            'nonceStr': res.data.nonceStr,
+            'package': res.data.package,
             'signType': 'MD5',
-            'paySign': res.data.data.sign,
+            'paySign': res.data.paySign,
             'success': function(res) {
               // console.log("调起支付成功")
               wx.hideLoading();

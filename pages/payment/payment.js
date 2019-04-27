@@ -113,23 +113,23 @@ Page({
       return;
     }
 
-    let url = "common/weiXin/pay/createWXOrder?sn=" + sn + "&totalFee=" + totalFee * 100 + "&type=1" + "&openId=" + openId;
+    let url = "common/getRepayId?outTradeNo=" + sn + "&money=" + totalFee * 100 + "&openId=" + openId;
     var params = {}
-    let method = "POST";
+    let method = "GET";
     wx.showLoading({
         title: '加载中...',
       }),
       network.POST(url, params, method).then((res) => {
         wx.hideLoading();
-        console.log("获取用户信息返回值是：" + res.data);
+        console.log("获取用户信息返回值是：" + res.data.timeStamp);
 
-        if (res.data.code == 200) {
+        if (res.statusCode == 200) {
           wx.requestPayment({
-            'timeStamp': res.data.data.timeStamp,
-            'nonceStr': res.data.data.nonceStr,
-            'package': 'prepay_id=' + res.data.data.prepayId,
+            'timeStamp': res.data.timeStamp,
+            'nonceStr': res.data.nonceStr,
+            'package': res.data.package,
             'signType': 'MD5',
-            'paySign': res.data.data.sign,
+            'paySign': res.data.paySign,
             'success': function(res) {
               // console.log("调起支付成功")
               wx.hideLoading();

@@ -87,7 +87,7 @@ Page({
         title: '加载中...',
       }),
       wx.request({
-        url: "http://132.232.142.23:8088/api/common/weiXIn/openId?code=" + app.globalData.code,
+      url: "https://mall.cmdd.tech/api/common/weiXIn/openId?code=" + app.globalData.code,
         data: {
           // code: app.globalData.code
         },
