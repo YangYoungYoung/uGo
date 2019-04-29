@@ -138,7 +138,7 @@ Page({
           longitude: res.longitude
         })
         // let location = res.latitude
-        let qqMapApi = 'http://apis.map.qq.com/ws/geocoder/v1/' + "?location=" + res.latitude + ',' +
+        let qqMapApi = 'https://apis.map.qq.com/ws/geocoder/v1/' + "?location=" + res.latitude + ',' +
           res.longitude + "&key=34NBZ-PON6G-S5RQ3-IGP5R-RFZHZ-DYFUP" + "&get_poi=1";
         wx.request({
           url: qqMapApi,

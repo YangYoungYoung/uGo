@@ -11,7 +11,7 @@
       <block wx:for="{{ swiperList }}" wx:key="item">
         <swiper-item>
           <!-- <navigator url="/pages/good/index?id={{item.id}}"> -->
-          <image src="{{ item.picUrl }}" class="slide-image" mode='aspectFill' />
+          <image src="{{ item.picUrl }}" class="slide-image"  />
           <!-- </navigator> -->
         </swiper-item>
       </block>
