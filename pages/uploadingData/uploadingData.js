@@ -49,7 +49,7 @@ Page({
       success: function(res) {
         // 返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片
         let imageReversePath = res.tempFilePaths;
-        console.log(imageReversePath);
+        // console.log(imageReversePath);
         that.setData({
           imageReversePath: imageReversePath
         })
@@ -69,7 +69,7 @@ Page({
         that.setData({
           imageFrontPath: imageFrontPath
         })
-        console.log(imageFrontPath);
+        // console.log(imageFrontPath);
       }
     })
   },
@@ -80,20 +80,20 @@ Page({
     that.setData({
       name: name
     })
-    console.log(name);
+    // console.log(name);
   },
   //获取手机号
   phoneInput: function() {
     let that = this;
     let phone = e.detail.value;
-    console.log(phone);
+    // console.log(phone);
     that.setData({
       phone: phone
     })
   },
   //单选按钮切换
   radioChange: function (e) {
-    console.log('radio发生change事件，携带value值为：', e.detail.value)
+    // console.log('radio发生change事件，携带value值为：', e.detail.value)
     let value = e.detail.value;
     this.setData({
       seleted: "选中的value：" + value

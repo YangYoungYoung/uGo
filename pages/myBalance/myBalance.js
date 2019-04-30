@@ -30,7 +30,7 @@ Page({
       }),
       network.POST(url, params, method).then((res) => {
         wx.hideLoading();
-        console.log("提现返回值是：" + res.data);
+        // console.log("提现返回值是：" + res.data);
         let balance = res.data.data.balance;
         
         that.setData({

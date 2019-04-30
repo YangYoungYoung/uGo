@@ -28,7 +28,7 @@ Page({
 
   chooseCheck: function() {
     let isChecked = !this.data.isChecked;
-    console.log('isChecked is :', isChecked)
+    // console.log('isChecked is :', isChecked)
     this.setData({
       isChecked: isChecked
     })
@@ -46,7 +46,7 @@ Page({
       }),
       network.POST(url, params, method).then((res) => {
         wx.hideLoading();
-        console.log("获取用户信息返回值是：" + res.data);
+        // console.log("获取用户信息返回值是：" + res.data);
 
         if (res.data.code == 200) {
           let balance = res.data.data.balance;
@@ -61,7 +61,7 @@ Page({
 
       }).catch((errMsg) => {
         wx.hideLoading();
-        console.log(errMsg); //错误提示信息
+        // console.log(errMsg); //错误提示信息
         wx.showToast({
           title: '网络错误',
           icon: 'loading',
@@ -106,7 +106,7 @@ Page({
     let openId = wx.getStorageSync('openId');
     let id = openId.substring(18);
     let sn = 'ugo365' + shopId + userId + '-' + id + timestamp;
-    console.log('sn is :', sn);
+    // console.log('sn is :', sn);
     let totalFee = that.data.number;
     if (totalFee == 0 || totalFee == '') {
       common.showTip('请输入金额', 'loading');
@@ -121,7 +121,7 @@ Page({
       }),
       network.POST(url, params, method).then((res) => {
         wx.hideLoading();
-        console.log("获取用户信息返回值是：" + res.data.timeStamp);
+        // console.log("获取用户信息返回值是：" + res.data.timeStamp);
 
         if (res.statusCode == 200) {
           wx.requestPayment({
@@ -141,7 +141,7 @@ Page({
               that.payRequest();
             },
             'fail': function(res) {
-              console.log("调起支付失败" + res.err_desc)
+              // console.log("调起支付失败" + res.err_desc)
               wx.showToast({
                 title: "支付失败",
                 duration: 1500
@@ -152,7 +152,7 @@ Page({
         }
       }).catch((errMsg) => {
         wx.hideLoading();
-        console.log(errMsg); //错误提示信息
+        // console.log(errMsg); //错误提示信息
         wx.showToast({
           title: '网络错误',
           icon: 'loading',

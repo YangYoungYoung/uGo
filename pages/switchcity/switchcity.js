@@ -106,7 +106,7 @@ Page({
 
     appInstance.globalData.defaultCity = this.data.city
     appInstance.globalData.defaultCounty = ''
-    console.log(appInstance.globalData.defaultCity)
+    // console.log(appInstance.globalData.defaultCity)
   },
   //选择区县
   chooseCounty: function(e) {
@@ -153,7 +153,7 @@ Page({
     // console.log(e.detail)
   },
   getCountyList: function() {
-    console.log("正在获取区县");
+    // console.log("正在获取区县");
     const code = this.data.currentCityCode
 
     wx.request({
@@ -161,18 +161,18 @@ Page({
       success: res => {
         const resultArray = safeGet(['data', 'result'], res)
         const countyList = isNotEmpty(resultArray) ? resultArray[0] : []
-        console.log(countyList)
+        // console.log(countyList)
         this.setData({
           countyList
         })
       },
       fail: () => {
-        console.error("请求区县失败，请重试")
+        // console.error("请求区县失败，请重试")
       }
     })
   },
   getLocation: function() {
-    console.log("正在定位城市");
+    // console.log("正在定位城市");
     this.setData({
       county: ''
     })
@@ -197,14 +197,14 @@ Page({
               currentCityCode: adcode,
               county: district
             })
-            console.log(city)
+            // console.log(city)
             appInstance.globalData.defaultCity = city
             // this.getCountyList();
           }
         })
       },
       fail: () => {
-        console.error("定位失败，请重试")
+        // console.error("定位失败，请重试")
       }
     })
   },
@@ -215,7 +215,7 @@ Page({
     } = this.data
     appInstance.globalData.defaultCity = city
     appInstance.globalData.defaultCounty = county
-    console.log(appInstance.globalData.defaultCity);
+    // console.log(appInstance.globalData.defaultCity);
     //返回首页
     wx.switchTab({
       url: getIndexUrl()

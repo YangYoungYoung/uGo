@@ -29,7 +29,7 @@ Page({
     ], //奖品图片数组
   },
   start() { //点击抽奖按钮, 为了达到慢速开始慢速结束的效果，在这里使用css3的过渡效果
-    console.log("start");
+    // console.log("start");
     // 五等奖:0
     // 六等奖:300
     // 一等奖:240
@@ -46,8 +46,8 @@ Page({
     let number = numberArr[rand];
     let rand2 = Math.floor(Math.random() * 100);
     let temp = numberArr[rand2];
-    console.log('number is : ', numberArr[rand]);
-    console.log("rand is:", rand); //取一个随机的旋转角度，使获奖结果随机化。
+    // console.log('number is : ', numberArr[rand]);
+    // console.log("rand is:", rand); //取一个随机的旋转角度，使获奖结果随机化。
     if (number == 28) {
       // n = rand - (rand % 60) + 1440; //1440为旋转基数，最低要旋转1440度，即4圈。rand-(rand%60) 这个是让指针永远停在扇形中心的算法。n + 是为了重复点击的时候有足够的旋转角度。
       // console.log(n%360);
@@ -140,7 +140,7 @@ Page({
       wx.createSelectorQuery().select('#canvas-one').boundingClientRect(function(rect) {
         w1 = parseInt(rect.width / 2);
         h1 = parseInt(rect.height / 2);
-        console.log("w1,h1", w1, h1)
+        // console.log("w1,h1", w1, h1)
         that.Items(itemsArc); //每一份扇形的内部绘制。
       }).exec()
       mytime = setInterval(that.light, 1000); //启动跑马灯定时器。
@@ -156,7 +156,7 @@ Page({
     wx.createSelectorQuery().select('#canvas-bg').boundingClientRect(function(rect) { //监听canvas的宽高
       w2 = parseInt(rect.width / 2); //获取canvas宽度的一半；
       h2 = parseInt(rect.height / 2); //获取canvas高度的一半
-      console.log(w2, h2); //获取canvas宽高一半的原因是为了便于找到中心点
+      // console.log(w2, h2); //获取canvas宽高一半的原因是为了便于找到中心点
       that.light();
     }).exec()
   },
@@ -205,7 +205,7 @@ Page({
   },
 
   Items(e) {
-    console.log("items,w1,h1", w1, h1)
+    // console.log("items,w1,h1", w1, h1)
     let that = this;
     let itemsArc = e; //每一份扇形的角度
     let Num = that.data.itemsNum; //等分数量
@@ -285,7 +285,7 @@ Page({
         }
       }).catch((errMsg) => {
         wx.hideLoading();
-        console.log(errMsg); //错误提示信息
+        // console.log(errMsg); //错误提示信息
         wx.showToast({
           title: '网络错误',
           icon: 'loading',

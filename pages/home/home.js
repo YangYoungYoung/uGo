@@ -108,14 +108,14 @@ Page({
       }),
       network.POST(url, params, method).then((res) => {
         wx.hideLoading();
-        console.log("商铺列表返回值是：" + res.data);
+        // console.log("商铺列表返回值是：" + res.data);
         let shopList = res.data.data.shops;
         that.setData({
           shopList: shopList
         })
       }).catch((errMsg) => {
         wx.hideLoading();
-        console.log(errMsg); //错误提示信息
+        // console.log(errMsg); //错误提示信息
         wx.showToast({
           title: '网络错误',
           icon: 'loading',
@@ -147,8 +147,8 @@ Page({
           },
           method: 'GET',
           success: (res) => {
-            console.log(res.data);
-            console.log(res.data.result.address_component.district)
+            // console.log(res.data);
+            // console.log(res.data.result.address_component.district)
             let district = res.data.result.address_component.district;
             wx.setStorageSync('district', district);
 
@@ -176,8 +176,8 @@ Page({
   onShow: function() {
     let that = this;
     let district = that.data.district;
-    console.log('district is:', district);
-    wx.setStorageSync('district', district.length);
+    // console.log('district is:', district);
+    wx.setStorageSync('district', district);
     if ( district.length!=0) {
       that.getShopList();
     }
@@ -199,7 +199,7 @@ Page({
   //底部导航栏切换
   footerChange: function(event) {
     let footeIndex = event.currentTarget.dataset.index;
-    console.log('footeIndex is', footeIndex);
+    // console.log('footeIndex is', footeIndex);
     let that = this;
     let footerList = that.data.footerList;
     if (footeIndex == 2) {
@@ -225,7 +225,7 @@ Page({
   //商家电话
   callPhone: function(event) {
     let telephone = event.currentTarget.dataset.telephone;
-    console.log('phone is:', telephone);
+    // console.log('phone is:', telephone);
     wx.makePhoneCall({
       phoneNumber: telephone // 仅为示例，并非真实的电话号码
     })
@@ -292,7 +292,7 @@ Page({
 
       }).catch((errMsg) => {
         wx.hideLoading();
-        console.log(errMsg); //错误提示信息
+        // console.log(errMsg); //错误提示信息
         wx.showToast({
           title: '网络错误',
           icon: 'loading',
@@ -346,7 +346,7 @@ Page({
           }
         }).catch((errMsg) => {
           wx.hideLoading();
-          console.log(errMsg); //错误提示信息
+          // console.log(errMsg); //错误提示信息
           wx.showToast({
             title: '网络错误',
             icon: 'loading',
@@ -365,7 +365,7 @@ Page({
   //跳转到商铺详情
   toShop: function(event) {
     let id = event.currentTarget.dataset.id;
-    console.log("id is", id);
+    // console.log("id is", id);
     wx.navigateTo({
       url: '../detail/detail?id=' + id,
     })
@@ -373,7 +373,6 @@ Page({
   //获取位置二次授权
   handler: function(e) {
     let that = this;
-    console.log(";;;;;;;;;;;;;");
     if (e.detail.authSetting["scope.userLocation"]) {
       that.hideModal();
       //返回时重新刷新首页页面
@@ -381,7 +380,6 @@ Page({
         url: '../home/home'
       })
     }
-
   },
 
 
@@ -428,7 +426,7 @@ Page({
 
       }).catch((errMsg) => {
         wx.hideLoading();
-        console.log(errMsg); //错误提示信息
+        // console.log(errMsg); //错误提示信息
         wx.showToast({
           title: '网络错误',
           icon: 'loading',
@@ -439,7 +437,7 @@ Page({
   //进入直播室
   toLiveRoom: function(event) {
     let index = event.currentTarget.dataset.index;
-    console.log('index is:', index);
+    // console.log('index is:', index);
 
     let that = this;
     let liveRooomList = that.data.liveRooomList;
@@ -469,7 +467,7 @@ Page({
         })
       }).catch((errMsg) => {
         wx.hideLoading();
-        console.log(errMsg); //错误提示信息
+        // console.log(errMsg); //错误提示信息
         wx.showToast({
           title: '网络错误',
           icon: 'loading',
@@ -502,7 +500,7 @@ Page({
         })
       }).catch((errMsg) => {
         wx.hideLoading();
-        console.log(errMsg); //错误提示信息
+        // console.log(errMsg); //错误提示信息
         wx.showToast({
           title: '网络错误',
           icon: 'loading',
@@ -527,14 +525,14 @@ Page({
       }),
       network.POST(url, params, method).then((res) => {
         wx.hideLoading();
-        console.log("商铺列表返回值是：" + res.data);
+        // console.log("商铺列表返回值是：" + res.data);
         let shopList = res.data.data.shops;
         that.setData({
           bannerList: shopList
         })
       }).catch((errMsg) => {
         wx.hideLoading();
-        console.log(errMsg); //错误提示信息
+        // console.log(errMsg); //错误提示信息
         wx.showToast({
           title: '网络错误',
           icon: 'loading',
@@ -545,7 +543,7 @@ Page({
   //跳转到类型详情
   navigateToType: function(event) {
     let id = event.currentTarget.dataset.id;
-    console.log('type id is:', id);
+    // console.log('type id is:', id);
     wx.navigateTo({
       url: '../typeInfo/typeInfo?id=' + id,
     })
@@ -574,7 +572,7 @@ Page({
         })
       }).catch((errMsg) => {
         wx.hideLoading();
-        console.log(errMsg); //错误提示信息
+        // console.log(errMsg); //错误提示信息
         wx.showToast({
           title: '网络错误',
           icon: 'loading',
@@ -586,7 +584,7 @@ Page({
   //商家优选点击
   bannerItem: function(e) {
     let id = e.currentTarget.dataset.id;
-    console.log('banner id is :', id);
+    // console.log('banner id is :', id);
     wx.navigateTo({
       url: '../detail/detail?id=' + id,
     })

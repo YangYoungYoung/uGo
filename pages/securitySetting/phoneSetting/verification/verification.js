@@ -22,14 +22,14 @@ Page({
     //1为修改手机号，2为修改支付密码
     // let mobile = wx.getStorageSync('mobile');
     if (options.mobile != undefined) {
-      console.log('options.mobile is:', options.mobile);
+      // console.log('options.mobile is:', options.mobile);
       that.setData({
         mobile: options.mobile
       })
     }
 
     if (options.temp != undefined) {
-      console.log('options.temp is:', options.temp);
+      // console.log('options.temp is:', options.temp);
       that.setData({
         temp: options.temp
       })
@@ -52,7 +52,7 @@ Page({
     });
   },
   setValue: function(e) {
-    console.log(e.detail.value);
+    // console.log(e.detail.value);
     var that = this;
     let iptValue = e.detail.value;
     that.setData({
@@ -100,7 +100,7 @@ Page({
       })
 
       if (currentTime <= 0) {
-        console.log('currentTime is:', currentTime);
+        // console.log('currentTime is:', currentTime);
         clearInterval(interval)
         that.setData({
           time: '00',

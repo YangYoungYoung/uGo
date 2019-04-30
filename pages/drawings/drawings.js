@@ -32,7 +32,7 @@ Page({
   //获取金额
   getNumber: function(e) {
     let that = this;
-    console.log(e.detail.value);
+    // console.log(e.detail.value);
     that.setData({
       number: e.detail.value
     })
@@ -55,7 +55,7 @@ Page({
   //获取微信账号
   getAccount: function(e) {
     let that = this;
-    console.log(e.detail.value);
+    // console.log(e.detail.value);
     that.setData({
       account: e.detail.value
     })
@@ -63,7 +63,7 @@ Page({
   //获取姓名
   getName: function(e) {
     let that = this;
-    console.log(e.detail.value);
+    // console.log(e.detail.value);
     that.setData({
       name: e.detail.value
     })
@@ -71,7 +71,7 @@ Page({
   //获取手机号
   getPhone: function(e) {
     let that = this;
-    console.log(e.detail.value);
+    // console.log(e.detail.value);
     that.setData({
       phone: e.detail.value
     })
@@ -79,7 +79,7 @@ Page({
   //获取验证码
   getCode: function(e) {
     let that = this;
-    console.log(e.detail.value);
+    // console.log(e.detail.value);
     that.setData({
       code: e.detail.value
     })
@@ -97,7 +97,7 @@ Page({
       }),
       network.POST(url, params, method).then((res) => {
         wx.hideLoading();
-        console.log("提现返回值是：" + res.data);
+        // console.log("提现返回值是：" + res.data);
         let msg = res.data.msg;
         if(res.data.code==200){
           common.showTip(msg,'success');
@@ -107,7 +107,7 @@ Page({
 
       }).catch((errMsg) => {
         wx.hideLoading();
-        console.log(errMsg); //错误提示信息
+        // console.log(errMsg); //错误提示信息
         wx.showToast({
           title: '网络错误',
           icon: 'loading',
@@ -128,7 +128,7 @@ Page({
       }),
       network.POST(url, params, method).then((res) => {
         wx.hideLoading();
-        console.log("提现返回值是：" + res.data);
+        // console.log("提现返回值是：" + res.data);
         let balance = res.data.data.balance;
         let enableWithdrawBalance = res.data.data.enableWithdrawBalance;
         that.setData({
@@ -138,7 +138,7 @@ Page({
 
       }).catch((errMsg) => {
         wx.hideLoading();
-        console.log(errMsg); //错误提示信息
+        // console.log(errMsg); //错误提示信息
         wx.showToast({
           title: '网络错误',
           icon: 'loading',
@@ -163,14 +163,14 @@ Page({
       }),
       network.POST(url, params, method).then((res) => {
         wx.hideLoading();
-        console.log("提现返回值是：" + res.data);
+        // console.log("提现返回值是：" + res.data);
         if (res.data.code == 200) {
           common.showTip('验证码发送成功', 'sueccess');
         }
 
       }).catch((errMsg) => {
         wx.hideLoading();
-        console.log(errMsg); //错误提示信息
+        // console.log(errMsg); //错误提示信息
         wx.showToast({
           title: '网络错误',
           icon: 'loading',
@@ -187,7 +187,7 @@ Page({
     let name = that.data.name;
     let code = that.data.code;
     let number =that.data.number;
-    console.log('当前金额是：',number);
+    // console.log('当前金额是：',number);
     if (parseInt(number) <1 || number == undefined) {
       common.showTip("请填写提现金额", 'loading');
       return;
@@ -216,7 +216,7 @@ Page({
       }),
       network.POST(url, params, method).then((res) => {
         wx.hideLoading();
-        console.log("提现返回值是：" + res.data);
+        // console.log("提现返回值是：" + res.data);
         if (res.data.code == 200) {
           // common.showTip('验证成功', 'sueccess');
           that.extract();
@@ -227,7 +227,7 @@ Page({
 
       }).catch((errMsg) => {
         wx.hideLoading();
-        console.log(errMsg); //错误提示信息
+        // console.log(errMsg); //错误提示信息
         wx.showToast({
           title: '网络错误',
           icon: 'loading',

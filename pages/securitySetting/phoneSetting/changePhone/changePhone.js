@@ -19,9 +19,9 @@ Page({
   //获取手机号
   phoneInput: function(e) {
     let phoneNumber = e.detail.value;
-    console.log(phoneNumber.length);
+    // console.log(phoneNumber.length);
     if (phoneNumber.length == 11) {
-      console.log(phoneNumber);
+      // console.log(phoneNumber);
       this.setData({
         clickable: true,
         phoneNumber: phoneNumber

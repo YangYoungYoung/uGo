@@ -52,7 +52,7 @@ Page({
   onShow: function() {
     let that = this;
     let address = wx.getStorageSync('address');
-    console.log('address is :', address);
+    // console.log('address is :', address);
     if (address != undefined) {
       that.setData({
         showAddAddr: false,
@@ -137,7 +137,7 @@ Page({
   // 当组件输入数字6位数时的自定义函数
   valueSix(e) {
     let that = this;
-    console.log(e.detail);
+    // console.log(e.detail);
     let pwd = e.detail;
     that.setData({
       pwd: pwd
@@ -180,7 +180,7 @@ Page({
       }),
       network.POST(url, params, method).then((res) => {
         wx.hideLoading();
-        console.log("提交订单返回值是：" + res.data);
+        // console.log("提交订单返回值是：" + res.data);
         if (res.data.code == 200) {
           let orderId = res.data.data.order.id;
           that.setData({
@@ -192,7 +192,7 @@ Page({
 
       }).catch((errMsg) => {
         wx.hideLoading();
-        console.log(errMsg); //错误提示信息
+        // console.log(errMsg); //错误提示信息
         wx.showToast({
           title: '网络错误',
           icon: 'loading',
@@ -219,7 +219,7 @@ Page({
       }),
       network.POST(url, params, method).then((res) => {
         wx.hideLoading();
-        console.log("校验密码的返回值是：" + res.data);
+        // console.log("校验密码的返回值是：" + res.data);
         if (res.data.code == 200) {
           that.submitOrder();
         } else {
@@ -227,7 +227,7 @@ Page({
         }
       }).catch((errMsg) => {
         wx.hideLoading();
-        console.log(errMsg); //错误提示信息
+        // console.log(errMsg); //错误提示信息
         wx.showToast({
           title: '网络错误',
           icon: 'loading',
@@ -304,13 +304,13 @@ Page({
       }),
       network.POST(url, params, method).then((res) => {
         wx.hideLoading();
-        console.log("校验密码的返回值是：" + res.data);
+        // console.log("校验密码的返回值是：" + res.data);
         if (res.data.code == 200) {
           that.submitOrder();
         }
       }).catch((errMsg) => {
         wx.hideLoading();
-        console.log(errMsg); //错误提示信息
+        // console.log(errMsg); //错误提示信息
         wx.showToast({
           title: '网络错误',
           icon: 'loading',
@@ -334,7 +334,7 @@ Page({
 
       network.POST(url, params, 'POST', 'application/json').then((res) => {
         wx.hideLoading();
-        console.log("提交订单的结果是：" + res.data.code); //正确返回结果
+        // console.log("提交订单的结果是：" + res.data.code); //正确返回结果
         //返回的是订单Id
         if (res.data.code == 200) {
           let cartItems = res.data.data.order.orderItemList;
@@ -350,7 +350,7 @@ Page({
           let consignee = res.data.data.order.consignee;
           //联系电话
           let mobile = res.data.data.order.mobile;
-          console.log('integralTotal is ', integralTotal);
+          // console.log('integralTotal is ', integralTotal);
           that.setData({
             cartItems: cartItems,
             freightPrice: freightPrice,

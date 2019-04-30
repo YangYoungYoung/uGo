@@ -41,7 +41,7 @@ Page({
     if (options.tel != undefined) {
       let tel = options.tel;
       tel = tel.substr(tel.length - 4)
-      console.log('tel is:', tel);
+      // console.log('tel is:', tel);
       that.setData({
         tel: tel
       })
@@ -71,7 +71,7 @@ Page({
         
         if (res.data.code == 200) {
           let expTextName = res.data.data.expTextName;
-          console.log('expTextName is:', expTextName);
+          // console.log('expTextName is:', expTextName);
           let postDetail = res.data.data.postDetail;
           that.setData({
             postDetail: postDetail,
@@ -82,7 +82,7 @@ Page({
 
       }).catch((errMsg) => {
         wx.hideLoading();
-        console.log(errMsg); //错误提示信息
+        // console.log(errMsg); //错误提示信息
         wx.showToast({
           title: '网络错误',
           icon: 'loading',

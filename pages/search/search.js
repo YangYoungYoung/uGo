@@ -30,7 +30,7 @@ Page({
     // console.log('搜索功能', event.detail);
     let that = this;
     let searchText = that.data.value;
-    console.log('搜索功能', searchText);
+    // console.log('搜索功能', searchText);
     that.setData({
       searchText: searchText
     })
@@ -75,7 +75,7 @@ Page({
       }),
       network.POST(url, params, method).then((res) => {
         wx.hideLoading();
-        console.log("商铺列表返回值是：" + res.data);
+        // console.log("商铺列表返回值是：" + res.data);
         let shopList = res.data.data.shops;
         that.setData({
           shopList: shopList,

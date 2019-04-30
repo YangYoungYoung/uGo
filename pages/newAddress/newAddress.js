@@ -3859,7 +3859,7 @@ Page({
     }
 
     let index = e.detail.indexs;
-    console.log(cityText);
+    // console.log(cityText);
     that.setData({
       cityText: cityText
     })
@@ -3909,7 +3909,7 @@ Page({
     }),
       network.POST(url, params, method).then((res) => {
         wx.hideLoading();
-        console.log("返回值是：" + res.data);
+        // console.log("返回值是：" + res.data);
        if(res.data.code==200){
          common.showTip('保存成功','success');
        }
@@ -3917,7 +3917,7 @@ Page({
 
       }).catch((errMsg) => {
         wx.hideLoading();
-        console.log(errMsg); //错误提示信息
+        // console.log(errMsg); //错误提示信息
         wx.showToast({
           title: '网络错误',
           icon: 'loading',
@@ -3993,7 +3993,7 @@ Page({
     }),
       network.POST(url, params, method).then((res) => {
         wx.hideLoading();
-        console.log("返回值是：" + res.data);
+        // console.log("返回值是：" + res.data);
         if (res.data.code == 200) {
           common.showTip('保存成功', 'success');
         }
@@ -4001,7 +4001,7 @@ Page({
 
       }).catch((errMsg) => {
         wx.hideLoading();
-        console.log(errMsg); //错误提示信息
+        // console.log(errMsg); //错误提示信息
         wx.showToast({
           title: '网络错误',
           icon: 'loading',

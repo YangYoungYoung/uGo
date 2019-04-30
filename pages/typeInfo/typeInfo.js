@@ -37,7 +37,7 @@ Page({
       let latitude = wx.getStorageSync('latitude');
       let longitude = wx.getStorageSync('longitude');
 
-      console.log("id is... :", id);
+      // console.log("id is... :", id);
       let url = "dg/shop/list"
       var params = {
         shopCategoryId: id,
@@ -51,7 +51,7 @@ Page({
       }),
         network.POST(url, params, method).then((res) => {
           wx.hideLoading();
-          console.log("商铺列表返回值是：" + res.data);
+          // console.log("商铺列表返回值是：" + res.data);
           let shopList = res.data.data.shops;
           that.setData({
             shopList: shopList
@@ -79,7 +79,7 @@ Page({
   //菜单选择
   selectMenu:function(event){
     let menuIndex = event.currentTarget.dataset.index;
-    console.log('menuIndex is:', menuIndex);
+    // console.log('menuIndex is:', menuIndex);
   },
   //跳转到商铺详情
   toshopDetail: function (event){

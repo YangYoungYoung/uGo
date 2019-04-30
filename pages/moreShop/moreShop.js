@@ -43,14 +43,14 @@ Page({
       }),
       network.POST(url, params, method).then((res) => {
         wx.hideLoading();
-        console.log("商铺列表返回值是：" + res.data);
+        // console.log("商铺列表返回值是：" + res.data);
         let shopList = res.data.data.shops;
         that.setData({
           shopList: shopList
         })
       }).catch((errMsg) => {
         wx.hideLoading();
-        console.log(errMsg); //错误提示信息
+        // console.log(errMsg); //错误提示信息
         wx.showToast({
           title: '网络错误',
           icon: 'loading',
@@ -62,7 +62,7 @@ Page({
   //跳转到商铺详情
   toShop: function (event) {
     let id = event.currentTarget.dataset.id;
-    console.log("id is", id);
+    // console.log("id is", id);
     wx.navigateTo({
       url: '../detail/detail?id=' + id,
     })

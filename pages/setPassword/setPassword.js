@@ -35,7 +35,7 @@ Page({
     let firstPwd = that.data.firstPwd;
     let checkPwd = that.data.checkPwd;
     let userId = wx.getStorageSync('userId');
-    console.log('firstPwd is:', firstPwd);
+    // console.log('firstPwd is:', firstPwd);
     if (firstPwd ==undefined||firstPwd.length != 6) {
       common.showTip('密码长度需为6位', 'success');
       return;
@@ -56,7 +56,7 @@ Page({
       }),
       network.POST(url, params, method).then((res) => {
         wx.hideLoading();
-        console.log("积分设置返回值是：" + res.data);
+        // console.log("积分设置返回值是：" + res.data);
         that.userLogin();
 
       }).catch((errMsg) => {
@@ -82,11 +82,11 @@ Page({
       }),
       network.POST(url, params, method).then((res) => {
         wx.hideLoading();
-        console.log("获取用户信息返回值是：" + res.data);
+        // console.log("获取用户信息返回值是：" + res.data);
 
         if (res.data.code == 200) {
           let userId = res.data.data.user.userId;
-          console.log('userId is:', userId);
+          // console.log('userId is:', userId);
           wx.setStorageSync('userId', userId);
           common.showTip(res.data.msg);
           wx.redirectTo({

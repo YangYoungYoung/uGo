@@ -58,7 +58,7 @@ Page({
     let that = this;
     let scroreList = that.data.scroreList;
     let index = event.currentTarget.dataset.index;
-    console.log('index is', index);
+    // console.log('index is', index);
     for (var i = 0; i < scroreList.length; i++) {
       if (i == index) {
         scroreList[i].select = true;
@@ -92,7 +92,7 @@ Page({
         })
       }).catch((errMsg) => {
         wx.hideLoading();
-        console.log(errMsg); //错误提示信息
+        // console.log(errMsg); //错误提示信息
         wx.showToast({
           title: '网络错误',
           icon: 'loading',
@@ -125,7 +125,7 @@ Page({
         })
       }).catch((errMsg) => {
         wx.hideLoading();
-        console.log(errMsg); //错误提示信息
+        // console.log(errMsg); //错误提示信息
         wx.showToast({
           title: '网络错误',
           icon: 'loading',
@@ -139,7 +139,7 @@ Page({
     // let scroe = index+1;
 
     let index = that.data.index + 1;
-    console.log('index is:', index);
+    // console.log('index is:', index);
     let url = "goods/list?isIntegralShop=1" + "&integralLevel=" + index;
     var params = {
 
@@ -161,7 +161,7 @@ Page({
         })
       }).catch((errMsg) => {
         wx.hideLoading();
-        console.log(errMsg); //错误提示信息
+        // console.log(errMsg); //错误提示信息
         wx.showToast({
           title: '网络错误',
           icon: 'loading',
@@ -186,7 +186,7 @@ Page({
   navigateToType: function(event) {
     let index = event.currentTarget.dataset.index;
     wx.setStorageSync('menuIndex', index);
-    console.log('index is : ', index);
+    // console.log('index is : ', index);
     wx.switchTab({
       url: '../integral_search/integral_search'
     })

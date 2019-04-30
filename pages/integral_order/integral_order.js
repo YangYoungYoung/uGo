@@ -70,7 +70,7 @@ Page({
   //确认订单
   confirmOrder: function(e) {
     var orderId = e.target.dataset.orderid;
-    console.log('orderId is:', orderId);
+    // console.log('orderId is:', orderId);
     wx.navigateTo({
       url: '../integral_orderInfo/integral_orderInfo?orderId=' + orderId,
     })
@@ -81,7 +81,7 @@ Page({
     let that = this;
     // let scroe = index+1;
     var orderId = e.target.dataset.orderid;
-    console.log('orderId is:', orderId);
+    // console.log('orderId is:', orderId);
     if (orderId == undefined) {
       return;
     }
@@ -95,7 +95,7 @@ Page({
       }),
       network.POST(url, params, method).then((res) => {
         wx.hideLoading();
-        console.log("取消订单的返回值是：" + res.data);
+        // console.log("取消订单的返回值是：" + res.data);
         if (res.data.code == 200) {
           // that.submitOrder();
           that.onShow();
@@ -104,7 +104,7 @@ Page({
         }
       }).catch((errMsg) => {
         wx.hideLoading();
-        console.log(errMsg); //错误提示信息
+        // console.log(errMsg); //错误提示信息
         wx.showToast({
           title: '网络错误',
           icon: 'loading',
@@ -164,11 +164,11 @@ Page({
         switch (currentTab) {
           case 0: //待付款
             allOrder = res.data.data.orders;
-            console.log('allOrder is:', allOrder);
+            // console.log('allOrder is:', allOrder);
             break;
           case 1: //未发货
             noPayment = res.data.data.orders;
-            console.log('noPayment is:', noPayment);
+            // console.log('noPayment is:', noPayment);
             break;
           case 2: //已发货
             bought = res.data.data.orders;
@@ -191,7 +191,7 @@ Page({
         })
       }).catch((errMsg) => {
         wx.hideLoading();
-        console.log(errMsg); //错误提示信息
+        // console.log(errMsg); //错误提示信息
         wx.showToast({
           title: '网络错误',
           icon: 'loading',
@@ -204,7 +204,7 @@ Page({
     let that = this;
     // let scroe = index+1;
     var orderId = e.target.dataset.orderid;
-    console.log('orderId is:', orderId);
+    // console.log('orderId is:', orderId);
     if (orderId == undefined) {
       return;
     }
@@ -218,7 +218,7 @@ Page({
     }),
       network.POST(url, params, method).then((res) => {
         wx.hideLoading();
-        console.log("确认收货的返回值是：" + res.data);
+        // console.log("确认收货的返回值是：" + res.data);
         if (res.data.code == 200) {
           // that.submitOrder();
           that.onShow();
@@ -227,7 +227,7 @@ Page({
         }
       }).catch((errMsg) => {
         wx.hideLoading();
-        console.log(errMsg); //错误提示信息
+        // console.log(errMsg); //错误提示信息
         wx.showToast({
           title: '网络错误',
           icon: 'loading',

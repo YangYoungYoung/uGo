@@ -184,14 +184,14 @@ Page({
         }),
         network.POST(url, params, method).then((res) => {
           wx.hideLoading();
-          console.log("返回值是：" + res.data);
+          // console.log("返回值是：" + res.data);
           if (res.data.code == 200) {
             this.setGoodsList(this.getSaveHide(), this.totalPrice(), this.allSelect(), this.noSelect(), list);
             // that.getCartGoods();
           }
         }).catch((errMsg) => {
           wx.hideLoading();
-          console.log(errMsg); //错误提示信息
+          // console.log(errMsg); //错误提示信息
           wx.showToast({
             title: '网络错误',
             icon: 'loading',
@@ -307,7 +307,7 @@ Page({
     //   }),
       network.POST(url, params, method).then((res) => {
         // wx.hideLoading();
-        console.log("全选返回值是：" + res.data);
+        // console.log("全选返回值是：" + res.data);
         if (res.data.code == 200) {
           this.setGoodsList(this.getSaveHide(), this.totalPrice(), !currentAllSelect, this.noSelect(), list);
           // that.getCartGoods();
@@ -318,7 +318,7 @@ Page({
         // })
       }).catch((errMsg) => {
         wx.hideLoading();
-        console.log(errMsg); //错误提示信息
+        // console.log(errMsg); //错误提示信息
         wx.showToast({
           title: '网络错误',
           icon: 'loading',
@@ -352,7 +352,7 @@ Page({
         //   }),
           network.POST(url, params, method).then((res) => {
             // wx.hideLoading();
-            console.log("数量加返回值是：" + res.data);
+            // console.log("数量加返回值是：" + res.data);
             if (res.data.code == 200) {
               this.setGoodsList(this.getSaveHide(), this.totalPrice(), this.allSelect(), this.noSelect(), list);
               // that.getCartGoods();
@@ -363,7 +363,7 @@ Page({
             // })
           }).catch((errMsg) => {
             wx.hideLoading();
-            console.log(errMsg); //错误提示信息
+            // console.log(errMsg); //错误提示信息
             wx.showToast({
               title: '网络错误',
               icon: 'loading',
@@ -398,7 +398,7 @@ Page({
         //   }),
           network.POST(url, params, method).then((res) => {
             // wx.hideLoading();
-            console.log("数量减返回值是：" + res.data);
+            // console.log("数量减返回值是：" + res.data);
             if (res.data.code == 200) {
               this.setGoodsList(this.getSaveHide(), this.totalPrice(), this.allSelect(), this.noSelect(), list);
               // that.getCartGoods();
@@ -406,7 +406,7 @@ Page({
 
           }).catch((errMsg) => {
             wx.hideLoading();
-            console.log(errMsg); //错误提示信息
+            // console.log(errMsg); //错误提示信息
             wx.showToast({
               title: '网络错误',
               icon: 'loading',

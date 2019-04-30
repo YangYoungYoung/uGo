@@ -72,7 +72,7 @@ Page({
         confirmText: '返回授权',
         success: function(res) {
           if (res.confirm) {
-            console.log('用户点击了“返回授权”')
+            // console.log('用户点击了“返回授权”')
           }
         }
       })
@@ -97,7 +97,7 @@ Page({
         method: "GET", //get为默认方法/POST
         success: function(res) {
           wx.hideLoading();
-          console.log("openId的结果是：" + res.data.data.openId); //正确返回结果
+          // console.log("openId的结果是：" + res.data.data.openId); //正确返回结果
           if (res.data.data.openId != undefined) {
             wx.setStorageSync('openId', res.data.data.openId); // 单独存储openid
             that.setData({
@@ -118,7 +118,7 @@ Page({
         },
         fail: function(res) {
           wx.hideLoading();
-          console.log(errMsg); //错误提示信息
+          // console.log(errMsg); //错误提示信息
           wx.showToast({
             title: '网络错误',
             icon: 'loading',
@@ -141,7 +141,7 @@ Page({
       }),
       network.POST(url, params, method).then((res) => {
         wx.hideLoading();
-        console.log("获取用户信息返回值是：" + res.data);
+        // console.log("获取用户信息返回值是：" + res.data);
 
         if (res.data.code == 200) {
           if (res.data.data != null) {
@@ -157,7 +157,7 @@ Page({
 
       }).catch((errMsg) => {
         wx.hideLoading();
-        console.log(errMsg); //错误提示信息
+        // console.log(errMsg); //错误提示信息
         wx.showToast({
           title: '网络错误',
           icon: 'loading',
@@ -178,7 +178,7 @@ Page({
       }),
       network.POST(url, params, method).then((res) => {
         wx.hideLoading();
-        console.log("获取用户信息返回值是：" + res.data);
+        // console.log("获取用户信息返回值是：" + res.data);
 
         if (res.data.code == 200) {
           wx.redirectTo({
@@ -191,7 +191,7 @@ Page({
 
       }).catch((errMsg) => {
         wx.hideLoading();
-        console.log(errMsg); //错误提示信息
+        // console.log(errMsg); //错误提示信息
         wx.showToast({
           title: '网络错误',
           icon: 'loading',
@@ -212,11 +212,11 @@ Page({
       }),
       network.POST(url, params, method).then((res) => {
         wx.hideLoading();
-        console.log("获取用户信息返回值是：" + res.data);
+        // console.log("获取用户信息返回值是：" + res.data);
 
         if (res.data.code == 200) {
           let userId = res.data.data.user.userId;
-          console.log('userId is:', userId);
+          // console.log('userId is:', userId);
           wx.setStorageSync('userId', userId);
           common.showTip(res.data.msg);
           wx.redirectTo({
@@ -228,7 +228,7 @@ Page({
 
       }).catch((errMsg) => {
         wx.hideLoading();
-        console.log(errMsg); //错误提示信息
+        // console.log(errMsg); //错误提示信息
         wx.showToast({
           title: '网络错误',
           icon: 'loading',

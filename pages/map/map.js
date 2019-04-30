@@ -37,7 +37,7 @@ Page({
   //选择不同的字母
   letterClick:function(event){
     let letter = event.currentTarget.dataset.letter;
-    console.log('letter is:', letter);
+    // console.log('letter is:', letter);
   }
   
 })

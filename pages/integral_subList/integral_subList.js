@@ -28,7 +28,7 @@ Page({
     // let scroe = index+1;
     let name = that.data.searchText;
     let id = that.data.id;
-    console.log('id is :', id);
+    // console.log('id is :', id);
     if (name.length > 0 || name != '') {
       var url = "goods/list?isIntegralShop=1" + "&name=" + name;
     } else if (id != 0) {
@@ -52,7 +52,7 @@ Page({
         })
       }).catch((errMsg) => {
         wx.hideLoading();
-        console.log(errMsg); //错误提示信息
+        // console.log(errMsg); //错误提示信息
         wx.showToast({
           title: '网络错误',
           icon: 'loading',
@@ -66,7 +66,7 @@ Page({
     // console.log('搜索功能', event.detail);
     let that = this;
     let searchText = that.data.value;
-    console.log('搜索功能', searchText);
+    // console.log('搜索功能', searchText);
     that.setData({
       searchText: searchText
     })
@@ -92,7 +92,7 @@ Page({
   navigateToType: function(event) {
     let index = event.currentTarget.dataset.index;
     wx.setStorageSync('menuIndex', index);
-    console.log('index is : ', index);
+    // console.log('index is : ', index);
     wx.switchTab({
       url: '../integral_search/integral_search'
     })

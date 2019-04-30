@@ -29,7 +29,7 @@ Page({
   //获取手机号
   getMobile: function(e) {
     let mobile = e.detail.value;
-    console.log('mobile is:', mobile);
+    // console.log('mobile is:', mobile);
     this.setData({
       mobile: mobile
     })
@@ -37,7 +37,7 @@ Page({
   //获取验证码
   getCode: function(e) {
     let code = e.detail.value;
-    console.log('mobile is:', code);
+    // console.log('mobile is:', code);
     this.setData({
       code: code
     })
@@ -69,7 +69,7 @@ Page({
         }
       }).catch((errMsg) => {
         wx.hideLoading();
-        console.log(errMsg); //错误提示信息
+        // console.log(errMsg); //错误提示信息
         wx.showToast({
           title: '网络错误',
           icon: 'loading',
@@ -107,7 +107,7 @@ Page({
         }
       }).catch((errMsg) => {
         wx.hideLoading();
-        console.log(errMsg); //错误提示信息
+        // console.log(errMsg); //错误提示信息
         wx.showToast({
           title: '网络错误',
           icon: 'loading',
@@ -147,7 +147,7 @@ Page({
         }
       }).catch((errMsg) => {
         wx.hideLoading();
-        console.log(errMsg); //错误提示信息
+        // console.log(errMsg); //错误提示信息
         wx.showToast({
           title: '网络错误',
           icon: 'loading',

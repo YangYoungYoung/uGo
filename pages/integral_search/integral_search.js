@@ -40,7 +40,7 @@ Page({
           shopCategorys: shopCategorys
         })
         var index = wx.getStorageSync('menuIndex');
-        console.log('menuIndex is:', index);
+        // console.log('menuIndex is:', index);
 
         if (index != undefined) {
 
@@ -51,7 +51,7 @@ Page({
         }
       }).catch((errMsg) => {
         wx.hideLoading();
-        console.log(errMsg); //错误提示信息
+        // console.log(errMsg); //错误提示信息
         wx.showToast({
           title: '网络错误',
           icon: 'loading',
@@ -66,12 +66,12 @@ Page({
       toView: 'order' + index.toString(),
       index: index
     })
-    console.log(this.data.toView);
+    // console.log(this.data.toView);
   },
   //跳转到二级分类
   toSubList: function(e) {
     let subId = e.currentTarget.dataset.id;
-    console.log("subId is:", subId);
+    // console.log("subId is:", subId);
     wx.navigateTo({
       url: '../integral_subList/integral_subList?id=' + subId,
     })

@@ -38,7 +38,7 @@ Page({
         let specificationValues = goods.specificationValues;
 
         let temp = specificationValues.split(";");
-        console.log("temp is :", temp);
+        // console.log("temp is :", temp);
         var guiGe = [];
 
         var strArr = [];
@@ -50,7 +50,7 @@ Page({
           strArr = str.split(",");
           allList.push(strArr);
         }
-        console.log("allList:", allList);
+        // console.log("allList:", allList);
 
         for (var i = 0; i < allList.length; i++) {
           var list = allList[i];
@@ -72,7 +72,7 @@ Page({
           }
           obj.id = i;
           guiGe.push(obj);
-          console.log('guiGe is: ', guiGe);
+          // console.log('guiGe is: ', guiGe);
         }
 
 
@@ -84,7 +84,7 @@ Page({
 
       }).catch((errMsg) => {
         wx.hideLoading();
-        console.log(errMsg); //错误提示信息
+        // console.log(errMsg); //错误提示信息
         wx.showToast({
           title: '网络错误',
           icon: 'loading',
@@ -185,7 +185,7 @@ Page({
       var list = guiGe[i].body;
 
       for (var j = 0; j < list.length; j++) {
-        console.log('list[j] is:', list[j]);
+        // console.log('list[j] is:', list[j]);
         if (list[j].select) {
           goodsSpecifitionValue += guiGe[i].name + "," + list[j].content + ";"
         }
@@ -203,7 +203,7 @@ Page({
     let that = this;
     let goodsId = that.data.goods.id;
     let goodsSpecifitionValue = that.getGuiGe();
-    console.log('goodsSpecifitionValue is:', goodsSpecifitionValue);
+    // console.log('goodsSpecifitionValue is:', goodsSpecifitionValue);
     if (goodsSpecifitionValue == '' || goodsSpecifitionValue == undefined) {
       common.showTip('请选择规格', 'loading');
       return;
@@ -240,7 +240,7 @@ Page({
         }
       }).catch((errMsg) => {
         wx.hideLoading();
-        console.log(errMsg); //错误提示信息
+        // console.log(errMsg); //错误提示信息
         wx.showToast({
           title: '网络错误',
           icon: 'loading',
@@ -297,7 +297,7 @@ Page({
       }),
       network.POST(url, params, method, contentType).then((res) => {
         wx.hideLoading();
-        console.log("返回值是：" + res.data.orderId);
+        // console.log("返回值是：" + res.data.orderId);
         if (res.data.code == 200) {
           wx.navigateTo({
             url: '../integral_payOrder/integral_payOrder?orderId=' + res.data.orderId,
@@ -305,7 +305,7 @@ Page({
         }
       }).catch((errMsg) => {
         wx.hideLoading();
-        console.log(errMsg); //错误提示信息
+        // console.log(errMsg); //错误提示信息
         wx.showToast({
           title: '网络错误',
           icon: 'loading',
@@ -320,7 +320,7 @@ Page({
     let goodsName = that.data.goods.name;
     let price = that.data.goods.integral;
     let goodsSpecifitionValue = that.getGuiGe();
-    console.log('goodsSpecifitionValue is:', goodsSpecifitionValue);
+    // console.log('goodsSpecifitionValue is:', goodsSpecifitionValue);
     if (goodsSpecifitionValue == '' || goodsSpecifitionValue == undefined) {
       common.showTip('请选择规格', 'loading');
       return;
@@ -345,7 +345,7 @@ Page({
       }),
       network.POST(url, params, method, contentType).then((res) => {
         wx.hideLoading();
-        console.log("返回值是：" + res.data);
+        // console.log("返回值是：" + res.data);
         if (res.data.code == 200) {
           let orderItemId = res.data.data.orderItem.id;
           // that.buyNow(orderItemId);
@@ -355,7 +355,7 @@ Page({
         }
       }).catch((errMsg) => {
         wx.hideLoading();
-        console.log(errMsg); //错误提示信息
+        // console.log(errMsg); //错误提示信息
         wx.showToast({
           title: '网络错误',
           icon: 'loading',
@@ -368,8 +368,8 @@ Page({
     let that = this;
     let index = e.currentTarget.dataset.index;
     let id = e.currentTarget.dataset.id;
-    console.log('index is:', index);
-    console.log('id is:', id);
+    // console.log('index is:', index);
+    // console.log('id is:', id);
 
 
     let guiGe = that.data.guiGe;

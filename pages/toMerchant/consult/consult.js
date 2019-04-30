@@ -35,7 +35,7 @@ Page({
     that.setData({
       name: name
     })
-    console.log(name);
+    // console.log(name);
   },
   //更多区域
   moreArea: function() {
@@ -45,16 +45,16 @@ Page({
   phoneInput: function() {
     let that = this;
     let phone = e.detail.value;
-    console.log(phone);
+    // console.log(phone);
     that.setData({
       phone: phone
     })
   },
   bindPickerSeatChange(e) {
-    console.log('picker发送选择改变，携带值为', e.detail.value);
+    // console.log('picker发送选择改变，携带值为', e.detail.value);
     let that = this;
     let array = that.data.array;
-    console.log(array[e.detail.value]);
+    // console.log(array[e.detail.value]);
     this.setData({
       showMore: false,
       index: e.detail.value

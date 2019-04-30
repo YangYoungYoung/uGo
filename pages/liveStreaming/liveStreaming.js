@@ -32,9 +32,9 @@ Page({
     let that = this;
     wx.getSystemInfo({
       success: function(res) {
-        console.log(res.windowHeight) // 获取可使用窗口高度
+        // console.log(res.windowHeight) // 获取可使用窗口高度
         let windowHeight = (res.windowHeight * (750 / res.windowWidth)); //将高度乘以换算后的该设备的rpx与px的比例
-        console.log(windowHeight) //最后获得转化后得rpx单位的窗口高度
+        // console.log(windowHeight) //最后获得转化后得rpx单位的窗口高度
         that.setData({
           windowHeight: windowHeight
         })
@@ -62,18 +62,18 @@ Page({
     this.ctx = wx.createLivePlayerContext('player');
     this.ctx.play({
       success: res => {
-        console.log('play success')
+        // console.log('play success')
       },
       fail: res => {
-        console.log('play fail')
+        // console.log('play fail')
       }
     })
   },
   statechange(e) {
-    console.log('live-player code:', e.detail.code)
+    // console.log('live-player code:', e.detail.code)
   },
   error(e) {
-    console.error('live-player error:', e.detail.errMsg)
+    // console.error('live-player error:', e.detail.errMsg)
   },
   // bindPlay() {
   //   this.ctx.play({
@@ -183,7 +183,7 @@ Page({
   sendMessage: function() {
     var that = this;
     var content = that.data.message;
-    console.log('content is:', content);
+    // console.log('content is:', content);
     if (!content.replace(/^\s*|\s*$/g, '')) return;
     webimhandler.onSendMsg(content, function() {
       that.clearInput();
@@ -195,7 +195,7 @@ Page({
   },
   textInput: function(e) {
     let message = e.detail.value;
-    console.log(message);
+    // console.log(message);
     let that = this;
     that.setData({
       message: message
@@ -226,7 +226,7 @@ Page({
         }
       }).catch((errMsg) => {
         wx.hideLoading();
-        console.log(errMsg); //错误提示信息
+        // console.log(errMsg); //错误提示信息
         wx.showToast({
           title: '网络错误',
           icon: 'loading',
@@ -313,7 +313,7 @@ Page({
   bindConfirm: function(e) {
     var that = this;
     var content = e.detail.value;
-    console.log('content is:', content);
+    // console.log('content is:', content);
     if (!content.replace(/^\s*|\s*$/g, '')) return;
     webimhandler.onSendMsg(content, function() {
       that.clearInput();
@@ -325,7 +325,7 @@ Page({
     })
   },
   receiveMsgs: function(data) {
-    console.log('receiveMsgs', data);
+    // console.log('receiveMsgs', data);
     var msgs = this.data.msgs || [];
     msgs.push(data);
     //最多展示10条信息

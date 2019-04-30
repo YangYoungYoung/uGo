@@ -291,7 +291,7 @@ Page({
     //将选择的商品ID传给服务器生成订单
     let url = "https://mall.cmdd.tech/mall/api/createOrder"
     let openId = wx.getStorageSync('openId');
-    console.log("用户的opnId是：" + openId);
+    // console.log("用户的opnId是：" + openId);
     /**
      *  var params = {
       orderList: JSON.stringify(orderResult),

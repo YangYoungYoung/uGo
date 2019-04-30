@@ -52,7 +52,7 @@ Page({
    */
   onLoad: function(options) {
     if (app.globalData.userInfo) {
-      console.log(app.globalData.userInfo.avatarUrl);
+      // console.log(app.globalData.userInfo.avatarUrl);
       this.setData({
         userInfo: app.globalData.userInfo,
         hasUserInfo: true
@@ -99,7 +99,7 @@ Page({
   //底部导航栏切换
   footerChange: function(event) {
     let footeIndex = event.currentTarget.dataset.index;
-    console.log('footeIndex is', footeIndex);
+    // console.log('footeIndex is', footeIndex);
     let that = this;
     let footerList = that.data.footerList;
     if (footeIndex == 0) {
@@ -125,7 +125,7 @@ Page({
   //跳转到订单管理
   toOrder: function(event) {
     let index = event.currentTarget.dataset.index + 1;
-    console.log("index is:", index);
+    // console.log("index is:", index);
 
     wx.navigateTo({
       url: '../integral_order/integral_order?id=' + index,
@@ -155,7 +155,7 @@ Page({
         // console.log(result);
         var index = result.lastIndexOf("\=");
         let shopId = result.substring(index + 1, result.length);
-        console.log(shopId);
+        // console.log(shopId);
         if (shopId != undefined || shopId.length != 0) {
           // that.setData({
           //   shopId: shopId
@@ -194,14 +194,14 @@ Page({
           wx.setStorageSync('payPwd', payPwd);
           let mobile = res.data.data.mobile;
           wx.setStorageSync('mobile', mobile)
-          console.log("balance is:", res.data.data.balance);
+          // console.log("balance is:", res.data.data.balance);
           that.setData({
             user: res.data.data
           })
         }
       }).catch((errMsg) => {
         wx.hideLoading();
-        console.log(errMsg); //错误提示信息
+        // console.log(errMsg); //错误提示信息
         wx.showToast({
           title: '网络错误',
           icon: 'loading',

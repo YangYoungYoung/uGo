@@ -43,8 +43,7 @@
     "pages/authorizationStatement/authorizationStatement",
     "pages/livecart/livecart",
     "pages/integral_type/integral_type",
-    "pages/map/map",
-    "pages/index/index"
+    "pages/map/map"
   ],
   "window": {
     "backgroundTextStyle": "light",

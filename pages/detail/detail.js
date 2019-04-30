@@ -18,7 +18,7 @@ Page({
       var id = options.id;
     }
 
-    console.log("id is... :", id);
+    // console.log("id is... :", id);
     let that = this;
     // let menu = that.data.menu;
     // let openId = wx.getStorageSync('openId');
@@ -30,7 +30,7 @@ Page({
       }),
       network.POST(url, params, method).then((res) => {
         wx.hideLoading();
-        console.log("商铺列表返回值是：" + res.data);
+        // console.log("商铺列表返回值是：" + res.data);
         let shopInfo = res.data.data.shops;
         let pic_detail = shopInfo.pic_detail.split(",");
 
@@ -40,7 +40,7 @@ Page({
         })
       }).catch((errMsg) => {
         wx.hideLoading();
-        console.log(errMsg); //错误提示信息
+        // console.log(errMsg); //错误提示信息
         wx.showToast({
           title: '网络错误',
           icon: 'loading',
