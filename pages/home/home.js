@@ -129,6 +129,8 @@ Page({
   getUserLocation: function() {
     let that = this;
     wx.getLocation({
+      type: 'gcj02',
+      // type: 'wgs84',
       success: function(res) {
         // console.log(res)
         wx.setStorageSync('latitude', res.latitude);

@@ -433,6 +433,7 @@ page {
 }
 
 .shop-info-title {
+  width: 526rpx;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
