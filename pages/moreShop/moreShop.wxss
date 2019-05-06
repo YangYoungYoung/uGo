@@ -6,6 +6,24 @@ page {
   background-color: #f0f2f5;
 }
 
+.scroll {
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 100rpx;
+}
+
+/*隐藏滚动条*/
+
+::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+  color: transparent;
+}
+
 .container {
   width: 100%;
   height: 100%;

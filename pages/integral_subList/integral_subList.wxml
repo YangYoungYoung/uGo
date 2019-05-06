@@ -10,7 +10,7 @@
       <block wx:for="{{ goodsS }}" wx:key="item">
         <view class='item_view' bindtap='toDetail' data-id='{{item.id}}'>
           <view class='item_head'>
-            <image class='head_image' src='{{item.primaryPicUrl}}'></image>
+            <image class='head_image' src='{{item.primaryPicUrl}}' lazy-load='true'></image>
           </view>
           <view class='item_foot'>
 

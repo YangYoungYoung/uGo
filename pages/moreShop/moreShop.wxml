@@ -1,45 +1,47 @@
 <!--pages/moreShop/moreShop.wxml-->
 <view class='near-shop-list'>
-        <block wx:for="{{shopList}}" wx:key='index'>
+  <scroll-view class='scroll' scroll-y style='height:100%'>
+    <block wx:for="{{shopList}}" wx:key='index'>
 
-          <view class='shop-list-item' bindtap='toShop' data-id='{{item.id}}'>
-            <image class='shop-item-image' src='{{item.pic}}'></image>
-            <view class='shop-item-info'>
-              <view class='shop-info-title'>
-                <view class='shop-info-title-left'>
-                  <text class='shop-title-left-name'>{{item.name}}</text>
-                  <!-- <block wx:if="{{item.activity!=''||item.activity!=null}}">
+      <view class='shop-list-item' bindtap='toShop' data-id='{{item.id}}'>
+        <image class='shop-item-image' src='{{item.pic}}' lazy-load='true'></image>
+        <view class='shop-item-info'>
+          <view class='shop-info-title'>
+            <view class='shop-info-title-left'>
+              <text class='shop-title-left-name'>{{item.name}}</text>
+              <!-- <block wx:if="{{item.activity!=''||item.activity!=null}}">
                     <view class='shop-title-left-discounts'>
                       <text class='shop-title-left-discounts-text'>{{item.activity}}</text>
                     </view>
                   </block> -->
-                </view>
-                <text class='shop-distance'>{{item.distance}}</text>
-              </view>
-              <view class='shop-grade-hour'>
-                <van-rate custom-class='shop-grade' value="{{5}}" size='15' readonly='true' />
-                <text class='shop-hour'>(营业时间:{{item.business_hours}})</text>
-              </view>
-              <view class='shop-info-type'>
-                <view class='shop-info-type-left'>
-                  <image class='shop-info-type-icon' src='../images/shop_type_icon.png'></image>
-                  <text class='shop-info-type-name'>{{item.categoryName}}</text>
-                </view>
-                <image class='shop-info-type-phone' src='../images/shop_phone.png' data-telephone="{{item.telephone}}" catchtap='callPhone'></image>
-              </view>
-              <view class='shop-location-people'>
-                <view class='shop-location'>
-                  <image class='shop-location-icon' src='../images/shop_location_icon1.png' mode='aspectFit'></image>
-                  <text class='shop-location-text'>{{item.detailAddress}}</text>
-                </view>
-                <view class='shop-people'>已有
-                  <text class='shop-people-num'>{{item.inStoreNum}}</text>
-                  <view>人进店</view>
-                </view>
-              </view>
+            </view>
+            <text class='shop-distance'>{{item.distance}}</text>
+          </view>
+          <view class='shop-grade-hour'>
+            <van-rate custom-class='shop-grade' value="{{5}}" size='15' readonly='true' />
+            <text class='shop-hour'>(营业时间:{{item.business_hours}})</text>
+          </view>
+          <view class='shop-info-type'>
+            <view class='shop-info-type-left'>
+              <image class='shop-info-type-icon' src='../images/shop_type_icon.png'></image>
+              <text class='shop-info-type-name'>{{item.categoryName}}</text>
+            </view>
+            <image class='shop-info-type-phone' src='../images/shop_phone.png' data-telephone="{{item.telephone}}" catchtap='callPhone'></image>
+          </view>
+          <view class='shop-location-people'>
+            <view class='shop-location'>
+              <image class='shop-location-icon' src='../images/shop_location_icon1.png' mode='aspectFit'></image>
+              <text class='shop-location-text'>{{item.detailAddress}}</text>
+            </view>
+            <view class='shop-people'>已有
+              <text class='shop-people-num'>{{item.inStoreNum}}</text>
+              <view>人进店</view>
             </view>
           </view>
-          <view class='shop-line'></view>
-
-        </block>
+        </view>
       </view>
+      <view class='shop-line'></view>
+
+    </block>
+  </scroll-view>
+</view>

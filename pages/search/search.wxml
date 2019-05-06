@@ -12,7 +12,7 @@
         <block wx:for='{{shopList}}' wx:key='index'>
           <view class='shop-list-item' bindtap='toshopDetail' data-id='{{item.id}}'>
             <view class='shop-item-image'>
-              <image class='shop-item-logo' src='{{item.pic}}'></image>
+              <image class='shop-item-logo' src='{{item.pic}}' lazy-load='true'></image>
             </view>
 
             <view class='shop-item-info'>

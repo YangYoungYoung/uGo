@@ -41,7 +41,7 @@
       <view class='food-content'>
         <view wx:for="{{item.subList}}" wx:key='id' wx:for-item="productList" class="food-item" bindtap="toSubList" data-id="{{productList.id}}"
           data-index='{{index}}'>
-        <image class='food-image' src='{{productList.iconUrl}}'></image>
+        <image class='food-image' src='{{productList.iconUrl}}' lazy-load='true'></image>
         <text class='food-name'>{{productList.name}}</text>
         </view>
       </view>
