@@ -316,7 +316,7 @@ Page({
       let addedIntegral = sineList[signedTimes].number;
       let userId = wx.getStorageSync('userId');
 
-      let url = "dg/sign/sign?userId=" + userId + "&addedIntegral=" + addedIntegral + "&isSign=1";
+      let url = "dg/sign/sign?userId=" + userId + "&addedIntegral=" + addedIntegral;
       var params = {
         // userOpenId: openId,
         // addedIntegral: addedIntegral

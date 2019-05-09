@@ -1,17 +1,24 @@
 <!--pages/integral_exchange/integral_exchange.wxml-->
 <view class='search-list'>
-  <block wx:for="{{goodsS}}" wx:key="index" wx:if="{{index<20}}">
-    <view class='search-list-item' bindtap='toDetail' data-id='{{item.id}}'>
-      <image class='item-image' src='{{item.primaryPicUrl}}'></image>
-      <view class='item-info'>
-        <text class='item-name'>{{item.name}}</text>
-        <view class='item-price'>
-          <view class='item-jifen'>积分 </view>
-          <image class='item-jifen-icon' src='../images/jifen_icon.png'></image>
-          <text class='item-price-text'>{{item.integral}}</text>
+  <block wx:if="{{goodsS.length>0}}">
+    <block wx:for="{{goodsS}}" wx:key="index" wx:if="{{index<20}}">
+      <view class='search-list-item' bindtap='toDetail' data-id='{{item.id}}'>
+        <image class='item-image' src='{{item.primaryPicUrl}}'></image>
+        <view class='item-info'>
+          <text class='item-name'>{{item.name}}</text>
+          <view class='item-price'>
+            <view class='item-jifen'>积分 </view>
+            <image class='item-jifen-icon' src='../images/jifen_icon.png'></image>
+            <text class='item-price-text'>{{item.integral}}</text>
+          </view>
         </view>
       </view>
+      <view class='item-line'></view>
+    </block>
+  </block>
+  <block wx:else>
+    <view class='info_null'>
+      抱歉，当前没有数据
     </view>
-    <view class='item-line'></view>
   </block>
 </view>

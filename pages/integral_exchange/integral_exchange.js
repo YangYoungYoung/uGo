@@ -21,8 +21,9 @@ Page({
     let that = this;
     // let scroe = index+1;
     let userId = wx.getStorageSync('userId');
-    let index = that.data.index + 1;
-    let url = "goods/list?isIntegralShop=1" + "&integralLevel=0" + "&userId="+userId;
+    // let index = that.data.index + 1;
+    // let url = "goods/list?isIntegralShop=1" + "&integralLevel=0" + "&userId=" + userId +"&pageIndex=1";
+    let url = "goods/list?userId=" + userId + "&isIntegralShop=1" + "&integralLevel=0" + "&pageIndex=1";
     var params = {
 
     }

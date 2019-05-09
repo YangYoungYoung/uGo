@@ -91,3 +91,10 @@
   height: 2rpx;
   background: #c1c1c1;
 }
+
+.info_null {
+  text-align: center;
+  align-content: center;
+  color: #6f6f6f;
+  font-size: 30rpx;
+}

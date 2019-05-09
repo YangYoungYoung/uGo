@@ -140,7 +140,7 @@ Page({
 
     let index = that.data.index + 1;
     // console.log('index is:', index);
-    let url = "goods/list?isIntegralShop=1" + "&integralLevel=" + index;
+    let url = "goods/list?isIntegralShop=1" + "&integralLevel=" + index +"&type=3";
     var params = {
 
     }
@@ -152,12 +152,17 @@ Page({
         wx.hideLoading();
         // console.log("返回值是：" + res.data);
         let goodsS = res.data.data.goodsS;
-        let showGoods = [];
-      for (var i = 1; i < 11;i++){
-        showGoods.push(goodsS[i]);
-      }
+        // let showGoods = [];
+        // if(goodsS.length>11){
+        //   for (var i = 1; i < 11; i++) {
+        //     showGoods.push(goodsS[i]);
+        //   }
+        // }else{
+        //   showGoods = goodsS;
+        // }
+     
         that.setData({
-          goodsS: showGoods
+          goodsS: goodsS
         })
       }).catch((errMsg) => {
         wx.hideLoading();
