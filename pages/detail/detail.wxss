@@ -113,6 +113,7 @@
 }
 
 .location-text{
+  text-align: left;
   font-size: 28rpx;
   color: #313131;
   margin-left: 24rpx;

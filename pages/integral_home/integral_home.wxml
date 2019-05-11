@@ -6,16 +6,18 @@
       <text class='back-text'>返回</text>
     </view>
 
-    <swiper style="height:350rpx;width:100%;background:#eee;" indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" circular="{{circular}}">
-      <!--广告banner-->
-      <block wx:for="{{ swiperList }}" wx:key="item">
-        <swiper-item>
-          <!-- <navigator url="/pages/good/index?id={{item.id}}"> -->
-          <image src="{{ item.picUrl }}" class="slide-image"  />
-          <!-- </navigator> -->
-        </swiper-item>
-      </block>
-    </swiper>
+    <block wx:if="{{swiperList.length>0}}">
+      <swiper style="height:350rpx;width:100%;background:#eee;" indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" circular="{{circular}}">
+        <!--广告banner-->
+        <block wx:for="{{ swiperList }}" wx:key="item">
+          <swiper-item>
+            <!-- <navigator url="/pages/good/index?id={{item.id}}"> -->
+            <image src="{{ item.picUrl }}" class="slide-image" />
+            <!-- </navigator> -->
+          </swiper-item>
+        </block>
+      </swiper>
+    </block>
     <view class='type_line'>
       <image src='../images/type_line.png'></image>
     </view>

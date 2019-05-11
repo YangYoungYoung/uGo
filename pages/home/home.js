@@ -122,7 +122,6 @@ Page({
           duration: 1500,
         })
       });
-
   },
 
   //获取用户地址
@@ -160,6 +159,7 @@ Page({
             })
             that.getShopList();
             that.getRecommendShopList();
+            that.getSwiperList();
           }
         });
 
@@ -180,11 +180,12 @@ Page({
     let district = that.data.district;
     // console.log('district is:', district);
     wx.setStorageSync('district', district);
-    if ( district.length!=0) {
+    if (district.length != 0) {
       that.getShopList();
+      that.getSwiperList();
     }
     that.getLiveRoomList();
-    that.getSwiperList();
+    
     that.getShopCategory();
     // that.getBanner();
     that.getSignInfo();
@@ -317,9 +318,10 @@ Page({
       let userId = wx.getStorageSync('userId');
 
       let url = "dg/sign/sign?userId=" + userId + "&addedIntegral=" + addedIntegral;
+      // let url = "dg/sign/sign";
       var params = {
-        // userOpenId: openId,
-        // addedIntegral: addedIntegral
+        userId: userId,
+        addedIntegral: addedIntegral
       }
       let method = "PUT";
       wx.showLoading({
@@ -339,7 +341,6 @@ Page({
               sineList: sineList,
               clicked: true
             })
-
             wx.showToast({
               title: '积分+' + addedIntegral,
               icon: 'success',
@@ -355,6 +356,39 @@ Page({
             duration: 1500,
           })
         });
+      // wx.request({
+      //   url: 'http://132.232.142.23:8088/api/dg/sign/sign?userId=1&addedIntegral=1', // 仅为示例，并非真实的接口地址
+      //   data: {
+      //     // x: '',
+      //     // y: ''
+      //   },
+      //   method:'PUT',
+      //   header: {
+      //     // 'content-type': 'application/json' // 默认值
+      //   },
+      //   success(res) {
+      //     console.log(res.data);
+      //     if (res.data.code == 200) {
+      //       // that.getShopList();
+      //       // signedTimes = signedTimes+1;
+      //       for (var i = 0; i <= signedTimes; i++) {
+      //         if (i <= signedTimes) {
+      //           sineList[i].select = true;
+      //         }
+      //       }
+      //       that.setData({
+      //         sineList: sineList,
+      //         clicked: true
+      //       })
+
+      //       wx.showToast({
+      //         title: '积分+' + addedIntegral,
+      //         icon: 'success',
+      //         duration: 1500,
+      //       })
+      //     }
+      //   }
+      // })
     }
 
   },
@@ -452,7 +486,8 @@ Page({
   //获取轮播图
   getSwiperList: function() {
     let that = this;
-    let url = "dg/carouselPicture/list?isIntegralShop=0"
+    let district = that.data.district;
+    let url = "dg/carouselPicture/list?isIntegralShop=0" + "&district=" + district;
     var params = {
 
     }
