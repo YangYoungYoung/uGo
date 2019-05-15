@@ -13,9 +13,9 @@
     </block>
 
     <view class='location-search'>
-      <view class='location'>
+      <view class='location' bindtap='toMap'>
         <text class='location-text'>{{district}}</text>
-        <image class='location-icon' src='../images/location_icon.png' bindtap='toMap'></image>
+        <image class='location-icon' src='../images/location_icon.png'></image>
       </view>
       <view class='search' bindtap='toSearch'>
         <text class='search-text'>搜索</text>
@@ -40,7 +40,7 @@
       <view class='sine-left'>
         <view class='sine-left-logo-view'>
           <image class='sine-left-logo' src='../images/integral_logo1.png'></image>
-          <view class='sine-left-logo-bottom'>{{addIntegral}} 积分</view>
+          <view class='sine-left-logo-bottom'>{{integral}} 积分</view>
         </view>
         <view class='sine-left-number'>
           <image class='sine-left-number-icon' src='../images/icon_people.png'></image>

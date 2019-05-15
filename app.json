@@ -1,13 +1,14 @@
 {
   "pages": [
     "pages/login/login",
+    "pages/convas/convas",
     "pages/center/center",
     "pages/moreShop/moreShop",
     "pages/share/share",
     "pages/logistics/logistics",
     "pages/integral_orderInfo/integral_orderInfo",
     "pages/home/home",
-    "pages/convas/convas",
+    
     "pages/securitySetting/phoneSetting/verification/verification",
     "pages/bindPhone/bindPhone",
     "pages/changePwd/setAgainPwd/setAgainPwd",

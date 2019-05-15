@@ -7,6 +7,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    integral:0,
     district: '',
     liveRooomList: [],
     shopCategorys: [],
@@ -108,7 +109,7 @@ Page({
       }),
       network.POST(url, params, method).then((res) => {
         wx.hideLoading();
-        // console.log("商铺列表返回值是：" + res.data);
+        console.log("商铺列表返回值是：");
         let shopList = res.data.data.shops;
         that.setData({
           shopList: shopList
@@ -157,9 +158,12 @@ Page({
             that.setData({
               district: district
             })
-            that.getShopList();
-            that.getRecommendShopList();
-            that.getSwiperList();
+            if (district.length > 0) {
+              that.getSwiperList();
+              that.getShopList();
+              that.getRecommendShopList();
+            }
+
           }
         });
 
@@ -178,14 +182,14 @@ Page({
   onShow: function() {
     let that = this;
     let district = that.data.district;
-    // console.log('district is:', district);
+    console.log('district is:', district);
     wx.setStorageSync('district', district);
     if (district.length != 0) {
       that.getShopList();
       that.getSwiperList();
     }
     that.getLiveRoomList();
-    
+
     that.getShopCategory();
     // that.getBanner();
     that.getSignInfo();
@@ -260,11 +264,13 @@ Page({
           let isSign = res.data.data.isSign;
           let sineList = that.data.sineList;
           let signedTimes = res.data.data.signedTimes;
+          let integral = res.data.data.integral;
           let addIntegral = sineList[signedTimes].number;
           let numberSigned = res.data.data.numberSigned;
           that.setData({
             numberSigned: numberSigned,
-            addIntegral: addIntegral
+            addIntegral: addIntegral,
+            integral: integral
           })
           if (isSign == 0) {
 
@@ -309,7 +315,7 @@ Page({
     let integral = that.data.integral;
     let sineList = that.data.sineList;
     let signedTimes = that.data.signedTimes;
-    if (signedTimes == 7) {
+    if (signedTimes == 6) {
       wx.navigateTo({
         url: '../convas/convas',
       })
@@ -337,6 +343,7 @@ Page({
                 sineList[i].select = true;
               }
             }
+            that.getSignInfo();
             that.setData({
               sineList: sineList,
               clicked: true
@@ -487,9 +494,11 @@ Page({
   getSwiperList: function() {
     let that = this;
     let district = that.data.district;
-    let url = "dg/carouselPicture/list?isIntegralShop=0" + "&district=" + district;
+    console.log("district返回值是：", district);
+    let url = "dg/carouselPicture/list" 
     var params = {
-
+      isIntegralShop:0,
+      district: district
     }
     let method = "GET";
     wx.showLoading({
@@ -497,7 +506,7 @@ Page({
       }),
       network.POST(url, params, method).then((res) => {
         wx.hideLoading();
-        // console.log("返回值是：" + res.data);
+        
         let swiperList = res.data.data.carouselPictures;
         that.setData({
           swiperList: swiperList
