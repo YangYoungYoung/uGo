@@ -292,7 +292,8 @@ Page({
 
     // console.log("当前的订单总价是：" + money);
     wx.request({
-      url: 'https://mall.cmdd.tech/api/common/getRepayId?outTradeNo=' + sn + "&money=" + totalFee + "&openId=" + openId + "&orderId=" + orderId,
+      // url: 'https://mall.cmdd.tech/api/common/getRepayId?outTradeNo=' + sn + "&money=" + totalFee + "&openId=" + openId + "&orderId=" + orderId,
+      url: 'https://api.ugo365.xyz/api/common/getRepayId?outTradeNo=' + sn + "&money=" + totalFee + "&openId=" + openId + "&orderId=" + orderId,
       data: {},
       header: { //请求头
         "Content-Type": "applciation/json"

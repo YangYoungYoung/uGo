@@ -14,5 +14,5 @@
     <view class='getVerificationCode' bindtap='getVerificationCode'>获取验证码</view>
   </view>
 
-  <view class='btn' bindtap='submit'>确认</view>
+  <view class='btn' bindtap='verify'>确认</view>
 </view>

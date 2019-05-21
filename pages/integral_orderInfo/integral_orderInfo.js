@@ -241,7 +241,8 @@ Page({
     var totalFee = that.data.totalPrice * 100;
     let sn = that.data.sn;
     wx.request({
-      url: 'https://mall.cmdd.tech/api/common/weiXin/pay/createWXOrder?sn=' + sn + "&totalFee=" + totalFee,
+      // url: 'https://mall.cmdd.tech/api/common/weiXin/pay/createWXOrder?sn=' + sn + "&totalFee=" + totalFee,
+      url: 'https://api.ugo365.xyz/api/common/weiXin/pay/createWXOrder?sn=' + sn + "&totalFee=" + totalFee,
       data: {},
       header: { //请求头
         "Content-Type": "applciation/json"

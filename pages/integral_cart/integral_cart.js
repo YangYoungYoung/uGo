@@ -8,7 +8,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    isIntegral:1,
+    isIntegral: 1,
     goodsList: {
       saveHidden: true,
       totalPrice: 0,
@@ -42,15 +42,15 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
-    if (options.isIntegral!=undefined){
+  onLoad: function(options) {
+    if (options.isIntegral != undefined) {
       let isIntegral = options.isIntegral;
       that.setData({
         isIntegral: isIntegral
       })
     }
     this.initEleWidth();
-    
+
   },
 
   /**
@@ -132,7 +132,7 @@ Page({
 
     deleteList.push(list[index].id);
     wx.request({
-      url: 'https://mall.cmdd.tech/api/shoppingCart/delete',
+      url: 'https://api.ugo365.xyz/api/shoppingCart/delete',
 
       data: deleteList,
       method: 'DELETE',
@@ -305,26 +305,26 @@ Page({
     // wx.showLoading({
     //     title: '加载中...',
     //   }),
-      network.POST(url, params, method).then((res) => {
-        // wx.hideLoading();
-        // console.log("全选返回值是：" + res.data);
-        if (res.data.code == 200) {
-          this.setGoodsList(this.getSaveHide(), this.totalPrice(), !currentAllSelect, this.noSelect(), list);
-          // that.getCartGoods();
-        }
-        // let addressList = res.data.data.addressS;
-        // that.setData({
-        //   addressList: addressList
-        // })
-      }).catch((errMsg) => {
-        wx.hideLoading();
-        // console.log(errMsg); //错误提示信息
-        wx.showToast({
-          title: '网络错误',
-          icon: 'loading',
-          duration: 1500,
-        })
-      });
+    network.POST(url, params, method).then((res) => {
+      // wx.hideLoading();
+      // console.log("全选返回值是：" + res.data);
+      if (res.data.code == 200) {
+        this.setGoodsList(this.getSaveHide(), this.totalPrice(), !currentAllSelect, this.noSelect(), list);
+        // that.getCartGoods();
+      }
+      // let addressList = res.data.data.addressS;
+      // that.setData({
+      //   addressList: addressList
+      // })
+    }).catch((errMsg) => {
+      wx.hideLoading();
+      // console.log(errMsg); //错误提示信息
+      wx.showToast({
+        title: '网络错误',
+        icon: 'loading',
+        duration: 1500,
+      })
+    });
 
 
   },
@@ -350,26 +350,26 @@ Page({
         // wx.showLoading({
         //     title: '加载中...',
         //   }),
-          network.POST(url, params, method).then((res) => {
-            // wx.hideLoading();
-            // console.log("数量加返回值是：" + res.data);
-            if (res.data.code == 200) {
-              this.setGoodsList(this.getSaveHide(), this.totalPrice(), this.allSelect(), this.noSelect(), list);
-              // that.getCartGoods();
-            }
-            // let addressList = res.data.data.addressS;
-            // that.setData({
-            //   addressList: addressList
-            // })
-          }).catch((errMsg) => {
-            wx.hideLoading();
-            // console.log(errMsg); //错误提示信息
-            wx.showToast({
-              title: '网络错误',
-              icon: 'loading',
-              duration: 1500,
-            })
-          });
+        network.POST(url, params, method).then((res) => {
+          // wx.hideLoading();
+          // console.log("数量加返回值是：" + res.data);
+          if (res.data.code == 200) {
+            this.setGoodsList(this.getSaveHide(), this.totalPrice(), this.allSelect(), this.noSelect(), list);
+            // that.getCartGoods();
+          }
+          // let addressList = res.data.data.addressS;
+          // that.setData({
+          //   addressList: addressList
+          // })
+        }).catch((errMsg) => {
+          wx.hideLoading();
+          // console.log(errMsg); //错误提示信息
+          wx.showToast({
+            title: '网络错误',
+            icon: 'loading',
+            duration: 1500,
+          })
+        });
       }
     }
   },
@@ -396,23 +396,23 @@ Page({
         // wx.showLoading({
         //     title: '加载中...',
         //   }),
-          network.POST(url, params, method).then((res) => {
-            // wx.hideLoading();
-            // console.log("数量减返回值是：" + res.data);
-            if (res.data.code == 200) {
-              this.setGoodsList(this.getSaveHide(), this.totalPrice(), this.allSelect(), this.noSelect(), list);
-              // that.getCartGoods();
-            }
+        network.POST(url, params, method).then((res) => {
+          // wx.hideLoading();
+          // console.log("数量减返回值是：" + res.data);
+          if (res.data.code == 200) {
+            this.setGoodsList(this.getSaveHide(), this.totalPrice(), this.allSelect(), this.noSelect(), list);
+            // that.getCartGoods();
+          }
 
-          }).catch((errMsg) => {
-            wx.hideLoading();
-            // console.log(errMsg); //错误提示信息
-            wx.showToast({
-              title: '网络错误',
-              icon: 'loading',
-              duration: 1500,
-            })
-          });
+        }).catch((errMsg) => {
+          wx.hideLoading();
+          // console.log(errMsg); //错误提示信息
+          wx.showToast({
+            title: '网络错误',
+            icon: 'loading',
+            duration: 1500,
+          })
+        });
       }
     }
   },
@@ -449,30 +449,30 @@ Page({
     let that = this;
     for (var i = 0; i < list.length; i++) {
       var curItem = list[i];
-      
+
       if (curItem.active) {
         deleteList.push(curItem.id);
         list.splice(i--, 1);
       }
     }
     wx.request({
-      url: 'https://mall.cmdd.tech/api/shoppingCart/delete',
+      url: 'https://api.ugo365.xyz/api/shoppingCart/delete',
 
       data: deleteList,
       method: 'DELETE',
       header: {
         'content-type': 'application/json'
       },
-      success: function (res) {
+      success: function(res) {
         // console.log("提交返回：" + res.data);
         if (res.data.code == 200) {
           // common.showTip("提交成功", 'success');
-          
+
           that.setGoodsList(that.getSaveHide(), that.totalPrice(), that.allSelect(), that.noSelect(), list);
           // that.getCartGoods();
         }
       }
-    });  
+    });
   },
   //提交订单
   toPayOrder: function() {
@@ -505,7 +505,7 @@ Page({
       }
     }
     that.navigateToPayOrder();
-   
+
     // wx.setStorage({
     //   key: "orderResult",
     //   data: orderResult
@@ -528,7 +528,7 @@ Page({
     let isIntegral = that.data.isIntegral;
     let userId = wx.getStorageSync('userId');
 
-    let url = "shoppingCart/detail?userId="+userId + "&isIntegralShop=" + isIntegral;
+    let url = "shoppingCart/detail?userId=" + userId + "&isIntegralShop=" + isIntegral;
     var params = {
 
     }
@@ -542,7 +542,7 @@ Page({
         let orderItem = res.data.data.orderItem;
         that.data.goodsList.list = orderItem;
         this.setGoodsList(this.getSaveHide(), this.totalPrice(), this.allSelect(), this.noSelect(), this.data.goodsList.list);
-      // that.getCartGoods();
+        // that.getCartGoods();
 
       }).catch((errMsg) => {
         wx.hideLoading();

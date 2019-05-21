@@ -52,10 +52,12 @@ Page({
       common.showTip("请输入正确手机号", "loading");
       return;
     }
-    let url = "common/smscode?mobile=" + mobile;
+    let url = "common/smscode"
+      // ? mobile = + mobile + "&type=2";
     let method = "GET";
     var params = {
-
+      mobile: mobile,
+      type:2
     }
     wx.showLoading({
         title: '加载中...',
@@ -103,7 +105,7 @@ Page({
         //后台交互
 
         if (res.data.code == 200) {
-          common.showTip('绑定成功','succcess');
+          common.showTip('绑定成功', 'succcess');
         }
       }).catch((errMsg) => {
         wx.hideLoading();
@@ -130,7 +132,7 @@ Page({
       common.showTip("请输入验证码", "loading");
       return;
     }
-    let url = "verify?captcha =" + code + "&mobile=" + mobile;
+    let url = "common/verify?captcha=" + code + "&mobile=" + mobile;
     let method = "GET";
     var params = {
 
@@ -144,6 +146,8 @@ Page({
 
         if (res.data.code == 200) {
           that.bindingMobile();
+        }else{
+          common.showTip(res.data.msg,'loading');
         }
       }).catch((errMsg) => {
         wx.hideLoading();

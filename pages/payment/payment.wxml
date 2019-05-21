@@ -2,7 +2,7 @@
 <view class='container'>
   <view class='order-view'>
     <text class='order-text'>订单金额:</text>
-    <input class='order-input' placeholder="请输入订单金额" type="number" bindinput='getNumber'></input>
+    <input class='order-input' placeholder="请输入订单金额" type="digit" bindinput='getNumber'></input>
   </view>
   <view class='title'>
     <text class='title-text'>选择支付方式</text>

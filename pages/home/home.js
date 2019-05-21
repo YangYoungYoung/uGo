@@ -8,6 +8,7 @@ Page({
    */
   data: {
     integral:0,
+    clicked: true,
     district: '',
     liveRooomList: [],
     shopCategorys: [],
@@ -109,7 +110,7 @@ Page({
       }),
       network.POST(url, params, method).then((res) => {
         wx.hideLoading();
-        console.log("商铺列表返回值是：");
+        // console.log("商铺列表返回值是：");
         let shopList = res.data.data.shops;
         that.setData({
           shopList: shopList
@@ -281,7 +282,8 @@ Page({
             }
             that.setData({
               sineList: sineList,
-              signedTimes: signedTimes
+              signedTimes: signedTimes,
+              clicked: false,
             })
           } else {
 
@@ -494,7 +496,7 @@ Page({
   getSwiperList: function() {
     let that = this;
     let district = that.data.district;
-    console.log("district返回值是：", district);
+    // console.log("district返回值是：", district);
     let url = "dg/carouselPicture/list" 
     var params = {
       isIntegralShop:0,

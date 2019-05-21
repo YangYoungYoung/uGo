@@ -223,9 +223,12 @@ Page({
     var that = this;
     var userId = wx.getStorageSync("userId");
     let phone = wx.getStorageSync('mobile');
+    console.log('userId is:',userId);
+    
     if (phone == undefined || phone == null) {
       phone = '';
     }
+    console.log('phone is:', phone);
     return {
       title: '优购365导购平台',
       path: '/pages/share/share?userId=' + userId + "&phone=" + phone,

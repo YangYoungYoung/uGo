@@ -1,8 +1,8 @@
 //封装的HTTPS的请求类
 const app = getApp()
 
-// var API_URL = 'https://api.cmdd.tech/';
-var API_URL = 'https://mall.cmdd.tech/api/';
+var API_URL = 'https://api.ugo365.xyz/api/';
+// var API_URL = 'https://mall.cmdd.tech/api/';
 // var API_URL = 'http://132.232.142.23:8088/api/';
 var defaulContentType = 'application/x-www-form-urlencoded; charset=UTF-8';
 

@@ -11,17 +11,18 @@ Page({
   data: {
     windowHeight: 1334,
     showModalStatus: false,
-    showModalDetail: true,
+    showModalDetail: false,
     inputSelect: false,
     message: '',
     avChatRoomId: '20190201',
     identifier: '', // 当前用户身份标识，必选
-    userSig: 'eJw9j0uPgjAURv8LW4y20DqjiQvUYjA64SE*2DQNlKY6YsViNMb-LuIjuatzFt*5N2Mxi9pMKZlRpqldZkbfAEarwfyiZMkpyzUvawwxxhYAHyszXmiZy8ZV4gDf-CRFDeYkGHnkgv*i49T6h56bbMnaER0NZyxQu26VqE1c2MuJSdw8TDxHDqPYDok79X5stNqEwMTnFA3nfg8HkSl6Sbx1fLH3F50xCgaDz1i2o039sw8BAH8Rgt231HLPX91Wfda3nKXpoSo01VfFm3fvD6ZWTR0_', // 当前用户签名，必选
+    // userSig: 'eJw9j0uPgjAURv8LW4y20DqjiQvUYjA64SE*2DQNlKY6YsViNMb-LuIjuatzFt*5N2Mxi9pMKZlRpqldZkbfAEarwfyiZMkpyzUvawwxxhYAHyszXmiZy8ZV4gDf-CRFDeYkGHnkgv*i49T6h56bbMnaER0NZyxQu26VqE1c2MuJSdw8TDxHDqPYDok79X5stNqEwMTnFA3nfg8HkSl6Sbx1fLH3F50xCgaDz1i2o039sw8BAH8Rgt231HLPX91Wfda3nKXpoSo01VfFm3fvD6ZWTR0_',
+    userSig: '', // 当前用户签名，必选
     nickName: '', // 当前用户昵称，选填
     msgContent: '',
     roomId: '1',
     goodsList: [],
-    userId: '1',
+    userId: '',
     num: 1, //初始数量
   },
 
@@ -40,14 +41,15 @@ Page({
         })
       }
     })
-    // let userId = options.userId;
-    // that.setData({
-    //   userId: userId
-    // })
-    // that.getLiveInfo();
+    let userId = wx.getStorageSync('userId');
+    that.setData({
+      userId: userId
+    })
+    that.getUserSig();
+    that.getLiveInfo();
     that.getGoodsList();
-    // that.initIM();
-    that.toDetail();
+    
+    // that.toDetail();
   },
 
 
@@ -56,6 +58,45 @@ Page({
    */
   onShow: function() {
 
+  },
+
+  //获取userSig
+  getUserSig: function() {
+    let that = this;
+    let userId = that.data.userId;
+    let url = "common/im/userSig?userId=" + userId;
+    var params = {
+
+    }
+    let method = "GET";
+    wx.showLoading({
+        title: '加载中...',
+      }),
+      network.POST(url, params, method).then((res) => {
+        wx.hideLoading();
+        if (res.data.code == 200) {
+          let urlSig = res.data.data.urlSig;
+          that.setData({
+            urlSig: urlSig
+          })
+          that.initIM();
+
+        } else {
+          wx.showToast({
+            title: '网络错误',
+            icon: 'loading',
+            duration: 1500,
+          })
+        }
+      }).catch((errMsg) => {
+        wx.hideLoading();
+        // console.log(errMsg); //错误提示信息
+        wx.showToast({
+          title: '网络错误',
+          icon: 'loading',
+          duration: 1500,
+        })
+      });
   },
 
   onReady(res) {
@@ -140,15 +181,7 @@ Page({
     })
   },
 
-  //加入购物车
-  joinCart: function() {
 
-  },
-
-  //立即购买
-  buyNow: function() {
-
-  },
   //跳转到购物车
   toCart: function() {
     wx.navigateTo({
@@ -160,14 +193,14 @@ Page({
     let that = this;
     that.setData({
       showModalDetail: false,
-      num:1
+      num: 1
     })
   },
   //跳转到详情
   toDetail: function() {
     let that = this;
     that.setData({
-      showModalDetail: false,
+      showModalDetail: true,
       showModalStatus: false,
     })
   },
@@ -241,6 +274,7 @@ Page({
   initIM: function() {
     var that = this;
     var avChatRoomId = that.data.avChatRoomId;
+    let userId = that.data.userId;
 
     webimhandler.init({
       accountMode: 0, //帐号模式，0-表示独立模式，1-表示托管模式(已停用，仅作为演示)
@@ -256,7 +290,7 @@ Page({
       'sdkAppID': '1400184416', //用户所属应用id,必填
       'appIDAt3rd': '1400184416', //用户所属应用id，必填
       'accountType': '36862', //用户所属应用帐号类型，必填
-      'identifier': 'ugo1', //当前用户ID,必须是否字符串类型，选填
+      'identifier': 'ugo' + userId, //当前用户ID,必须是否字符串类型，选填
       'identifierNick': that.data.nickName || '', //当前用户昵称，选填
       'userSig': that.data.userSig, //当前用户身份凭证，必须是字符串类型，选填
     };
@@ -568,24 +602,24 @@ Page({
     });
   },
   //从详情加入购物车
-  detaiJoinCart:function(){
+  detaiJoinCart: function() {
     let that = this;
     let userId = that.data.userId;
-    
+
     let good = that.data.good;
 
     let url = "shoppingCart/add";
     var params = {
       goodsId: good.id,
       goodsName: good.name,
-      number:that.data.num,
+      number: that.data.num,
       price: good.unitPrice,
       userId: that.data.userId
     }
     let method = "POST";
     wx.showLoading({
-      title: '加载中...',
-    }),
+        title: '加载中...',
+      }),
       network.POST(url, params, method).then((res) => {
         wx.hideLoading();
         // console.log("返回值是：" + res.data);
@@ -604,8 +638,44 @@ Page({
       });
   },
   //详情立即购买
-  detailBuyNow:function(){
-    
-  }
+  detailBuyNow: function() {
+
+  },
+  //当前页面销毁
+  onUnload: function () {
+    let that = this;
+    that.closeLiveRoom();
+
+  },
+  //关闭直播接口
+  closeLiveRoom: function () {
+    let that = this;
+
+    let url = "zhiBo/room/100"
+    var params = {
+
+    }
+    let method = "DELETE";
+    wx.showLoading({
+      title: '加载中...',
+    }),
+      network.POST(url, params, method).then((res) => {
+        wx.hideLoading();
+        if (res.data.code == 200) {
+          // common.showTip("关闭成功");
+          // wx.navigateBack({
+          //   delta: -1
+          // });
+        }
+      }).catch((errMsg) => {
+        wx.hideLoading();
+        console.log(errMsg); //错误提示信息
+        wx.showToast({
+          title: '网络错误',
+          icon: 'loading',
+          duration: 1500,
+        })
+      });
+  },
 
 })
