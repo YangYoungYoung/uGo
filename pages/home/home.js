@@ -7,7 +7,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    integral:0,
+    integral: 0,
     clicked: true,
     district: '',
     liveRooomList: [],
@@ -497,9 +497,9 @@ Page({
     let that = this;
     let district = that.data.district;
     // console.log("district返回值是：", district);
-    let url = "dg/carouselPicture/list" 
+    let url = "dg/carouselPicture/list"
     var params = {
-      isIntegralShop:0,
+      isIntegralShop: 0,
       district: district
     }
     let method = "GET";
@@ -508,7 +508,7 @@ Page({
       }),
       network.POST(url, params, method).then((res) => {
         wx.hideLoading();
-        
+
         let swiperList = res.data.data.carouselPictures;
         that.setData({
           swiperList: swiperList
@@ -642,6 +642,33 @@ Page({
     wx.navigateTo({
       url: '../moreShop/moreShop',
     })
-  }
+  },
+  //扫一扫
+  scanCode: function() {
+    let that = this;
+    // 只允许从相机扫码
+    wx.scanCode({
+      onlyFromCamera: true,
+      success(res) {
+
+        let result = res.result;
+        // console.log(result);
+        var index = result.lastIndexOf("\=");
+        let shopId = result.substring(index + 1, result.length);
+        // console.log(shopId);
+        if (shopId != undefined || shopId.length != 0) {
+          // that.setData({
+          //   shopId: shopId
+          // })
+          // that.showDialogBtn();
+          wx.navigateTo({
+            url: '../payment/payment?shopId=' + shopId,
+          })
+        }
+
+        // return obj;
+      }
+    })
+  },
 
 })

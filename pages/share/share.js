@@ -5,7 +5,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-    url: 'http://share-app.ugo365.xyz/#/register',
+    // url: 'https://share-app.ugo365.xyz/#/register',
+    url: 'https://api.ugo365.xyz/#/register',
     userId: '',
     phone: ''
 

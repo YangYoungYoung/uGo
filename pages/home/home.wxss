@@ -41,6 +41,8 @@ page {
   flex-direction: row;
   margin-top: 24rpx;
   box-sizing: border-box;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .location {
@@ -62,7 +64,7 @@ page {
 }
 
 .search {
-  width: 534rpx;
+  width: 430rpx;
   margin-left: 20rpx;
   background-color: #e1e1e1;
   border-radius: 28px;
@@ -79,6 +81,24 @@ page {
   color: #616161;
   margin-left: 30rpx;
 }
+
+.scanCode{
+  width: 67rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-right: 32rpx;                                          
+}
+.scanCode-icon{
+  width: 43rpx;
+  height: 43rpx;
+}
+
+.scanCode-text{
+  font-size: 22rpx;
+  color: #313131;
+}
+
 
 .search-icon {
   width: 36rpx;
@@ -493,6 +513,7 @@ page {
 } */
 
 .shop-hour {
+  text-align: left;
   font-size: 22rpx;
   margin-top: 10rpx;
   margin-left: 16rpx;

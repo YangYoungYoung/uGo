@@ -4,7 +4,7 @@
     <view style='width:100%'>
       <text class='verification-text'>我们已发送<text style='color:#313131'>验证码</text> 到您的手机
       <text>+86</text>
-      <text style='color:#313131'>139****1234</text></text>
+      <text style='color:#313131'>{{mobile}}</text></text>
     </view>
   </view>
   <form>

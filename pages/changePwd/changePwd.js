@@ -1,4 +1,6 @@
 // pages/changePwd/changePwd.js
+var network = require("../../utils/network.js")
+var common = require("../../utils/common.js")
 Page({
 
   /**
@@ -12,7 +14,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    this.onConfirm();
   },
   /**
    * 获取到用户信息
@@ -33,7 +35,8 @@ Page({
         wx.hideLoading();
         //后台交互
         if (res.data.code == 200) {
-          let mobile = res.data.data.mobile
+          let mobile = res.data.data.mobile;
+          console.log('mobile is:', mobile);
           if (mobile == null || mobile.length < 11) {
             //跳转到设置密码
             wx.showModal({
@@ -48,7 +51,7 @@ Page({
                 } else if (res.confirm) {
                   // 用户点击了确定属性的按钮
                  wx.navigateTo({
-                   url: '',
+                   url: '../bindPhone/bindPhone',
                  })
                 }
               }

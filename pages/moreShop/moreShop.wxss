@@ -56,6 +56,7 @@ page {
 }
 
 .shop-info-title {
+  width: 526rpx;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -107,16 +108,21 @@ page {
 .shop-grade-hour {
   display: flex;
   flex-direction: row;
-  text-align: center;
+  /* text-align: center; */
+  /* align-items: center; */
+  text-align: left
 }
 
-/* .shop-grade{
-  height: 24rpx;
-} */
+.shop-grade{
+  display: block;
+  width: 200rpx;
+}
 
 .shop-hour {
+  width: 300rpx;
   font-size: 22rpx;
   margin-top: 10rpx;
+  display: block;
   margin-left: 16rpx;
 }
 

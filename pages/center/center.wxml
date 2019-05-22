@@ -31,11 +31,11 @@
         </block>
       </view>
     </van-panel>
-    <van-panel>
+    <!-- <van-panel>
       <view class='balance-view'>
         <view class='balance-left' bindtap='scanCode'>扫一扫</view>
       </view>
-    </van-panel>
+    </van-panel> -->
     <van-panel>
       <view class='balance-view'>
         <view class='balance-left'>我的余额 : {{user.balance}}</view>
