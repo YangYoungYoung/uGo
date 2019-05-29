@@ -62,5 +62,15 @@ Page({
    */
   onShareAppMessage: function () {
 
+  },
+  toConsult:function(){
+    wx.navigateTo({
+      url: 'consult/consult',
+    })
+  },
+  toAuthorizationStatement:function(){
+    wx.navigateTo({
+      url: '../authorizationStatement/authorizationStatement',
+    })
   }
 })

@@ -42,7 +42,7 @@ Page({
 
   },
   //获取手机号
-  phoneInput: function() {
+  phoneInput: function(e) {
     let that = this;
     let phone = e.detail.value;
     // console.log(phone);

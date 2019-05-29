@@ -38,17 +38,33 @@
       <text class='information-text'>商铺认证信息</text>
     </view>
     <view class='upload-view' bindtap='chooseImageFront'>
-      <image class='upload-add' src='../images/upload_addicon.png'></image>
-      <text class='upload-text'>身份证人像面</text>
+      <block wx:if='{{imageFront}}'>
+        <image class='upload-add' src='../images/upload_addicon.png'></image>
+        <text class='upload-text'>身份证人像面</text>
+      </block>
+      <block wx:else>
+        <image class='upload-img' src='{{imageFront}}'></image>
+      </block>
+
     </view>
     <view class='upload-view' bindtap='chooseImageReverse'>
-      <image class='upload-add' src='../images/upload_addicon.png'></image>
-      <text class='upload-text'>身份证国徽面</text>
+      <block wx:if='{{imageReverse}}'>
+        <image class='upload-add' src='../images/upload_addicon.png'></image>
+        <text class='upload-text'>身份证国徽面</text>
+      </block>
+      <block wx:else>
+        <image class='upload-img' src='{{imageReverse}}'></image>
+      </block>
     </view>
 
     <view class='upload-view' bindtap='chooseImageReverse'>
-      <image class='upload-add' src='../images/upload_addicon.png'></image>
-      <text class='upload-text'>营业执照</text>
+      <block wx:if='{{src}}'>
+        <image class='upload-add' src='../images/upload_addicon.png'></image>
+        <text class='upload-text'>营业执照</text>
+      </block>
+      <block wx:else>
+        <image class='upload-img' src='{{src}}'></image>
+      </block>
     </view>
 
     <!-- <view class='shop-info-view'>

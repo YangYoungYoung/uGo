@@ -7,7 +7,7 @@
 
   <view class='info-view'>
     <text class='info-text' decode="{{true}}">手机号：</text>
-    <input class='info-input' type='number' maxlength='11' placeholder="请输入手机号" value='{{name}}' bindinput="phoneInput"></input>
+    <input class='info-input' type='number' maxlength='11' placeholder="请输入手机号" value='{{phone}}' bindinput="phoneInput"></input>
   </view>
 
   <view class='info-view'>
@@ -15,7 +15,7 @@
       <view class="picker-view">
         <text class='picker-text' decode="{{true}}">区&nbsp;&nbsp;&nbsp;域:</text>
         <block wx:if='{{showMore}}'>
-          <input class='info-input' style='margin-left:10rpx;' type='text' placeholder="请选择您所在位置" value='{{name}}' bindinput="phoneInput"></input>
+          <input class='info-input' style='margin-left:10rpx;' type='text' placeholder="请选择您所在位置" value='{{area}}' bindinput="phoneInput"></input>
         </block>
         <block wx:else>
           <text class='info-text' style='margin-left:10rpx;'>{{array[index]}}</text>

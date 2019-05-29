@@ -134,7 +134,7 @@ Page({
   //成为商家
   toMerchant: function() {
     wx.navigateTo({
-      url: '../authorizationStatement/authorizationStatement',
+      url: '../toMerchant/toMerchant',
     })
   },
   //兑换，跳转到积分商城

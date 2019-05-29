@@ -13,7 +13,6 @@ Page({
     liveRooomList: [],
     shopCategorys: [],
     swiperList: [],
-    clicked: false,
     showModal: false,
     indicatorDots: true, //是否出现焦点  
     autoplay: true, //是否自动播放轮播图  
@@ -183,7 +182,7 @@ Page({
   onShow: function() {
     let that = this;
     let district = that.data.district;
-    console.log('district is:', district);
+    // console.log('district is:', district);
     wx.setStorageSync('district', district);
     if (district.length != 0) {
       that.getShopList();

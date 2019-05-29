@@ -4,6 +4,6 @@
 <text class='statement-text'>授权声明</text>
 <text class='statement-content' decode="{{true}}">&nbsp;&nbsp;&nbsp;&nbsp;本APP运营方为确保用户身份真实性，向您提供更好的安全保障，您可以通过提交身份证信息来完成优购365平台账户或具体产品服务所需或必要的实名认证。\n&nbsp;&nbsp;&nbsp;&nbsp;上述信息将仅用于验证用户身份的真实性。\n\n&nbsp;&nbsp;&nbsp;&nbsp;我们会采用行业领先的技术来保护您提供个人信息，并使用加密、限权等方式避免其被用于其他用途。\n
 &nbsp;&nbsp;&nbsp;&nbsp;点击“同意”则表示本人同意我们根据以上方式和目的的收集、使用及储存您提供的本人身份材料等信息用于实名认证。</text>
-<button class='statement-btn'>同意</button>
+<button class='statement-btn' bindtap='touploadingData'>同意</button>
 
 </view>
