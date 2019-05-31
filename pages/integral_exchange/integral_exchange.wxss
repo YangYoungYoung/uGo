@@ -97,4 +97,5 @@
   align-content: center;
   color: #6f6f6f;
   font-size: 30rpx;
+  margin-top: 100rpx;
 }

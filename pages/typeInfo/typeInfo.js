@@ -20,7 +20,8 @@ Page({
       {
         name: "筛选"
       }
-    ]
+    ],
+    showList:true
   },
 
   /**
@@ -53,9 +54,15 @@ Page({
           wx.hideLoading();
           // console.log("商铺列表返回值是：" + res.data);
           let shopList = res.data.data.shops;
+        if (shopList.length>0){
           that.setData({
             shopList: shopList
           })
+        }else{
+          that.setData({
+            showList:false
+          })
+        }
         }).catch((errMsg) => {
           wx.hideLoading();
           console.log(errMsg); //错误提示信息

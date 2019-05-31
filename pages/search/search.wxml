@@ -2,7 +2,7 @@
 <view class='container'>
   <scroll-view class='scroll' scroll-y="true" style="height: 100%;">
     <view class='search'>
-      <van-search value="{{ value }}" use-action-slot placeholder="请输入关键词搜索" bind:change="onChange" >
+      <van-search value="{{ value }}" use-action-slot placeholder="请输入关键词搜索" bind:change="onChange">
         <view slot="action" bind:tap="onSearch">搜索</view>
       </van-search>
     </view>
@@ -38,7 +38,10 @@
       </view>
     </block>
     <block wx:else>
-      <view class='found'>
+      <view class='info_null'>
+        抱歉，当前没有数据
+      </view>
+      <!-- <view class='found'>
         <text class='found-text'>搜索发现</text>
         <view class='found-list'>
           <block wx:for='{{foundList}}' wx:key="index">
@@ -76,7 +79,7 @@
             <text class='local-list-item'>{{item}}</text>
           </block>
         </view>
-      </view>
+      </view> -->
     </block>
 
   </scroll-view>

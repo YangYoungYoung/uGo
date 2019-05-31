@@ -7,7 +7,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    showList:true
   },
 
   /**
@@ -35,9 +35,15 @@ Page({
         wx.hideLoading();
         // console.log("返回值是：" + res.data);
         let goodsS = res.data.data.goodsS;
+      if (goodsS.length>0){
         that.setData({
           goodsS: goodsS
         })
+      }else{
+        that.setData({
+          showList:false
+        })
+      }
       }).catch((errMsg) => {
         wx.hideLoading();
         // console.log(errMsg); //错误提示信息

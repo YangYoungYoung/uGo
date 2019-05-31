@@ -7,9 +7,9 @@ Page({
    * 页面的初始数据
    */
   data: {
-    // foundList: ["KTV", "温泉", "酒店", "好年纪"],
-    // localList: ["KTV水电费", "温泉安抚", "酒店东方闪电", "好年纪发送到", "KTV水电费", "温泉安抚", "酒店东方闪电", "好年纪发送到"],
-    showList: false
+    
+    showList: true,
+    shopList:[]
   },
 
   /**
@@ -77,10 +77,18 @@ Page({
         wx.hideLoading();
         // console.log("商铺列表返回值是：" + res.data);
         let shopList = res.data.data.shops;
+      if (shopList.length>0){
         that.setData({
           shopList: shopList,
           showList: true
         })
+      }
+      else{
+        that.setData({
+          // shopList: shopList,
+          showList: false
+        })
+      }
       }).catch((errMsg) => {
         wx.hideLoading();
         console.log(errMsg); //错误提示信息

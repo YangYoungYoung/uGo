@@ -12,35 +12,42 @@
     </block>
   </view> -->
   <scroll-view class='scroll' scroll-y="true" style="height: 100%;">
-    <view class='shop-list'>
+    <block wx:if="{{showList}}">
+      <view class='shop-list'>
 
-      <block wx:for='{{shopList}}' wx:key='index'>
-        <view class='shop-list-item' bindtap='toshopDetail' data-id='{{item.id}}'>
-          <view class='shop-item-image'>
-            <image class='shop-item-logo' src='{{item.pic}}'></image>
-          </view>
-
-          <view class='shop-item-info'>
-            <text class='shop-info-name'>{{item.name}}</text>
-            <view class='shop-info-location-distance'>
-              <view class='shop-info-location'>
-                <text class='shop-info-type'>{{item.categoryName}}</text>
-                <text class='shop-info-loca'>{{item.district}}</text>
-              </view>
-              <text class='shop-info-distance'>{{item.distance}}m</text>
+        <block wx:for='{{shopList}}' wx:key='index'>
+          <view class='shop-list-item' bindtap='toshopDetail' data-id='{{item.id}}'>
+            <view class='shop-item-image'>
+              <image class='shop-item-logo' src='{{item.pic}}'></image>
             </view>
-            <block wx:if="{{item.preferential.length>0}}">
-              <view class='shop-info-discounts'>
-                <image class='shop-discounts-logo' src='../images/shop_discounts_logo.png'></image>
-                <text class='shop-discounts-text'>{{item.preferential}}</text>
-                <image class='shop-discounts-end' src='../images/shop_discounts_end.png'></image>
-              </view>
-            </block>
-          </view>
-        </view>
-      </block>
 
-    </view>
+            <view class='shop-item-info'>
+              <text class='shop-info-name'>{{item.name}}</text>
+              <view class='shop-info-location-distance'>
+                <view class='shop-info-location'>
+                  <text class='shop-info-type'>{{item.categoryName}}</text>
+                  <text class='shop-info-loca'>{{item.district}}</text>
+                </view>
+                <text class='shop-info-distance'>{{item.distance}}m</text>
+              </view>
+              <block wx:if="{{item.preferential.length>0}}">
+                <view class='shop-info-discounts'>
+                  <image class='shop-discounts-logo' src='../images/shop_discounts_logo.png'></image>
+                  <text class='shop-discounts-text'>{{item.preferential}}</text>
+                  <image class='shop-discounts-end' src='../images/shop_discounts_end.png'></image>
+                </view>
+              </block>
+            </view>
+          </view>
+        </block>
+
+      </view>
+    </block>
+    <block wx:else>
+      <view class='info_null'>
+        抱歉，当前没有数据
+      </view>
+    </block>
   </scroll-view>
 
 

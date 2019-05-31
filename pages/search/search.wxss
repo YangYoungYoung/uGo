@@ -35,7 +35,8 @@ page{
   align-items: center;
   display: flex;
   flex-direction: column;
-  padding-bottom: 100rpx;
+  padding-top: 100rpx;
+  /* margin-top: 120rpx; */
 }
 
 .found {
@@ -224,4 +225,12 @@ local-list {
   width: 16rpx;
   height: 28rpx;
   margin-left: 8rpx;
+}
+
+.info_null {
+  text-align: center;
+  align-content: center;
+  color: #6f6f6f;
+  font-size: 30rpx;
+  margin-top: 100rpx;
 }

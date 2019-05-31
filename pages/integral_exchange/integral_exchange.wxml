@@ -1,6 +1,6 @@
 <!--pages/integral_exchange/integral_exchange.wxml-->
 <view class='search-list'>
-  <block wx:if="{{goodsS.length>0}}">
+  <block wx:if="{{showList}}">
     <block wx:for="{{goodsS}}" wx:key="index" wx:if="{{index<20}}">
       <view class='search-list-item' bindtap='toDetail' data-id='{{item.id}}'>
         <image class='item-image' src='{{item.primaryPicUrl}}'></image>
