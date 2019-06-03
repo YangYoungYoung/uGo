@@ -79,6 +79,7 @@ Page({
   //点击预览大图
   previewImage:function(e){
     var current = e.target.dataset.src;
+    console.log('current is:', current);
     wx.previewImage({
       current: current, // 当前显示图片的http链接  
       urls: this.data.pic_detail // 需要预览的图片http链接列表  

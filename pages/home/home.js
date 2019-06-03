@@ -163,10 +163,8 @@ Page({
               that.getShopList();
               that.getRecommendShopList();
             }
-
           }
         });
-
       },
       fail: function(res) {
         that.setData({
@@ -188,14 +186,11 @@ Page({
       that.getShopList();
       that.getSwiperList();
     }
-    that.getLiveRoomList();
-
+    // that.getLiveRoomList();
     that.getShopCategory();
     // that.getBanner();
     that.getSignInfo();
-
     // that.getRecommendShopList();
-
     // that.setData();
   },
   //跳转到不同分类
@@ -297,9 +292,7 @@ Page({
               signedTimes: signedTimes
             })
           }
-
         }
-
       }).catch((errMsg) => {
         wx.hideLoading();
         // console.log(errMsg); //错误提示信息

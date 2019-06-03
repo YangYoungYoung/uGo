@@ -117,13 +117,9 @@ Page({
     } else if (number == 100 && temp == 5000) {
       var awardIndex = 5;
     }
-
-
-
     // var awardIndex = 2;
     var runNum = 8; //旋转8周
     var duration = 4000; //时长
-
     // 旋转角度
     this.runDeg = this.runDeg || 0;
     this.runDeg = this.runDeg + (360 - this.runDeg % 360) + (360 * runNum - awardIndex * (360 / 6))
