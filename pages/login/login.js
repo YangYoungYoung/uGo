@@ -14,7 +14,7 @@ Page({
       success: res => {
         app.globalData.code = res.code
         //取出本地存储用户信息，解决需要每次进入小程序弹框获取用户信息
-        app.globalData.userInfo = wx.getStorageSync('userInfo')
+        app.globalData.userInfo = wx.getStorageSync(' ')
         if (app.globalData.userInfo) {
           that.setData({
             authorization: false
@@ -42,7 +42,7 @@ Page({
             wx.showToast({
               title: '网络错误',
               icon: 'warn',
-              duration: 1500,
+              duration: 1000,
             })
           }
         })
@@ -51,7 +51,7 @@ Page({
         wx.showToast({
           title: '网络错误',
           icon: 'warn',
-          duration: 1500,
+          duration: 1000,
         })
       }
     })
@@ -113,7 +113,7 @@ Page({
             wx.showToast({
               title: '网络错误',
               icon: 'loading',
-              duration: 1500,
+              duration: 1000,
             })
           }
         },
@@ -123,7 +123,7 @@ Page({
           wx.showToast({
             title: '网络错误',
             icon: 'loading',
-            duration: 1500,
+            duration: 1000,
           })
         }
       });
@@ -162,7 +162,7 @@ Page({
         wx.showToast({
           title: '网络错误',
           icon: 'loading',
-          duration: 1500,
+          duration: 1000,
         })
       });
   },
@@ -233,7 +233,7 @@ Page({
         wx.showToast({
           title: '网络错误',
           icon: 'loading',
-          duration: 1500,
+          duration: 1000,
         })
       });
   }

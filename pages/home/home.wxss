@@ -445,6 +445,7 @@ page {
   height: 144rpx;
   box-sizing: border-box;
   display: block;
+  background-color: #E5E5E5;
 }
 
 .shop-item-info {

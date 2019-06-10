@@ -45,6 +45,7 @@
   border-radius: 24rpx;
   margin-bottom: 21rpx;
   /* margin-right: 29rpx; */
+  background-color: #eee;
 }
 
 .shop-time {

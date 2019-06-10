@@ -19,7 +19,7 @@
   <view class='line'></view>
   <view class='name-view'>
     <text class='name-text'>详细地址</text>
-    <input class="inputText" type='number' placeholder="街道、楼牌号" value='{{street}}' bindinput="streetInput" />
+    <input class="inputText" type='text' placeholder="街道、楼牌号" value='{{street}}' bindinput="streetInput" />
   </view>
   <view class='line'></view>
   <!--弹窗-->

@@ -117,6 +117,7 @@ Page({
     } else if (number == 100 && temp == 5000) {
       var awardIndex = 5;
     }
+    that.sineInClick(number);
     // var awardIndex = 2;
     var runNum = 8; //旋转8周
     var duration = 4000; //时长
@@ -144,7 +145,10 @@ Page({
         success: function (res) {
           if (res.confirm) {
             //点击取消,默认隐藏弹框
-            that.sineInClick(number);
+            console.log('navigateBack。。。。。。。。。。。。。。。');
+            wx.navigateBack({
+              delta: 1
+            })
           }
         },
       });
@@ -177,9 +181,7 @@ Page({
       network.POST(url, params, method).then((res) => {
         wx.hideLoading();
         if (res.data.code == 200) {
-          wx.navigateBack({
-            delta: 1
-          })
+         
         }
       }).catch((errMsg) => {
         wx.hideLoading();

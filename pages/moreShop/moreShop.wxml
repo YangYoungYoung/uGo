@@ -4,7 +4,7 @@
     <block wx:for="{{shopList}}" wx:key='index'>
 
       <view class='shop-list-item' bindtap='toShop' data-id='{{item.id}}'>
-        <image class='shop-item-image' src='{{item.pic}}' lazy-load='true'></image>
+        <image class='shop-item-image' wx:if="{{item.pic}}" src='{{item.pic}}' lazy-load='true'></image>
         <view class='shop-item-info'>
           <view class='shop-info-title'>
             <view class='shop-info-title-left'>

@@ -19,6 +19,7 @@ Page({
   onLoad: function(options) {
     if (options.shopId != undefined) {
       let shopId = options.shopId;
+      console.log('shopId:', shopId);
       this.setData({
         shopId: shopId
       })
@@ -159,7 +160,6 @@ Page({
           duration: 1500,
         })
       });
-
   },
 
   //扫码支付成功回调
@@ -170,8 +170,6 @@ Page({
 
     let ammount = that.data.number;
     let shopId = that.data.shopId;
-
-
     let url = "common/pay/return?userId=" + userId + "&shopId=" + shopId + "&ammount=" + ammount;
     var params = {
 
@@ -184,7 +182,27 @@ Page({
         wx.hideLoading();
 
         if (res.data.code == 200) {
-
+          let retIntegral = res.data.data.retIntegral;
+          console.log('retIntegral: ', retIntegral);
+          wx.showModal({
+            title: '支付成功',
+            content: '恭喜你获得了' + retIntegral + '积分!\n快去积分商城兑换商品吧!',
+            cancelText: '立即兑换',
+            confirmText: '返回首页',
+            success(res) {
+              if (res.cancel) {
+                // 用户点击了取消属性的按钮，对应选择了'立即兑换'
+                wx.switchTab({
+                  url: '../integral_home/integral_home',
+                })
+              } else if (res.confirm) {
+                // 用户点击了确定属性的按钮，对应选择了'返回首页'
+                wx.navigateBack({
+                  delta: 1,
+                })
+              }
+            }
+          })
         }
       }).catch((errMsg) => {
         wx.hideLoading();

@@ -275,7 +275,7 @@ Page({
               }
             }
             that.setData({
-              sineList: sineList,
+              sineList: sineList, 
               signedTimes: signedTimes,
               clicked: false,
             })

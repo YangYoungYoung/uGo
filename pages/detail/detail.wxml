@@ -7,7 +7,7 @@
 
   <view class='image-list'>
     <block wx:for="{{pic_detail}}" wx:key="index">
-      <image class='image-item' src='{{item}}' data-src='{{item}}' bindtap='previewImage'></image>
+      <image wx:if="{{item}}" class='image-item' src='{{item}}'  data-src='{{item}}' bindtap='previewImage'></image>
     </block>
   </view>
 

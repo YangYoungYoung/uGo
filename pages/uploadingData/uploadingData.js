@@ -8,6 +8,7 @@ Page({
     hasfeedback:true,
     imageFrontPath: "",
     imageReversePath: "",
+    certificate:"",
     items: [{
         value: '是',
         checked: true
@@ -73,6 +74,23 @@ Page({
       }
     })
   },
+  //上传营业执照
+  chooseCertificate: function () {
+    let that = this;
+    wx.chooseImage({
+      count: 1, // 默认9
+      sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
+      sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
+      success: function (res) {
+        // 返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片
+        let certificate = res.tempFilePaths;
+        that.setData({
+          certificate: certificate
+        })
+        // console.log(imageFrontPath);
+      }
+    })
+  },
   //获取姓名
   nameInput: function(e) {
     let that = this;
@@ -83,7 +101,7 @@ Page({
     // console.log(name);
   },
   //获取手机号
-  phoneInput: function() {
+  phoneInput: function(e) {
     let that = this;
     let phone = e.detail.value;
     // console.log(phone);
@@ -96,7 +114,7 @@ Page({
     // console.log('radio发生change事件，携带value值为：', e.detail.value)
     let value = e.detail.value;
     this.setData({
-      seleted: "选中的value：" + value
+      seleted: value
     })
   }
 })

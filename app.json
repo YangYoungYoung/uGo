@@ -2,6 +2,8 @@
   "pages": [
     "pages/login/login",
     "pages/convas/convas",
+    "pages/uploadingData/uploadingData",
+    
     "pages/center/center",
     "pages/moreShop/moreShop",
     "pages/share/share",
@@ -21,7 +23,7 @@
     "pages/integral_subList/integral_subList",
     "pages/drawings/drawings",
     "pages/authentication/authentication",
-    "pages/uploadingData/uploadingData",
+    
     "pages/switchcity/switchcity",
     "pages/search/search",
     "pages/integral_payOrder/integral_payOrder",
@@ -42,8 +44,7 @@
     "pages/toMerchant/toMerchant",
     "pages/authorizationStatement/authorizationStatement",
     "pages/livecart/livecart",
-    "pages/integral_type/integral_type",
-    "pages/map/map"
+    "pages/integral_type/integral_type"
   ],
   "window": {
     "backgroundTextStyle": "light",

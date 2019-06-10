@@ -37,33 +37,41 @@
     <view class='information-title'>
       <text class='information-text'>商铺认证信息</text>
     </view>
+    <view class='legalPeople-title'>
+      <text class='legalPeople-text'>法人信息</text>
+    </view>
     <view class='upload-view' bindtap='chooseImageFront'>
-      <block wx:if='{{imageFront}}'>
+      <block wx:if='{{imageFrontPath.length>0}}'>
+
+        <image class='upload-img' src='{{imageFrontPath}}'></image>
+      </block>
+      <block wx:else>
         <image class='upload-add' src='../images/upload_addicon.png'></image>
         <text class='upload-text'>身份证人像面</text>
       </block>
-      <block wx:else>
-        <image class='upload-img' src='{{imageFront}}'></image>
-      </block>
 
     </view>
     <view class='upload-view' bindtap='chooseImageReverse'>
-      <block wx:if='{{imageReverse}}'>
+      <block wx:if='{{imageReversePath.length>0}}'>
+        <image class='upload-img' src='{{imageReversePath}}'></image>
+      </block>
+      <block wx:else>
         <image class='upload-add' src='../images/upload_addicon.png'></image>
         <text class='upload-text'>身份证国徽面</text>
-      </block>
-      <block wx:else>
-        <image class='upload-img' src='{{imageReverse}}'></image>
+
       </block>
     </view>
-
-    <view class='upload-view' bindtap='chooseImageReverse'>
-      <block wx:if='{{src}}'>
-        <image class='upload-add' src='../images/upload_addicon.png'></image>
-        <text class='upload-text'>营业执照</text>
+    <view class='legalPeople-title'>
+      <text class='legalPeople-text'>商铺信息</text>
+    </view>
+    <view class='upload-view' bindtap='chooseCertificate'>
+      <block wx:if='{{certificate}}'>
+        <image class='upload-img' src='{{certificate}}'></image>
       </block>
       <block wx:else>
-        <image class='upload-img' src='{{src}}'></image>
+        <image class='upload-add' src='../images/upload_addicon.png'></image>
+        <text class='upload-text'>营业执照</text>
+
       </block>
     </view>
 
@@ -79,7 +87,7 @@
     </view>
   </view> -->
 
-    <button class='statement-btn' bindtap='submit'>提交</button>
+    <button class='statement-btn' bindtap='submit'>提交审核</button>
 
   </view>
 </scroll-view>

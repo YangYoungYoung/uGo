@@ -1,6 +1,0 @@
-{
-  "usingComponents": {
-    "van-search": "../../miniprogram_npm/vant-weapp/search/index"
-  },
-  "navigationBarTitleText": "选择位置"
-}

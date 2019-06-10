@@ -12,7 +12,7 @@ Page({
     phone: '',
     street: '',
     cityText: '',
-    isNew:true,
+    isNew: true,
     areaList: {
       province_list: {
         110000: '北京市',
@@ -3803,20 +3803,20 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-    if(options.address!=undefined){
+    if (options.address != undefined) {
       wx.setNavigationBarTitle({
         title: '修改地址',
       })
       let address = JSON.parse(options.address)
       let that = this;
       that.setData({
-        isNew:false,
+        isNew: false,
         name: address.consignee,
         phone: address.telNumber,
         street: address.detailInfo,
         cityText: address.district,
       })
-    }else{
+    } else {
       wx.setNavigationBarTitle({
         title: '新建地址',
       })
@@ -3875,7 +3875,7 @@ Page({
     let phone = that.data.phone;
     let cityText = that.data.cityText;
     let street = that.data.street;
-    
+
 
     if (name == '' || name == undefined) {
       common.showTip('收货人姓名不能为空', 'loading');
@@ -3884,7 +3884,7 @@ Page({
     if (phone == '' || phone == undefined) {
       common.showTip('电话不能为空', 'loading');
       return;
-    } 
+    }
     if (cityText == '' || cityText == undefined) {
       common.showTip('地址不能为空', 'loading');
       return;
@@ -3893,8 +3893,8 @@ Page({
       common.showTip('地址不能为空', 'loading');
       return;
     }
-    let userId = wx.getStorageSync('userId');    
-    
+    let userId = wx.getStorageSync('userId');
+
     let url = "address/add"
     var params = {
       consignee: name,
@@ -3905,14 +3905,17 @@ Page({
     }
     let method = "POST";
     wx.showLoading({
-      title: '加载中...',
-    }),
+        title: '加载中...',
+      }),
       network.POST(url, params, method).then((res) => {
         wx.hideLoading();
         // console.log("返回值是：" + res.data);
-       if(res.data.code==200){
-         common.showTip('保存成功','success');
-       }
+        if (res.data.code == 200) {
+          common.showTip('保存成功', 'success');
+          wx.navigateBack({
+            delta: 1,
+          })
+        }
 
 
       }).catch((errMsg) => {
@@ -3953,13 +3956,13 @@ Page({
   },
 
   //修改保存
-  editSaveFunction:function(){
+  editSaveFunction: function() {
     let that = this;
     let name = that.data.name;
     let phone = that.data.phone;
     let cityText = that.data.cityText;
     let street = that.data.street;
-    
+    console.log('这里是修改。。。。。。');
 
     if (name == '' || name == undefined) {
       common.showTip('收货人姓名不能为空', 'loading');
@@ -3989,16 +3992,17 @@ Page({
     }
     let method = "PUT";
     wx.showLoading({
-      title: '加载中...',
-    }),
+        title: '加载中...',
+      }),
       network.POST(url, params, method).then((res) => {
         wx.hideLoading();
         // console.log("返回值是：" + res.data);
         if (res.data.code == 200) {
           common.showTip('保存成功', 'success');
+          wx.navigateBack({
+            delta: 1,
+          })
         }
-
-
       }).catch((errMsg) => {
         wx.hideLoading();
         // console.log(errMsg); //错误提示信息
