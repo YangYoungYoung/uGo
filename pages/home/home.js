@@ -185,12 +185,13 @@ Page({
     if (district.length != 0) {
       that.getShopList();
       that.getSwiperList();
+      that.getRecommendShopList();
     }
     // that.getLiveRoomList();
     that.getShopCategory();
     // that.getBanner();
     that.getSignInfo();
-    // that.getRecommendShopList();
+    
     // that.setData();
   },
   //跳转到不同分类
