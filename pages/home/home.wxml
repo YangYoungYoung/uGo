@@ -198,7 +198,7 @@
       <view class='footer-item' wx:for="{{footerList}}" wx:key='index' data-index="{{index}}" bindtap='footerChange'>
         <block wx:if="{{item.select}}">
           <image class='footer-item-icon' src='{{item.src_yes}}' mode='aspectFit'></image>
-          <text class='footer-item-name' style='color:#FD286B'>{{item.name}}</text>
+          <text class='footer-item-name' style='color:#E83D2C'>{{item.name}}</text>
         </block>
         <block wx:else>
           <image class='footer-item-icon' src='{{item.src_no}}' mode='aspectFit'></image>

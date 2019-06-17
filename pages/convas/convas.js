@@ -145,7 +145,7 @@ Page({
         success: function (res) {
           if (res.confirm) {
             //点击取消,默认隐藏弹框
-            console.log('navigateBack。。。。。。。。。。。。。。。');
+            // console.log('navigateBack。。。。。。。。。。。。。。。');
             wx.navigateBack({
               delta: 1
             })

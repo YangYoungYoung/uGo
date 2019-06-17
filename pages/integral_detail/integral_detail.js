@@ -32,50 +32,43 @@ Page({
       }),
       network.POST(url, params, method).then((res) => {
         wx.hideLoading();
-        // console.log("返回值是：" + res.data);
-        let goods = res.data.data.goods;
-        let imagList = res.data.data.goods.listPicUrl.split(",");
-        let specificationValues = goods.specificationValues;
 
-        let temp = specificationValues.split(";");
-        // console.log("temp is :", temp);
+        var goods = res.data.data.goods;
+        var imagList = res.data.data.goods.listPicUrl.split(",");
+        let specificationValues = goods.specificationValues;
         var guiGe = [];
 
-        var strArr = [];
-        var allList = [];
-
-
-        for (var i = 0; i < temp.length; i++) {
-          let str = temp[i];
-          strArr = str.split(",");
-          allList.push(strArr);
-        }
-        // console.log("allList:", allList);
-
-        for (var i = 0; i < allList.length; i++) {
-          var list = allList[i];
-          var body = [];
-          var obj = {};
-          for (var j = 0; j < list.length; j++) {
-
-
-            if (j == 0) {
-              obj.name = list[j];
-            } else {
-              let item = {};
-              item.content = list[j];
-              item.select = false;
-              body.push(item);
-
-            }
-            obj.body = body;
+        if (specificationValues != null) {
+          var strArr = [];
+          var allList = [];
+          let temp = specificationValues.split(";");
+          // console.log("temp is :", temp);
+          for (var i = 0; i < temp.length; i++) {
+            let str = temp[i];
+            strArr = str.split(",");
+            allList.push(strArr);
           }
-          obj.id = i;
-          guiGe.push(obj);
-          // console.log('guiGe is: ', guiGe);
+
+          for (var i = 0; i < allList.length; i++) {
+            var list = allList[i];
+            var body = [];
+            var obj = {};
+            for (var j = 0; j < list.length; j++) {
+              if (j == 0) {
+                obj.name = list[j];
+              } else {
+                let item = {};
+                item.content = list[j];
+                item.select = false;
+                body.push(item);
+              }
+              obj.body = body;
+            }
+            obj.id = i;
+            guiGe.push(obj);
+            // console.log('guiGe is: ', guiGe);
+          }
         }
-
-
         that.setData({
           guiGe: guiGe,
           goods: goods,
