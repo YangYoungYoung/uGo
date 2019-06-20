@@ -50,6 +50,10 @@
     </van-panel>
 
     <van-panel>
+      <van-cell title="交易明细" is-link url="/pages/myaddress/myaddress" />
+    </van-panel>
+
+    <van-panel>
       <van-cell title="我的地址" is-link url="/pages/myaddress/myaddress" />
     </van-panel>
     <van-panel>
