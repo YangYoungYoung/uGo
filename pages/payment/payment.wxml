@@ -5,6 +5,26 @@
     <input class='order-input' placeholder="请输入订单金额" type="digit" bindinput='getNumber'></input>
   </view>
   <view class='title'>
+    <text class='title-text'>优惠券</text>
+  </view>
+  <view class='coupon'>
+    <view class='coupon-left'>
+      <image class='coupon-img' src='../images/'></image>
+      <text class='coupon-text'>店铺优惠</text>
+    </view>
+    <view class='coupon-right'>
+      <text class='coupon-money'>-￥2.00</text>
+      <view bindtap='chooseCheck'>
+        <block wx:if='{{isChecked}}'>
+          <image class="check-box" src='../images/icon_gou.png'></image>
+        </block>
+        <block wx:else>
+          <image class="check-box" src='../images/icon_quan.png'></image>
+        </block>
+      </view>
+    </view>
+  </view>
+  <view class='title'>
     <text class='title-text'>选择支付方式</text>
   </view>
   <view class='payment-view' style='border-bottom: 1rpx solid #F0F0F0;'>

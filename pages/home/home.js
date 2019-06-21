@@ -110,9 +110,26 @@ Page({
       network.POST(url, params, method).then((res) => {
         wx.hideLoading();
         // console.log("商铺列表返回值是：");
-        let shopList = res.data.data.shops;
+      let dataArr = res.data.data.shops;
+      var jsonTarget = [];
+
+      //第一种方法
+      for (var i = 0; i < 10; i++) {
+        // ids += dataArr[i].id + ",";
+        jsonTarget.push({
+          id: dataArr[i].id,
+          name: dataArr[i].name,
+          business_hours: dataArr[i].business_hours,
+          categoryName: dataArr[i].categoryName,
+          detailAddress: dataArr[i].detailAddress,
+          distance: dataArr[i].distance,
+          inStoreNum: dataArr[i].inStoreNum,
+          pic: dataArr[i].pic,
+          telephone: dataArr[i].telephone,
+        });
+      }
         that.setData({
-          shopList: shopList
+          shopList: jsonTarget
         })
       }).catch((errMsg) => {
         wx.hideLoading();

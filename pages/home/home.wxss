@@ -115,6 +115,28 @@ page {
   flex-wrap: wrap;
 }
 
+.sub-list{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.sub-view{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.sub-item{
+  width: 153rpx;
+  height: 80rpx;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  line-height: 80rpx;
+  background-color: #E5E5E5;
+}
+
 .list-item {
   padding-top: 24rpx;
   width: 20%;
