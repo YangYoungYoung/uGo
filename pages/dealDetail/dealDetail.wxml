@@ -2,7 +2,7 @@
 <view class='container'>
   <view class='title-view'>
     <view class='title-left'>
-      <text class='title-left-time'>2019年06月</text>
+      <text class='title-left-time'>{{year}}年{{month}}月</text>
       <picker bindchange="bindPickerChange" value="{{index}}" range="{{array}}">
         <!-- <view class="picker">
       当前选择：{{array[index]}}
@@ -13,13 +13,13 @@
     </view>
 
     <view class='title-right'>
-      <text class='income' decode="{{true}}">收入:&nbsp; +2000</text>
-      <text class='income' decode="{{true}}">支出:&nbsp; -200</text>
+      <text class='income' decode="{{true}}">收入:&nbsp; +{{sumExpend}}</text>
+      <text class='income' decode="{{true}}">支出:&nbsp; -{{sumIncome}}</text>
     </view>
   </view>
 
   <view class='content-list'>
-    <block wx:for="{{list}}" wx:key='index'>
+    <block wx:for="{{integralTradeRecords}}" wx:key='index'>
       <view class='list-item'>
         <view class='item-left'>
           <text class='left-title'>{{item.name}}</text>

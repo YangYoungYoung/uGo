@@ -1,4 +1,3 @@
-
 var network = require("../../utils/network.js")
 var common = require("../../utils/common.js")
 var util = require("../../utils/util.js");
@@ -10,29 +9,29 @@ Page({
   awardsConfig: {
     chance: true,
     awards: [{
-      'index': 0,
-      'name': '28积分'
-    },
-    {
-      'index': 1,
-      'name': '38积分'
-    },
-    {
-      'index': 2,
-      'name': '58积分'
-    },
-    {
-      'index': 3,
-      'name': '68积分'
-    },
-    {
-      'index': 4,
-      'name': '88积分'
-    },
-    {
-      'index': 5,
-      'name': '100积分'
-    }
+        'index': 0,
+        'name': '28积分'
+      },
+      {
+        'index': 1,
+        'name': '38积分'
+      },
+      {
+        'index': 2,
+        'name': '58积分'
+      },
+      {
+        'index': 3,
+        'name': '68积分'
+      },
+      {
+        'index': 4,
+        'name': '88积分'
+      },
+      {
+        'index': 5,
+        'name': '100积分'
+      }
     ]
   },
 
@@ -41,7 +40,7 @@ Page({
     animationData: {},
     btnDisabled: '',
   },
-  onLoad: function (e) {
+  onLoad: function(e) {
     let that = this;
     let numberArr = [];
     for (var i = 0; i < 100; i++) {
@@ -65,12 +64,12 @@ Page({
     })
   },
 
-  onReady: function (e) {
+  onReady: function(e) {
     this.drawAwardRoundel();
   },
 
   //画抽奖圆盘
-  drawAwardRoundel: function () {
+  drawAwardRoundel: function() {
     var awards = this.awardsConfig.awards;
     var awardsList = [];
     var turnNum = 1 / awards.length; // 文字旋转 turn 值
@@ -91,7 +90,7 @@ Page({
   },
 
   //发起抽奖
-  playReward: function () {
+  playReward: function() {
     //中奖index
     //随机获奖结果
     let that = this;
@@ -135,31 +134,11 @@ Page({
       btnDisabled: 'disabled'
     });
 
-    // 中奖提示
-    var awardsConfig = this.awardsConfig;
-    setTimeout(function () {
-      wx.showModal({
-        title: '恭喜',
-        content: '获得' + (awardsConfig.awards[awardIndex].name),
-        showCancel: false,
-        success: function (res) {
-          if (res.confirm) {
-            //点击取消,默认隐藏弹框
-            // console.log('navigateBack。。。。。。。。。。。。。。。');
-            wx.navigateBack({
-              delta: 1
-            })
-          }
-        },
-      });
-      this.setData({
-        btnDisabled: ''
-      });
-    }.bind(this), duration);
+
 
   },
   //签到按钮
-  sineInClick: function (number) {
+  sineInClick: function(number) {
     let that = this;
     // let integral = that.data.integral;
     // let sineList = that.data.sineList;
@@ -176,12 +155,36 @@ Page({
     }
     let method = "PUT";
     wx.showLoading({
-      title: '加载中...',
-    }),
+        title: '加载中...',
+      }),
       network.POST(url, params, method).then((res) => {
         wx.hideLoading();
         if (res.data.code == 200) {
-         
+          // 中奖提示
+          var awardsConfig = this.awardsConfig;
+          setTimeout(function() {
+            wx.showModal({
+              title: '恭喜',
+              // content: '获得' + (awardsConfig.awards[awardIndex].name),
+              content: '获得' + number+"积分",
+              showCancel: false,
+              success: function(res) {
+                if (res.confirm) {
+                  //点击取消,默认隐藏弹框
+                  // console.log('navigateBack。。。。。。。。。。。。。。。');
+                  wx.navigateBack({
+                    delta: 1
+                  })
+                  // wx.redirectTo({
+                  //   url: '',
+                  // })
+                }
+              },
+            });
+            this.setData({
+              btnDisabled: ''
+            });
+          }.bind(this), duration);
         }
       }).catch((errMsg) => {
         wx.hideLoading();
