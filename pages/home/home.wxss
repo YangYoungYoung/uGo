@@ -82,23 +82,23 @@ page {
   margin-left: 30rpx;
 }
 
-.scanCode{
+.scanCode {
   width: 67rpx;
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-right: 32rpx;                                          
+  margin-right: 32rpx;
 }
-.scanCode-icon{
+
+.scanCode-icon {
   width: 43rpx;
   height: 43rpx;
 }
 
-.scanCode-text{
+.scanCode-text {
   font-size: 22rpx;
   color: #313131;
 }
-
 
 .search-icon {
   width: 36rpx;
@@ -113,28 +113,39 @@ page {
   flex-direction: row;
   margin-top: 8rpx;
   flex-wrap: wrap;
+  box-sizing: border-box;
 }
 
-.sub-list{
+/* .sub-list{
   display: flex;
   flex-direction: column;
   width: 100%;
-}
+} */
 
-.sub-view{
+.sub-view {
+  width: 100%;
   display: flex;
   flex-direction: row;
-  flex-wrap: wrap;
+  text-align: center;
+  align-items: center;
+  /* flex-wrap: wrap; */
+   box-sizing: border-box;
+  background-color: #e5e5e5;
 }
 
-.sub-item{
-  width: 153rpx;
+.sub-item {
+  /* width: 153rpx; */
+  width: 20%;
   height: 80rpx;
   display: flex;
+  flex-direction: column;
   align-items: center;
   text-align: center;
   line-height: 80rpx;
-  background-color: #E5E5E5;
+  font-size: 26rpx;
+  color: #616161;
+ 
+  /* background-color: #E5E5E5; */
 }
 
 .list-item {
@@ -467,7 +478,7 @@ page {
   height: 144rpx;
   box-sizing: border-box;
   display: block;
-  background-color: #E5E5E5;
+  background-color: #e5e5e5;
 }
 
 .shop-item-info {
@@ -724,12 +735,12 @@ page {
   flex-direction: row;
   justify-content: space-between;
 }
-.near-more{
+
+.near-more {
   align-items: center;
   display: flex;
   flex-direction: row;
   margin-right: 24rpx;
-
 }
 
 .more-icon {

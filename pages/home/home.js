@@ -7,6 +7,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    subList: [],
     integral: 0,
     clicked: true,
     district: '',
@@ -91,7 +92,7 @@ Page({
     // that.getBanner();
 
   },
-  //获取商铺信息
+  //获取附近商铺信息
   getShopList: function() {
     let that = this;
     let url = "dg/shop/list"
@@ -110,24 +111,24 @@ Page({
       network.POST(url, params, method).then((res) => {
         wx.hideLoading();
         // console.log("商铺列表返回值是：");
-      let dataArr = res.data.data.shops;
-      var jsonTarget = [];
+        let dataArr = res.data.data.shops;
+        var jsonTarget = [];
 
-      //第一种方法
-      for (var i = 0; i < 10; i++) {
-        // ids += dataArr[i].id + ",";
-        jsonTarget.push({
-          id: dataArr[i].id,
-          name: dataArr[i].name,
-          business_hours: dataArr[i].business_hours,
-          categoryName: dataArr[i].categoryName,
-          detailAddress: dataArr[i].detailAddress,
-          distance: dataArr[i].distance,
-          inStoreNum: dataArr[i].inStoreNum,
-          pic: dataArr[i].pic,
-          telephone: dataArr[i].telephone,
-        });
-      }
+        //第一种方法
+        for (var i = 0; i < 10; i++) {
+          // ids += dataArr[i].id + ",";
+          jsonTarget.push({
+            id: dataArr[i].id,
+            name: dataArr[i].name,
+            business_hours: dataArr[i].business_hours,
+            categoryName: dataArr[i].categoryName,
+            detailAddress: dataArr[i].detailAddress,
+            distance: dataArr[i].distance,
+            inStoreNum: dataArr[i].inStoreNum,
+            pic: dataArr[i].pic,
+            telephone: dataArr[i].telephone,
+          });
+        }
         that.setData({
           shopList: jsonTarget
         })
@@ -208,7 +209,7 @@ Page({
     that.getShopCategory();
     // that.getBanner();
     that.getSignInfo();
-    
+
     // that.setData();
   },
   //跳转到不同分类
@@ -293,7 +294,7 @@ Page({
               }
             }
             that.setData({
-              sineList: sineList, 
+              sineList: sineList,
               signedTimes: signedTimes,
               clicked: false,
             })
@@ -552,9 +553,19 @@ Page({
           let temp = i + 1;
           shopCategorys[i].iconUrl = '../images/menu_' + temp + '.png';
         }
+        let category1 = [];
+        for (var i = 0; i < 5; i++) {
+          category1.push(shopCategorys[i]);
+        }
+        let category2 = [];
+        for (var i = 5; i < 10; i++) {
+          category2.push(shopCategorys[i]);
+        }
 
         that.setData({
-          shopCategorys: shopCategorys
+          // shopCategorys: shopCategorys
+          category1: category1,
+          category2: category2
         })
       }).catch((errMsg) => {
         wx.hideLoading();
@@ -608,7 +619,6 @@ Page({
   },
   //获取商家优选接口
   getBanner: function() {
-
 
     let that = this;
     let url = "dg/banner/list"
@@ -680,5 +690,60 @@ Page({
       }
     })
   },
+  showSub1: function(e) {
+    let that = this;
+    let index = e.currentTarget.dataset.index;
+    var id = e.currentTarget.dataset.id;
+    let typeName = e.currentTarget.dataset.name;
+    let category1 = that.data.category1;
+    let subList = category1[index].subList;
+    if (subList.length == 0) {
+      wx.navigateTo({
+        url: '../typeInfo/typeInfo?typeId=' + id + '&typeName=' + typeName,
+      })
+    } else {
+      console.log('subList is:', subList);
+      that.setData({
+        typeId: id,
+        subList1: subList,
+        typeName: typeName
+      })
+    }
+  },
+  showSub2: function(e) {
+    let that = this;
+    let index = e.currentTarget.dataset.index;
+    var id = e.currentTarget.dataset.id;
+    let typeName = e.currentTarget.dataset.name;
+    console.log('id is:', id);
+    let category2 = that.data.category2;
+    // console.log('shopCategorys is:', shopCategorys);
+    let subList = category2[index].subList;
+    if (subList.length == 0) {
+      wx.navigateTo({
+        url: '../typeInfo/typeInfo?typeId=' + id + '&typeName=' + typeName,
+      })
+    } else {
+
+      console.log('subList is:', subList);
+      that.setData({
+        typeId: id,
+        subList2: subList,
+        typeName: typeName
+      })
+    }
+  },
+  //根据二类跳转到类别详情
+  toSubType: function(e) {
+    let that = this;
+    let typeId = that.data.typeId;
+    let typeName = that.data.typeName;
+    console.log('typeId is:', typeId);
+    let id = e.currentTarget.dataset.id;
+    let subName = e.currentTarget.dataset.name;
+    wx.navigateTo({
+      url: '../typeInfo/typeInfo?id=' + id + '&typeId=' + typeId + '&typeName=' + typeName + '&subName=' + subName,
+    })
+  }
 
 })

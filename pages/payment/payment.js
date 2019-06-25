@@ -10,7 +10,8 @@ Page({
     isChecked: true,
     balance: 0,
     balanceUse: false,
-    number: 0
+    number: 0,
+    isUsed:true
   },
 
   /**
@@ -27,6 +28,15 @@ Page({
     this.getUserId();
   },
 
+
+  // isUsed
+  chooseUse: function () {
+    let isUsed = !this.data.isUsed;
+    // console.log('isChecked is :', isChecked)
+    this.setData({
+      isUsed: isUsed
+    })
+  },
   chooseCheck: function() {
     let isChecked = !this.data.isChecked;
     // console.log('isChecked is :', isChecked)
@@ -112,6 +122,9 @@ Page({
     if (totalFee == 0 || totalFee == '') {
       common.showTip('请输入金额', 'loading');
       return;
+    }
+    if (isUsed){
+      
     }
 
     let url = "common/getRepayId?outTradeNo=" + sn + "&money=" + totalFee * 100 + "&openId=" + openId;

@@ -29,9 +29,10 @@
     </view>
 
     <view id='types'>
-      <block wx:for="{{shopCategorys}}" wx:key="item">
+      <block wx:for="{{category1}}" wx:key="item">
         <!-- <view class='sub-list' > -->
-        <view class='list-item' bindtap="navigateToType" data-id="{{item.id}}">
+        <!-- <view class='list-item' bindtap="navigateToType" data-id="{{item.id}}"> -->
+        <view class='list-item' bindtap="showSub1" data-id="{{item.id}}" data-index='{{index}}' data-name='{{item.name}}'>
           <view class='item-head'>
             <image src="{{item.iconUrl}}"></image>
           </view>
@@ -39,16 +40,41 @@
             {{item.name}}
           </view>
           <!-- 二级分类 -->
-          <view class='sub-view' wx:if="{{item.subList!=null}}">
-            <block wx:for="{{item.subList}}" wx:key="index">
-              <view class='sub-item'>
-                
-              </view>
-            </block>
-          </view>
+
         </view>
         <!-- </view> -->
       </block>
+      <view class='sub-view' wx:if="{{subList!=null}}">
+        <block wx:for="{{subList1}}" wx:key="index" wx:for-item="sub">
+          <view class='sub-item' bindtap="toSubType" data-id='{{sub.id}}'  data-name="{{sub.name}}">
+            {{sub.name}}
+          </view>
+        </block>
+      </view>
+
+
+      <block wx:for="{{category2}}" wx:key="item" >
+        <!-- <view class='sub-list' > -->
+        <!-- <view class='list-item' bindtap="navigateToType" data-id="{{item.id}}"> -->
+        <view class='list-item' bindtap="showSub2" data-id="{{item.id}}" data-index='{{index}}' data-name='{{item.name}}'>
+          <view class='item-head'>
+            <image src="{{item.iconUrl}}"></image>
+          </view>
+          <view class='item-foot'>
+            {{item.name}}
+          </view>
+          <!-- 二级分类 -->
+
+        </view>
+        <!-- </view> -->
+      </block>
+      <view class='sub-view' wx:if="{{subList!=null}}">
+        <block wx:for="{{subList2}}" wx:key="index" wx:for-item="sub">
+          <view class='sub-item' bindtap="toSubType" data-id='{{sub.id}}' data-name="{{sub.name}}">
+            {{sub.name}}
+          </view>
+        </block>
+      </view>
     </view>
 
     <view class='sine-in'>

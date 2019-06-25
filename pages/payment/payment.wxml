@@ -15,7 +15,7 @@
     <view class='coupon-right'>
       <text class='coupon-money'>-￥2.00</text>
       <view bindtap='chooseCheck'>
-        <block wx:if='{{isChecked}}'>
+        <block wx:if='{{isUsed}}'>
           <image class="check-box" src='../images/icon_gou.png'></image>
         </block>
         <block wx:else>
