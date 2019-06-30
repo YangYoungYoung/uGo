@@ -10,6 +10,7 @@ Page({
   data: {
     user: {},
     showModal: false,
+    showShare: false,
     footerList: [{
         name: '首页',
         src_yes: '../images/footer_home_y.png',
@@ -245,5 +246,50 @@ Page({
       },
       complete() {}
     }
-  }
+  },
+  /**
+   * 弹窗
+   */
+  // showDialogBtn: function () {
+  //   this.setData({
+  //     showModal: true
+  //   })
+  // },
+  /**
+   * 弹出框蒙层截断touchmove事件
+   */
+  preventTouchMove: function () { },
+  /**
+   * 隐藏模态对话框
+   */
+  // hideModal: function () {
+  //   this.setData({
+  //     showModal: false
+  //   });
+  // },
+  /**
+   * 隐藏分享对话框
+   */
+  hideShreModal: function () {
+    this.setData({
+      showShare: false
+    });
+  },
+
+  /**
+   * 分享弹窗
+   */
+  showShareDialogBtn: function () {
+    this.setData({
+      showShare: true
+    })
+  },
+  /**
+   * 隐藏分享模态对话框
+   */
+  hideShareModal: function () {
+    this.setData({
+      showShare: false
+    });
+  },
 })

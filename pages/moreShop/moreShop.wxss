@@ -125,6 +125,7 @@ page {
   margin-top: 10rpx;
   display: block;
   margin-left: 16rpx;
+  /* margin-right: 52rpx; */
 }
 
 .shop-info-type {

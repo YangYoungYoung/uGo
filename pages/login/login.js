@@ -16,6 +16,13 @@ Page({
         //取出本地存储用户信息，解决需要每次进入小程序弹框获取用户信息
         app.globalData.userInfo = wx.getStorageSync(' ')
         if (app.globalData.userInfo) {
+          wx.getUserInfo({
+            success: function(res) {
+              // userInfo 只存储个人的基础数据
+              console.log('userInfo :', userInfo);
+              wx.setStorageSync('userInfo', res.userInfo);
+            }
+          })
           that.setData({
             authorization: false
           })
@@ -34,6 +41,29 @@ Page({
               })
               wx.showLoading({
                 title: '加载中...'
+              })
+              // console.log('userInfo :', app.globalData.userInfo);
+              // wx.setStorageSync('userInfo', res.userInfo);
+              wx.getUserInfo({
+                withCredentials: true,
+                success: (obj) => {
+                  console.log('encryptedData is:', obj.encryptedData);
+
+                  // wx.request({
+                  //   url: openIdUrl,
+                  //   data: {
+                  //     code: data.code,
+                  //     encryptedData: obj.encryptedData,
+                  //     iv: obj.iv,
+                  //   },
+                  //   success: function (res) {
+                  //     self.globalData.openid = res.data.openid
+                  //   },
+                  //   fail: function (res) {
+                  //     console.log('拉取用户openid失败，将无法正常使用开放接口等服务', res)
+                  //   }
+                  // })
+                }
               })
               that.getOP(app.globalData.userInfo)
             }
@@ -60,8 +90,30 @@ Page({
     if (e.detail.userInfo) {
       //用户按了允许授权按钮
       let that = this;
+      // console.log('bindGetUserInfo userInfo is:', e.detail.userInfo);
+      // wx.setStorageSync('userInfo', e.detail.userInfo);
+      wx.getUserInfo({
+        withCredentials: true,
+        success: (obj) => {
+          console.log('encryptedData is:', obj.encryptedData);
 
-      wx.setStorageSync('userInfo', e.detail.userInfo);
+          // wx.request({
+          //   url: openIdUrl,
+          //   data: {
+          //     code: data.code,
+          //     encryptedData: obj.encryptedData,
+          //     iv: obj.iv,
+          //   },
+          //   success: function (res) {
+          //     self.globalData.openid = res.data.openid
+          //   },
+          //   fail: function (res) {
+          //     console.log('拉取用户openid失败，将无法正常使用开放接口等服务', res)
+          //   }
+          // })
+        }
+      })
+
       that.getOP(e.detail.userInfo)
     } else {
       //用户按了拒绝按钮
@@ -82,13 +134,13 @@ Page({
   getOP: function(res) { //提交用户信息 获取用户id
     let that = this
     let userInfo = res
-    app.globalData.userInfo = userInfo
+    app.globalData.userInfo = userInfo;
     wx.showLoading({
         title: '加载中...',
       }),
       wx.request({
-      // url: "https://mall.cmdd.tech/api/common/weiXIn/openId?code=" + app.globalData.code,
-      url: "https://api.ugo365.xyz/api/common/weiXIn/openId?code=" + app.globalData.code,
+        // url: "http://ugo365.eicp.vip/api/common/weiXIn/openId?code=" + app.globalData.code,
+        url: "https://api.ugo365.xyz/api/common/weiXIn/openId?code=" + app.globalData.code,
         data: {
           // code: app.globalData.code
         },
@@ -129,6 +181,11 @@ Page({
       });
 
   },
+  //getWXuserInfo
+  // getUserInfo: function() {
+    
+  // },
+
   //获取用户信息
   getUserId: function() {
     let that = this;

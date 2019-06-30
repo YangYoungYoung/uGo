@@ -697,7 +697,7 @@ Page({
     let typeName = e.currentTarget.dataset.name;
     let category1 = that.data.category1;
     let subList = category1[index].subList;
-    if (subList.length == 0) {
+    if (subList==null) {
       wx.navigateTo({
         url: '../typeInfo/typeInfo?typeId=' + id + '&typeName=' + typeName,
       })

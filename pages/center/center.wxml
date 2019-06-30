@@ -1,128 +1,115 @@
 <!--pages/center/center.wxml-->
 <!-- <view class='container'> -->
-  <van-panel>
-    <view class='top-view' style='background: #F4E4C2;'>
+<van-panel>
+  <view class='top-view' style='background: #F4E4C2;'>
 
-      <view class="g-bda-userinfo">
-        <view class='userinfo-left'>
-          <image class="userinfo-avatar" src="{{userInfo.avatarUrl}}"></image>
-          <text class="userinfo-nickname">{{userInfo.nickName}}</text>
-        </view>
-
-        <image class='toMerchantImage' src='../images/toMerchant_icon.png' bindtap='toMerchant'></image>
-
+    <view class="g-bda-userinfo">
+      <view class='userinfo-left'>
+        <image class="userinfo-avatar" src="{{userInfo.avatarUrl}}"></image>
+        <text class="userinfo-nickname">{{userInfo.nickName}}</text>
       </view>
+
+      <image class='toMerchantImage' src='../images/toMerchant_icon.png' bindtap='toMerchant'></image>
+
     </view>
+  </view>
+</van-panel>
+
+<view class="centerContainer">
+  <van-panel>
+    <van-cell title="我的订单" value="查看全部订单" is-link url="/pages/integral_order/integral_order" />
   </van-panel>
 
-  <view class="centerContainer">
-    <van-panel>
-      <van-cell title="我的订单" value="查看全部订单" is-link url="/pages/integral_order/integral_order" />
-    </van-panel>
+  <van-panel>
+    <view class='order-list'>
+      <block wx:for="{{orderList}}" wx:key="index">
+        <view class='order-list-item' bindtap="toOrder" data-index='{{index}}'>
 
-    <van-panel>
-      <view class='order-list'>
-        <block wx:for="{{orderList}}" wx:key="index">
-          <view class='order-list-item' bindtap="toOrder" data-index='{{index}}'>
-
-            <image class='order-list-item-image' src='{{item.src}}'></image>
-            <text class='order-list-item-text'>{{item.name}}</text>
-          </view>
-        </block>
-      </view>
-    </van-panel>
-    <!-- <van-panel>
+          <image class='order-list-item-image' src='{{item.src}}'></image>
+          <text class='order-list-item-text'>{{item.name}}</text>
+        </view>
+      </block>
+    </view>
+  </van-panel>
+  <!-- <van-panel>
       <view class='balance-view'>
         <view class='balance-left' bindtap='scanCode'>扫一扫</view>
       </view>
     </van-panel> -->
-    <van-panel>
-      <view class='balance-view'>
-        <view class='balance-left'>我的余额 : {{user.balance}}</view>
-        <button class='balance-btn' bindtap='toMyBalance'>提现</button>
-      </view>
-    </van-panel>
-    <van-panel>
-      <view class='balance-view'>
-        <view class='balance-left'>当前积分 : {{user.integral}}</view>
-        <button class='balance-btn' bindtap='toIntegralShop'>兑换</button>
-      </view>
-    </van-panel>
-
-    <van-panel>
-      <van-cell title="交易明细" is-link url="/pages/dealDetail/dealDetail" />
-    </van-panel>
-
-    <van-panel>
-      <van-cell title="我的地址" is-link url="/pages/myaddress/myaddress" />
-    </van-panel>
-    <van-panel>
-      <van-cell title="绑定手机" is-link url="/pages/bindPhone/bindPhone" />
-    </van-panel>
-    <van-panel>
-      <van-cell title="安全设置" is-link url="/pages/securitySetting/securitySetting" />
-    </van-panel>
-
-    <view class="zan-panel">
-      <view class="deg">
-        <button catchtap="listenerButton" open-type="share" session-from="weapp">
-          分享有礼
-        </button>
-        <!--弹窗-->
-        <!-- <view class="modal-mask" bindtap="hideShareModal" catchtouchmove="preventTouchMove" wx:if="{{showShare}}"></view>
-      <view class="modal-dialog" wx:if="{{showShare}}">
-        <view class="modal-title">确认分享</view>
-        <view class="modal-footer">
-          <button class="share-cancel" bindtap="hideShareModal" data-status="cancel">取消</button>
-          <button class="share-confirm" type="primary" open-type="share" data-status="confirm">确定</button>
-        </view>
-      </view> -->
-      </view>
-      <view class="deg">
-        <button open-type="contact" session-from="weapp">
-          客服中心
-        </button>
-        <!-- <view class="zan-pull-right-mine smallsize">></view> -->
-      </view>
+  <van-panel>
+    <view class='balance-view'>
+      <view class='balance-left'>我的余额 : {{user.balance}}</view>
+      <button class='balance-btn' bindtap='toMyBalance'>提现</button>
     </view>
+  </van-panel>
+  <van-panel>
+    <view class='balance-view'>
+      <view class='balance-left'>当前积分 : {{user.integral}}</view>
+      <button class='balance-btn' bindtap='toIntegralShop'>兑换</button>
+    </view>
+  </van-panel>
+
+  <van-panel>
+    <van-cell title="交易明细" is-link url="/pages/dealDetail/dealDetail" />
+  </van-panel>
+
+  <van-panel>
+    <van-cell title="我的地址" is-link url="/pages/myaddress/myaddress" />
+  </van-panel>
+  <van-panel>
+    <van-cell title="绑定手机" is-link url="/pages/bindPhone/bindPhone" />
+  </van-panel>
+  <van-panel>
+    <van-cell title="安全设置" is-link url="/pages/securitySetting/securitySetting" />
+  </van-panel>
+
+  <view class="zan-panel">
+    <view class="deg">
+      <!-- <button catchtap="listenerButton" open-type="share" session-from="weapp"> -->
+      <button catchtap="showShareDialogBtn" session-from="weapp">
+        分享有礼
+      </button>
+      <!--弹窗-->
+      <view class="modal-mask" bindtap="hideShareModal" catchtouchmove="preventTouchMove" wx:if="{{showShare}}"></view>
+      <view class='modal-view' wx:if="{{showShare}}">
+        <image class='modal-img' src='../images/share_img.jpg'></image>
+        <image class='modal-close' bindtap='hideShareModal' src='../images/icon_close.png'></image>
+        <button class='modal-btn' style="background-color:#E3C68B;width: 200rpx;height: 64rpx;font-size: 32rpx;color: #B36F26;text-align: center;line-height: 64rpx;" open-type="share">立即分享</button>
+      </view>
+
+    </view>
+    <view class="deg">
+      <button open-type="contact" session-from="weapp">
+        客服中心
+      </button>
+      <!-- <view class="zan-pull-right-mine smallsize">></view> -->
+    </view>
+  </view>
 
 
 
-    <view class="weui-footer" style='background-color:#EEE;padding-top:30rpx'>
-      <!-- <view class="weui-footer__links">
+  <view class="weui-footer" style='background-color:#EEE;padding-top:30rpx'>
+    <!-- <view class="weui-footer__links">
        <navigator url="" class="weui-footer__link">底部链接</navigator> 
     </view> -->
-      <view class="weui-footer__text">Copyright © 2019 河北玄宇通网络科技有限公司</view>
-    </view>
-    <!-- 底部导航栏 -->
-    <view class='footer'>
-      <view class='footer-list'>
-        <view class='footer-item' wx:for="{{footerList}}" wx:key='index' data-index="{{index}}" bindtap='footerChange'>
-          <block wx:if="{{item.select}}">
-            <image class='footer-item-icon' src='{{item.src_yes}}' mode='aspectFit'></image>
-            <text class='footer-item-name' style='color:#E83D2C'>{{item.name}}</text>
-          </block>
-          <block wx:else>
-            <image class='footer-item-icon' src='{{item.src_no}}' mode='aspectFit'></image>
-            <text class='footer-item-name' style='color:#313131'>{{item.name}}</text>
-          </block>
-
-        </view>
-      </view>
-    </view>
-    <!--弹窗-->
-    <!-- <view class="modal-mask" bindtap="hideModal" catchtouchmove="preventTouchMove" wx:if="{{showModal}}"></view>
-  <view class="modal-dialog" wx:if="{{showModal}}">
-    <view class="modal-title">支付</view>
-    <view class="modal-content">
-      <view class="modal-input">
-        <input placeholder-class="input-holder" type="number" maxlength="10" bindinput="inputChange" class="input" placeholder="请输入金额"></input>
-      </view>
-    </view>
-    <view class="modal-footer">
-      <view class="btn-cancel" bindtap="onCancel" data-status="cancel">取消</view>
-      <view class="btn-confirm" bindtap="onConfirm" data-status="confirm">确定</view>
-    </view>
-  </view> -->
+    <view class="weui-footer__text">Copyright © 2019 河北玄宇通网络科技有限公司</view>
   </view>
+  <!-- 底部导航栏 -->
+  <view class='footer'>
+    <view class='footer-list'>
+      <view class='footer-item' wx:for="{{footerList}}" wx:key='index' data-index="{{index}}" bindtap='footerChange'>
+        <block wx:if="{{item.select}}">
+          <image class='footer-item-icon' src='{{item.src_yes}}' mode='aspectFit'></image>
+          <text class='footer-item-name' style='color:#E83D2C'>{{item.name}}</text>
+        </block>
+        <block wx:else>
+          <image class='footer-item-icon' src='{{item.src_no}}' mode='aspectFit'></image>
+          <text class='footer-item-name' style='color:#313131'>{{item.name}}</text>
+        </block>
+
+      </view>
+    </view>
+  </view>
+
+</view>
 <!-- </view> -->

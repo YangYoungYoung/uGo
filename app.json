@@ -1,14 +1,16 @@
 {
   "pages": [
+    "pages/center/center",
+    "pages/login/login",
     "pages/home/home",
     "pages/payment/payment",
     "pages/dealDetail/dealDetail",
-    "pages/login/login",
+    
     
     "pages/convas/convas",
     "pages/uploadingData/uploadingData",
     
-    "pages/center/center",
+    
     "pages/moreShop/moreShop",
     "pages/share/share",
     "pages/logistics/logistics",
