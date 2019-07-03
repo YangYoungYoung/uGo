@@ -1,7 +1,9 @@
 {
   "pages": [
-    "pages/center/center",
+    "pages/register/register",
     "pages/login/login",
+    "pages/welcome/welcome",
+    "pages/center/center",
     "pages/home/home",
     "pages/payment/payment",
     "pages/dealDetail/dealDetail",

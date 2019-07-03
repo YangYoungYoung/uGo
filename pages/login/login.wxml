@@ -1,13 +1,27 @@
 <!--pages/login/login.wxml-->
 <view class='container'>
+  <image class='logo-img' src='../images/logo_ugo365.png'></image>
 
-<view wx:if="{{canIUse}}">
-    
+  <!--账号-->
+  <view class='content'>
+    <view class="inputView">
+      <image class="nameImage" src="../images/name_icon.png"></image>
+      <!-- <label class="loginLab">账号</label> -->
+      <input class="inputText" placeholder="请输入账号" value='{{phone}}' bindinput="phoneInput" />
+    </view>
+    <view class="line"></view>
 
-    <button class='button'  open-type="getUserInfo" lang="zh_CN" bindgetuserinfo="bindGetUserInfo">
-        授权登录
-    </button>
-</view>
-
-<view wx:else>请升级微信版本</view>
+    <!--密码-->
+    <view class="inputView">
+      <image class="keyImage" src="../images/pwd_icon.png"></image>
+      <!-- <label class="loginLab">密码</label> -->
+      <input class="inputText" password="true" value='{{password}}' placeholder="请输入密码" bindinput="passwordInput" />
+    </view>
+    <view class="line"></view>
+  </view>
+  <button class='login-btn'>登录</button>
+  <view class='login-bottom'>
+    <text class='register-text'>注册新账号</text>
+    <text class='forget-text'>忘记密码</text>
+  </view>
 </view>
