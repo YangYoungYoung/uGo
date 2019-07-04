@@ -31,6 +31,7 @@ page {
 .inputView {
   width: 100%;
   margin-top: 64rpx;
+  margin-left: 32rpx;
   background-color: #fff;
   line-height: 44px;
   display: flex;

@@ -19,9 +19,9 @@
     </view>
     <view class="line"></view>
   </view>
-  <button class='login-btn'>登录</button>
+  <button class='login-btn' bindtap='userLogin'>登录</button>
   <view class='login-bottom'>
-    <text class='register-text'>注册新账号</text>
-    <text class='forget-text'>忘记密码</text>
+    <text class='register-text' bindtap='toRegister'>注册新账号</text>
+    <text class='forget-text' bindtap='toGetPwd'>忘记密码</text>
   </view>
 </view>
