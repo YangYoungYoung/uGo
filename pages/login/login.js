@@ -72,7 +72,7 @@ Page({
   },
   //到注册页面
   toRegister:function(){
-
+      
   },
   //跳转到找回密码页面
   toGetPwd:function(){

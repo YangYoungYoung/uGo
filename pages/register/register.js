@@ -9,8 +9,10 @@ Page({
   data: {
     mobile: '',
     code: '',
-    pwd:'',
-    integralPwd:''
+    pwd: '',
+    integralPwd: '',
+    confirmPwd: '',
+    confirmIntegralPwd: ''
   },
 
   /**
@@ -44,7 +46,7 @@ Page({
     })
   },
   //获取密码
-  getPwd: function (e) {
+  getPwd: function(e) {
     let pwd = e.detail.value;
     console.log('pwd is:', pwd);
     this.setData({
@@ -52,7 +54,7 @@ Page({
     })
   },
   //确实密码
-  confirmPwd: function (e) {
+  confirmPwd: function(e) {
     let confirmPwd = e.detail.value;
     console.log('confirmPwd is:', confirmPwd);
     this.setData({
@@ -60,7 +62,7 @@ Page({
     })
   },
   //获取积分支付密码
-  getIntegralPwd: function (e) {
+  getIntegralPwd: function(e) {
     let integralPwd = e.detail.value;
     console.log('integralPwd is:', integralPwd);
     this.setData({
@@ -68,7 +70,7 @@ Page({
     })
   },
   //获取积分支付密码
-  confirmIntegralPwd: function (e) {
+  confirmIntegralPwd: function(e) {
     let confirmIntegralPwd = e.detail.value;
     console.log('confirmIntegralPwd is:', confirmIntegralPwd);
     this.setData({
@@ -101,6 +103,80 @@ Page({
         if (res.data.code == 200) {
           common.showTip('发送成功', "success");
         }
+      }).catch((errMsg) => {
+        wx.hideLoading();
+        // console.log(errMsg); //错误提示信息
+        wx.showToast({
+          title: '网络错误',
+          icon: 'loading',
+          duration: 1500,
+        })
+      });
+  },
+  //注册的接口
+  toRegister: function() {
+    let that = this;
+    let mobile = that.data.mobile;
+    let code = that.data.code;
+    let pwd = that.data.pwd;
+    let confirmPwd = that.data.confirmPwd;
+    let integralPwd = that.data.integralPwd;
+    let confirmIntegralPwd = that.data.confirmIntegralPwd;
+    if (mobile == '') {
+      common.showTip('信息不能为空', 'loading');
+      return;
+    }
+    if (code == '') {
+      common.showTip('信息不能为空', 'loading');
+      return;
+    }
+    if (pwd == '') {
+      common.showTip('信息不能为空', 'loading');
+      return;
+    }
+    if (confirmPwd == '') {
+      common.showTip('信息不能为空', 'loading');
+      return;
+    }
+    if (integralPwd == '') {
+      common.showTip('信息不能为空', 'loading');
+      return;
+    }
+    if (confirmIntegralPwd == '') {
+      common.showTip('信息不能为空', 'loading');
+      return;
+    }
+    let registerParam = {
+      mobile: mobile,
+      code: code,
+      pwd: pwd,
+      confirmPwd: confirmPwd,
+      integralPwd: integralPwd,
+      confirmIntegralPwd: confirmIntegralPwd
+
+    }
+    let url = "register";
+    var params = {
+      registerParam: registerParam
+    }
+    let method = "POST";
+    wx.showLoading({
+        title: '加载中...',
+      }),
+      network.POST(url, params, method).then((res) => {
+        wx.hideLoading();
+        // console.log("获取用户信息返回值是：" + res.data);
+
+        if (res.data.code == 200) {
+          common.showTip('注册成功','success');
+          wx.redirectTo({
+            url: '../home/home',
+          })
+          // that.userLogin();
+        } else {
+          common.showTip(msg, 'loading');
+        }
+
       }).catch((errMsg) => {
         wx.hideLoading();
         // console.log(errMsg); //错误提示信息

@@ -1,9 +1,10 @@
 {
   "pages": [
-    "pages/register/register",
-    "pages/login/login",
-    "pages/welcome/welcome",
+    "pages/setting/setting",
     "pages/center/center",
+    "pages/login/login",
+    "pages/register/register",
+    "pages/welcome/welcome",
     "pages/home/home",
     "pages/payment/payment",
     "pages/dealDetail/dealDetail",

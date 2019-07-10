@@ -1,0 +1,60 @@
+/* pages/setting/setting.wxss */
+
+page {
+  width: 100%;
+  height: 100%;
+}
+
+.container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.head-view {
+  width: 100%;
+  height: 121rpx;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.head-text {
+  font-size: 28rpx;
+  color: #313131;
+  margin-left: 32rpx;
+}
+
+.head-img {
+  width: 96rpx;
+  height: 96rpx;
+  border-radius: 12rpx;
+  background-color: #eee;
+  margin-right: 32rpx;
+}
+
+.line {
+  width: 100%;
+  height: 2rpx;
+  background-color: #c1c1c1;
+}
+
+.name-input {
+  width: 224rpx;
+  height: 42rpx;
+  background-color: #c1c1c1;
+}
+
+.name-text {
+  width: 224rpx;
+  height: 42rpx;
+  text-align: right;
+  margin-right: 32rpx;
+  font-size: 28rpx;
+  color: #313131;
+}
+
+

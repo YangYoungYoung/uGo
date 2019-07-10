@@ -196,6 +196,8 @@ Page({
           let mobile = res.data.data.mobile;
           wx.setStorageSync('mobile', mobile)
           // console.log("balance is:", res.data.data.balance);
+          let user = res.data.data;
+          wx.setStorageSync('user', user);
           that.setData({
             user: res.data.data
           })

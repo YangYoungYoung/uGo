@@ -60,7 +60,11 @@
     <van-cell title="绑定手机" is-link url="/pages/bindPhone/bindPhone" />
   </van-panel>
   <van-panel>
-    <van-cell title="安全设置" is-link url="/pages/securitySetting/securitySetting" />
+    <van-cell title="安全中心" is-link url="/pages/securitySetting/securitySetting" />
+  </van-panel>
+
+  <van-panel>
+    <van-cell title="设置" is-link url="/pages/securitySetting/securitySetting" />
   </van-panel>
 
   <view class="zan-panel">
