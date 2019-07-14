@@ -178,8 +178,9 @@ Page({
   onConfirm: function() {
 
     let that = this;
-    let openId = wx.getStorageSync("openId");
-    let url = "userInfo?openId=" + openId;
+    let user = wx.getStorageSync("user");
+    let userId = user.id;
+    let url = "userInfo?userId=" + userId;
     let method = "GET";
     var params = {
 

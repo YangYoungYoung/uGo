@@ -1,11 +1,11 @@
 <!--pages/setting/setting.wxml-->
 <view class='container'>
-  <view class='head-view'>
+  <view class='head-view' bindtap='chooseImg'>
     <text class='head-text'>头像</text>
     <image class='head-img' src='{{src}}'></image>
   </view>
   <view class='line'></view>
-  <view class='head-view'>
+  <view class='head-view' bindtap='changeName'>
     <text class='head-text'>昵称</text>
      <text class='name-text'>昵称</text>
     <!-- <input class='name-input' placeholder='请输入项目名称' placeholder-style="color:#e2e2e2;font-size:28rpx"></input> -->

@@ -1,6 +1,6 @@
 <!--pages/home/home.wxml-->
 <view class='container'>
-  <scroll-view class='scroll' scroll-y style='height:100%'>
+  <scroll-view class='scroll' scroll-y style='height:100%' bindscrolltolower='scrollLower'>
     <block wx:if="{{swiperList.length>0}}">
       <swiper style="height:320rpx;width:100%;background:#eee" indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" circular="{{circular}}">
         <!--广告banner-->
@@ -46,14 +46,14 @@
       </block>
       <view class='sub-view' wx:if="{{subList!=null}}">
         <block wx:for="{{subList1}}" wx:key="index" wx:for-item="sub">
-          <view class='sub-item' bindtap="toSubType" data-id='{{sub.id}}'  data-name="{{sub.name}}">
+          <view class='sub-item' bindtap="toSubType" data-id='{{sub.id}}' data-name="{{sub.name}}">
             {{sub.name}}
           </view>
         </block>
       </view>
 
 
-      <block wx:for="{{category2}}" wx:key="item" >
+      <block wx:for="{{category2}}" wx:key="item">
         <!-- <view class='sub-list' > -->
         <!-- <view class='list-item' bindtap="navigateToType" data-id="{{item.id}}"> -->
         <view class='list-item' bindtap="showSub2" data-id="{{item.id}}" data-index='{{index}}' data-name='{{item.name}}'>
@@ -229,7 +229,10 @@
           </block>
         </view>
       </view>
-      <view class='bottom-text'>-------- 到底了 --------</view>
+      <!-- <view class='bottom-text'>-------- 到底了 --------</view> -->
+
+      <view class="bottom-text" hidden="{{hasNextList}}">正在载入更多...</view>
+      <view class="bottom-text" hidden="{{hasNextList}}">已加载全部</view>
     </block>
   </scroll-view>
   <view class='footer'>

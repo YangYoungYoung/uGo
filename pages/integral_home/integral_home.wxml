@@ -1,6 +1,6 @@
 <!--pages/integral_home/integral_home.wxml-->
 <view class="container">
-  <scroll-view scroll-y style="height: 100%;" scroll-into-view="{{toView}}" scroll-top="{{scrollTop}}">
+  <scroll-view scroll-y style="height: 100%;" bindscrolltolower='scrollLower' >
     <view class='back-view' bindtap='toHome'>
       <image class='back-icon' src='../images/fanhui1.png'></image>
       <text class='back-text'>返回</text>

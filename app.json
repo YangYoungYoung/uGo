@@ -1,11 +1,18 @@
 {
   "pages": [
-    "pages/setting/setting",
-    "pages/center/center",
-    "pages/login/login",
-    "pages/register/register",
     "pages/welcome/welcome",
+    "pages/login/login",
+    "pages/changeName/changeName",
+    "pages/setting/setting",
     "pages/home/home",
+    "pages/integral_home/integral_home",
+    "pages/center/center",
+    
+    
+    
+    "pages/register/register",
+    
+    
     "pages/payment/payment",
     "pages/dealDetail/dealDetail",
     
@@ -39,7 +46,7 @@
     "pages/integral_order/integral_order",
     "pages/integral_exchange/integral_exchange",
     "pages/integral_detail/integral_detail",
-    "pages/integral_home/integral_home",
+    
     "pages/typeInfo/typeInfo",
     "pages/detail/detail",
     "pages/integral_cart/integral_cart",

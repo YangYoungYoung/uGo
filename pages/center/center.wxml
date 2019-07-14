@@ -64,7 +64,7 @@
   </van-panel>
 
   <van-panel>
-    <van-cell title="设置" is-link url="/pages/securitySetting/securitySetting" />
+    <van-cell title="设置" is-link url="/pages/setting/setting" />
   </van-panel>
 
   <view class="zan-panel">

@@ -1,0 +1,9 @@
+<!--pages/changeName/changeName.wxml-->
+<view class='container'>
+  <view class='name-view'>
+    <text class='text-name'>昵称：</text>
+    <input class='name-input' type='text' value='{{name}}' placeholder='好好学习天天向上' placeholder-style="color:#e2e2e2;font-size:32rpx" bindinput='getName'></input>
+  </view>
+
+  <button class='submmit-btn' bindtap='submmit'>提交</button>
+</view>

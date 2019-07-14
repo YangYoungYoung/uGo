@@ -7,7 +7,7 @@ Page({
     //判断小程序的API，回调，参数，组件等是否在当前版本可用。
     canIUse: wx.canIUse('button.open-type.getUserInfo')
   },
-  onLoad: function () {
+  onLoad: function() {
     let that = this;
     // 登录
     wx.login({
@@ -17,7 +17,7 @@ Page({
         app.globalData.userInfo = wx.getStorageSync(' ')
         if (app.globalData.userInfo) {
           wx.getUserInfo({
-            success: function (res) {
+            success: function(res) {
               // userInfo 只存储个人的基础数据
               console.log('userInfo :', userInfo);
               wx.setStorageSync('userInfo', res.userInfo);
@@ -68,7 +68,7 @@ Page({
               that.getOP(app.globalData.userInfo)
             }
           },
-          fail: function () {
+          fail: function() {
             wx.showToast({
               title: '网络错误',
               icon: 'warn',
@@ -77,7 +77,7 @@ Page({
           }
         })
       },
-      fail: function () {
+      fail: function() {
         wx.showToast({
           title: '网络错误',
           icon: 'warn',
@@ -86,7 +86,7 @@ Page({
       }
     })
   },
-  bindGetUserInfo: function (e) {
+  bindGetUserInfo: function(e) {
     if (e.detail.userInfo) {
       //用户按了允许授权按钮
       let that = this;
@@ -96,21 +96,21 @@ Page({
         withCredentials: true,
         success: (obj) => {
           console.log('encryptedData is:', obj.encryptedData);
-
-          // wx.request({
-          //   url: openIdUrl,
-          //   data: {
-          //     code: data.code,
-          //     encryptedData: obj.encryptedData,
-          //     iv: obj.iv,
-          //   },
-          //   success: function (res) {
-          //     self.globalData.openid = res.data.openid
-          //   },
-          //   fail: function (res) {
-          //     console.log('拉取用户openid失败，将无法正常使用开放接口等服务', res)
-          //   }
-          // })
+          //获取用户加密信息
+          wx.request({
+            url: openIdUrl,
+            data: {
+              code: data.code,
+              encryptedData: obj.encryptedData,
+              iv: obj.iv,
+            },
+            success: function (res) {
+              self.globalData.openid = res.data.openid
+            },
+            fail: function (res) {
+              console.log('拉取用户openid失败，将无法正常使用开放接口等服务', res)
+            }
+          })
         }
       })
 
@@ -122,7 +122,7 @@ Page({
         content: '您点击了拒绝授权，将无法进入小程序，请授权之后再进入!!!',
         showCancel: false,
         confirmText: '返回授权',
-        success: function (res) {
+        success: function(res) {
           if (res.confirm) {
             // console.log('用户点击了“返回授权”')
           }
@@ -131,13 +131,13 @@ Page({
     }
   },
   //获取用户openId接口
-  getOP: function (res) { //提交用户信息 获取用户id
+  getOP: function(res) { //提交用户信息 获取用户id
     let that = this
     let userInfo = res
     app.globalData.userInfo = userInfo;
     wx.showLoading({
-      title: '加载中...',
-    }),
+        title: '加载中...',
+      }),
       wx.request({
         // url: "http://ugo365.eicp.vip/api/common/weiXIn/openId?code=" + app.globalData.code,
         url: "https://api.ugo365.xyz/api/common/weiXIn/openId?code=" + app.globalData.code,
@@ -148,7 +148,7 @@ Page({
           'content-type': 'application/json'
         },
         method: "GET", //get为默认方法/POST
-        success: function (res) {
+        success: function(res) {
           wx.hideLoading();
           // console.log("openId的结果是：" + res.data.data.openId); //正确返回结果
           if (res.data.data.openId != undefined) {
@@ -169,7 +169,7 @@ Page({
             })
           }
         },
-        fail: function (res) {
+        fail: function(res) {
           wx.hideLoading();
           // console.log(errMsg); //错误提示信息
           wx.showToast({
@@ -181,13 +181,59 @@ Page({
       });
 
   },
-  //getWXuserInfo
-  // getUserInfo: function() {
+  //获取用户unionId
+  getUserInfo: function() {
+    let that = this
+    let userInfo = res
+    app.globalData.userInfo = userInfo;
+    wx.showLoading({
+        title: '加载中...',
+      }),
+      wx.request({
+        // url: "http://ugo365.eicp.vip/api/common/weiXIn/openId?code=" + app.globalData.code,
+      url: "https://api-test.ugo365.xyz/api/common/weiXIn/unionId?code=" + app.globalData.code,
+        data: {
+          // code: app.globalData.code
+        },
+        header: {
+          'content-type': 'application/json'
+        },
+        method: "GET", //get为默认方法/POST
+        success: function(res) {
+          wx.hideLoading();
+          // console.log("openId的结果是：" + res.data.data.openId); //正确返回结果
+          if (res.data.data.openId != undefined) {
+            wx.setStorageSync('openId', res.data.data.openId); // 单独存储openid
+            that.setData({
+              openId: res.data.data.openId
+            })
+            that.getUserId();
+            // wx.redirectTo({
+            //   url: '../home/home',
+            // })
+          } else {
 
-  // },
+            wx.showToast({
+              title: '网络错误',
+              icon: 'loading',
+              duration: 1000,
+            })
+          }
+        },
+        fail: function(res) {
+          wx.hideLoading();
+          // console.log(errMsg); //错误提示信息
+          wx.showToast({
+            title: '网络错误',
+            icon: 'loading',
+            duration: 1000,
+          })
+        }
+      });
+  },
 
   //获取用户信息
-  getUserId: function () {
+  getUserId: function() {
     let that = this;
     let openId = that.data.openId;
 
@@ -195,8 +241,8 @@ Page({
     var params = {}
     let method = "GET";
     wx.showLoading({
-      title: '加载中...',
-    }),
+        title: '加载中...',
+      }),
       network.POST(url, params, method).then((res) => {
         wx.hideLoading();
         // console.log("获取用户信息返回值是：" + res.data);
@@ -224,7 +270,7 @@ Page({
       });
   },
   //用户注册
-  register: function () {
+  register: function() {
     let that = this;
     let openId = that.data.openId;
 
@@ -232,8 +278,8 @@ Page({
     var params = {}
     let method = "GET";
     wx.showLoading({
-      title: '加载中...',
-    }),
+        title: '加载中...',
+      }),
       network.POST(url, params, method).then((res) => {
         wx.hideLoading();
         // console.log("获取用户信息返回值是：" + res.data);
@@ -258,7 +304,7 @@ Page({
       });
   },
   //用户登录
-  userLogin: function () {
+  userLogin: function() {
     let that = this;
     let openId = that.data.openId;
 
@@ -266,8 +312,8 @@ Page({
     var params = {}
     let method = "GET";
     wx.showLoading({
-      title: '加载中...',
-    }),
+        title: '加载中...',
+      }),
       network.POST(url, params, method).then((res) => {
         wx.hideLoading();
         // console.log("获取用户信息返回值是：" + res.data);

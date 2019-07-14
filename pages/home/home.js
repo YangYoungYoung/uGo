@@ -7,6 +7,8 @@ Page({
    * 页面的初始数据
    */
   data: {
+    hasNextList: false, //是否还有继续加载的数据
+    pageIndex:1,
     subList: [],
     integral: 0,
     clicked: true,
@@ -92,7 +94,7 @@ Page({
     // that.getBanner();
 
   },
-  //获取附近商铺信息
+  //获取附近商铺列表
   getShopList: function() {
     let that = this;
     let url = "dg/shop/list"
@@ -111,27 +113,35 @@ Page({
       network.POST(url, params, method).then((res) => {
         wx.hideLoading();
         // console.log("商铺列表返回值是：");
-        let dataArr = res.data.data.shops;
-        var jsonTarget = [];
+        let shopList = res.data.data.shops;
+        // var jsonTarget = [];
 
-        //第一种方法
-        for (var i = 0; i < 10; i++) {
-          // ids += dataArr[i].id + ",";
-          jsonTarget.push({
-            id: dataArr[i].id,
-            name: dataArr[i].name,
-            business_hours: dataArr[i].business_hours,
-            categoryName: dataArr[i].categoryName,
-            detailAddress: dataArr[i].detailAddress,
-            distance: dataArr[i].distance,
-            inStoreNum: dataArr[i].inStoreNum,
-            pic: dataArr[i].pic,
-            telephone: dataArr[i].telephone,
-          });
-        }
+        //提取自己所需要的数据
+        // for (var i = 0; i < 10; i++) {
+        //   // ids += dataArr[i].id + ",";
+        //   jsonTarget.push({
+        //     id: dataArr[i].id,
+        //     name: dataArr[i].name,
+        //     business_hours: dataArr[i].business_hours,
+        //     categoryName: dataArr[i].categoryName,
+        //     detailAddress: dataArr[i].detailAddress,
+        //     distance: dataArr[i].distance,
+        //     inStoreNum: dataArr[i].inStoreNum,
+        //     pic: dataArr[i].pic,
+        //     telephone: dataArr[i].telephone,
+        //   });
+        // }
+      if (shopList.length==10){
         that.setData({
-          shopList: jsonTarget
+          hasNextList: true,
+          shopList: shopList
         })
+      }else{
+        that.setData({
+          shopList: shopList
+        })
+      }
+       
       }).catch((errMsg) => {
         wx.hideLoading();
         // console.log(errMsg); //错误提示信息
@@ -596,9 +606,10 @@ Page({
         wx.hideLoading();
         // console.log("商铺列表返回值是：" + res.data);
         let shopList = res.data.data.shops;
-        that.setData({
-          bannerList: shopList
-        })
+       
+          that.setData({
+            bannerList: shopList,
+          })
       }).catch((errMsg) => {
         wx.hideLoading();
         // console.log(errMsg); //错误提示信息
@@ -690,6 +701,7 @@ Page({
       }
     })
   },
+  //子类一列
   showSub1: function(e) {
     let that = this;
     let index = e.currentTarget.dataset.index;
@@ -697,7 +709,7 @@ Page({
     let typeName = e.currentTarget.dataset.name;
     let category1 = that.data.category1;
     let subList = category1[index].subList;
-    if (subList==null) {
+    if (subList == null) {
       wx.navigateTo({
         url: '../typeInfo/typeInfo?typeId=' + id + '&typeName=' + typeName,
       })
@@ -710,6 +722,7 @@ Page({
       })
     }
   },
+  //子类二列
   showSub2: function(e) {
     let that = this;
     let index = e.currentTarget.dataset.index;
@@ -744,6 +757,115 @@ Page({
     wx.navigateTo({
       url: '../typeInfo/typeInfo?id=' + id + '&typeId=' + typeId + '&typeName=' + typeName + '&subName=' + subName,
     })
-  }
+  },
 
+  //加载分页
+  loadMoreShop: function(e) {
+    // let that = this;
+    // let url = "dg/shop/list"
+    // var params = {
+    //   type: 1,
+    //   district: that.data.district,
+    //   // latFrom: that.data.latitude, //纬度
+    //   // lngFrom: that.data.longitude //经度
+    // }
+    // let method = "GET";
+    // wx.showLoading({
+    //     title: '加载中...',
+    //   }),
+    //   network.POST(url, params, method).then((res) => {
+    //     wx.hideLoading();
+    //     that.setData({
+    //       shopList: newList,
+    //       pageIndex: pageIndex
+    //     })
+    //   }).catch((errMsg) => {
+    //     wx.hideLoading();
+    //     // console.log(errMsg); //错误提示信息
+    //     wx.showToast({
+    //       title: '网络错误',
+    //       icon: 'loading',
+    //       duration: 1500,
+    //     })
+    //   });
+
+
+
+
+    let that = this;
+     //获取当前加载的分页
+    let pageIndex = that.data.pageIndex;
+    pageIndex += 1; //加载当前页的下一页数据
+    let url = "dg/shop/list"
+    let latitude = wx.getStorageSync('latitude');
+    let longitude = wx.getStorageSync('longitude');
+    var params = {
+      pageIndex: pageIndex,
+      type: 3,
+      district: that.data.district,
+      latFrom: that.data.latitude, //纬度
+      lngFrom: that.data.longitude //经度
+    }
+    let method = "GET";
+    wx.showLoading({
+      title: '加载中...',
+    }),
+      network.POST(url, params, method).then((res) => {
+        wx.hideLoading();
+        // console.log("商铺列表返回值是：");
+        let shopList = res.data.data.shops;
+        // var jsonTarget = [];
+
+        //提取自己所需要的数据
+        // for (var i = 0; i < 10; i++) {
+        //   // ids += dataArr[i].id + ",";
+        //   jsonTarget.push({
+        //     id: dataArr[i].id,
+        //     name: dataArr[i].name,
+        //     business_hours: dataArr[i].business_hours,
+        //     categoryName: dataArr[i].categoryName,
+        //     detailAddress: dataArr[i].detailAddress,
+        //     distance: dataArr[i].distance,
+        //     inStoreNum: dataArr[i].inStoreNum,
+        //     pic: dataArr[i].pic,
+        //     telephone: dataArr[i].telephone,
+        //   });
+        // }
+      
+      //之前加载过的数据
+      let oldList = that.data.shopList;
+      // 将新一页的数据添加到原数据后面
+      let newList = oldList.concat(shopList);
+      if (shopList.length == 10) {
+          that.setData({
+            pageIndex:pageIndex,
+            hasNextList: true,
+            shopList: newList
+          })
+        } else {
+          that.setData({
+            hasNextList: false,
+            shopList: newList
+          })
+        }
+
+      }).catch((errMsg) => {
+        wx.hideLoading();
+        // console.log(errMsg); //错误提示信息
+        wx.showToast({
+          title: '网络错误',
+          icon: 'loading',
+          duration: 1500,
+        })
+      });
+  },
+  //滚动条滚动到底部触发
+  scrollLower:function(){
+    let that = this;
+    let hasNextList = that.data.hasNextList;//是否还有数据
+    console.log('触发底部滚动条');
+    if (hasNextList){
+      that.loadMoreShop();
+    }
+  }
 })

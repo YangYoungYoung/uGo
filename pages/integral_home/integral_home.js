@@ -7,6 +7,8 @@ Page({
    * 页面的初始数据
    */
   data: {
+    pageIndex: 1,
+    hasNextList: false,
     indicatorDots: true, //是否出现焦点  
     autoplay: true, //是否自动播放轮播图  
     interval: 4000, //时间间隔
@@ -44,8 +46,6 @@ Page({
     that.getShopCategory();
     that.getGoodsList();
   },
-
-
 
   /**
    * 生命周期函数--监听页面显示
@@ -140,7 +140,7 @@ Page({
 
     let index = that.data.index + 1;
     // console.log('index is:', index);
-    let url = "goods/list?isIntegralShop=1" + "&integralLevel=" + index +"&type=3";
+    let url = "goods/list?isIntegralShop=1" + "&integralLevel=" + index + "&type=3";
     var params = {
 
     }
@@ -152,18 +152,17 @@ Page({
         wx.hideLoading();
         // console.log("返回值是：" + res.data);
         let goodsS = res.data.data.goodsS;
-        // let showGoods = [];
-        // if(goodsS.length>11){
-        //   for (var i = 1; i < 11; i++) {
-        //     showGoods.push(goodsS[i]);
-        //   }
-        // }else{
-        //   showGoods = goodsS;
-        // }
-     
-        that.setData({
-          goodsS: goodsS
-        })
+        if (goodsS.length == 100) {
+          that.setData({
+            hasNextList: true,
+            goodsS: goodsS
+          })
+        } else {
+          that.setData({
+
+            goodsS: goodsS
+          })
+        }
       }).catch((errMsg) => {
         wx.hideLoading();
         // console.log(errMsg); //错误提示信息
@@ -174,6 +173,53 @@ Page({
         })
       });
 
+  },
+
+  //加载更多商品列表
+  loadMoreShop: function() {
+    let that = this;
+    let pageIndex = that.data.pageIndex;
+    pageIndex += 1;
+    let index = that.data.index + 1;
+    // console.log('index is:', index);
+    let url = "goods/list";
+    var params = {
+      isIntegralShop: 1,
+      integralLevel: index,
+      type: 3,
+      pageIndex: pageIndex
+    }
+    let method = "GET";
+    wx.showLoading({
+        title: '加载中...',
+      }),
+      network.POST(url, params, method).then((res) => {
+        wx.hideLoading();
+        // console.log("返回值是：" + res.data);
+        let goodsS = res.data.data.goodsS;
+        let oldList = that.data.goodsS;
+        let newList = oldList.concat(goodsS);
+        if (goodsS.length == 100) {
+          that.setData({
+            hasNextList: true,
+            goodsS: newList,
+            pageIndex: pageIndex
+          })
+        } else {
+          that.setData({
+            hasNextList: false,
+            goodsS: newList
+          })
+        }
+      }).catch((errMsg) => {
+        wx.hideLoading();
+        // console.log(errMsg); //错误提示信息
+        wx.showToast({
+          title: '网络错误',
+          icon: 'loading',
+          duration: 1500,
+        })
+      });
   },
   //回到首页
   toHome: function() {
@@ -195,5 +241,14 @@ Page({
     wx.switchTab({
       url: '../integral_search/integral_search'
     })
+  },
+  //滚动条滚动到底部触发
+  scrollLower: function () {
+    let that = this;
+    let hasNextList = that.data.hasNextList;//是否还有数据
+    console.log('触发底部滚动条 ',hasNextList);
+    if (hasNextList) {
+      that.loadMoreShop();
+    }
   }
 })
