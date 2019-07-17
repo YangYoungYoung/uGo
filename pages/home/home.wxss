@@ -129,7 +129,7 @@ page {
   text-align: center;
   align-items: center;
   /* flex-wrap: wrap; */
-   box-sizing: border-box;
+  box-sizing: border-box;
   background-color: #e5e5e5;
 }
 
@@ -144,7 +144,6 @@ page {
   line-height: 80rpx;
   font-size: 26rpx;
   color: #616161;
- 
   /* background-color: #E5E5E5; */
 }
 
@@ -547,6 +546,7 @@ page {
 } */
 
 .shop-hour {
+  width: 292rpx;
   text-align: left;
   font-size: 22rpx;
   margin-top: 10rpx;
@@ -601,8 +601,16 @@ page {
 }
 
 .shop-location-text {
+  /* font-size: 22rpx;
+  margin-left: 12rpx; */
+  width: 300rpx;
   font-size: 22rpx;
   margin-left: 12rpx;
+  text-align: left;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  display: block;
 }
 
 .shop-people {

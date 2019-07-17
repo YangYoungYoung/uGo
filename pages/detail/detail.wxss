@@ -111,13 +111,17 @@
 .location-logo{
   width: 28rpx;
   height: 34rpx;
+  margin-right: 24rpx;
 }
 
 .location-text{
+  width: 537rpx;
+  height: auto;
   text-align: left;
   font-size: 28rpx;
   color: #313131;
-  margin-left: 24rpx;
+
+  word-break:break-all;
 }
 .detail-distance{
   margin-left: 76rpx;

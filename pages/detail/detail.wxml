@@ -7,7 +7,7 @@
 
   <view class='image-list'>
     <block wx:for="{{pic_detail}}" wx:key="index">
-      <image wx:if="{{item}}" class='image-item' src='{{item}}'  data-src='{{item}}' bindtap='previewImage'></image>
+      <image wx:if="{{item}}" class='image-item' src='{{item}}' data-src='{{item}}' bindtap='previewImage'></image>
     </block>
   </view>
 
@@ -19,7 +19,7 @@
     <view class='shop-location-info'>
       <view class='detail-location-info-left'>
         <view class='location-info' bindtap='toMap'>
-          <image class='location-logo' src='../images/detail_location_icon.png'></image>
+          <image class='location-logo' src='../images/detail_location_icon.png' mode='scaleToFill'></image>
           <text class='location-text'>{{shopInfo.detailAddress}}</text>
         </view>
         <!-- <text class='detail-distance'>距金沐汤泉步行1.2km</text> -->

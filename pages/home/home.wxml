@@ -188,7 +188,7 @@
           <block wx:for="{{shopList}}" wx:key='index'>
 
             <view class='shop-list-item' bindtap='toShop' data-id='{{item.id}}'>
-              <image wx:if="{{item.pic}}" class='shop-item-image' src='{{item.pic}}' lazy-load='true'></image>
+              <image wx:if="{{item.pic}}" class='shop-item-image' src='{{item.pic}}' lazy-load='true' mode='scaleToFill'></image>
               <view class='shop-item-info'>
                 <view class='shop-info-title'>
                   <view class='shop-info-title-left'>

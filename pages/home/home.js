@@ -8,7 +8,7 @@ Page({
    */
   data: {
     hasNextList: false, //是否还有继续加载的数据
-    pageIndex:1,
+    pageIndex: 1,
     subList: [],
     integral: 0,
     clicked: true,
@@ -131,17 +131,17 @@ Page({
         //     telephone: dataArr[i].telephone,
         //   });
         // }
-      if (shopList.length==10){
-        that.setData({
-          hasNextList: true,
-          shopList: shopList
-        })
-      }else{
-        that.setData({
-          shopList: shopList
-        })
-      }
-       
+        if (shopList.length == 10) {
+          that.setData({
+            hasNextList: true,
+            shopList: shopList
+          })
+        } else {
+          that.setData({
+            shopList: shopList
+          })
+        }
+
       }).catch((errMsg) => {
         wx.hideLoading();
         // console.log(errMsg); //错误提示信息
@@ -207,11 +207,17 @@ Page({
    */
   onShow: function() {
     let that = this;
+    let pageIndex = that.data.pageIndex;
     let district = that.data.district;
     // console.log('district is:', district);
     wx.setStorageSync('district', district);
     if (district.length != 0) {
-      that.getShopList();
+      if (pageIndex == 1) {
+        that.getShopList();
+
+      } else {
+        that.loadMoreShop();
+      }
       that.getSwiperList();
       that.getRecommendShopList();
     }
@@ -606,10 +612,10 @@ Page({
         wx.hideLoading();
         // console.log("商铺列表返回值是：" + res.data);
         let shopList = res.data.data.shops;
-       
-          that.setData({
-            bannerList: shopList,
-          })
+
+        that.setData({
+          bannerList: shopList,
+        })
       }).catch((errMsg) => {
         wx.hideLoading();
         // console.log(errMsg); //错误提示信息
@@ -761,39 +767,9 @@ Page({
 
   //加载分页
   loadMoreShop: function(e) {
-    // let that = this;
-    // let url = "dg/shop/list"
-    // var params = {
-    //   type: 1,
-    //   district: that.data.district,
-    //   // latFrom: that.data.latitude, //纬度
-    //   // lngFrom: that.data.longitude //经度
-    // }
-    // let method = "GET";
-    // wx.showLoading({
-    //     title: '加载中...',
-    //   }),
-    //   network.POST(url, params, method).then((res) => {
-    //     wx.hideLoading();
-    //     that.setData({
-    //       shopList: newList,
-    //       pageIndex: pageIndex
-    //     })
-    //   }).catch((errMsg) => {
-    //     wx.hideLoading();
-    //     // console.log(errMsg); //错误提示信息
-    //     wx.showToast({
-    //       title: '网络错误',
-    //       icon: 'loading',
-    //       duration: 1500,
-    //     })
-    //   });
-
-
-
 
     let that = this;
-     //获取当前加载的分页
+    //获取当前加载的分页
     let pageIndex = that.data.pageIndex;
     pageIndex += 1; //加载当前页的下一页数据
     let url = "dg/shop/list"
@@ -808,8 +784,8 @@ Page({
     }
     let method = "GET";
     wx.showLoading({
-      title: '加载中...',
-    }),
+        title: '加载中...',
+      }),
       network.POST(url, params, method).then((res) => {
         wx.hideLoading();
         // console.log("商铺列表返回值是：");
@@ -831,14 +807,14 @@ Page({
         //     telephone: dataArr[i].telephone,
         //   });
         // }
-      
-      //之前加载过的数据
-      let oldList = that.data.shopList;
-      // 将新一页的数据添加到原数据后面
-      let newList = oldList.concat(shopList);
-      if (shopList.length == 10) {
+
+        //之前加载过的数据
+        let oldList = that.data.shopList;
+        // 将新一页的数据添加到原数据后面
+        let newList = oldList.concat(shopList);
+        if (shopList.length == 10) {
           that.setData({
-            pageIndex:pageIndex,
+            pageIndex: pageIndex,
             hasNextList: true,
             shopList: newList
           })
@@ -860,11 +836,11 @@ Page({
       });
   },
   //滚动条滚动到底部触发
-  scrollLower:function(){
+  scrollLower: function() {
     let that = this;
-    let hasNextList = that.data.hasNextList;//是否还有数据
+    let hasNextList = that.data.hasNextList; //是否还有数据
     console.log('触发底部滚动条');
-    if (hasNextList){
+    if (hasNextList) {
       that.loadMoreShop();
     }
   }
