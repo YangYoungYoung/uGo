@@ -1,12 +1,13 @@
 {
   "pages": [
+    "pages/center/center",
     "pages/home/home",
     "pages/welcome/welcome",
     "pages/login/login",
     "pages/changeName/changeName",
     "pages/setting/setting",
     "pages/integral_home/integral_home",
-    "pages/center/center",
+    
     "pages/register/register",
     "pages/payment/payment",
     "pages/dealDetail/dealDetail",

@@ -206,6 +206,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function() {
+    let user = wx.getst
     let that = this;
     let pageIndex = that.data.pageIndex;
     let district = that.data.district;

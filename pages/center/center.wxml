@@ -5,8 +5,14 @@
 
     <view class="g-bda-userinfo">
       <view class='userinfo-left'>
-        <image class="userinfo-avatar" src="{{userInfo.avatarUrl}}"></image>
-        <text class="userinfo-nickname">{{userInfo.nickName}}</text>
+        <block wx:if="{{hasUserInfo}}">
+          <image class="userinfo-avatar" src="{{userInfo.avatarUrl}}"></image>
+          <text class="userinfo-nickname">{{userInfo.nickName}}</text>
+        </block>
+        <block wx:else>
+          <image class="userinfo-avatar" src="../images/head_image.png"></image>
+          <text class="userinfo-nickname" bindtap='showPermissionDialog'>登录/注册</text>
+        </block>
       </view>
 
       <image class='toMerchantImage' src='../images/toMerchant_icon.png' bindtap='toMerchant'></image>
@@ -112,6 +118,19 @@
         </block>
 
       </view>
+    </view>
+  </view>
+
+  <!--弹窗-->
+  <view class="modal-mask" bindtap="hidePermissionModal" catchtouchmove="preventTouchMove" wx:if="{{showPermission}}"></view>
+  <view class="modal-dialog" wx:if="{{showPermission}}">
+    <view class="modal-title">您还未登录</view>
+    <view class="modal-content">
+      <text class='content-text'>请先登录再进行操作</text>
+    </view>
+    <view class="modal-footer">
+      <button class="btn-cancel" bindtap="hidePermissionModal" data-status="cancel">取消</button>
+      <button class="btn-confirm" open-type="getUserInfo" bindgetuserinfo="bindGetUserInfo" data-status="confirm">确定</button>
     </view>
   </view>
 

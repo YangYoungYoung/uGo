@@ -177,11 +177,11 @@
       <view class='near-shop'>
         <view class='near-title-view'>
           <text class='near-title'>附近合作商家</text>
-          <view class='near-more' bindtap='moreShop'>
+          <!-- <view class='near-more' bindtap='moreShop'>
             <text class='near-title'>更多</text>
-            <text></text>
+            
             <image class='more-icon' src='../images/local_more.png'></image>
-          </view>
+          </view> -->
         </view>
 
         <view class='near-shop-list'>

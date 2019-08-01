@@ -34,7 +34,9 @@ Page({
     // let openId = that.data.openId;
     let mobile = that.data.phone;
     let password = that.data.password;
-    let wxUnionid = taht.data.wxUnionid;
+    // let wxUnionid = taht.data.wxUnionid;
+    let wxUnionid = wx.getStorageSync('unionId');
+    console.log('wxUnionid is:', wxUnionid);
 
     let url = "login";
     var params = {
@@ -72,7 +74,9 @@ Page({
   },
   //到注册页面
   toRegister:function(){
-      
+      wx.redirectTo({
+        url: '../register/register',
+      })
   },
   //跳转到找回密码页面
   toGetPwd:function(){

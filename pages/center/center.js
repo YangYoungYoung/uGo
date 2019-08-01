@@ -8,8 +8,12 @@ Page({
    * 页面的初始数据
    */
   data: {
+    showPermission: false, //是否弹出授权
+    //判断小程序的API，回调，参数，组件等是否在当前版本可用。
+    canIUse: wx.canIUse('button.open-type.getUserInfo'),
     user: {},
-    showModal: false,
+    hasUserInfo: false,
+    // showModal: false,
     showShare: false,
     footerList: [{
         name: '首页',
@@ -227,8 +231,8 @@ Page({
     var that = this;
     var userId = wx.getStorageSync("userId");
     let phone = wx.getStorageSync('mobile');
-    console.log('userId is:',userId);
-    
+    console.log('userId is:', userId);
+
     if (phone == undefined || phone == null) {
       phone = '';
     }
@@ -250,30 +254,16 @@ Page({
       complete() {}
     }
   },
-  /**
-   * 弹窗
-   */
-  // showDialogBtn: function () {
-  //   this.setData({
-  //     showModal: true
-  //   })
-  // },
+
   /**
    * 弹出框蒙层截断touchmove事件
    */
-  preventTouchMove: function () { },
-  /**
-   * 隐藏模态对话框
-   */
-  // hideModal: function () {
-  //   this.setData({
-  //     showModal: false
-  //   });
-  // },
+  preventTouchMove: function() {},
+
   /**
    * 隐藏分享对话框
    */
-  hideShreModal: function () {
+  hideShreModal: function() {
     this.setData({
       showShare: false
     });
@@ -282,7 +272,7 @@ Page({
   /**
    * 分享弹窗
    */
-  showShareDialogBtn: function () {
+  showShareDialogBtn: function() {
     this.setData({
       showShare: true
     })
@@ -290,9 +280,104 @@ Page({
   /**
    * 隐藏分享模态对话框
    */
-  hideShareModal: function () {
+  hideShareModal: function() {
     this.setData({
       showShare: false
     });
   },
+  //弹出授权弹窗
+  showPermissionDialog: function() {
+    console.log('弹出授权询问弹窗');
+    let that = this;
+    that.showPermissionDialogBtn();
+  },
+
+  /**
+   * 隐藏授权对话框
+   */
+  hidePermissionModal: function() {
+    this.setData({
+      showPermission: false
+    });
+  },
+
+  /**
+   * 弹出授权弹窗
+   */
+  showPermissionDialogBtn: function() {
+    this.setData({
+      showPermission: true
+    })
+  },
+  //授权权限
+
+  bindGetUserInfo(res) {
+    let that = this;
+    let info = res;
+    console.log(info);
+    if (info.detail.userInfo) {
+      console.log("点击了同意授权");
+      that.hidePermissionModal();
+      wx.login({
+        success: function(res) {
+          if (res.code) {
+            wx.getUserInfo({
+              withCredentials: true,
+              success: (obj) => {
+                console.log('encryptedData is:', obj.encryptedData);
+                //获取用户UnionId
+                wx.request({
+                  url: openIdUrl,
+                  data: {
+                    code: data.code,
+                    encryptedData: obj.encryptedData,
+                    iv: obj.iv,
+                  },
+                  success: function (res) {
+                    self.globalData.openid = res.data.openid;
+                    wx.setStorageSync('unionId', unionId);
+                    //获取到unionId后关闭所有页面跳转到登录账号界面
+                    wx.reLaunch({
+                      url: '../login/login',
+
+                    })
+                  },
+                  fail: function (res) {
+                    console.log('拉取用户openid失败，将无法正常使用开放接口等服务', res)
+                  }
+                })
+              }
+            })
+            // wx.request({
+            //   url: 'http://www.test.com/test',
+            //   data: {
+            //     code: res.code,
+            //     nickName: info.detail.userInfo.nickName,
+            //     city: info.detail.userInfo.city,
+            //     province: info.detail.userInfo.province,
+            //     avatarUrl: info.detail.userInfo.avatarUrl
+            //   },
+            //   header: {
+            //     'content-type': 'application/json' // 默认值
+            //   },
+            //   success: function(res) {
+            //     var userinfo = {};
+            //     userinfo['id'] = res.data.id;
+            //     userinfo['nickName'] = info.detail.userInfo.nickName;
+            //     userinfo['avatarUrl'] = info.detail.userInfo.avatarUrl;
+            //     wx.setStorageSync('userinfo', userinfo);
+            //   }
+            // })
+          } else {
+            console.log("授权失败");
+            common.showTip('授权失败',loading);
+          }
+        },
+      })
+
+    } else {
+      console.log("点击了拒绝授权");
+    }
+  }
+
 })
