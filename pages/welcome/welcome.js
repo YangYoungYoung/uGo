@@ -8,83 +8,90 @@ Page({
     canIUse: wx.canIUse('button.open-type.getUserInfo')
   },
   onLoad: function() {
-    let that = this;
-    // 登录
-    wx.login({
-      success: res => {
-        app.globalData.code = res.code
-        //取出本地存储用户信息，解决需要每次进入小程序弹框获取用户信息
-        app.globalData.userInfo = wx.getStorageSync(' ')
-        if (app.globalData.userInfo) {
-          wx.getUserInfo({
-            success: function(res) {
-              // userInfo 只存储个人的基础数据
-              console.log('userInfo :', userInfo);
-              wx.setStorageSync('userInfo', res.userInfo);
-            }
-          })
-          that.setData({
-            authorization: false
-          })
-        }
-        //wx.getuserinfo接口不再支持
-        wx.getSetting({
-          success: (res) => {
-            //判断用户已经授权。不需要弹框
-            if (!res.authSetting['scope.userInfo']) {
-              that.setData({
-                showModel: true
-              })
-            } else { //没有授权需要弹框
-              that.setData({
-                showModel: false
-              })
-              wx.showLoading({
-                title: '加载中...'
-              })
-              // console.log('userInfo :', app.globalData.userInfo);
-              // wx.setStorageSync('userInfo', res.userInfo);
-              wx.getUserInfo({
-                withCredentials: true,
-                success: (obj) => {
-                  console.log('encryptedData is:', obj.encryptedData);
+    var timeOut = setTimeout(function () {
+      console.log("延迟调用============")
+      // wx.navigateBack()
+      wx.redirectTo({
+        url: '../home/home',
+      })
+    }, 500)
+    // let that = this;
+    // // 登录
+    // wx.login({
+    //   success: res => {
+    //     app.globalData.code = res.code
+    //     //取出本地存储用户信息，解决需要每次进入小程序弹框获取用户信息
+    //     app.globalData.userInfo = wx.getStorageSync(' ')
+    //     if (app.globalData.userInfo) {
+    //       wx.getUserInfo({
+    //         success: function(res) {
+    //           // userInfo 只存储个人的基础数据
+    //           console.log('userInfo :', userInfo);
+    //           wx.setStorageSync('userInfo', res.userInfo);
+    //         }
+    //       })
+    //       that.setData({
+    //         authorization: false
+    //       })
+    //     }
+    //     //wx.getuserinfo接口不再支持
+    //     wx.getSetting({
+    //       success: (res) => {
+    //         //判断用户已经授权。不需要弹框
+    //         if (!res.authSetting['scope.userInfo']) {
+    //           that.setData({
+    //             showModel: true
+    //           })
+    //         } else { //没有授权需要弹框
+    //           that.setData({
+    //             showModel: false
+    //           })
+    //           wx.showLoading({
+    //             title: '加载中...'
+    //           })
+    //           // console.log('userInfo :', app.globalData.userInfo);
+    //           // wx.setStorageSync('userInfo', res.userInfo);
+    //           wx.getUserInfo({
+    //             withCredentials: true,
+    //             success: (obj) => {
+    //               console.log('encryptedData is:', obj.encryptedData);
 
-                  // wx.request({
-                  //   url: openIdUrl,
-                  //   data: {
-                  //     code: data.code,
-                  //     encryptedData: obj.encryptedData,
-                  //     iv: obj.iv,
-                  //   },
-                  //   success: function (res) {
-                  //     self.globalData.openid = res.data.openid
-                  //   },
-                  //   fail: function (res) {
-                  //     console.log('拉取用户openid失败，将无法正常使用开放接口等服务', res)
-                  //   }
-                  // })
-                }
-              })
-              that.getOP(app.globalData.userInfo)
-            }
-          },
-          fail: function() {
-            wx.showToast({
-              title: '网络错误',
-              icon: 'warn',
-              duration: 1000,
-            })
-          }
-        })
-      },
-      fail: function() {
-        wx.showToast({
-          title: '网络错误',
-          icon: 'warn',
-          duration: 1000,
-        })
-      }
-    })
+    //               // wx.request({
+    //               //   url: openIdUrl,
+    //               //   data: {
+    //               //     code: data.code,
+    //               //     encryptedData: obj.encryptedData,
+    //               //     iv: obj.iv,
+    //               //   },
+    //               //   success: function (res) {
+    //               //     self.globalData.openid = res.data.openid
+    //               //   },
+    //               //   fail: function (res) {
+    //               //     console.log('拉取用户openid失败，将无法正常使用开放接口等服务', res)
+    //               //   }
+    //               // })
+    //             }
+    //           })
+    //           that.getOP(app.globalData.userInfo)
+    //         }
+    //       },
+    //       fail: function() {
+    //         wx.showToast({
+    //           title: '网络错误',
+    //           icon: 'warn',
+    //           duration: 1000,
+    //         })
+    //       }
+    //     })
+    //   },
+    //   fail: function() {
+    //     wx.showToast({
+    //       title: '网络错误',
+    //       icon: 'warn',
+    //       duration: 1000,
+    //     })
+    //   }
+    // })
   },
   bindGetUserInfo: function(e) {
     if (e.detail.userInfo) {

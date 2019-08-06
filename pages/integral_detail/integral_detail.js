@@ -194,6 +194,27 @@ Page({
   //加入购物车
   addToCart: function() {
     let that = this;
+    let userInfo = wx.getStorageSync('userInfo');
+    if (userInfo == '' || userInfo == undefined) {
+      wx.showModal({
+        title: '您还没有登录',
+        content: '是否现在就去登录',
+        cancelText: '否',
+        confirmText: '是',
+        success(res) {
+          if (res.cancel) {
+            // 用户点击了取消属性的按钮
+
+          } else if (res.confirm) {
+            // 用户点击了确定属性的按钮，跳转到个人中心登录
+            wx.navigateTo({
+              url: '../center/center',
+            })
+          }
+        }
+      })
+      return;
+    }
     let goodsId = that.data.goods.id;
     let goodsSpecifitionValue = that.getGuiGe();
     // console.log('goodsSpecifitionValue is:', goodsSpecifitionValue);
@@ -277,6 +298,27 @@ Page({
   //立即购买
   buyNow: function(id) {
     let that = this;
+    let userInfo = wx.getStorageSync('userInfo');
+    if (userInfo == '' || userInfo == undefined) {
+      wx.showModal({
+        title: '您还没有登录',
+        content: '是否现在就去登录',
+        cancelText: '否',
+        confirmText: '是',
+        success(res) {
+          if (res.cancel) {
+            // 用户点击了取消属性的按钮
+
+          } else if (res.confirm) {
+            // 用户点击了确定属性的按钮，跳转到个人中心登录
+            wx.navigateTo({
+              url: '../center/center',
+            })
+          }
+        }
+      })
+      return;
+    }
     // let id = that.data.goodId;
     let userId = wx.getStorageSync("userId");
 

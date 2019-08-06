@@ -310,7 +310,6 @@ Page({
     })
   },
   //授权权限
-
   bindGetUserInfo(res) {
     let that = this;
     let info = res;
@@ -321,33 +320,11 @@ Page({
       wx.login({
         success: function(res) {
           if (res.code) {
-            wx.getUserInfo({
-              withCredentials: true,
-              success: (obj) => {
-                console.log('encryptedData is:', obj.encryptedData);
-                //获取用户UnionId
-                wx.request({
-                  url: openIdUrl,
-                  data: {
-                    code: data.code,
-                    encryptedData: obj.encryptedData,
-                    iv: obj.iv,
-                  },
-                  success: function (res) {
-                    self.globalData.openid = res.data.openid;
-                    wx.setStorageSync('unionId', unionId);
-                    //获取到unionId后关闭所有页面跳转到登录账号界面
-                    wx.reLaunch({
-                      url: '../login/login',
-
-                    })
-                  },
-                  fail: function (res) {
-                    console.log('拉取用户openid失败，将无法正常使用开放接口等服务', res)
-                  }
-                })
-              }
+            that.setData({
+              code: res.code
             })
+            that.getOP();
+
             // wx.request({
             //   url: 'http://www.test.com/test',
             //   data: {
@@ -370,7 +347,7 @@ Page({
             // })
           } else {
             console.log("授权失败");
-            common.showTip('授权失败',loading);
+            common.showTip('授权失败', loading);
           }
         },
       })
@@ -378,6 +355,84 @@ Page({
     } else {
       console.log("点击了拒绝授权");
     }
-  }
+  },
+
+  //获取用户openId接口
+  getOP: function(res) { //提交用户信息 获取用户id
+    let that = this;
+    let code = that.data.code;
+    wx.showLoading({
+        title: '加载中...',
+      }),
+      wx.request({
+        url: "https://api-test.ugo365.xyz/api/common/weiXIn/openId?code=" + code,
+        // url: "https://api.ugo365.xyz/api/common/weiXIn/openId?code=" + code,
+        data: {
+          // code: app.globalData.code
+          // code: code
+        },
+        header: {
+          'content-type': 'application/json'
+        },
+        method: "GET", //get为默认方法/POST
+        success: function(res) {
+          wx.hideLoading();
+          console.log("sessionKey" + res.data.data.sessionKey); //正确返回结果
+          if (res.data.data.sessionKey != undefined) {
+            var sessionKey = res.data.data.sessionKey
+            wx.getUserInfo({
+              withCredentials: true,
+              success: (obj) => {
+                console.log('encryptedData is:', obj.encryptedData);
+                console.log('iv is:', obj.iv);
+                //获取用户UnionId
+                wx.request({
+                  url: "https://api-test.ugo365.xyz/wx/miniApp/getUnionIdFirst",
+                  data: {
+                    sessionKey: sessionKey,
+                    encryptedData: obj.encryptedData,
+                    ivStr: obj.iv,
+                  },
+                  header: {
+                    'content-type': 'application/json'
+                  },
+                  method: "GET", //get为默认方法/POST
+                  success: function(res) {
+                    // self.globalData.openid = res.data.openid;\
+                    console.log('unionId is:', res);
+                    // wx.setStorageSync('unionId', unionId);
+                    //获取到unionId后关闭所有页面跳转到登录账号界面
+                    // wx.reLaunch({
+                    //   url: '../login/login',
+
+                    // })
+                  },
+                  fail: function(res) {
+                    console.log('拉取用户openid失败，将无法正常使用开放接口等服务', res)
+                  }
+                })
+              }
+            })
+          } else {
+            wx.showToast({
+              title: '网络错误',
+              icon: 'loading',
+              duration: 1000,
+            })
+          }
+
+        },
+        fail: function(res) {
+          wx.hideLoading();
+          // console.log(errMsg); //错误提示信息
+          wx.showToast({
+            title: '网络错误',
+            icon: 'loading',
+            duration: 1000,
+          })
+        }
+      });
+
+  },
 
 })

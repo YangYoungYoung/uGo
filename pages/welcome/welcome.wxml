@@ -1,7 +1,7 @@
 <!--pages/welcome/welcome.wxml-->
 <view class='container'>
 
-  <view wx:if="{{canIUse}}">
+  <!-- <view wx:if="{{canIUse}}">
 
 
     <button class='button' open-type="getUserInfo" lang="zh_CN" bindgetuserinfo="bindGetUserInfo">
@@ -9,5 +9,5 @@
     </button>
   </view>
 
-  <view wx:else>请升级微信版本</view>
+  <view wx:else>请升级微信版本</view> -->
 </view>

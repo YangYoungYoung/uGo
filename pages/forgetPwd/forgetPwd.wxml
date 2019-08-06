@@ -1,0 +1,33 @@
+<!--pages/forgetPwd/forgetPwd.wxml-->
+<view class='container'>
+  <view class='phone-view'>
+    <text class='left-text'>手机号：</text>
+    <input class='phone-input' type="number" value='{{mobile}}' placeholder="请输入手机号" maxlength="11" bindinput="getMobile"></input>
+  </view>
+
+  <view class='code-view'>
+
+    <view class='code-boder-view'>
+      <text class='left-text'>验证码：</text>
+      <input class='code-input' type="number" value='{{code}}' placeholder="请输入验证码" maxlength="11" bindinput="getCode"></input>
+    </view>
+    <view class='getCodeView' bindtap='sendCode'>获取</view>
+  </view>
+
+  <!-- <view class='pwd-view'>
+
+  </view> -->
+  <view class='pwd-view'>
+    <text class='pwd-text'>设置新密码：</text>
+    <input class='phone-input' style='width:465rpx;' value='{{pwd}}' type="number" placeholder="请输入6-12位密码" maxlength="12" bindinput="getPwd"></input>
+  </view>
+
+    <view class='pwd-view'>
+    <text class='pwd-text'>确认新密码：</text>
+    <input class='phone-input' style='width:465rpx;' type="number" value='{{confirmPwd}}' placeholder="请重新输入密码" maxlength="12" bindinput="confirmPwd"></input>
+  </view>
+
+
+  <button class='register-btn' bindtap='toRegister'>提交</button>
+
+</view>

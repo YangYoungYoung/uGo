@@ -1,8 +1,10 @@
 {
   "pages": [
-    "pages/center/center",
-    "pages/home/home",
     "pages/welcome/welcome",
+    "pages/center/center",
+    "pages/forgetPwd/forgetPwd",
+    "pages/home/home",
+    
     "pages/login/login",
     "pages/changeName/changeName",
     "pages/setting/setting",

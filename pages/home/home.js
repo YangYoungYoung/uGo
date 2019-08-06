@@ -342,6 +342,27 @@ Page({
   //签到按钮
   sineInClick: function() {
     let that = this;
+    let userInfo = wx.getStorageSync('userInfo');
+    if (userInfo == '' || userInfo == undefined) {
+      wx.showModal({
+        title: '您还没有登录',
+        content: '是否现在就去登录',
+        cancelText: '否',
+        confirmText: '是',
+        success(res) {
+          if (res.cancel) {
+            // 用户点击了取消属性的按钮
+
+          } else if (res.confirm) {
+            // 用户点击了确定属性的按钮，跳转到个人中心登录
+            wx.navigateTo({
+              url: '../center/center',
+            })
+          }
+        }
+      })
+      return;
+    }
     let integral = that.data.integral;
     let sineList = that.data.sineList;
     let signedTimes = that.data.signedTimes;
@@ -684,6 +705,27 @@ Page({
   //扫一扫
   scanCode: function() {
     let that = this;
+    let userInfo = wx.getStorageSync('userInfo');
+    if (userInfo == '' || userInfo == undefined) {
+      wx.showModal({
+        title: '您还没有登录',
+        content: '是否现在就去登录',
+        cancelText: '否',
+        confirmText: '是',
+        success(res) {
+          if (res.cancel) {
+            // 用户点击了取消属性的按钮
+
+          } else if (res.confirm) {
+            // 用户点击了确定属性的按钮，跳转到个人中心登录
+            wx.navigateTo({
+              url: '../center/center',
+            })
+          }
+        }
+      })
+      return;
+    }
     // 只允许从相机扫码
     wx.scanCode({
       onlyFromCamera: true,
