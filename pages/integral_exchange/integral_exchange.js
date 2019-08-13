@@ -23,6 +23,10 @@ Page({
   getGoodsList: function() {
     let that = this;
     let userId = wx.getStorageSync('userId');
+    if (userId == '' || userId == undefined) {
+      common.showTip("请先登录", "loading");
+      return;
+    }
     let url = "goods/list";
     var params = {
       userId: userId,

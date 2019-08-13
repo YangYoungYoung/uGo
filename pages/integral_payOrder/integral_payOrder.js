@@ -286,14 +286,17 @@ Page({
     var totalFee = that.data.totalPrice * 100;
     let sn = that.data.sn;
     let orderId = that.data.orderId;
-    var openId = wx.getStorageSync("openId");
+    let wxUserInfo = wx.getStorageSync('wxUserInfo');
+    console.log('wxUserInfo is:',wxUserInfo);
+    // var openId = wx.getStorageSync("openId");
+    var openId = wxUserInfo.openId;
 
     // var order_id = "25767795778125825";
 
     // console.log("当前的订单总价是：" + money);
     wx.request({
-      // url: 'https://mall.cmdd.tech/api/common/getRepayId?outTradeNo=' + sn + "&money=" + totalFee + "&openId=" + openId + "&orderId=" + orderId,
-      url: 'https://api.ugo365.xyz/api/common/getRepayId?outTradeNo=' + sn + "&money=" + totalFee + "&openId=" + openId + "&orderId=" + orderId,
+      url: 'https://api-test.ugo365.xyz/api/common/getRepayId?outTradeNo=' + sn + "&money=" + totalFee + "&openId=" + openId + "&orderId=" + orderId,
+      // url: 'https://api.ugo365.xyz/api/common/getRepayId?outTradeNo=' + sn + "&money=" + totalFee + "&openId=" + openId + "&orderId=" + orderId,
       data: {},
       header: { //请求头
         "Content-Type": "applciation/json"

@@ -15,14 +15,14 @@ Page({
   },
   //获取手机号
   phoneInput: function(e) {
-    console.log('phone is:',e.detail.value);
+    // console.log('phone is:',e.detail.value);
     this.setData({
       phone: e.detail.value
     })
   },
   //获取密码
   passwordInput: function(e) {
-    console.log('password is:', e.detail.value);
+    // console.log('password is:', e.detail.value);
     this.setData({
       password: e.detail.value
     })
@@ -35,8 +35,9 @@ Page({
     let mobile = that.data.phone;
     let password = that.data.password;
     // let wxUnionid = taht.data.wxUnionid;
-    let wxUnionid = wx.getStorageSync('unionId');
-    console.log('wxUnionid is:', wxUnionid);
+    let wxUserInfo = wx.getStorageSync('wxUserInfo');
+    let wxUnionid = wxUserInfo.unionId;
+    console.log('wxUserInfo is:', wxUserInfo);
 
     let url = "login";
     var params = {
@@ -74,12 +75,14 @@ Page({
   },
   //到注册页面
   toRegister:function(){
-      wx.redirectTo({
+      wx.navigateTo({
         url: '../register/register',
       })
   },
   //跳转到找回密码页面
   toGetPwd:function(){
-    
+    wx.navigateTo({
+      url: '../forgetPwd/forgetPwd',
+    })
   }
 })

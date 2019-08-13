@@ -87,6 +87,10 @@ Page({
   bindingMobile: function() {
     let that = this;
     let userId = wx.getStorageSync("userId");
+    if (userId == '' || userId == undefined) {
+      common.showTip("请先登录", "loading");
+      return;
+    }
     let mobile = that.data.mobile;
     if (mobile == undefined || mobile.length != 11 || mobile == '') {
       common.showTip("请输入正确手机号", "loading");

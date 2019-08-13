@@ -31,6 +31,10 @@ Page({
   getAddressList: function() {
     let that = this;
     let userId = wx.getStorageSync('userId');
+    if (userId == '' || userId == undefined) {
+      common.showTip("请先登录", "loading");
+      return;
+    }
     let url = "address/list?userId=" + userId;
     var params = {}
     let method = "GET";

@@ -2,14 +2,14 @@
   "pages": [
     "pages/welcome/welcome",
     "pages/center/center",
+    "pages/login/login",
+    
     "pages/forgetPwd/forgetPwd",
     "pages/home/home",
     
-    "pages/login/login",
     "pages/changeName/changeName",
     "pages/setting/setting",
     "pages/integral_home/integral_home",
-    
     "pages/register/register",
     "pages/payment/payment",
     "pages/dealDetail/dealDetail",

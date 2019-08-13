@@ -9,12 +9,12 @@ Page({
   },
   onLoad: function() {
     var timeOut = setTimeout(function () {
-      console.log("延迟调用============")
+      // console.log("延迟调用============")
       // wx.navigateBack()
       wx.redirectTo({
         url: '../home/home',
       })
-    }, 500)
+    }, 200)
     // let that = this;
     // // 登录
     // wx.login({
@@ -93,258 +93,258 @@ Page({
     //   }
     // })
   },
-  bindGetUserInfo: function(e) {
-    if (e.detail.userInfo) {
-      //用户按了允许授权按钮
-      let that = this;
-      // console.log('bindGetUserInfo userInfo is:', e.detail.userInfo);
-      // wx.setStorageSync('userInfo', e.detail.userInfo);
-      wx.getUserInfo({
-        withCredentials: true,
-        success: (obj) => {
-          console.log('encryptedData is:', obj.encryptedData);
-          //获取用户加密信息
-          wx.request({
-            url: openIdUrl,
-            data: {
-              code: data.code,
-              encryptedData: obj.encryptedData,
-              iv: obj.iv,
-            },
-            success: function (res) {
-              self.globalData.openid = res.data.openid
-            },
-            fail: function (res) {
-              console.log('拉取用户openid失败，将无法正常使用开放接口等服务', res)
-            }
-          })
-        }
-      })
+  // bindGetUserInfo: function(e) {
+  //   if (e.detail.userInfo) {
+  //     //用户按了允许授权按钮
+  //     let that = this;
+  //     // console.log('bindGetUserInfo userInfo is:', e.detail.userInfo);
+  //     // wx.setStorageSync('userInfo', e.detail.userInfo);
+  //     wx.getUserInfo({
+  //       withCredentials: true,
+  //       success: (obj) => {
+  //         console.log('encryptedData is:', obj.encryptedData);
+  //         //获取用户加密信息
+  //         wx.request({
+  //           url: openIdUrl,
+  //           data: {
+  //             code: data.code,
+  //             encryptedData: obj.encryptedData,
+  //             iv: obj.iv,
+  //           },
+  //           success: function (res) {
+  //             self.globalData.openid = res.data.openid
+  //           },
+  //           fail: function (res) {
+  //             console.log('拉取用户openid失败，将无法正常使用开放接口等服务', res)
+  //           }
+  //         })
+  //       }
+  //     })
 
-      that.getOP(e.detail.userInfo)
-    } else {
-      //用户按了拒绝按钮
-      wx.showModal({
-        title: '警告',
-        content: '您点击了拒绝授权，将无法进入小程序，请授权之后再进入!!!',
-        showCancel: false,
-        confirmText: '返回授权',
-        success: function(res) {
-          if (res.confirm) {
-            // console.log('用户点击了“返回授权”')
-          }
-        }
-      })
-    }
-  },
-  //获取用户openId接口
-  getOP: function(res) { //提交用户信息 获取用户id
-    let that = this
-    let userInfo = res
-    app.globalData.userInfo = userInfo;
-    wx.showLoading({
-        title: '加载中...',
-      }),
-      wx.request({
-        // url: "http://ugo365.eicp.vip/api/common/weiXIn/openId?code=" + app.globalData.code,
-        url: "https://api.ugo365.xyz/api/common/weiXIn/openId?code=" + app.globalData.code,
-        data: {
-          // code: app.globalData.code
-        },
-        header: {
-          'content-type': 'application/json'
-        },
-        method: "GET", //get为默认方法/POST
-        success: function(res) {
-          wx.hideLoading();
-          // console.log("openId的结果是：" + res.data.data.openId); //正确返回结果
-          if (res.data.data.openId != undefined) {
-            wx.setStorageSync('openId', res.data.data.openId); // 单独存储openid
-            that.setData({
-              openId: res.data.data.openId
-            })
-            that.getUserId();
-            // wx.redirectTo({
-            //   url: '../home/home',
-            // })
-          } else {
+  //     that.getOP(e.detail.userInfo)
+  //   } else {
+  //     //用户按了拒绝按钮
+  //     wx.showModal({
+  //       title: '警告',
+  //       content: '您点击了拒绝授权，将无法进入小程序，请授权之后再进入!!!',
+  //       showCancel: false,
+  //       confirmText: '返回授权',
+  //       success: function(res) {
+  //         if (res.confirm) {
+  //           // console.log('用户点击了“返回授权”')
+  //         }
+  //       }
+  //     })
+  //   }
+  // },
+  // //获取用户openId接口
+  // getOP: function(res) { //提交用户信息 获取用户id
+  //   let that = this
+  //   let userInfo = res
+  //   app.globalData.userInfo = userInfo;
+  //   wx.showLoading({
+  //       title: '加载中...',
+  //     }),
+  //     wx.request({
+  //       // url: "http://ugo365.eicp.vip/api/common/weiXIn/openId?code=" + app.globalData.code,
+  //       url: "https://api.ugo365.xyz/api/common/weiXIn/openId?code=" + app.globalData.code,
+  //       data: {
+  //         // code: app.globalData.code
+  //       },
+  //       header: {
+  //         'content-type': 'application/json'
+  //       },
+  //       method: "GET", //get为默认方法/POST
+  //       success: function(res) {
+  //         wx.hideLoading();
+  //         // console.log("openId的结果是：" + res.data.data.openId); //正确返回结果
+  //         if (res.data.data.openId != undefined) {
+  //           wx.setStorageSync('openId', res.data.data.openId); // 单独存储openid
+  //           that.setData({
+  //             openId: res.data.data.openId
+  //           })
+  //           that.getUserId();
+  //           // wx.redirectTo({
+  //           //   url: '../home/home',
+  //           // })
+  //         } else {
 
-            wx.showToast({
-              title: '网络错误',
-              icon: 'loading',
-              duration: 1000,
-            })
-          }
-        },
-        fail: function(res) {
-          wx.hideLoading();
-          // console.log(errMsg); //错误提示信息
-          wx.showToast({
-            title: '网络错误',
-            icon: 'loading',
-            duration: 1000,
-          })
-        }
-      });
+  //           wx.showToast({
+  //             title: '网络错误',
+  //             icon: 'loading',
+  //             duration: 1000,
+  //           })
+  //         }
+  //       },
+  //       fail: function(res) {
+  //         wx.hideLoading();
+  //         // console.log(errMsg); //错误提示信息
+  //         wx.showToast({
+  //           title: '网络错误',
+  //           icon: 'loading',
+  //           duration: 1000,
+  //         })
+  //       }
+  //     });
 
-  },
-  //获取用户unionId
-  getUserInfo: function() {
-    let that = this
-    let userInfo = res
-    app.globalData.userInfo = userInfo;
-    wx.showLoading({
-        title: '加载中...',
-      }),
-      wx.request({
-        // url: "http://ugo365.eicp.vip/api/common/weiXIn/openId?code=" + app.globalData.code,
-      url: "https://api-test.ugo365.xyz/api/common/weiXIn/unionId?code=" + app.globalData.code,
-        data: {
-          // code: app.globalData.code
-        },
-        header: {
-          'content-type': 'application/json'
-        },
-        method: "GET", //get为默认方法/POST
-        success: function(res) {
-          wx.hideLoading();
-          // console.log("openId的结果是：" + res.data.data.openId); //正确返回结果
-          if (res.data.data.openId != undefined) {
-            wx.setStorageSync('openId', res.data.data.openId); // 单独存储openid
-            that.setData({
-              openId: res.data.data.openId
-            })
-            that.getUserId();
-            // wx.redirectTo({
-            //   url: '../home/home',
-            // })
-          } else {
+  // },
+  // //获取用户unionId
+  // getUserInfo: function() {
+  //   let that = this
+  //   let userInfo = res
+  //   app.globalData.userInfo = userInfo;
+  //   wx.showLoading({
+  //       title: '加载中...',
+  //     }),
+  //     wx.request({
+  //       // url: "http://ugo365.eicp.vip/api/common/weiXIn/openId?code=" + app.globalData.code,
+  //     url: "https://api-test.ugo365.xyz/api/common/weiXIn/unionId?code=" + app.globalData.code,
+  //       data: {
+  //         // code: app.globalData.code
+  //       },
+  //       header: {
+  //         'content-type': 'application/json'
+  //       },
+  //       method: "GET", //get为默认方法/POST
+  //       success: function(res) {
+  //         wx.hideLoading();
+  //         // console.log("openId的结果是：" + res.data.data.openId); //正确返回结果
+  //         if (res.data.data.openId != undefined) {
+  //           wx.setStorageSync('openId', res.data.data.openId); // 单独存储openid
+  //           that.setData({
+  //             openId: res.data.data.openId
+  //           })
+  //           that.getUserId();
+  //           // wx.redirectTo({
+  //           //   url: '../home/home',
+  //           // })
+  //         } else {
 
-            wx.showToast({
-              title: '网络错误',
-              icon: 'loading',
-              duration: 1000,
-            })
-          }
-        },
-        fail: function(res) {
-          wx.hideLoading();
-          // console.log(errMsg); //错误提示信息
-          wx.showToast({
-            title: '网络错误',
-            icon: 'loading',
-            duration: 1000,
-          })
-        }
-      });
-  },
+  //           wx.showToast({
+  //             title: '网络错误',
+  //             icon: 'loading',
+  //             duration: 1000,
+  //           })
+  //         }
+  //       },
+  //       fail: function(res) {
+  //         wx.hideLoading();
+  //         // console.log(errMsg); //错误提示信息
+  //         wx.showToast({
+  //           title: '网络错误',
+  //           icon: 'loading',
+  //           duration: 1000,
+  //         })
+  //       }
+  //     });
+  // },
 
-  //获取用户信息
-  getUserId: function() {
-    let that = this;
-    let openId = that.data.openId;
+  // //获取用户信息
+  // getUserId: function() {
+  //   let that = this;
+  //   let openId = that.data.openId;
 
-    let url = "userInfo?openId=" + openId;
-    var params = {}
-    let method = "GET";
-    wx.showLoading({
-        title: '加载中...',
-      }),
-      network.POST(url, params, method).then((res) => {
-        wx.hideLoading();
-        // console.log("获取用户信息返回值是：" + res.data);
+  //   let url = "userInfo?openId=" + openId;
+  //   var params = {}
+  //   let method = "GET";
+  //   wx.showLoading({
+  //       title: '加载中...',
+  //     }),
+  //     network.POST(url, params, method).then((res) => {
+  //       wx.hideLoading();
+  //       // console.log("获取用户信息返回值是：" + res.data);
 
-        if (res.data.code == 200) {
-          if (res.data.data != null) {
-            let userId = res.data.data.userId;
-            wx.setStorageSync('userId', userId);
-            wx.redirectTo({
-              url: '../home/home',
-            })
-          } else {
-            that.register();
-          }
-        }
+  //       if (res.data.code == 200) {
+  //         if (res.data.data != null) {
+  //           let userId = res.data.data.userId;
+  //           wx.setStorageSync('userId', userId);
+  //           wx.redirectTo({
+  //             url: '../home/home',
+  //           })
+  //         } else {
+  //           that.register();
+  //         }
+  //       }
 
-      }).catch((errMsg) => {
-        wx.hideLoading();
-        // console.log(errMsg); //错误提示信息
-        wx.showToast({
-          title: '网络错误',
-          icon: 'loading',
-          duration: 1000,
-        })
-      });
-  },
-  //用户注册
-  register: function() {
-    let that = this;
-    let openId = that.data.openId;
+  //     }).catch((errMsg) => {
+  //       wx.hideLoading();
+  //       // console.log(errMsg); //错误提示信息
+  //       wx.showToast({
+  //         title: '网络错误',
+  //         icon: 'loading',
+  //         duration: 1000,
+  //       })
+  //     });
+  // },
+  // //用户注册
+  // register: function() {
+  //   let that = this;
+  //   let openId = that.data.openId;
 
-    let url = "register?openId=" + openId;
-    var params = {}
-    let method = "GET";
-    wx.showLoading({
-        title: '加载中...',
-      }),
-      network.POST(url, params, method).then((res) => {
-        wx.hideLoading();
-        // console.log("获取用户信息返回值是：" + res.data);
+  //   let url = "register?openId=" + openId;
+  //   var params = {}
+  //   let method = "GET";
+  //   wx.showLoading({
+  //       title: '加载中...',
+  //     }),
+  //     network.POST(url, params, method).then((res) => {
+  //       wx.hideLoading();
+  //       // console.log("获取用户信息返回值是：" + res.data);
 
-        if (res.data.code == 200) {
-          wx.redirectTo({
-            url: '../setPassword/setPassword',
-          })
-          // that.userLogin();
-        } else {
-          common.showTip(msg, 'loading');
-        }
+  //       if (res.data.code == 200) {
+  //         wx.redirectTo({
+  //           url: '../setPassword/setPassword',
+  //         })
+  //         // that.userLogin();
+  //       } else {
+  //         common.showTip(msg, 'loading');
+  //       }
 
-      }).catch((errMsg) => {
-        wx.hideLoading();
-        // console.log(errMsg); //错误提示信息
-        wx.showToast({
-          title: '网络错误',
-          icon: 'loading',
-          duration: 1500,
-        })
-      });
-  },
-  //用户登录
-  userLogin: function() {
-    let that = this;
-    let openId = that.data.openId;
+  //     }).catch((errMsg) => {
+  //       wx.hideLoading();
+  //       // console.log(errMsg); //错误提示信息
+  //       wx.showToast({
+  //         title: '网络错误',
+  //         icon: 'loading',
+  //         duration: 1500,
+  //       })
+  //     });
+  // },
+  // //用户登录
+  // userLogin: function() {
+  //   let that = this;
+  //   let openId = that.data.openId;
 
-    let url = "login?openid=" + openId;
-    var params = {}
-    let method = "GET";
-    wx.showLoading({
-        title: '加载中...',
-      }),
-      network.POST(url, params, method).then((res) => {
-        wx.hideLoading();
-        // console.log("获取用户信息返回值是：" + res.data);
+  //   let url = "login?openid=" + openId;
+  //   var params = {}
+  //   let method = "GET";
+  //   wx.showLoading({
+  //       title: '加载中...',
+  //     }),
+  //     network.POST(url, params, method).then((res) => {
+  //       wx.hideLoading();
+  //       // console.log("获取用户信息返回值是：" + res.data);
 
-        if (res.data.code == 200) {
-          let userId = res.data.data.user.userId;
-          // console.log('userId is:', userId);
-          wx.setStorageSync('userId', userId);
-          common.showTip(res.data.msg);
-          wx.redirectTo({
-            url: '../home/home',
-          })
-        } else {
-          common.showTip(msg, 'loading');
-        }
+  //       if (res.data.code == 200) {
+  //         let userId = res.data.data.user.userId;
+  //         // console.log('userId is:', userId);
+  //         wx.setStorageSync('userId', userId);
+  //         common.showTip(res.data.msg);
+  //         wx.redirectTo({
+  //           url: '../home/home',
+  //         })
+  //       } else {
+  //         common.showTip(msg, 'loading');
+  //       }
 
-      }).catch((errMsg) => {
-        wx.hideLoading();
-        // console.log(errMsg); //错误提示信息
-        wx.showToast({
-          title: '网络错误',
-          icon: 'loading',
-          duration: 1000,
-        })
-      });
-  }
+  //     }).catch((errMsg) => {
+  //       wx.hideLoading();
+  //       // console.log(errMsg); //错误提示信息
+  //       wx.showToast({
+  //         title: '网络错误',
+  //         icon: 'loading',
+  //         duration: 1000,
+  //       })
+  //     });
+  // }
 })

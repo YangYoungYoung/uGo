@@ -54,7 +54,10 @@ Page({
     })
   },
 
-  //修改密码
+  /***
+   *  修改密码 
+   * 
+   * ******/
   changePwd: function() {
     let that = this;
 
@@ -87,7 +90,7 @@ Page({
     var params = {
       password: password, //密码
       captcha: code, //验证码
-      confirmPwd: confirmPwd, //确认密码
+      // confirmPwd: confirmPwd, //确认密码
       mobile: mobile, //手机号
 
     }
@@ -125,7 +128,7 @@ Page({
     let method = "GET";
     var params = {
       mobile: mobile,
-      type: 1
+      type: 21
     }
     wx.showLoading({
         title: '加载中...',
@@ -147,4 +150,5 @@ Page({
         })
       });
   },
+
 })

@@ -28,6 +28,6 @@
   </view>
 
 
-  <button class='register-btn' bindtap='toRegister'>提交</button>
+  <button class='register-btn' bindtap='changePwd'>提交</button>
 
 </view>

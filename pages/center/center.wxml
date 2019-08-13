@@ -5,9 +5,9 @@
 
     <view class="g-bda-userinfo">
       <view class='userinfo-left'>
-        <block wx:if="{{hasUserInfo}}">
-          <image class="userinfo-avatar" src="{{userInfo.avatarUrl}}"></image>
-          <text class="userinfo-nickname">{{userInfo.nickName}}</text>
+        <block wx:if="{{user}}">
+          <image class="userinfo-avatar" src="{{user.avatar}}"></image>
+          <text class="userinfo-nickname">{{user.nickname}}</text>
         </block>
         <block wx:else>
           <image class="userinfo-avatar" src="../images/head_image.png"></image>

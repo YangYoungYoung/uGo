@@ -132,7 +132,7 @@ Page({
 
     deleteList.push(list[index].id);
     wx.request({
-      url: 'https://api.ugo365.xyz/api/shoppingCart/delete',
+      url: 'https://api-test.ugo365.xyz/api/shoppingCart/delete',
 
       data: deleteList,
       method: 'DELETE',
@@ -456,8 +456,8 @@ Page({
       }
     }
     wx.request({
-      url: 'https://api.ugo365.xyz/api/shoppingCart/delete',
-
+      // url: 'https://api.ugo365.xyz/api/shoppingCart/delete',
+      url: 'https://api-test.ugo365.xyz/api/shoppingCart/delete',
       data: deleteList,
       method: 'DELETE',
       header: {
@@ -527,6 +527,10 @@ Page({
     // let userId = that.data.userId;
     let isIntegral = that.data.isIntegral;
     let userId = wx.getStorageSync('userId');
+    if (userId == '' || userId == undefined) {
+      common.showTip("请先登录", "loading");
+      return;
+    }
 
     let url = "shoppingCart/detail?userId=" + userId + "&isIntegralShop=" + isIntegral;
     var params = {

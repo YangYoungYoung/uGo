@@ -47,9 +47,12 @@ Page({
   //获取用户余额
   getUserId: function() {
     let that = this;
-    let openId = wx.getStorageSync('openId');
+    let userId = wx.getStorageSync('userId');
+    // let wxUserInfo = wx.getStorageSync('wxUserInfo');
+    // console.log('wxUserInfo is:', wxUserInfo);
+    // var openId = wxUserInfo.openId;
 
-    let url = "userInfo?openId=" + openId;
+    let url = "userInfo?userId=" + userId;
     var params = {}
     let method = "GET";
     wx.showLoading({
@@ -114,7 +117,11 @@ Page({
     let shopId = this.data.shopId;
     timestamp = timestamp / 1000;
     let userId = wx.getStorageSync('userId');
-    let openId = wx.getStorageSync('openId');
+    let wxUserInfo = wx.getStorageSync('wxUserInfo');
+    console.log('wxUserInfo is:', wxUserInfo);
+    // var openId = wx.getStorageSync("openId");
+    var openId = wxUserInfo.openId;
+    // let openId = wx.getStorageSync('openId');
     let id = openId.substring(18);
     let sn = 'ugo365' + shopId + userId + '-' + id + timestamp;
     // console.log('sn is :', sn);
@@ -123,9 +130,10 @@ Page({
       common.showTip('请输入金额', 'loading');
       return;
     }
-    if (isUsed){
-      
-    }
+    // if (isUsed){
+    //   common.showTip('请输入金额', 'loading');
+    //   return;
+    // }
 
     let url = "common/getRepayId?outTradeNo=" + sn + "&money=" + totalFee * 100 + "&openId=" + openId;
     var params = {}

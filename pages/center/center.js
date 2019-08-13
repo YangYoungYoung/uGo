@@ -10,8 +10,8 @@ Page({
   data: {
     showPermission: false, //是否弹出授权
     //判断小程序的API，回调，参数，组件等是否在当前版本可用。
-    canIUse: wx.canIUse('button.open-type.getUserInfo'),
-    user: {},
+    // canIUse: wx.canIUse('button.open-type.getUserInfo'),
+    // user: {},
     hasUserInfo: false,
     // showModal: false,
     showShare: false,
@@ -56,42 +56,42 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-    if (app.globalData.userInfo) {
-      // console.log(app.globalData.userInfo.avatarUrl);
-      this.setData({
-        userInfo: app.globalData.userInfo,
-        hasUserInfo: true
-      })
-    } else if (this.data.canIUse) {
-      // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
-      // 所以此处加入 callback 以防止这种情况
-      app.userInfoReadyCallback = res => {
-        this.setData({
-          userInfo: res.userInfo,
-          hasUserInfo: true
-        })
-      }
-    } else {
-      // 在没有 open-type=getUserInfo 版本的兼容处理
-      wx.getUserInfo({
-        success: res => {
-          app.globalData.userInfo = res.userInfo;
-          this.setData({
-            userInfo: res.userInfo,
-            hasUserInfo: true
-          })
-        }
-      })
-    }
+    // if (app.globalData.userInfo) {
+    //   // console.log(app.globalData.userInfo.avatarUrl);
+    //   this.setData({
+    //     userInfo: app.globalData.userInfo,
+    //     hasUserInfo: true
+    //   })
+    // } else if (this.data.canIUse) {
+    //   // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
+    //   // 所以此处加入 callback 以防止这种情况
+    //   app.userInfoReadyCallback = res => {
+    //     this.setData({
+    //       userInfo: res.userInfo,
+    //       hasUserInfo: true
+    //     })
+    //   }
+    // } else {
+    //   // 在没有 open-type=getUserInfo 版本的兼容处理
+    //   wx.getUserInfo({
+    //     success: res => {
+    //       app.globalData.userInfo = res.userInfo;
+    //       this.setData({
+    //         userInfo: res.userInfo,
+    //         hasUserInfo: true
+    //       })
+    //     }
+    //   })
+    // }
   },
-  getUserInfo: function(e) {
-    // console.log(e);
-    app.globalData.userInfo = e.detail.userInfo;
-    this.setData({
-      userInfo: e.detail.userInfo,
-      hasUserInfo: true
-    })
-  },
+  // getUserInfo: function(e) {
+  //   // console.log(e);
+  //   app.globalData.userInfo = e.detail.userInfo;
+  //   this.setData({
+  //     userInfo: e.detail.userInfo,
+  //     hasUserInfo: true
+  //   })
+  // },
 
 
   /**
@@ -149,32 +149,31 @@ Page({
     })
   },
   //扫一扫
-  scanCode: function() {
-    let that = this;
-    // 只允许从相机扫码
-    wx.scanCode({
-      onlyFromCamera: true,
-      success(res) {
+  // scanCode: function() {
+  //   let that = this;
+  //   // 只允许从相机扫码
+  //   wx.scanCode({
+  //     onlyFromCamera: true,
+  //     success(res) {
 
-        let result = res.result;
-        // console.log(result);
-        var index = result.lastIndexOf("\=");
-        let shopId = result.substring(index + 1, result.length);
-        // console.log(shopId);
-        if (shopId != undefined || shopId.length != 0) {
-          // that.setData({
-          //   shopId: shopId
-          // })
-          // that.showDialogBtn();
-          wx.navigateTo({
-            url: '../payment/payment?shopId=' + shopId,
-          })
-        }
-
-        // return obj;
-      }
-    })
-  },
+  //       let result = res.result;
+  //       // console.log(result);
+  //       var index = result.lastIndexOf("\=");
+  //       let shopId = result.substring(index + 1, result.length);
+  //       // console.log(shopId);
+  //       if (shopId != undefined || shopId.length != 0) {
+  //         // that.setData({
+  //         //   shopId: shopId
+  //         // })
+  //         // that.showDialogBtn();
+  //         wx.navigateTo({
+  //           url: '../payment/payment?shopId=' + shopId,
+  //         })
+  //       }
+  //       // return obj;
+  //     }
+  //   })
+  // },
 
   /**
    * 获取到用户信息
@@ -182,8 +181,13 @@ Page({
   onConfirm: function() {
 
     let that = this;
-    let user = wx.getStorageSync("user");
-    let userId = user.id;
+    let userId = wx.getStorageSync("userId");
+    if (userId.length==0||userId==undefined){
+      common.showTip('请先登录',"loading");
+      return;
+    }
+    console.log('userId is:', userId);
+    // let userId = user.id;
     let url = "userInfo?userId=" + userId;
     let method = "GET";
     var params = {
@@ -231,12 +235,12 @@ Page({
     var that = this;
     var userId = wx.getStorageSync("userId");
     let phone = wx.getStorageSync('mobile');
-    console.log('userId is:', userId);
+    // console.log('userId is:', userId);
 
     if (phone == undefined || phone == null) {
       phone = '';
     }
-    console.log('phone is:', phone);
+    // console.log('phone is:', phone);
     return {
       title: '优购365导购平台',
       path: '/pages/share/share?userId=' + userId + "&phone=" + phone,
@@ -287,7 +291,7 @@ Page({
   },
   //弹出授权弹窗
   showPermissionDialog: function() {
-    console.log('弹出授权询问弹窗');
+    // console.log('弹出授权询问弹窗');
     let that = this;
     that.showPermissionDialogBtn();
   },
@@ -313,9 +317,9 @@ Page({
   bindGetUserInfo(res) {
     let that = this;
     let info = res;
-    console.log(info);
+    // console.log(info);
     if (info.detail.userInfo) {
-      console.log("点击了同意授权");
+      // console.log("点击了同意授权");
       that.hidePermissionModal();
       wx.login({
         success: function(res) {
@@ -346,14 +350,14 @@ Page({
             //   }
             // })
           } else {
-            console.log("授权失败");
+            // console.log("授权失败");
             common.showTip('授权失败', loading);
           }
         },
       })
 
     } else {
-      console.log("点击了拒绝授权");
+      // console.log("点击了拒绝授权");
     }
   },
 
@@ -377,14 +381,15 @@ Page({
         method: "GET", //get为默认方法/POST
         success: function(res) {
           wx.hideLoading();
-          console.log("sessionKey" + res.data.data.sessionKey); //正确返回结果
-          if (res.data.data.sessionKey != undefined) {
+          // console.log("sessionKey" + res.data.data.sessionKey); //正确返回结果
+          if (res.data.data != undefined) {
+            let openId = wx.setStorageSync('key', 'data');
             var sessionKey = res.data.data.sessionKey
             wx.getUserInfo({
               withCredentials: true,
               success: (obj) => {
-                console.log('encryptedData is:', obj.encryptedData);
-                console.log('iv is:', obj.iv);
+                // console.log('encryptedData is:', obj.encryptedData);
+                // console.log('iv is:', obj.iv);
                 //获取用户UnionId
                 wx.request({
                   url: "https://api-test.ugo365.xyz/wx/miniApp/getUnionIdFirst",
@@ -399,16 +404,18 @@ Page({
                   method: "GET", //get为默认方法/POST
                   success: function(res) {
                     // self.globalData.openid = res.data.openid;\
-                    console.log('unionId is:', res);
-                    // wx.setStorageSync('unionId', unionId);
-                    //获取到unionId后关闭所有页面跳转到登录账号界面
-                    // wx.reLaunch({
-                    //   url: '../login/login',
 
-                    // })
+                    let wxUserInfo = res.data;
+                    // console.log('wxUserInfo is:', wxUserInfo);
+
+                    wx.setStorageSync('wxUserInfo', wxUserInfo);
+                    //获取到unionId后关闭所有页面跳转到登录账号界面
+                    wx.reLaunch({
+                      url: '../login/login',
+                    })
                   },
                   fail: function(res) {
-                    console.log('拉取用户openid失败，将无法正常使用开放接口等服务', res)
+                    // console.log('拉取用户openid失败，将无法正常使用开放接口等服务', res)
                   }
                 })
               }

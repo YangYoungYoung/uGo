@@ -217,10 +217,10 @@
                     <image class='shop-location-icon' src='../images/shop_location_icon1.png' mode='aspectFit'></image>
                     <text class='shop-location-text'>{{item.detailAddress}}</text>
                   </view>
-                  <view class='shop-people'>已有
+                  <!-- <view class='shop-people'>已有
                     <text class='shop-people-num'>{{item.inStoreNum}}</text>
                     <view>人进店</view>
-                  </view>
+                  </view> -->
                 </view>
               </view>
             </view>

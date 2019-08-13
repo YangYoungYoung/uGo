@@ -342,8 +342,8 @@ Page({
   //签到按钮
   sineInClick: function() {
     let that = this;
-    let userInfo = wx.getStorageSync('userInfo');
-    if (userInfo == '' || userInfo == undefined) {
+    let userId = wx.getStorageSync('userId');
+    if (userId.length == 0 || userId == undefined) {
       wx.showModal({
         title: '您还没有登录',
         content: '是否现在就去登录',
@@ -372,7 +372,7 @@ Page({
       })
     } else {
       let addedIntegral = sineList[signedTimes].number;
-      let userId = wx.getStorageSync('userId');
+      // let userId = wx.getStorageSync('userId');
 
       let url = "dg/sign/sign?userId=" + userId + "&addedIntegral=" + addedIntegral;
       // let url = "dg/sign/sign";
@@ -705,8 +705,8 @@ Page({
   //扫一扫
   scanCode: function() {
     let that = this;
-    let userInfo = wx.getStorageSync('userInfo');
-    if (userInfo == '' || userInfo == undefined) {
+    let userId = wx.getStorageSync('userId');
+    if (userId.length==0 || userId == undefined) {
       wx.showModal({
         title: '您还没有登录',
         content: '是否现在就去登录',
@@ -758,7 +758,7 @@ Page({
     let typeName = e.currentTarget.dataset.name;
     let category1 = that.data.category1;
     let subList = category1[index].subList;
-    if (subList == null) {
+    if (subList == null || subList.length==0) {
       wx.navigateTo({
         url: '../typeInfo/typeInfo?typeId=' + id + '&typeName=' + typeName,
       })

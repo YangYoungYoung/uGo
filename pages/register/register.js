@@ -32,7 +32,7 @@ Page({
   //获取手机号
   getMobile: function(e) {
     let mobile = e.detail.value;
-    console.log('mobile is:', mobile);
+    // console.log('mobile is:', mobile);
     this.setData({
       mobile: mobile
     })
@@ -40,7 +40,7 @@ Page({
   //获取验证码
   getCode: function(e) {
     let code = e.detail.value;
-    console.log('code is:', code);
+    // console.log('code is:', code);
     this.setData({
       code: code
     })
@@ -48,7 +48,7 @@ Page({
   //获取密码
   getPwd: function(e) {
     let pwd = e.detail.value;
-    console.log('pwd is:', pwd);
+    // console.log('pwd is:', pwd);
     this.setData({
       pwd: pwd
     })
@@ -56,7 +56,7 @@ Page({
   //确实密码
   confirmPwd: function(e) {
     let confirmPwd = e.detail.value;
-    console.log('confirmPwd is:', confirmPwd);
+    // console.log('confirmPwd is:', confirmPwd);
     this.setData({
       confirmPwd: confirmPwd
     })
@@ -91,7 +91,7 @@ Page({
     let method = "GET";
     var params = {
       mobile: mobile,
-      type: 1
+      type: 12
     }
     wx.showLoading({
         title: '加载中...',
@@ -122,6 +122,12 @@ Page({
     let confirmPwd = that.data.confirmPwd;
     let integralPwd = that.data.integralPwd;
     let confirmIntegralPwd = that.data.confirmIntegralPwd;
+    let wxUserInfo = wx.getStorageSync('wxUserInfo');
+    let wxUnionid = wxUserInfo.unionId;
+    let wxHeadImgUrl = wxUserInfo.avatarUrl; //头像
+    let wxNickname = wxUserInfo.nickName;
+    let wxOpenid = wxUserInfo.openId;
+    console.log('wxUnionid is:', wxUnionid);
     if (mobile == '') {
       common.showTip('信息不能为空', 'loading');
       return;
@@ -146,18 +152,19 @@ Page({
       common.showTip('信息不能为空', 'loading');
       return;
     }
-    let registerParam = {
-      mobile: mobile,
-      code: code,
-      pwd: pwd,
-      confirmPwd: confirmPwd,
-      integralPwd: integralPwd,
-      confirmIntegralPwd: confirmIntegralPwd
-
-    }
+    // let registerParam = {
+    // }
     let url = "register";
     var params = {
-      registerParam: registerParam
+      // registerParam: registerParam
+      captcha: code,
+      integralPayPassword: integralPwd,
+      mobile: mobile,
+      password: pwd,
+      wxUnionid: wxUnionid,
+      wxHeadImgUrl: wxHeadImgUrl,
+      wxNickname: wxNickname,
+      wxOpenid: wxOpenid
     }
     let method = "POST";
     wx.showLoading({
@@ -168,8 +175,8 @@ Page({
         // console.log("获取用户信息返回值是：" + res.data);
 
         if (res.data.code == 200) {
-          common.showTip('注册成功','success');
-          wx.redirectTo({
+          common.showTip('注册成功', 'success');
+          wx.reLaunch({
             url: '../home/home',
           })
           // that.userLogin();

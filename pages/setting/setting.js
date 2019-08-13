@@ -19,9 +19,14 @@ Page({
   //获取用户信息
   getuserInfo: function() {
     let that = this;
-    let user = wx.getStorageSync("user");
-    console.log('user is:', user);
-    let userId = user.id;
+    let userId = wx.getStorageSync("userId");
+    
+    // console.log('user is:', user);
+    // let userId = wxUserInfo.id;
+    if (userId == '' || userId == undefined) {
+      common.showTip("请先登录", "loading");
+      return;
+    }
     let url = "userInfo?userId=" + userId;
     let method = "GET";
     var params = {
@@ -62,6 +67,10 @@ Page({
   chooseImg: function() {
     let that = this;
     let userId = wx.getStorageSync('userId');
+    if (userId == '' || userId == undefined) {
+      common.showTip("请先登录", "loading");
+      return;
+    }
     wx.chooseImage({
       count: 1, // 默认9
       sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有

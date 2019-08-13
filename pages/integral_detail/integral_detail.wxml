@@ -1,7 +1,7 @@
 <!--pages/integral_detail/integral_detail.wxml-->
 <view class="container">
   <scroll-view class='scroll' scroll-y="true" style="height: 100%;">
-    <image class='detail_image' src="{{goods.primaryPicUrl}}"></image>
+    <image class='detail_image' src="{{goods.primaryPicUrl}}" mode="widthFix"></image>
 
 
     <view class='detail_margin'>

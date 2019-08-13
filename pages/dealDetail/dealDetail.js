@@ -57,6 +57,10 @@ Page({
     var month = (date.getMonth() + 1 < 10 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1);
     console.log('month is:', month);
     let userId = wx.getStorageSync('userId');
+    if(userId==''||userId==undefined){
+      common.showTip("请先登录","loading");
+      return;
+    }
     that.setData({
       year: year,
       month: month,
@@ -112,7 +116,7 @@ Page({
     let year = that.data.year;
     let month = that.data.month;
     wx.request({
-      url: 'http://ugo365.eicp.vip/api/integralTrade/userId',
+      url: 'https://api-test.ugo365.xyz/api/integralTrade/userId',
       method: 'GET',
       data: {
         userId: userId,
