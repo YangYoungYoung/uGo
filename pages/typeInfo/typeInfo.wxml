@@ -25,7 +25,7 @@
               <text class='shop-info-name'>{{item.name}}</text>
               <view class='shop-info-location-distance'>
                 <view class='shop-info-location'>
-                  <text class='shop-info-type'>{{item.categoryName}}</text>
+                  <text class='shop-info-type'>{{item.categoryPName}}</text>
                   <text class='shop-info-loca'>{{item.district}}</text>
                 </view>
                 <text class='shop-info-distance'>{{item.distance}}m</text>

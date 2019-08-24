@@ -662,7 +662,7 @@ page {
 
 .footer-item-icon {
   width: 48rpx;
-  height: 44rpx;
+  height: 46rpx;
 }
 
 .footer-item-name {

@@ -25,7 +25,7 @@ Page({
     addIntegral: 0,
     signedTimes: 0,
     footerList: [{
-        name: '首页',
+        name: '本地商圈',
         src_yes: '../images/footer_home_y.png',
         src_no: '../images/footer_home_n.png',
         select: true
