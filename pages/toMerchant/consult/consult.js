@@ -1,4 +1,6 @@
 // pages/toMerchant/consult/consult.js
+var network = require("../../../utils/network.js")
+var common = require("../../../utils/common.js")
 Page({
 
   /**
