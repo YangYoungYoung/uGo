@@ -150,3 +150,23 @@
   height: 40rpx;
   margin-right: 24rpx;
 }
+
+.line{
+  width: 702rpx;
+  height: 2rpx;
+  background-color: #F0F0F0;
+  margin-top: 24rpx;
+}
+
+.shop-title{
+  font-size: 28rpx;
+  color: #616161;
+  margin-left: 12rpx;
+  margin-top: 24rpx;
+}
+
+.shop-content{
+  font-size: 24rpx;
+  color: #616161;
+  text-align: center;
+}

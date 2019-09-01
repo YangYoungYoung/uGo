@@ -30,4 +30,14 @@
       </view>
     </view>
   </view>
+  <block wx:if="{{shopInfo.preferential!=null}}">
+    <view class="line"></view>
+    <view class="shop-title">店铺活动：</view>
+    <view class="shop-content">{{shopInfo.preferential}}</view>
+  </block>
+  <block wx:if="{{shopInfo.introduction!=null}}">
+    <view class="line"></view>
+    <view class="shop-title">商家简介：</view>
+    <view class="shop-content">{{shopInfo.introduction}}</view>
+  </block>
 </view>

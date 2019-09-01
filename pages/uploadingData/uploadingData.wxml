@@ -30,8 +30,6 @@
           <radio value="{{item.value}}" checked="{{item.checked}}" />{{item.value}}
         </label>
       </radio-group>
-
-
     </view>
 
     <view class='information-title'>
@@ -62,7 +60,7 @@
       </block>
     </view>
     <view class='legalPeople-title'>
-      <text class='legalPeople-text'>商铺信息</text>
+      <text class='legalPeople-text'>营业执照</text>
     </view>
     <view class='upload-view' bindtap='chooseCertificate'>
       <block wx:if='{{certificate}}'>
