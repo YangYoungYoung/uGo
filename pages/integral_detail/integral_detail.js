@@ -7,6 +7,13 @@ Page({
    * 页面的初始数据
    */
   data: {
+
+    indicatorDots: true, //是否出现焦点  
+    autoplay: true, //是否自动播放轮播图  
+    interval: 4000, //时间间隔
+    duration: 1000, //延时时间
+    circular: true,
+
     num: 1,
     goodsSpecifitionValue: ''
   },
@@ -194,7 +201,7 @@ Page({
   //加入购物车
   addToCart: function() {
     let that = this;
-    let userInfo = wx.getStorageSync('userInfo');
+    let userInfo = wx.getStorageSync('wxUserInfo');
     if (userInfo == '' || userInfo == undefined) {
       wx.showModal({
         title: '您还没有登录',
@@ -296,9 +303,64 @@ Page({
     // })
   },
   //立即购买
-  buyNow: function(id) {
+  // buyNow: function(id) {
+  //   let that = this;
+  //   let userInfo = wx.getStorageSync('userInfo');
+  //   console.log('userInfo:',userInfo);
+  //   if (userInfo == '' || userInfo == undefined) {
+  //     wx.showModal({
+  //       title: '您还没有登录',
+  //       content: '是否现在就去登录',
+  //       cancelText: '否',
+  //       confirmText: '是',
+  //       success(res) {
+  //         if (res.cancel) {
+  //           // 用户点击了取消属性的按钮
+
+  //         } else if (res.confirm) {
+  //           // 用户点击了确定属性的按钮，跳转到个人中心登录
+  //           wx.navigateTo({
+  //             url: '../center/center',
+  //           })
+  //         }
+  //       }
+  //     })
+  //     return;
+  //   }
+  //   // let id = that.data.goodId;
+  //   let userId = wx.getStorageSync("userId");
+
+  //   let url = "shoppingCart/settleAccounts?userId=" + userId + "&orderItemId=" + id + "&isIntegralShop=1";
+
+  //   let params = {}
+  //   let method = "POST";
+  //   let contentType = 'application/json'
+  //   wx.showLoading({
+  //       title: '加载中...',
+  //     }),
+  //     network.POST(url, params, method, contentType).then((res) => {
+  //       wx.hideLoading();
+  //       // console.log("返回值是：" + res.data.orderId);
+  //       if (res.data.code == 200) {
+  //         wx.navigateTo({
+  //           url: '../integral_payOrder/integral_payOrder?orderId=' + res.data.orderId,
+  //         })
+  //       }
+  //     }).catch((errMsg) => {
+  //       wx.hideLoading();
+  //       // console.log(errMsg); //错误提示信息
+  //       wx.showToast({
+  //         title: '网络错误',
+  //         icon: 'loading',
+  //         duration: 1500,
+  //       })
+  //     });
+  // },
+  //获取orderItem
+  getOrderItem: function() {
     let that = this;
-    let userInfo = wx.getStorageSync('userInfo');
+    let userInfo = wx.getStorageSync('wxUserInfo');
+    console.log('userInfo:', userInfo);
     if (userInfo == '' || userInfo == undefined) {
       wx.showModal({
         title: '您还没有登录',
@@ -319,38 +381,6 @@ Page({
       })
       return;
     }
-    // let id = that.data.goodId;
-    let userId = wx.getStorageSync("userId");
-
-    let url = "shoppingCart/settleAccounts?userId=" + userId + "&orderItemId=" + id + "&isIntegralShop=1";
-
-    let params = {}
-    let method = "POST";
-    let contentType = 'application/json'
-    wx.showLoading({
-        title: '加载中...',
-      }),
-      network.POST(url, params, method, contentType).then((res) => {
-        wx.hideLoading();
-        // console.log("返回值是：" + res.data.orderId);
-        if (res.data.code == 200) {
-          wx.navigateTo({
-            url: '../integral_payOrder/integral_payOrder?orderId=' + res.data.orderId,
-          })
-        }
-      }).catch((errMsg) => {
-        wx.hideLoading();
-        // console.log(errMsg); //错误提示信息
-        wx.showToast({
-          title: '网络错误',
-          icon: 'loading',
-          duration: 1500,
-        })
-      });
-  },
-  //获取orderItem
-  getOrderItem: function() {
-    let that = this;
     let goodsId = that.data.goods.id;
     let goodsName = that.data.goods.name;
     let price = that.data.goods.integral;
@@ -420,5 +450,35 @@ Page({
     that.setData({
       guiGe: guiGe
     })
-  }
+  },
+
+  /**
+   * 用户点击右上角分享
+   */
+  onShareAppMessage: function() {
+    var that = this;
+    let goodsId = that.data.goodsId;
+    let good = that.data.goods;
+    let name = good.name;
+    let integral = good.integral;
+    // let str = '[' + integral+'积分免费拿]'+name;
+    let str = `${integral}积分免费兑换 ${name}`;
+    // console.log('phone is:', phone);
+    return {
+      title: str,
+      path: '/pages/integral_detail/integral_detail?goodsId=' + goodsId,
+      success(e) {
+        wx.showShareMenu({
+          // 要求小程序返回分享目标信息
+          withShareTicket: true
+        });
+      },
+      fail(e) {
+        // shareAppMessage:fail cancel
+        // shareAppMessage:fail(detail message) 
+        // console.log("用户取消了分享");
+      },
+      complete() {}
+    }
+  },
 })

@@ -2,9 +2,9 @@
 <view class='search-list'>
   <scroll-view scroll-y style="height: 100%;" bindscrolltolower='scrollLower'>
     <block wx:if="{{showList}}">
-      <block wx:for="{{goodsS}}" wx:key="index" wx:if="{{index<20}}">
+      <block wx:for="{{goodsS}}" wx:key="index">
         <view class='search-list-item' bindtap='toDetail' data-id='{{item.id}}'>
-          <image class='item-image' src='{{item.primaryPicUrl}}'></image>
+          <image class='item-image' src='{{item.primaryPicUrl}}' mode="aspectFill"></image>
           <view class='item-info'>
             <text class='item-name'>{{item.name}}</text>
             <view class='item-price'>

@@ -7,7 +7,6 @@
     <image class='authenticationImg' src='../images/authenticationFalse_icon.png'></image>
   </block>
 
-
   <text class='authenticationText'>{{text}}</text>
   <block wx:if="{{!isAuthentication}}">
     <button class='authenticationBtn' bindtap='resubmit'>重新提交</button>

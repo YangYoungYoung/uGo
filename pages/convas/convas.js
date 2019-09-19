@@ -162,8 +162,10 @@ Page({
         if (res.data.code == 200) {
           // 中奖提示
           var awardsConfig = this.awardsConfig;
+          
           setTimeout(function() {
             wx.showModal({
+              
               title: '恭喜',
               // content: '获得' + (awardsConfig.awards[awardIndex].name),
               content: '获得' + number+"积分",
@@ -184,16 +186,16 @@ Page({
             this.setData({
               btnDisabled: ''
             });
-          }.bind(this), duration);
+          }.bind(this), 4000);
         }
       }).catch((errMsg) => {
         wx.hideLoading();
         // console.log(errMsg); //错误提示信息
-        wx.showToast({
-          title: '网络错误',
-          icon: 'loading',
-          duration: 1500,
-        })
+        // wx.showToast({
+        //   title: '网络错误',
+        //   icon: 'loading',
+        //   duration: 1500,
+        // })
       });
   }
 })

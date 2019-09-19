@@ -45,16 +45,16 @@ Page({
         let goodsS = res.data.data.goodsS;
         if (goodsS.length == 0) {
           that.setData({
-            goodsS: goodsS,
+            showList: false
           })
-        } else if (goodsS.length == 10) {
+        } else if (goodsS.length == 8) {
           that.setData({
             goodsS: goodsS,
             hasNextList: true
           })
         } else {
           that.setData({
-            showList: false
+            goodsS: goodsS,
           })
         }
       }).catch((errMsg) => {
@@ -108,7 +108,7 @@ Page({
         let oldList = that.data.goodsS;
         let newList = oldList.concat(goodsS);
 
-        if (goodsS.length == 0) {
+        if (goodsS.length == 10) {
           that.setData({
             goodsS: newList,
             pageIndex: pageIndex,

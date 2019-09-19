@@ -152,14 +152,13 @@ Page({
         wx.hideLoading();
         // console.log("返回值是：" + res.data);
         let goodsS = res.data.data.goodsS;
-        if (goodsS.length == 100) {
+        if (goodsS.length == 10) {
           that.setData({
             hasNextList: true,
             goodsS: goodsS
           })
         } else {
           that.setData({
-
             goodsS: goodsS
           })
         }
@@ -199,7 +198,7 @@ Page({
         let goodsS = res.data.data.goodsS;
         let oldList = that.data.goodsS;
         let newList = oldList.concat(goodsS);
-        if (goodsS.length == 100) {
+        if (goodsS.length == 8) {
           that.setData({
             hasNextList: true,
             goodsS: newList,

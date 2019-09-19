@@ -63,7 +63,41 @@ page {
 .sold {
   font-size: 22rpx;
   color: #9f9f9f;
-  padding-right: 30rpx;
+  /* padding-right: 30rpx; */
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+/* 分享按钮 */
+
+.share_view {
+  /* margin-left: 24rpx; */
+  width: 100rpx;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.share_image {
+  width: 36rpx;
+  height: 36rpx;
+}
+
+.goods_btn {
+  width: auto;
+  height: 100%;
+  text-align: center;
+  font-size: 28rpx;
+  background: none !important;
+  color: #000 !important;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.goods_btn::after {
+  border: none;
 }
 
 .checknumber {
@@ -391,11 +425,10 @@ button {
   margin-top: 24rpx;
 }
 
-.type-big-list{
+.type-big-list {
   display: flex;
   flex-direction: column;
   /* align-items: center; */
-  
 }
 
 .type-list {
@@ -406,7 +439,7 @@ button {
   margin-top: 16rpx;
 }
 
-.type-text{
+.type-text {
   font-size: 24rpx;
   color: #313131;
 }
@@ -421,7 +454,8 @@ button {
   align-items: center;
   margin-right: 24rpx;
 }
-.type-item-text{
+
+.type-item-text {
   font-size: 24rpx;
   padding-left: 36rpx;
   padding-right: 36rpx;

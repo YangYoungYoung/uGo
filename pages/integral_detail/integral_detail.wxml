@@ -1,15 +1,30 @@
 <!--pages/integral_detail/integral_detail.wxml-->
 <view class="container">
   <scroll-view class='scroll' scroll-y="true" style="height: 100%;">
-    <image class='detail_image' src="{{goods.primaryPicUrl}}" mode="widthFix"></image>
 
-
+    <swiper style="height:766rpx;width:100%;background:#eee" indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" circular="{{circular}}">
+      <!--广告banner-->
+      <block wx:for="{{ imagList }}" wx:key="item">
+        <swiper-item>
+          <image class='detail_image' src="{{item}}" mode="widthFix"></image>
+        </swiper-item>
+      </block>
+    </swiper>
     <view class='detail_margin'>
       <view class='detail_name'>{{goods.name}}</view>
       <view class='checknumber'>
         <view class='detail_newprice'>积分 : {{goods.integral}}</view>
 
-        <view class='sold'>已售{{goods.sold}}件</view>
+        <view class='sold'>
+          <!-- <text>已售{{goods.sold}}件</text> -->
+          <view class="share_view">
+
+            <button class="goods_btn" open-type="share">
+              <image class="share_image" src="../images/share__icon.png"></image>
+            </button>
+          </view>
+
+        </view>
       </view>
       <!-- <view class='checknumber'>
         <view class='detail_oldprice'>原价 : ￥{{goods.unitPrice}}元</view>
@@ -61,7 +76,8 @@
       <text class='type-text'>规格</text>
       <view class='type-big-list'>
         <block wx:for="{{guiGe}}" wx:key='item' wx:for-item="item">
-          <view class='type-item'  style="background-color:#E5E5E5;border:none;color:#313131;margin-top:16rpx;">
+          <!-- <view class='type-item' style="background-color:#E5E5E5;border:none;color:#313131;margin-top:16rpx;"> -->
+           <view class='type-item' style="border:none;font-size:32rpx;color:#313131;margin-top:16rpx;">
             <text class='type-item-text'>{{item.name}}</text>
           </view>
           <view class='type-list'>
@@ -70,12 +86,9 @@
                 <text class='type-item-text'>{{body.content}}</text>
               </view>
             </block>
-
           </view>
         </block>
-
       </view>
-
     </view>
 
     <view class="row">
